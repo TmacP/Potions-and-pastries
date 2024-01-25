@@ -10,6 +10,7 @@ public class PlayerActionScript : MonoBehaviour
     private InteractorBehavoir _InteractorBehavoir;
     private Vector3 _PlayerMoveInput;
 
+
     private void Awake()
     {
         _Rigidbody ??= GetComponent<Rigidbody>();

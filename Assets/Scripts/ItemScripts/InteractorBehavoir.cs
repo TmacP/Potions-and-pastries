@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using UnityEngine.AI;
 
 public class InteractorBehavoir : MonoBehaviour
 {
     [SerializeField] Vector3 InteractionOffset = new Vector3();
     [SerializeField] float InteractRadius = 5.0f;
     [SerializeField] private LayerMask _InteractableMask;
+    [SerializeField] private bool bDrawDebug = false;
 
     private readonly Collider[] _Colliders = new Collider[4];
     [SerializeField] private int CollidersCount;
@@ -18,8 +21,11 @@ public class InteractorBehavoir : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(InteractionOffset + transform.position, InteractRadius);
+        if(bDrawDebug)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(InteractionOffset + transform.position, InteractRadius);
+        }
     }
 
     public bool TryInteract()
