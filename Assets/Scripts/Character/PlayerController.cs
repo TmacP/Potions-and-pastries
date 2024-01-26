@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerActionScript : MonoBehaviour
 {
@@ -8,7 +9,6 @@ public class PlayerActionScript : MonoBehaviour
     public PlayerStateData PlayerState;
     private Rigidbody _Rigidbody;
     private InteractorBehavoir _InteractorBehavoir;
-    private Vector3 _PlayerMoveInput;
 
 
     private void Awake()
@@ -20,14 +20,18 @@ public class PlayerActionScript : MonoBehaviour
         _PlayerActions.PlayerActionMap.Enable();
 
         //Generally this is how we can bind inputs...
-        _PlayerActions.PlayerActionMap.Interact.performed += Interacting => { OnInteractInput(); };
+        //Either .performed for a specified trigger or .started
+        //_PlayerActions.PlayerActionMap.InteractPressed.performed += OnInteractInput;
+        //_PlayerActions.PlayerActionMap.InteractReleased.performed += OnInteractStop;
+        _PlayerActions.PlayerActionMap.Interact.started += OnInteractStart;
+        _PlayerActions.PlayerActionMap.Interact.canceled += OnInteractCancelled;
     }
 
     private void FixedUpdate()
     {
         if (_Rigidbody && PlayerState)
         {
-            _PlayerMoveInput = _PlayerActions.PlayerActionMap.Move.ReadValue<Vector2>();
+            Vector2 _PlayerMoveInput = _PlayerActions.PlayerActionMap.Move.ReadValue<Vector2>();
             _Rigidbody.velocity = new Vector3(
                 _PlayerMoveInput.x * PlayerState.MoveSpeed,
                 _Rigidbody.velocity.y,
@@ -35,11 +39,16 @@ public class PlayerActionScript : MonoBehaviour
         }
     }
 
-    protected void OnInteractInput()
+    protected void OnInteractStart(InputAction.CallbackContext context)
     {
         if(_InteractorBehavoir != null)
         {
             _InteractorBehavoir.TryInteract();
         }
+    }
+
+    protected void OnInteractCancelled(InputAction.CallbackContext context)
+    {
+
     }
 }

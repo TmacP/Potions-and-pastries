@@ -30,11 +30,10 @@ public class InteractorBehavoir : MonoBehaviour
 
     public bool TryInteract()
     {
-        Debug.Log("Interaction Attempt");
         if (CollidersCount > 0)
         {
             IInteractable Interactable = _Colliders[0].GetComponent<IInteractable>();
-            Interactable.TryInteract(this);
+            return Interactable.TryInteract(this);
         }
         return false;
     }

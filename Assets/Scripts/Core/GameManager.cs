@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EGameState
+{
+    MainState,
+    PauseState,
+    MovementDisabledState
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -21,5 +28,21 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ChangeGameState(EGameState NewGameState)
+    {
+        switch (NewGameState) 
+        {
+        case EGameState.MainState:
+            break;
+        case EGameState.PauseState:
+            break;
+        case EGameState.MovementDisabledState:
+            break;
+        default:
+                Debug.Log("Gamemanager::ChangeGameState unknown game state given");
+                break;
+        }
     }
 }
