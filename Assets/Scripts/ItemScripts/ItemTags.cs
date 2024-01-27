@@ -7,12 +7,21 @@ using UnityEngine;
 [Serializable]
 public enum EItemTags
 {
+
 //Equipment specific Tags
 
 //Resource specific tags
+    Sweet, 
+    Sour,
+    Salty, 
+    Spicy,
+    Bitter,
+    Savoury,
     Meat,
     Vegetable,
-
+    Fruit,
+    Berry,
+    Herb,
 };
 
 

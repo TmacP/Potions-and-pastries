@@ -2,13 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct InteractionResult
-{
-    public bool Success;
-    public string ErrorMessage;
-};
-
-
 
 public interface IInteractable
 {
