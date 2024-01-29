@@ -13,10 +13,29 @@ public class InteractorBehavoir : MonoBehaviour
 
     private readonly Collider[] _Colliders = new Collider[4];
     [SerializeField] private int CollidersCount;
+    IInteractable Interactable;
+
 
     private void Update()
     {
         CollidersCount = Physics.OverlapSphereNonAlloc(InteractionOffset + transform.position, InteractRadius, _Colliders, _InteractableMask);
+        if(CollidersCount > 0)
+        {
+            IInteractable NewInteractable = _Colliders[0].GetComponent<IInteractable>();
+            if(NewInteractable != Interactable)
+            {
+                Interactable = NewInteractable;
+                GameEventManager.instance.ChangeInteractionTarget(NewInteractable, this);
+            }
+        }
+        else
+        {
+            if(Interactable != null)
+            {
+                Interactable = null;
+                GameEventManager.instance.ChangeInteractionTarget(null, this);
+            }
+        }
     }
 
     private void OnDrawGizmos()
@@ -30,16 +49,15 @@ public class InteractorBehavoir : MonoBehaviour
 
     public bool TryInteract()
     {
-        if (CollidersCount > 0)
+        if (Interactable != null)
         {
-            IInteractable Interactable = _Colliders[0].GetComponent<IInteractable>();
             return Interactable.TryInteract(this);
         }
         return false;
     }
 
-    public void CancelInteract()
+    public void InteractReleased()
     {
-        GameEventManager.instance.CancelInteraction();
+        GameEventManager.instance.InteractionReleased();
     }
 }

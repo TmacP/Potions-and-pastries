@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbc4b1d07823a140a482df7049dfc8e, type: 3}
   m_Name: DemoGatherable
   m_EditorClassIdentifier: 
-  CollectableItems: []
+  InteractionPrompt: Gather
+  GatherableName: 
+  CollectableItems:
+  - {fileID: 0}
+  ItemsPerInteraction: 0
+  NumberOfInteractions: 0
   MiniGame:
     m_AssetGUID: 595e291c9b957934f9a4a77cae243c9e
     m_SubObjectName: 

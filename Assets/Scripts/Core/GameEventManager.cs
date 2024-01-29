@@ -32,12 +32,21 @@ public class GameEventManager : MonoBehaviour
     }
 
 
-    public event Action OnCancelInteraction;
-    public void CancelInteraction()
+    public event Action OnInteractionReleased;
+    public void InteractionReleased()
     {
-        if (OnCancelInteraction != null)
+        if (OnInteractionReleased != null)
         {
-            OnCancelInteraction();
+            OnInteractionReleased();
+        }
+    }
+
+    public event Action<IInteractable, InteractorBehavoir> OnChangeInteractionTarget;
+    public void ChangeInteractionTarget(IInteractable NewTarget, InteractorBehavoir Interactor)
+    {
+        if(OnChangeInteractionTarget != null)
+        {
+            OnChangeInteractionTarget(NewTarget, Interactor);
         }
     }
 
@@ -48,15 +57,6 @@ public class GameEventManager : MonoBehaviour
         if(OnMiniGameComplete != null)
         {
             OnMiniGameComplete(CompletionResult);
-        }
-    }
-
-    public event Action<List<ItemData>> OnGainItem;
-    public void GainItem(List<ItemData> Items)
-    { 
-        if(OnGainItem != null) 
-        {
-            OnGainItem(Items);
         }
     }
 

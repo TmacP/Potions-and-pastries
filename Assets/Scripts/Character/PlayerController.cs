@@ -76,7 +76,7 @@ public class PlayerActionScript : MonoBehaviour
     {
         if (_InteractorBehavoir != null)
         {
-            _InteractorBehavoir.CancelInteract();
+            _InteractorBehavoir.InteractReleased();
         }
     }
 

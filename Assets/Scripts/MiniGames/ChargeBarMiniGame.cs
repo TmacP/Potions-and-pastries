@@ -16,7 +16,7 @@ public class ChargeBarMiniGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameEventManager.instance.OnCancelInteraction += StopCharge;
+        GameEventManager.instance.OnInteractionReleased += StopCharge;
         IsCharging=true;
     }
 
@@ -48,14 +48,14 @@ public class ChargeBarMiniGame : MonoBehaviour
 
     void ChargeComplete()
     {
-        GameEventManager.instance.OnCancelInteraction -= StopCharge;
+        GameEventManager.instance.OnInteractionReleased -= StopCharge;
         GameEventManager.instance.MiniGameComplete(EMiniGameCompleteResult.Success);
         Destroy(this.gameObject);
     }
 
     void StopCharge()
     {
-        GameEventManager.instance.OnCancelInteraction -= StopCharge;
+        GameEventManager.instance.OnInteractionReleased -= StopCharge;
         GameEventManager.instance.MiniGameComplete(EMiniGameCompleteResult.Cancelled);
         Destroy(this.gameObject);
     }
