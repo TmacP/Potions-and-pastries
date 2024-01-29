@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
+
+    private EGameState GameState;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,17 +35,24 @@ public class GameManager : MonoBehaviour
 
     public void ChangeGameState(EGameState NewGameState)
     {
+        if(GameState == NewGameState) { return; }
+
+        GameEventManager.instance.ChangeGameState(NewGameState, GameState);
         switch (NewGameState) 
         {
-        case EGameState.MainState:
-            break;
-        case EGameState.PauseState:
-            break;
-        case EGameState.MovementDisabledState:
-            break;
-        default:
+            case EGameState.MainState:
+                Time.timeScale = 1.0f;
+                break;
+            case EGameState.PauseState:
+                Time.timeScale = 0.0f;
+                break;
+            case EGameState.MovementDisabledState:
+                Time.timeScale = 1.0f;
+                break;
+            default:
                 Debug.Log("Gamemanager::ChangeGameState unknown game state given");
                 break;
         }
+        GameState = NewGameState;
     }
 }

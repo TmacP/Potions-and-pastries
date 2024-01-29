@@ -37,4 +37,9 @@ public class InteractorBehavoir : MonoBehaviour
         }
         return false;
     }
+
+    public void CancelInteract()
+    {
+        GameEventManager.instance.CancelInteraction();
+    }
 }

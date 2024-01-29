@@ -6,6 +6,7 @@ using UnityEngine;
 
 public enum EMiniGameCompleteResult
 {
+    CriticalSuccess,
     Success, 
     Failed, 
     Cancelled
@@ -20,6 +21,27 @@ public class GameEventManager : MonoBehaviour
         instance = this;
     }
 
+
+    public event Action<EGameState, EGameState> OnChangeGameState;
+    public void ChangeGameState(EGameState NewGameState, EGameState OldGameState)
+    {
+        if (OnChangeGameState != null)
+        {
+            OnChangeGameState(NewGameState, OldGameState);
+        }
+    }
+
+
+    public event Action OnCancelInteraction;
+    public void CancelInteraction()
+    {
+        if (OnCancelInteraction != null)
+        {
+            OnCancelInteraction();
+        }
+    }
+
+
     public event Action<EMiniGameCompleteResult> OnMiniGameComplete;
     public void MiniGameComplete(EMiniGameCompleteResult CompletionResult)
     {
@@ -28,4 +50,17 @@ public class GameEventManager : MonoBehaviour
             OnMiniGameComplete(CompletionResult);
         }
     }
+
+    public event Action<List<ItemData>> OnGainItem;
+    public void GainItem(List<ItemData> Items)
+    { 
+        if(OnGainItem != null) 
+        {
+            OnGainItem(Items);
+        }
+    }
+
+
+
+
 }

@@ -18,6 +18,7 @@ public class PlayerActionScript : MonoBehaviour
 
         _PlayerActions = new PlayerActions();
         _PlayerActions.PlayerActionMap.Enable();
+        _PlayerActions.PlayerMovementMap.Enable();
 
         //Generally this is how we can bind inputs...
         //Either .performed for a specified trigger or .started
@@ -25,13 +26,37 @@ public class PlayerActionScript : MonoBehaviour
         //_PlayerActions.PlayerActionMap.InteractReleased.performed += OnInteractStop;
         _PlayerActions.PlayerActionMap.Interact.started += OnInteractStart;
         _PlayerActions.PlayerActionMap.Interact.canceled += OnInteractCancelled;
+
+        GameEventManager.instance.OnChangeGameState += OnGameStateChanged;
+    }
+
+    protected void OnGameStateChanged(EGameState NewGameState, EGameState OldGameState)
+    {
+        switch (NewGameState)
+        {
+            case EGameState.MainState:
+                _PlayerActions.PlayerActionMap.Enable();
+                _PlayerActions.PlayerMovementMap.Enable();
+                break;
+            case EGameState.PauseState:
+                _PlayerActions.PlayerActionMap.Disable();
+                _PlayerActions.PlayerMovementMap.Disable();
+                break;
+            case EGameState.MovementDisabledState:
+                _PlayerActions.PlayerActionMap.Enable();
+                _PlayerActions.PlayerMovementMap.Disable();
+                break;
+            default:
+                Debug.Log("Gamemanager::ChangeGameState unknown game state given");
+                break;
+        }
     }
 
     private void FixedUpdate()
     {
         if (_Rigidbody && PlayerState)
         {
-            Vector2 _PlayerMoveInput = _PlayerActions.PlayerActionMap.Move.ReadValue<Vector2>();
+            Vector2 _PlayerMoveInput = _PlayerActions.PlayerMovementMap.Move.ReadValue<Vector2>();
             _Rigidbody.velocity = new Vector3(
                 _PlayerMoveInput.x * PlayerState.MoveSpeed,
                 _Rigidbody.velocity.y,
@@ -49,6 +74,11 @@ public class PlayerActionScript : MonoBehaviour
 
     protected void OnInteractCancelled(InputAction.CallbackContext context)
     {
-
+        if (_InteractorBehavoir != null)
+        {
+            _InteractorBehavoir.CancelInteract();
+        }
     }
+
+
 }
