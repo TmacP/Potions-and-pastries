@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum EGameState
 {
@@ -9,9 +10,26 @@ public enum EGameState
     MovementDisabledState
 }
 
+public enum EGameScene
+{
+    InnInterior,
+    InnExterior,
+    ConorInnInterior,
+    ConorInnExterior
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
+    [SerializeField]
+    private readonly Dictionary<EGameScene, string> GameScenes = new Dictionary<EGameScene, string>()
+    {
+        {EGameScene.InnInterior, "ConorInnScene" },
+        {EGameScene.InnExterior, "ConorDemoScene" },
+        {EGameScene.ConorInnInterior, "ConorInnScene" },
+        {EGameScene.ConorInnExterior, "ConorDemoScene" }
+    };
 
     private void Awake()
     {
@@ -54,5 +72,27 @@ public class GameManager : MonoBehaviour
                 break;
         }
         GameState = NewGameState;
+    }
+
+    public void ChangeGameScene(EGameScene NewScene)
+    {
+        string SceneName;
+
+        //This is to handle any special cases before we change scenes
+        switch (NewScene)
+        {
+            case EGameScene.InnInterior:
+                break;
+            case EGameScene.InnExterior:
+                break;
+            default:
+                Debug.Log("Gamemanager::ChangeGameScene unkown game scene given");
+                break;
+        }
+        bool FoundGameScene = GameScenes.TryGetValue(NewScene, out SceneName);
+        if (FoundGameScene)
+        {
+            SceneManager.LoadScene(SceneName);
+        }
     }
 }

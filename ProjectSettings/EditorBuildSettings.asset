@@ -4,6 +4,12 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/ConorInnScene.unity
+    guid: 36b9c0d11823e58428c05a758c79bfdf
+  - enabled: 1
+    path: Assets/Scenes/ConorDemoScene.unity
+    guid: e9d8091c19a684043a59251bdb31406f
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 1369ee9106b81914e8891aaa04427f96, type: 2}
