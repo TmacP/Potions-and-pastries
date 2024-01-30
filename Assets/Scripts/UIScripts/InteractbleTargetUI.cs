@@ -13,6 +13,7 @@ public class InteractbleTargetUI : MonoBehaviour
     {
         GameEventManager.instance.OnChangeInteractionTarget += OnChangeInteractionTarget;
         PromptText.text = "";
+        PromptUI.SetActive(false);
     }
 
     private void OnDisable()
