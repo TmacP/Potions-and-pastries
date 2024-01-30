@@ -14,11 +14,14 @@ public enum EItemType
 [Serializable, CreateAssetMenu(menuName = "CozyData/ItemData")]
 public class ItemData : ScriptableObject
 {
-    string Name;
-    string Description;
-    EItemType ItemType;
-    EItemTags ItemTags;
-    AssetReferenceTexture2D Icon;
-    AssetReference SceneAsset;
+    public string Name;
+    public string Description;
+    public EItemType ItemType;
+    public EItemTags ItemTags;
+    //public AssetReferenceTexture2D Icon;
+    public Sprite image;
+    public AssetReference SceneAsset;
+
+    public bool stackable = true;
 }
 

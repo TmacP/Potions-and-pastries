@@ -6,9 +6,29 @@ using UnityEngine.UI;
 
 public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-
+    [Header("UI")]
     public Image image;
+    public Text countText;
+
+    [HideInInspector] public ItemData ItemData;
+    [HideInInspector] public int count = 1;
     [HideInInspector] public Transform parentAfterDrag;
+
+
+    public void InitialiseItemData(ItemData newItem)
+    {
+        ItemData = newItem;
+        image.sprite = newItem.image;
+        RefreshCount();
+    }
+
+    public void RefreshCount()
+    {
+        countText.text = count.ToString();
+        bool textActive = count > 1;
+        countText.gameObject.SetActive(textActive);
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log("Begin drag");
