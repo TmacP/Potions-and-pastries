@@ -48,6 +48,11 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
         image.raycastTarget = false;
+        if(infoPanel != null)
+        {
+            infoPanel.ClearInfo();
+        }
+        
     }
 
     public void OnDrag(PointerEventData eventData)

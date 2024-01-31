@@ -7,6 +7,7 @@ public class InventoryManager : MonoBehaviour
 {
     public InventorySlot[] inventorySlots;
     public GameObject draggableItemPrefab;
+    [SerializeField] private GameObject mainInventoryGroup;
     public int maxStack = 5;
 
     int selectedSlot = -1;
@@ -33,7 +34,25 @@ public class InventoryManager : MonoBehaviour
         }
         inventorySlots[newValue].Select();
         selectedSlot = newValue;
+
+        UpdateInfoPanel(selectedSlot);
     }
+
+    void UpdateInfoPanel(int slotIndex)
+    {
+        DraggableItem itemInSlot = inventorySlots[slotIndex].GetComponentInChildren<DraggableItem>();
+        InfoPanel infoPanel = FindObjectOfType<InfoPanel>();
+
+        if (itemInSlot != null && infoPanel != null)
+        {
+            infoPanel.SetInfo(itemInSlot.ItemData.name, itemInSlot.ItemData.Description, itemInSlot.ItemData.image);
+        }
+        else if (infoPanel != null)
+        {
+            infoPanel.ClearInfo();
+        }
+    }
+
 
     private void Start()
     {
@@ -42,7 +61,7 @@ public class InventoryManager : MonoBehaviour
             slot.inventoryManager = this;
         }
 
-        ChangeSelectedSlot(0);
+        
     }
 
     public void ChangeSelectedSlotBasedOnSlot(InventorySlot slot)
@@ -54,18 +73,74 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    private bool IsInventoryOpen()
+    {
+        bool isOpen = mainInventoryGroup != null && mainInventoryGroup.activeSelf;
+        //Debug.Log("IsInventoryOpen: " + isOpen + ", mainInventoryGroup: " + mainInventoryGroup);
+        return isOpen;
+    }
 
 
-    private void Update() {
+    private int slotsPerRow = 7; // inventory layout
+
+    private void Update()
+    {
+        if (IsInventoryOpen())
+        {
+            int currentRow = selectedSlot / slotsPerRow;
+            int currentColumn = selectedSlot % slotsPerRow;
+
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                if (currentColumn < slotsPerRow - 1)
+                {
+                    ChangeSelectedSlot(selectedSlot + 1);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                if (currentColumn > 0)
+                {
+                    ChangeSelectedSlot(selectedSlot - 1);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                if (selectedSlot >= 7) // Assuming main inventory starts from index 7
+                {
+                    ChangeSelectedSlot(selectedSlot - slotsPerRow);
+                }
+                else
+                {
+                    // Special case for navigating from toolbar to main inventory
+                    ChangeSelectedSlot(7 + currentColumn); // Adjusted based on layout
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                if (currentRow < (inventorySlots.Length / slotsPerRow) - 1)
+                {
+                    ChangeSelectedSlot(selectedSlot + slotsPerRow);
+                }
+                else
+                {
+                    // Loop back to the toolbar when at the bottom of the inventory
+                    ChangeSelectedSlot(currentColumn); // This will select the corresponding toolbar slot
+                }
+            }
+        }
         if (Input.inputString != null)
         {
             bool isNumber = int.TryParse(Input.inputString, out int number);
-            if (number > 0 && isNumber  && number < 8)
+            if (number > 0 && isNumber && number < 8)
             {
-                ChangeSelectedSlot((int)number -1);
+                ChangeSelectedSlot((int)number - 1);
             }
         }
     }
+
+
+
 
     public bool AddItem(ItemData item)
     {

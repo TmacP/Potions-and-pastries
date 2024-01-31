@@ -1083,6 +1083,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 985904604}
     m_Modifications:
+    - target: {fileID: 4235461002973750742, guid: 22474cc2c69833049b3c52e7c9280dbb, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1283100856}
     - target: {fileID: 5298264648282621261, guid: 22474cc2c69833049b3c52e7c9280dbb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4247,6 +4251,7 @@ MonoBehaviour:
   - {fileID: 1251855626}
   - {fileID: 18437526}
   draggableItemPrefab: {fileID: 2154762147796331838, guid: 8d8f37d06e71ff04b820b162ae62679d, type: 3}
+  mainInventoryGroup: {fileID: 1966371929}
   maxStack: 5
 --- !u!4 &1283100857
 Transform:
@@ -6835,6 +6840,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1722931516}
     m_Modifications:
+    - target: {fileID: 4235461002973750742, guid: 22474cc2c69833049b3c52e7c9280dbb, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1283100856}
     - target: {fileID: 5298264648282621261, guid: 22474cc2c69833049b3c52e7c9280dbb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
