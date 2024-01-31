@@ -17,6 +17,15 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [HideInInspector] public int count = 1;
     [HideInInspector] public Transform parentAfterDrag;
 
+    [HideInInspector] public InventoryManager inventoryManager;
+
+    public void InitialiseItemData(ItemData newItem, InventoryManager manager)
+    {
+        ItemData = newItem;
+        inventoryManager = manager;
+        image.sprite = newItem.image;
+        RefreshCount();
+    }
 
     public void InitialiseItemData(ItemData newItem)
     {
@@ -56,7 +65,6 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnPointerClick(PointerEventData eventData)
     {
-
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             Debug.Log("Left click " + ItemData.name + " Description: " + ItemData.Description);
@@ -67,9 +75,14 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             }
             else
             {
-                Debug.Log("InfoPanel is not closed or not assigned.");    
+                Debug.Log("InfoPanel is not closed or not assigned.");
             }
+
+            // Call to select the slot in InventoryManager
+            inventoryManager.SelectSlotBasedOnItem(this);
         }
     }
+
+
 
 }

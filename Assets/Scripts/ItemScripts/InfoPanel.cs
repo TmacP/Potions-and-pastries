@@ -17,7 +17,8 @@ public class InfoPanel : MonoBehaviour
         InfoBoxName.text = name;
         InfoBoxDescription.text = description;
         InfoBoxImage.sprite = image;
-        InfoBoxImage.color = new Color(255, 255, 255);
+        InfoBoxImage.color = new Color(1, 1, 1);
+        
     }
 
     public void ClearInfo()
@@ -25,7 +26,12 @@ public class InfoPanel : MonoBehaviour
         InfoBoxName.text = "";
         InfoBoxDescription.text = "";
         InfoBoxImage.sprite = null;
-        
+
+        // Convert color values from 0-255 range to 0-1 range
+        float r = 212f / 255f;
+        float g = 182f / 255f;
+        float b = 139f / 255f;
+        InfoBoxImage.color = new Color(r, g, b, 1); // Alpha is 1 for fully opaque
     }
 
     void Start()

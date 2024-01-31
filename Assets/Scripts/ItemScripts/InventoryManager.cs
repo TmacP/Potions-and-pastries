@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,20 @@ public class InventoryManager : MonoBehaviour
     public int maxStack = 5;
 
     int selectedSlot = -1;
+
+
+    public void SelectSlotBasedOnItem(DraggableItem item)
+    {
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            if (inventorySlots[i].GetComponentInChildren<DraggableItem>() == item)
+            {
+                ChangeSelectedSlot(i);
+                break;
+            }
+        }
+    }
+
 
     void ChangeSelectedSlot(int newValue)
     {
@@ -22,8 +37,24 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
+        foreach (InventorySlot slot in inventorySlots)
+        {
+            slot.inventoryManager = this;
+        }
+
         ChangeSelectedSlot(0);
     }
+
+    public void ChangeSelectedSlotBasedOnSlot(InventorySlot slot)
+    {
+        int slotIndex = Array.IndexOf(inventorySlots, slot);
+        if (slotIndex != -1)
+        {
+            ChangeSelectedSlot(slotIndex);
+        }
+    }
+
+
 
     private void Update() {
         if (Input.inputString != null)
@@ -92,10 +123,13 @@ public class InventoryManager : MonoBehaviour
 
     }
 
+
+
     void SpawnNewItem(ItemData item, InventorySlot slot)
     {
         GameObject newItemGo = Instantiate(draggableItemPrefab, slot.transform);
         DraggableItem draggableItem = newItemGo.GetComponent<DraggableItem>();
-        draggableItem.InitialiseItemData(item);
+        draggableItem.InitialiseItemData(item, this);
     }
-    }
+
+}
