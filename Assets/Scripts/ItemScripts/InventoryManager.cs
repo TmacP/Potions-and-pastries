@@ -98,8 +98,4 @@ public class InventoryManager : MonoBehaviour
         DraggableItem draggableItem = newItemGo.GetComponent<DraggableItem>();
         draggableItem.InitialiseItemData(item);
     }
-
-
-
-
     }

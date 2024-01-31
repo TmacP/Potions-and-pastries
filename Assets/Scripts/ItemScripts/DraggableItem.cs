@@ -1,14 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     [Header("UI")]
     public Image image;
     public Text countText;
+    private InfoPanel infoPanel;
 
     [HideInInspector] public ItemData ItemData;
     [HideInInspector] public int count = 1;
@@ -50,4 +53,23 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         transform.SetParent(parentAfterDrag);
         image.raycastTarget = true;
     }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            Debug.Log("Left click " + ItemData.name + " Description: " + ItemData.Description);
+            infoPanel = FindObjectOfType<InfoPanel>();
+            if (infoPanel != null)
+            {
+                infoPanel.SetInfo(ItemData.name, ItemData.Description, ItemData.image);
+            }
+            else
+            {
+                Debug.Log("InfoPanel is not closed or not assigned.");    
+            }
+        }
+    }
+
 }

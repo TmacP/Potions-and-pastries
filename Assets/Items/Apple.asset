@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Apple
   m_EditorClassIdentifier: 
   Name: 
-  Description: 
+  Description: Sweet Red Potatoe
   ItemType: 0
   ItemTags: 0
   image: {fileID: 21300000, guid: 5d313a3e27d694d43bbf42c12262273b, type: 3}

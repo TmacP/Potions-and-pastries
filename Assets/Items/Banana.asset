@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Banana
   m_EditorClassIdentifier: 
   Name: 
-  Description: 
+  Description: Banana so good you will hunt for more.
   ItemType: 0
   ItemTags: 0
   image: {fileID: 21300000, guid: f346f40603a1f324ea60e8faf25e26fa, type: 3}

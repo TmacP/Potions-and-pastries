@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cake
   m_EditorClassIdentifier: 
   Name: 
-  Description: 
+  Description: Most delicious cake in the region.
   ItemType: 0
   ItemTags: 8
   image: {fileID: 21300000, guid: 16ab776831927b6449ceb1bf3760c951, type: 3}
