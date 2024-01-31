@@ -7,8 +7,10 @@ using UnityEngine;
 [Serializable, CreateAssetMenu(menuName = "CozyData/RecipeData")]
 public class RecipeData : ScriptableObject
 {
-    List<ItemData> RequiredItems;
-    List<ItemData> OutgoingItems;
+    public List<ItemData> RequiredItems;
+    public List<ItemData> OutgoingItems;
 
-    float CreationTime;
+    public float CreationTime;
+    //This gives us the option to tie minigame difficulty to this level later
+    public float Level; 
 }
