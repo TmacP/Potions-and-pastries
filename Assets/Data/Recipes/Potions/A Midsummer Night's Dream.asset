@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4681d9fc9a7fd7347a230851067a1272, type: 3}
+  m_Name: A Midsummer Night's Dream
+  m_EditorClassIdentifier: 
+  Description: Induces a pleasing, narcotic dreaminess that makes one see fairies.
+  RequiredItems:
+  - {fileID: 11400000, guid: ff55d8bb7e08849f1b79d9d6e67bcf4d, type: 2}
+  - {fileID: 11400000, guid: 870c3d2dc5e9d4a1e98ab108ded47f3a, type: 2}
+  - {fileID: 11400000, guid: 54d6ae10a4d204db9893b58f5edc984a, type: 2}
+  OutgoingItems: []
+  CreationTime: 3
+  Level: 0

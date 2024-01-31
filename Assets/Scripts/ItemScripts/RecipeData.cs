@@ -7,6 +7,7 @@ using UnityEngine;
 [Serializable, CreateAssetMenu(menuName = "CozyData/RecipeData")]
 public class RecipeData : ScriptableObject
 {
+    public string Description;
     public List<ItemData> RequiredItems;
     public List<ItemData> OutgoingItems;
 
