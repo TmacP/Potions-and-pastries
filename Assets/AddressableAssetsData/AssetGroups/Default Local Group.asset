@@ -16,7 +16,12 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 4f7c15629eb02044d841405161f3b8f9
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 595e291c9b957934f9a4a77cae243c9e
+    m_Address: Assets/Scripts/MiniGames/ChargeBar.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: a11f66a7c01f3b040b70667b673fd338, type: 2}
   m_SchemaSet:

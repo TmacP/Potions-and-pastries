@@ -15,9 +15,10 @@ MonoBehaviour:
   InteractionPrompt: Gather
   GatherableName: 
   CollectableItems:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 22d499c94fac1e34ab91c98d81c6dd32, type: 2}
+  - {fileID: 11400000, guid: c6fca953bdb1d4048afa84a159081bb8, type: 2}
   ItemsPerInteraction: 0
-  NumberOfInteractions: 0
+  NumberOfInteractions: 1
   MiniGame:
     m_AssetGUID: 595e291c9b957934f9a4a77cae243c9e
     m_SubObjectName: 

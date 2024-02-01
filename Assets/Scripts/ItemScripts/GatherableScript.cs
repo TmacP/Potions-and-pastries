@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AddressableAssets;
 using UnityEngine;
+using System.Linq;
 
 public class GatherableBehavoir : MonoBehaviour, IInteractable
 {
@@ -42,9 +43,10 @@ public class GatherableBehavoir : MonoBehaviour, IInteractable
         {
             List<ItemData> Items = new List<ItemData>();
             GetItemsToGive(out Items);
+            Items.AddRange(Items);
 
             Debug.Log("Gained 2x Item");
-            //GameManager.Instance.GainItem();
+            GameEventManager.instance.GivePlayerItems(Items);
             Data.NumberOfInteractions--;
             if (Data.NumberOfInteractions <= 0)
             {
@@ -57,7 +59,8 @@ public class GatherableBehavoir : MonoBehaviour, IInteractable
             GetItemsToGive(out Items);
 
             Debug.Log("Gained 1x Item");
-            //GameManager.Instance.GainItem();
+            GameEventManager.instance.GivePlayerItems(Items);
+
             Data.NumberOfInteractions--;
             if (Data.NumberOfInteractions <= 0)
             {
@@ -79,5 +82,6 @@ public class GatherableBehavoir : MonoBehaviour, IInteractable
     void GetItemsToGive(out List<ItemData> OutItems)
     {
         OutItems = new List<ItemData>();
+        OutItems.AddRange(Data.CollectableItems);
     }
 }

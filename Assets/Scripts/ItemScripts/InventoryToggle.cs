@@ -1,14 +1,35 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryToggle : MonoBehaviour
 {
     public GameObject mainInventoryGroup; // Assign this in the inspector
+    public InventoryManager InventoryManager; // Assign this in the inspector 
 
-    void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        GameEventManager.instance.OnToggleInventory += Toggle;
+        GameEventManager.instance.OnGivePlayerItems += GainItems;
+        mainInventoryGroup.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        GameEventManager.instance.OnToggleInventory -= Toggle;
+        GameEventManager.instance.OnGivePlayerItems -= GainItems;
+    }
+
+
+    void Toggle()
+    {
+        mainInventoryGroup.SetActive(!mainInventoryGroup.activeSelf);
+    }
+
+    void GainItems(List<ItemData> items)
+    {
+        foreach (ItemData item in items)
         {
-            mainInventoryGroup.SetActive(!mainInventoryGroup.activeSelf);
+            InventoryManager.AddItem(item);
         }
     }
 }

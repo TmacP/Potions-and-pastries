@@ -13,6 +13,7 @@ public class PlayerActionScript : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("Player Awake");
         _Rigidbody ??= GetComponent<Rigidbody>();
         _InteractorBehavoir ??= GetComponent<InteractorBehavoir>();
 
@@ -21,13 +22,25 @@ public class PlayerActionScript : MonoBehaviour
         _PlayerActions.PlayerMovementMap.Enable();
 
         //Generally this is how we can bind inputs...
-        //Either .performed for a specified trigger or .started
+        //Either .performed for a specified trigger or .started/.cancelled
         //_PlayerActions.PlayerActionMap.InteractPressed.performed += OnInteractInput;
         //_PlayerActions.PlayerActionMap.InteractReleased.performed += OnInteractStop;
+        //I didn't think we needed to remove them ondisable but apperently we do or the scene changes get weird
         _PlayerActions.PlayerActionMap.Interact.started += OnInteractStart;
         _PlayerActions.PlayerActionMap.Interact.canceled += OnInteractCancelled;
+        _PlayerActions.PlayerActionMap.Inventory.performed += OnToggleInventory;
+    }
 
+    public void Start()
+    {
         GameEventManager.instance.OnChangeGameState += OnGameStateChanged;
+    }
+
+    public void OnDisable()
+    {
+        _PlayerActions.PlayerActionMap.Interact.started -= OnInteractStart;
+        _PlayerActions.PlayerActionMap.Interact.canceled -= OnInteractStart;
+        _PlayerActions.PlayerActionMap.Inventory.performed -= OnToggleInventory;
     }
 
     protected void OnGameStateChanged(EGameState NewGameState, EGameState OldGameState)
@@ -77,6 +90,15 @@ public class PlayerActionScript : MonoBehaviour
         if (_InteractorBehavoir != null)
         {
             _InteractorBehavoir.InteractReleased();
+        }
+    }
+
+    protected void OnToggleInventory(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            Debug.Log("Toggling Player Controller");
+            GameEventManager.instance.ToggleInventory();
         }
     }
 

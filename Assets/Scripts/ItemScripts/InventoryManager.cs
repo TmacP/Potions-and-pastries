@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
@@ -53,15 +54,15 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-
-    private void Start()
+    private void Awake()
     {
-        foreach (InventorySlot slot in inventorySlots)
+        Array.Clear(inventorySlots, 0, inventorySlots.Length);
+        inventorySlots = GetComponentsInChildren<InventorySlot>(true);
+
+        foreach (InventorySlot slot in GetComponentsInChildren<InventorySlot>(true))
         {
             slot.inventoryManager = this;
         }
-
-        
     }
 
     public void ChangeSelectedSlotBasedOnSlot(InventorySlot slot)

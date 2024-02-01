@@ -50,6 +50,24 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+    public event Action OnToggleInventory;
+    public void ToggleInventory()
+    {
+        if(OnToggleInventory != null)
+        {
+            OnToggleInventory();
+        }
+    }
+
+    public event Action<List<ItemData>> OnGivePlayerItems;
+    public void GivePlayerItems(List<ItemData> ItemData)
+    {
+        if(OnGivePlayerItems != null)
+        {
+            OnGivePlayerItems(ItemData);
+        }
+    }
+
 
     public event Action<EMiniGameCompleteResult> OnMiniGameComplete;
     public void MiniGameComplete(EMiniGameCompleteResult CompletionResult)
