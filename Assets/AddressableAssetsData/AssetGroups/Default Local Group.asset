@@ -15,16 +15,11 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_Data:
     m_SerializedData: []
-  m_GUID: 12c035a9eec2fda4dadeb4104ea6503e
-  m_SerializeEntries:
-  - m_GUID: 595e291c9b957934f9a4a77cae243c9e
-    m_Address: Assets/Scripts/MiniGames/ChargeBar.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_GUID: 4f7c15629eb02044d841405161f3b8f9
+  m_SerializeEntries: []
   m_ReadOnly: 0
-  m_Settings: {fileID: 11400000, guid: 39976ef4b3f11b44dae300127e843f99, type: 2}
+  m_Settings: {fileID: 11400000, guid: a11f66a7c01f3b040b70667b673fd338, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: d4baf64e8ae794046a2100c06775af78, type: 2}
-    - {fileID: 11400000, guid: 6968b387e5bdffd4f9381e20e9af3e75, type: 2}
+    - {fileID: 11400000, guid: 6ae41c23d19b6474d88f36f463b49f8a, type: 2}
+    - {fileID: 11400000, guid: 60ace69108bbdc946bf24530c515bc70, type: 2}
