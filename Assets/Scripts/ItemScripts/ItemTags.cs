@@ -7,7 +7,8 @@ using UnityEngine;
 [Serializable]
 public enum EItemTags
 {
-
+    HighQuality,
+    LowQuality,
 //Equipment specific Tags
 
 //Resource specific tags

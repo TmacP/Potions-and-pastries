@@ -10,6 +10,7 @@ public class RecipeData : ScriptableObject
     public List<ItemData> RequiredItems;
     public List<ItemData> OutgoingItems;
 
+
     public float CreationTime;
     //This gives us the option to tie minigame difficulty to this level later
     public float Level; 
