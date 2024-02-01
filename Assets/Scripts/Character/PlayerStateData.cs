@@ -7,4 +7,7 @@ using UnityEngine;
 public class PlayerStateData : ScriptableObject
 {
     public float MoveSpeed;
+
 }
+
+
