@@ -8,6 +8,7 @@ public class PlayerStateData : ScriptableObject
 {
     public float MoveSpeed;
 
+    public List<ItemData> Inventory;
 }
 
 
