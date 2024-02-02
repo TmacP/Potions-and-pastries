@@ -23,5 +23,6 @@ public class ItemData : ScriptableObject
     public AssetReference SceneAsset;
 
     public bool stackable = true;
+    public int InventoryIndex = -1;
 }
 

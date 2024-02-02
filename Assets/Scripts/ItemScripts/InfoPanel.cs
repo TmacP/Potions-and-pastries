@@ -36,7 +36,7 @@ public class InfoPanel : MonoBehaviour
 
     void Start()
     {
-        ClearInfo();
+        //ClearInfo();
     }
 
 }

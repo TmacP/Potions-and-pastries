@@ -42,7 +42,11 @@ public class InventoryManager : MonoBehaviour
     void UpdateInfoPanel(int slotIndex)
     {
         DraggableItem itemInSlot = inventorySlots[slotIndex].GetComponentInChildren<DraggableItem>();
-        InfoPanel infoPanel = FindObjectOfType<InfoPanel>();
+        InfoPanel infoPanel = FindObjectOfType<InfoPanel>(true);
+        if (infoPanel != null)
+        {
+            infoPanel.gameObject.SetActive(true);
+        }
 
         if (itemInSlot != null && infoPanel != null)
         {
@@ -58,10 +62,27 @@ public class InventoryManager : MonoBehaviour
     {
         Array.Clear(inventorySlots, 0, inventorySlots.Length);
         inventorySlots = GetComponentsInChildren<InventorySlot>(true);
-
+        InfoPanel infoPanel = FindObjectOfType<InfoPanel>();
+        if(infoPanel != null)
+        {
+            infoPanel.gameObject.SetActive(false);
+        }
         foreach (InventorySlot slot in GetComponentsInChildren<InventorySlot>(true))
         {
             slot.inventoryManager = this;
+        }
+    }
+
+    private void OnEnable()
+    {
+    }
+
+    private void OnDisable()
+    {
+        InfoPanel infoPanel = FindObjectOfType<InfoPanel>();
+        if (infoPanel != null)
+        {
+            infoPanel.gameObject.SetActive(false);
         }
     }
 
