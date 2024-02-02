@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class PlayerActionScript : MonoBehaviour
 {
     private PlayerActions _PlayerActions;
-    public PlayerStateData PlayerState;
     private Rigidbody _Rigidbody;
     private InteractorBehavoir _InteractorBehavoir;
 
@@ -67,13 +66,13 @@ public class PlayerActionScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_Rigidbody && PlayerState)
+        if (_Rigidbody && GameManager.Instance.PlayerState)
         {
             Vector2 _PlayerMoveInput = _PlayerActions.PlayerMovementMap.Move.ReadValue<Vector2>();
             _Rigidbody.velocity = new Vector3(
-                _PlayerMoveInput.x * PlayerState.MoveSpeed,
+                _PlayerMoveInput.x * GameManager.Instance.PlayerState.MoveSpeed,
                 _Rigidbody.velocity.y,
-                _PlayerMoveInput.y * PlayerState.MoveSpeed);
+                _PlayerMoveInput.y * GameManager.Instance.PlayerState.MoveSpeed);
         }
     }
 

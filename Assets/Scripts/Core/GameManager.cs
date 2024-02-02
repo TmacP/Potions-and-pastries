@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    //We store this here so it persists between levels
+    public PlayerStateData PlayerState;
+
     [SerializeField]
     private readonly Dictionary<EGameScene, string> GameScenes = new Dictionary<EGameScene, string>()
     {
@@ -33,7 +36,15 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        DontDestroyOnLoad(this.gameObject);
+        if(Instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
 
 
