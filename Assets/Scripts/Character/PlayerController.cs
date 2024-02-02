@@ -9,6 +9,10 @@ public class PlayerActionScript : MonoBehaviour
     private Rigidbody _Rigidbody;
     private InteractorBehavoir _InteractorBehavoir;
 
+    //if we cannot find a gamemanager and playerstate use this speed instead.
+    //This is so players don't break on levels without a gamemanager
+    private readonly float _fallbackSpeed = 20.0f;
+
 
     private void Awake()
     {
@@ -66,13 +70,19 @@ public class PlayerActionScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_Rigidbody && GameManager.Instance.PlayerState)
+        if (_Rigidbody)
         {
+            float Speed = _fallbackSpeed;
+            if(GameManager.Instance && GameManager.Instance.PlayerState)
+            {
+                Speed = GameManager.Instance.PlayerState.MoveSpeed;
+            }
+
             Vector2 _PlayerMoveInput = _PlayerActions.PlayerMovementMap.Move.ReadValue<Vector2>();
             _Rigidbody.velocity = new Vector3(
-                _PlayerMoveInput.x * GameManager.Instance.PlayerState.MoveSpeed,
+                _PlayerMoveInput.x * Speed,
                 _Rigidbody.velocity.y,
-                _PlayerMoveInput.y * GameManager.Instance.PlayerState.MoveSpeed);
+                _PlayerMoveInput.y * Speed);
         }
     }
 
