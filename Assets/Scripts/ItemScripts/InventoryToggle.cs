@@ -8,21 +8,31 @@ public class InventoryToggle : MonoBehaviour
 
     private void Start()
     {
-        GameEventManager.instance.OnToggleInventory += Toggle;
+        //GameEventManager.instance.OnToggleInventory += Toggle;
         GameEventManager.instance.OnGivePlayerItems += GainItems;
         mainInventoryGroup.SetActive(false);
     }
 
     private void OnDisable()
     {
-        GameEventManager.instance.OnToggleInventory -= Toggle;
+        //GameEventManager.instance.OnToggleInventory -= Toggle;
         GameEventManager.instance.OnGivePlayerItems -= GainItems;
     }
 
 
-    void Toggle()
+    public bool Toggle()
     {
         mainInventoryGroup.SetActive(!mainInventoryGroup.activeSelf);
+        if(mainInventoryGroup.activeSelf)
+        {
+            GameEventManager.instance.InventoryOpen(InventoryManager);
+            return true;
+        }
+        else
+        {
+            GameEventManager.instance.InventoryClosed(InventoryManager);
+            return false;
+        }
     }
 
     void GainItems(List<ItemData> items)

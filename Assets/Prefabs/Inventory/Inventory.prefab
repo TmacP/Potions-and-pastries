@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 3364844407858067059}
   m_Layer: 5
   m_Name: Inventory
-  m_TagString: Untagged
+  m_TagString: PlayerInventoryHUD
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

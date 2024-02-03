@@ -9,6 +9,8 @@ public class PlayerActionScript : MonoBehaviour
     private Rigidbody _Rigidbody;
     private InteractorBehavoir _InteractorBehavoir;
 
+    [SerializeField] private InventoryToggle inventoryToggle;
+
     //if we cannot find a gamemanager and playerstate use this speed instead.
     //This is so players don't break on levels without a gamemanager
     private readonly float _fallbackSpeed = 20.0f;
@@ -23,6 +25,7 @@ public class PlayerActionScript : MonoBehaviour
         _PlayerActions = new PlayerActions();
         _PlayerActions.PlayerActionMap.Enable();
         _PlayerActions.PlayerMovementMap.Enable();
+        _PlayerActions.Inventory.Disable();
 
         //Generally this is how we can bind inputs...
         //Either .performed for a specified trigger or .started/.cancelled
@@ -31,7 +34,8 @@ public class PlayerActionScript : MonoBehaviour
         //I didn't think we needed to remove them ondisable but apperently we do or the scene changes get weird
         _PlayerActions.PlayerActionMap.Interact.started += OnInteractStart;
         _PlayerActions.PlayerActionMap.Interact.canceled += OnInteractCancelled;
-        _PlayerActions.PlayerActionMap.Inventory.performed += OnToggleInventory;
+        _PlayerActions.PlayerActionMap.OpenInventory.performed += OnOpenInventory;
+        _PlayerActions.Inventory.CloseInventory.performed += OnCloseInventory;
     }
 
     public void Start()
@@ -43,7 +47,8 @@ public class PlayerActionScript : MonoBehaviour
     {
         _PlayerActions.PlayerActionMap.Interact.started -= OnInteractStart;
         _PlayerActions.PlayerActionMap.Interact.canceled -= OnInteractStart;
-        _PlayerActions.PlayerActionMap.Inventory.performed -= OnToggleInventory;
+        _PlayerActions.PlayerActionMap.OpenInventory.performed -= OnOpenInventory;
+        _PlayerActions.Inventory.CloseInventory.performed -= OnCloseInventory;
     }
 
     protected void OnGameStateChanged(EGameState NewGameState, EGameState OldGameState)
@@ -102,10 +107,66 @@ public class PlayerActionScript : MonoBehaviour
         }
     }
 
-    protected void OnToggleInventory(InputAction.CallbackContext context)
+    protected void OnOpenInventory(InputAction.CallbackContext context)
     {
         if(context.performed)
         {
+            if(inventoryToggle == null)
+            {
+                GameObject[] Objects = GameObject.FindGameObjectsWithTag("PlayerInventoryHUD");
+                
+                foreach (GameObject obj in Objects)
+                {
+                    InventoryToggle toggle = obj.GetComponent<InventoryToggle>();
+                    if(toggle != null)
+                    {
+                        inventoryToggle = toggle;
+                        break;
+                    }
+                }
+            }
+
+            if(inventoryToggle != null)
+            {
+                if(inventoryToggle.Toggle())
+                {
+                    _PlayerActions.PlayerMovementMap.Disable();
+                    _PlayerActions.PlayerActionMap.Disable();
+                    _PlayerActions.Inventory.Enable();
+                }
+                else
+                {
+                    _PlayerActions.PlayerMovementMap.Enable();
+                    _PlayerActions.PlayerActionMap.Enable();
+                    _PlayerActions.Inventory.Disable();
+                }
+            }
+
+            Debug.Log("Toggling Player Controller");
+            GameEventManager.instance.ToggleInventory();
+        }
+    }
+
+    protected void OnCloseInventory(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (inventoryToggle != null)
+            {
+                if (inventoryToggle.Toggle())
+                {
+                    _PlayerActions.PlayerMovementMap.Disable();
+                    _PlayerActions.PlayerActionMap.Disable();
+                    _PlayerActions.Inventory.Enable();
+                }
+                else
+                {
+                    _PlayerActions.PlayerMovementMap.Enable();
+                    _PlayerActions.PlayerActionMap.Enable();
+                    _PlayerActions.Inventory.Disable();
+                }
+            }
+
             Debug.Log("Toggling Player Controller");
             GameEventManager.instance.ToggleInventory();
         }
