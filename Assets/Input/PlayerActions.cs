@@ -270,6 +270,45 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Inventory"",
+            ""id"": ""d43145df-7ed3-4a58-be48-2f33494764dc"",
+            ""actions"": [
+                {
+                    ""name"": ""InventoryInterface"",
+                    ""type"": ""Button"",
+                    ""id"": ""8befc842-0361-40fc-9680-dbefd5243ac5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""dffb2fb7-f63b-4f1f-9b78-b40014e4fe01"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InventoryInterface"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""104b55d1-85f5-49b3-9626-1a81d74fa7f2"",
+                    ""path"": ""<XInputController>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InventoryInterface"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -283,6 +322,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         // PlayerMovementMap
         m_PlayerMovementMap = asset.FindActionMap("PlayerMovementMap", throwIfNotFound: true);
         m_PlayerMovementMap_Move = m_PlayerMovementMap.FindAction("Move", throwIfNotFound: true);
+        // Inventory
+        m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
+        m_Inventory_InventoryInterface = m_Inventory.FindAction("InventoryInterface", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -456,6 +498,52 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         }
     }
     public PlayerMovementMapActions @PlayerMovementMap => new PlayerMovementMapActions(this);
+
+    // Inventory
+    private readonly InputActionMap m_Inventory;
+    private List<IInventoryActions> m_InventoryActionsCallbackInterfaces = new List<IInventoryActions>();
+    private readonly InputAction m_Inventory_InventoryInterface;
+    public struct InventoryActions
+    {
+        private @PlayerActions m_Wrapper;
+        public InventoryActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @InventoryInterface => m_Wrapper.m_Inventory_InventoryInterface;
+        public InputActionMap Get() { return m_Wrapper.m_Inventory; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InventoryActions set) { return set.Get(); }
+        public void AddCallbacks(IInventoryActions instance)
+        {
+            if (instance == null || m_Wrapper.m_InventoryActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_InventoryActionsCallbackInterfaces.Add(instance);
+            @InventoryInterface.started += instance.OnInventoryInterface;
+            @InventoryInterface.performed += instance.OnInventoryInterface;
+            @InventoryInterface.canceled += instance.OnInventoryInterface;
+        }
+
+        private void UnregisterCallbacks(IInventoryActions instance)
+        {
+            @InventoryInterface.started -= instance.OnInventoryInterface;
+            @InventoryInterface.performed -= instance.OnInventoryInterface;
+            @InventoryInterface.canceled -= instance.OnInventoryInterface;
+        }
+
+        public void RemoveCallbacks(IInventoryActions instance)
+        {
+            if (m_Wrapper.m_InventoryActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IInventoryActions instance)
+        {
+            foreach (var item in m_Wrapper.m_InventoryActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_InventoryActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public InventoryActions @Inventory => new InventoryActions(this);
     public interface IPlayerActionMapActions
     {
         void OnInteract(InputAction.CallbackContext context);
@@ -466,5 +554,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     public interface IPlayerMovementMapActions
     {
         void OnMove(InputAction.CallbackContext context);
+    }
+    public interface IInventoryActions
+    {
+        void OnInventoryInterface(InputAction.CallbackContext context);
     }
 }

@@ -19,6 +19,7 @@ public class PlayerActionScript : MonoBehaviour
         _PlayerActions = new PlayerActions();
         _PlayerActions.PlayerActionMap.Enable();
         _PlayerActions.PlayerMovementMap.Enable();
+        _PlayerActions.Inventory.Enable();
 
         //Generally this is how we can bind inputs...
         //Either .performed for a specified trigger or .started/.cancelled
@@ -28,6 +29,9 @@ public class PlayerActionScript : MonoBehaviour
         _PlayerActions.PlayerActionMap.Interact.started += OnInteractStart;
         _PlayerActions.PlayerActionMap.Interact.canceled += OnInteractCancelled;
         _PlayerActions.PlayerActionMap.Inventory.performed += OnToggleInventory;
+        //_PlayerActions.Inventory.InventoryInterface.performed += OnOpenRequest;
+        _PlayerActions.Inventory.InventoryInterface.performed += OnCloseRequest;
+
     }
 
     public void Start()
@@ -40,6 +44,7 @@ public class PlayerActionScript : MonoBehaviour
         _PlayerActions.PlayerActionMap.Interact.started -= OnInteractStart;
         _PlayerActions.PlayerActionMap.Interact.canceled -= OnInteractStart;
         _PlayerActions.PlayerActionMap.Inventory.performed -= OnToggleInventory;
+        _PlayerActions.Inventory.InventoryInterface.performed -= OnCloseRequest;
     }
 
     protected void OnGameStateChanged(EGameState NewGameState, EGameState OldGameState)
@@ -78,7 +83,7 @@ public class PlayerActionScript : MonoBehaviour
 
     protected void OnInteractStart(InputAction.CallbackContext context)
     {
-        if(_InteractorBehavoir != null)
+        if (_InteractorBehavoir != null)
         {
             _InteractorBehavoir.TryInteract();
         }
@@ -94,10 +99,45 @@ public class PlayerActionScript : MonoBehaviour
 
     protected void OnToggleInventory(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed)
         {
-            Debug.Log("Toggling Player Controller");
+            _PlayerActions.Inventory.Enable();
             GameEventManager.instance.ToggleInventory();
+
+            Debug.Log("Toggling Player Controller");
+        }
+    }
+
+    protected void OnCloseRequest(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _PlayerActions.PlayerActionMap.Enable();
+            _PlayerActions.PlayerMovementMap.Enable();
+            _PlayerActions.Inventory.Disable();
+            GameEventManager.instance.CloseInventory();
+
+            Debug.Log("starting close inv");
+        }
+    }
+
+    protected void DisableMovements(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _PlayerActions.PlayerActionMap.Disable();
+            _PlayerActions.PlayerMovementMap.Disable();
+            Debug.Log("Disabling player movements");
+        }
+    }
+
+    protected void EnableMovement(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _PlayerActions.PlayerActionMap.Enable();
+            _PlayerActions.PlayerMovementMap.Enable();
+            Debug.Log("Enabling player movements");
         }
     }
 

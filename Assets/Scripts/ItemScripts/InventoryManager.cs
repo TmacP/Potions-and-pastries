@@ -8,10 +8,10 @@ public class InventoryManager : MonoBehaviour
 {
     public InventorySlot[] inventorySlots;
     public GameObject draggableItemPrefab;
-    [SerializeField] private GameObject mainInventoryGroup;
-    public int maxStack = 5;
+    public int maxStack = 5; // Maximum stack size for items
+    private int selectedSlot = -1;
 
-    int selectedSlot = -1;
+    [SerializeField] private GameObject mainInventoryGroup;
 
 
     public void SelectSlotBasedOnItem(DraggableItem item)
@@ -219,8 +219,6 @@ public class InventoryManager : MonoBehaviour
         return null;
 
     }
-
-
 
     void SpawnNewItem(ItemData item, InventorySlot slot)
     {

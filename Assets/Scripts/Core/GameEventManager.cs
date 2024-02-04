@@ -86,4 +86,15 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+    public event Action OnCloseInventory;
+    public void CloseInventory()
+    {
+        if (OnCloseInventory != null)
+        {
+            Debug.Log("closing 2");
+            OnCloseInventory();
+        }
+    }
+
+
 }
