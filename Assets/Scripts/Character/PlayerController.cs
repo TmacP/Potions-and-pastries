@@ -10,6 +10,7 @@ public class PlayerActionScript : MonoBehaviour
     private Rigidbody _Rigidbody;
     private InteractorBehavoir _InteractorBehavoir;
 
+    public Animator animator;
 
     private void Awake()
     {
@@ -18,6 +19,8 @@ public class PlayerActionScript : MonoBehaviour
 
         _PlayerActions = new PlayerActions();
         _PlayerActions.PlayerActionMap.Enable();
+        
+        animator = transform.Find("F_BaseCharacter").GetComponent<Animator>();
 
         //Generally this is how we can bind inputs...
         //Either .performed for a specified trigger or .started
@@ -37,6 +40,7 @@ public class PlayerActionScript : MonoBehaviour
                 _Rigidbody.velocity.y,
                 _PlayerMoveInput.y * PlayerState.MoveSpeed);
         }
+
     }
 
     protected void OnInteractStart(InputAction.CallbackContext context)
