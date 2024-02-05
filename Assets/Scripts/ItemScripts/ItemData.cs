@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AddressableAssets;
 using UnityEngine;
+using JetBrains.Annotations;
 
 public enum EItemType
 {
@@ -23,6 +24,21 @@ public class ItemData : ScriptableObject
     public AssetReference SceneAsset;
 
     public bool stackable = true;
-    public int InventoryIndex = -1;
 }
+
+[Serializable]
+public class InventoryItemData
+{
+    public ItemData Data;
+    public int InventoryIndex;
+    public int CurrentStackCount;
+
+    public InventoryItemData(ItemData InData, int InInventoryIndex, int InCurrentStackCount = 1)
+    {
+        Data = InData;
+        InventoryIndex = InInventoryIndex;
+        CurrentStackCount = InCurrentStackCount;
+    }
+}
+
 

@@ -13,24 +13,25 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public Text countText;
     private InfoPanel infoPanel;
 
-    [HideInInspector] public ItemData ItemData;
+    [HideInInspector] public InventoryItemData ItemData;
     [HideInInspector] public int count = 1;
     [HideInInspector] public Transform parentAfterDrag;
 
     [HideInInspector] public InventoryManager inventoryManager;
 
-    public void InitialiseItemData(ItemData newItem, InventoryManager manager)
+    public void InitialiseItemData(InventoryItemData newItem, InventoryManager manager)
     {
         ItemData = newItem;
         inventoryManager = manager;
-        image.sprite = newItem.image;
+        image.sprite = newItem.Data.image;
+        count = newItem.CurrentStackCount;
         RefreshCount();
     }
 
-    public void InitialiseItemData(ItemData newItem)
+    public void InitialiseItemData(InventoryItemData newItem)
     {
         ItemData = newItem;
-        image.sprite = newItem.image;
+        image.sprite = newItem.Data.image;
         RefreshCount();
     }
 
@@ -72,11 +73,11 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            Debug.Log("Left click " + ItemData.name + " Description: " + ItemData.Description);
+            Debug.Log("Left click " + ItemData.Data.name + " Description: " + ItemData.Data.Description);
             infoPanel = FindObjectOfType<InfoPanel>();
             if (infoPanel != null)
             {
-                infoPanel.SetInfo(ItemData.name, ItemData.Description, ItemData.image);
+                infoPanel.SetInfo(ItemData.Data.name, ItemData.Data.Description, ItemData.Data.image);
             }
             else
             {

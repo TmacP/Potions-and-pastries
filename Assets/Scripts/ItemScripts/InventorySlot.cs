@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,6 +51,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerClickHandler
             GameObject dropped = eventData.pointerDrag;
             DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
             draggableItem.parentAfterDrag = transform;
+            draggableItem.ItemData.InventoryIndex = Array.IndexOf(inventoryManager.inventorySlots, this);
         }
     }
 

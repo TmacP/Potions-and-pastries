@@ -9,7 +9,8 @@ public class PlayerActionScript : MonoBehaviour
     private Rigidbody _Rigidbody;
     private InteractorBehavoir _InteractorBehavoir;
 
-    [SerializeField] private InventoryToggle inventoryToggle;
+    [SerializeField] private InventoryManager _InventoryManager;
+    [SerializeField] private InventoryToggle _InventoryToggle;
 
     //if we cannot find a gamemanager and playerstate use this speed instead.
     //This is so players don't break on levels without a gamemanager
@@ -41,6 +42,12 @@ public class PlayerActionScript : MonoBehaviour
     public void Start()
     {
         GameEventManager.instance.OnChangeGameState += OnGameStateChanged;
+        if(_InventoryManager != null)
+        {
+            _InventoryManager = Instantiate(_InventoryManager);
+            _InventoryManager.InitializeInventoryManager(GameManager.Instance.PlayerState.Inventory);
+            _InventoryToggle = _InventoryManager.GetComponent<InventoryToggle>();
+        }
     }
 
     public void OnDisable()
@@ -111,7 +118,7 @@ public class PlayerActionScript : MonoBehaviour
     {
         if(context.performed)
         {
-            if(inventoryToggle == null)
+            if(_InventoryToggle == null)
             {
                 GameObject[] Objects = GameObject.FindGameObjectsWithTag("PlayerInventoryHUD");
                 
@@ -120,15 +127,15 @@ public class PlayerActionScript : MonoBehaviour
                     InventoryToggle toggle = obj.GetComponent<InventoryToggle>();
                     if(toggle != null)
                     {
-                        inventoryToggle = toggle;
+                        _InventoryToggle = toggle;
                         break;
                     }
                 }
             }
 
-            if(inventoryToggle != null)
+            if(_InventoryToggle != null)
             {
-                if(inventoryToggle.Toggle())
+                if(_InventoryToggle.Toggle())
                 {
                     _PlayerActions.PlayerMovementMap.Disable();
                     _PlayerActions.PlayerActionMap.Disable();
@@ -141,8 +148,6 @@ public class PlayerActionScript : MonoBehaviour
                     _PlayerActions.Inventory.Disable();
                 }
             }
-
-            Debug.Log("Toggling Player Controller");
             GameEventManager.instance.ToggleInventory();
         }
     }
@@ -151,9 +156,9 @@ public class PlayerActionScript : MonoBehaviour
     {
         if (context.performed)
         {
-            if (inventoryToggle != null)
+            if (_InventoryToggle != null)
             {
-                if (inventoryToggle.Toggle())
+                if (_InventoryToggle.Toggle())
                 {
                     _PlayerActions.PlayerMovementMap.Disable();
                     _PlayerActions.PlayerActionMap.Disable();
@@ -166,8 +171,6 @@ public class PlayerActionScript : MonoBehaviour
                     _PlayerActions.Inventory.Disable();
                 }
             }
-
-            Debug.Log("Toggling Player Controller");
             GameEventManager.instance.ToggleInventory();
         }
     }

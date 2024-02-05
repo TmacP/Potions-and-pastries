@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Pipeline;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     //We store this here so it persists between levels
     public PlayerStateData PlayerState;
-
+    
     [SerializeField]
     private readonly Dictionary<EGameScene, string> GameScenes = new Dictionary<EGameScene, string>()
     {
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
+            PlayerState.Inventory.Clear();
         }
     }
 
