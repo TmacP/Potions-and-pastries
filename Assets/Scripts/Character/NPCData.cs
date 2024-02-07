@@ -12,6 +12,9 @@ public enum ENPCArchetype
     Fighter
 }
 
+[Serializable, CreateAssetMenu(menuName = "CozyData/NPCData")]
+
+
 public class NPCData : ScriptableObject
 {
     public string Name;
