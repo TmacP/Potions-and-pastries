@@ -11,6 +11,7 @@ public class PlayerActionScript : MonoBehaviour
     private InteractorBehavoir _InteractorBehavoir;
 
     public Animator animator;
+    public bool faceLeft = true;
 
     private void Awake()
     {
@@ -39,7 +40,24 @@ public class PlayerActionScript : MonoBehaviour
                 _PlayerMoveInput.x * PlayerState.MoveSpeed,
                 _Rigidbody.velocity.y,
                 _PlayerMoveInput.y * PlayerState.MoveSpeed);
+
+            animator.SetFloat("MoveSpeed", _Rigidbody.velocity.magnitude);
+
+            if (_PlayerMoveInput.x > 0 && faceLeft)
+            {
+                transform.Find("F_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+                faceLeft = false;
+            }
+            else if (_PlayerMoveInput.x < 0 && !faceLeft)
+            {
+                transform.Find("F_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+                faceLeft = true;
+            }
+
+
+
         }
+        
 
     }
 
