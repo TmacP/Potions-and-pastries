@@ -8,6 +8,8 @@ public class PlayerActionScript : MonoBehaviour
     private PlayerActions _PlayerActions;
     private Rigidbody _Rigidbody;
     private InteractorBehavoir _InteractorBehavoir;
+    private InputAction _menuOpenCloseACtion;
+    public bool MenuOpenCloseInput { get; private set;}
 
     [SerializeField] private InventoryManager _InventoryManager;
     [SerializeField] private InventoryToggle _InventoryToggle;
@@ -37,6 +39,8 @@ public class PlayerActionScript : MonoBehaviour
         _PlayerActions.PlayerActionMap.Interact.canceled += OnInteractCancelled;
         _PlayerActions.PlayerActionMap.OpenInventory.performed += OnOpenInventory;
         _PlayerActions.Inventory.CloseInventory.performed += OnCloseInventory;
+        //_PlayerActions.PlayerActionMap.MenuOpenClose.performed += OnMenuOpen;
+        _menuOpenCloseACtion = _PlayerActions.PlayerActionMap.MenuOpenClose;
     }
 
     public void Start()
@@ -48,6 +52,10 @@ public class PlayerActionScript : MonoBehaviour
             _InventoryManager.InitializeInventoryManager(GameManager.Instance.PlayerState.Inventory);
             _InventoryToggle = _InventoryManager.GetComponent<InventoryToggle>();
         }
+    }
+    private void Update()
+    {
+        MenuOpenCloseInput = _menuOpenCloseACtion.WasPressedThisFrame();
     }
 
     public void OnDisable()
@@ -174,6 +182,8 @@ public class PlayerActionScript : MonoBehaviour
             GameEventManager.instance.ToggleInventory();
         }
     }
+
+  
 
 
 }
