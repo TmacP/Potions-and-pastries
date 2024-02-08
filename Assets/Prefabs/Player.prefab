@@ -181,7 +181,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ce382e2f5a241942ac5733bde4d4ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerState: {fileID: 11400000, guid: fcec8e895cbc98243b477bc0b62bf321, type: 2}
+  _InventoryManager: {fileID: 1697484318717216101, guid: 33e367ad5d312e74cb7f4e3d9fce5e65, type: 3}
+  _InventoryToggle: {fileID: 0}
 --- !u!114 &472343680603872811
 MonoBehaviour:
   m_ObjectHideFlags: 0

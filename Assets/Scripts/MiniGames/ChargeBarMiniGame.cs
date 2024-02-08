@@ -10,7 +10,7 @@ public class ChargeBarMiniGame : MonoBehaviour
     [SerializeField] private Scrollbar ProgressBar;
     [SerializeField] private TMP_Text ChargePercentText;
     float CurrentCharge = 0.0f;
-    public float ChargeSpeed = 25.0f;
+    public float ChargeSpeed = 100.0f;
     public float ChargeMax = 100.0f;
     bool IsCharging = false;
  
