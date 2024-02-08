@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerActionScript : MonoBehaviour
 {
+    public static PlayerActionScript instance;
+
+
     private PlayerActions _PlayerActions;
     private Rigidbody _Rigidbody;
     private InteractorBehavoir _InteractorBehavoir;
@@ -21,6 +24,16 @@ public class PlayerActionScript : MonoBehaviour
 
     private void Awake()
     {
+
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+
         Debug.Log("Player Awake");
         _Rigidbody ??= GetComponent<Rigidbody>();
         _InteractorBehavoir ??= GetComponent<InteractorBehavoir>();
