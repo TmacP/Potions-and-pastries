@@ -15,7 +15,7 @@ MonoBehaviour:
   Description: 
   RequiredItems:
   - {fileID: 11400000, guid: 193dedd8501d34b15b0904dda26b7b84, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: a8dfaea7c391b4bcfa212caf5784b16d, type: 2}
   - {fileID: 11400000, guid: dbe5f361f05bb4828852e2b284a49c2c, type: 2}
   OutgoingItems: []
   CreationTime: 0
