@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             PlayerState.Inventory.Clear();
+            PlayerState.ToolBar.Clear();
         }
     }
 

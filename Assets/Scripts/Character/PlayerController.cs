@@ -15,6 +15,8 @@ public class PlayerActionScript : MonoBehaviour
     [SerializeField] private InventoryManager _InventoryManager;
     [SerializeField] private InventoryToggle _InventoryToggle;
 
+    [SerializeField] private GameObject _HotBarPrefab;
+
     //if we cannot find a gamemanager and playerstate use this speed instead.
     //This is so players don't break on levels without a gamemanager
     private readonly float _fallbackSpeed = 20.0f;
@@ -32,7 +34,6 @@ public class PlayerActionScript : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        Debug.Log("Player Awake");
         _Rigidbody ??= GetComponent<Rigidbody>();
         _InteractorBehavoir ??= GetComponent<InteractorBehavoir>();
 
@@ -60,6 +61,28 @@ public class PlayerActionScript : MonoBehaviour
             _InventoryManager = Instantiate(_InventoryManager);
             _InventoryManager.InitializeInventoryManager(GameManager.Instance.PlayerState.Inventory);
             _InventoryToggle = _InventoryManager.GetComponent<InventoryToggle>();
+        }
+
+        GameObject[] GOS = GameObject.FindGameObjectsWithTag("PlayerHUD");
+        
+        if(GOS.Length > 0)
+        {
+            GameObject HUD = GOS[0];
+
+            GameObject Toolbar = Instantiate(_HotBarPrefab);
+            Toolbar.transform.SetParent(HUD.transform, false);
+            Toolbar.transform.SetAsFirstSibling();
+
+            InventoryManager TBManager = Toolbar.GetComponent<InventoryManager>();
+            if( TBManager != null )
+            {
+                TBManager.InitializeInventoryManager(GameManager.Instance.PlayerState.ToolBar);
+            }
+            else
+            {
+                Debug.Log("PlayerController::Start ... Invalid TBManager");
+            }
+
         }
     }
 
