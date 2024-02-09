@@ -35,8 +35,8 @@ public class GameManager : MonoBehaviour
         {EGameScene.InnExterior, "ConorDemoScene" },
         {EGameScene.ConorInnInterior, "ConorInnScene" },
         {EGameScene.ConorInnExterior, "ConorDemoScene" },
-        {EGameScene.AlphaInterior, "Assets/Scenes/TristenAlpha/AlphaInterior.unity" },
-        {EGameScene.AlphaExterior, "Assets/Scenes/TristenAlpha/AlphaExterior.unity" },
+        {EGameScene.AlphaInterior, "Assets/Scenes/Alpha/AlphaInterior.unity" },
+        {EGameScene.AlphaExterior, "Assets/Scenes/Alpha/AlphaExterior.unity" },
     };
 
     private void Awake()
