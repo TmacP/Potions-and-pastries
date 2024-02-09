@@ -12,6 +12,8 @@ public class PlayerActionScript : MonoBehaviour
     private Rigidbody _Rigidbody;
     private InteractorBehavoir _InteractorBehavoir;
 
+    public Animator animator;
+    public bool faceLeft = true;
     [SerializeField] private InventoryManager _InventoryManager;
     [SerializeField] private InventoryToggle _InventoryToggle;
 
@@ -38,6 +40,8 @@ public class PlayerActionScript : MonoBehaviour
 
         _PlayerActions = new PlayerActions();
         _PlayerActions.PlayerActionMap.Enable();
+        
+        animator = transform.Find("F_BaseCharacter").GetComponent<Animator>();
         _PlayerActions.PlayerMovementMap.Enable();
         _PlayerActions.Inventory.Disable();
 
@@ -108,7 +112,25 @@ public class PlayerActionScript : MonoBehaviour
                 _PlayerMoveInput.x * Speed,
                 _Rigidbody.velocity.y,
                 _PlayerMoveInput.y * Speed);
+
+            animator.SetFloat("MoveSpeed", _Rigidbody.velocity.magnitude);
+
+            if (_PlayerMoveInput.x > 0 && faceLeft)
+            {
+                transform.Find("F_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+                faceLeft = false;
+            }
+            else if (_PlayerMoveInput.x < 0 && !faceLeft)
+            {
+                transform.Find("F_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+                faceLeft = true;
+            }
+
+
+
         }
+        
+
     }
 
     protected void OnInteractStart(InputAction.CallbackContext context)
