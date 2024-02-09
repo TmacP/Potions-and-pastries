@@ -8,10 +8,9 @@ public class PlayerStateData : ScriptableObject
 {
     public float MoveSpeed;
 
-    [SerializeField] public List<InventoryItemData> Inventory = new List<InventoryItemData>();
+    public List<InventoryItemData> Inventory = new List<InventoryItemData>();
 
-
-    [SerializeField] public List<InventoryItemData> ToolBar = new List<InventoryItemData>();
+    public List<InventoryItemData> ToolBar = new List<InventoryItemData>();
 }
 
 

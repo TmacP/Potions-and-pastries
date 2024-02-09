@@ -21,7 +21,7 @@ public class InfoPanel : MonoBehaviour
         InfoBoxImage.color = new Color(1, 1, 1);
         UseItemButton.gameObject.SetActive(true);
         DestroyItemButton.gameObject.SetActive(true);
-
+       
     }
 
     public void ClearInfo()
