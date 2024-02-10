@@ -15,14 +15,12 @@ MonoBehaviour:
   Name: Vanilla
   Description: Some vanilla
   ItemType: 0
-  ItemTags: 00000000
-  Icon:
-    m_AssetGUID: 
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
+  ItemTags: 0a000000
+  image: {fileID: 0}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  stackable: 1
+  InventoryIndex: -1
