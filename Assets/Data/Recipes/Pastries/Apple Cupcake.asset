@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4681d9fc9a7fd7347a230851067a1272, type: 3}
   m_Name: Apple Cupcake
   m_EditorClassIdentifier: 
-  Description: 
+  Description: An Apple Cupcake, good luck bobbing for these.
   RequiredItems:
   - {fileID: 11400000, guid: 193dedd8501d34b15b0904dda26b7b84, type: 2}
   - {fileID: 11400000, guid: 22d499c94fac1e34ab91c98d81c6dd32, type: 2}
   - {fileID: 11400000, guid: dbe5f361f05bb4828852e2b284a49c2c, type: 2}
-  OutgoingItems: []
-  CreationTime: 0
+  OutgoingItems:
+  - {fileID: 11400000, guid: 25639ef63d20245b4831769fc491bc93, type: 2}
+  CreationTime: 3
   Level: 0
