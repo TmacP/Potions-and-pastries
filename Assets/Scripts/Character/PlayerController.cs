@@ -10,8 +10,10 @@ public class PlayerActionScript : MonoBehaviour
     private Rigidbody _Rigidbody;
     private InteractorBehavoir _InteractorBehavoir;
 
-    public Animator animator;
-    public bool faceLeft = true;
+    public Animator frontAnimator;
+    public Animator backAnimator;
+    private bool faceLeft = true;
+    private bool faceBack = false;
 
     private void Awake()
     {
@@ -21,7 +23,8 @@ public class PlayerActionScript : MonoBehaviour
         _PlayerActions = new PlayerActions();
         _PlayerActions.PlayerActionMap.Enable();
         
-        animator = transform.Find("F_BaseCharacter").GetComponent<Animator>();
+        frontAnimator = transform.Find("F_BaseCharacter").GetComponent<Animator>();
+        backAnimator = transform.Find("B_BaseCharacter").GetComponent<Animator>();
 
         //Generally this is how we can bind inputs...
         //Either .performed for a specified trigger or .started
@@ -41,19 +44,36 @@ public class PlayerActionScript : MonoBehaviour
                 _Rigidbody.velocity.y,
                 _PlayerMoveInput.y * PlayerState.MoveSpeed);
 
-            animator.SetFloat("MoveSpeed", _Rigidbody.velocity.magnitude);
+            frontAnimator.SetFloat("MoveSpeed", _Rigidbody.velocity.magnitude);
+            backAnimator.SetFloat("MoveSpeed", _Rigidbody.velocity.magnitude);
 
             if (_PlayerMoveInput.x > 0 && faceLeft)
             {
                 transform.Find("F_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+                transform.Find("B_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
                 faceLeft = false;
             }
             else if (_PlayerMoveInput.x < 0 && !faceLeft)
             {
                 transform.Find("F_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+                transform.Find("B_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
                 faceLeft = true;
             }
 
+            if (_PlayerMoveInput.y > 0 && !faceBack)
+            {
+                frontAnimator.Rebind();
+                transform.Find("F_BaseCharacter").gameObject.SetActive(false);
+                faceBack = true;
+                transform.Find("B_BaseCharacter").gameObject.SetActive(true);
+            }
+            else if (_PlayerMoveInput.y < 0 && faceBack)
+            {
+                backAnimator.Rebind();
+                transform.Find("F_BaseCharacter").gameObject.SetActive(true);
+                faceBack = false;
+                transform.Find("B_BaseCharacter").gameObject.SetActive(false);
+            }
 
 
         }
