@@ -181,8 +181,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ce382e2f5a241942ac5733bde4d4ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _InventoryPrefab: {fileID: 4702890175944418306, guid: f2116dd8256e0114e9fc68b830b73d72, type: 3}
   _InventoryManager: {fileID: 4599764298279483909, guid: 33e367ad5d312e74cb7f4e3d9fce5e65, type: 3}
-  _InventoryToggle: {fileID: 1927592222539983770, guid: 33e367ad5d312e74cb7f4e3d9fce5e65, type: 3}
   _HotBarPrefab: {fileID: 945699792175429718, guid: 526c1ac2ea9566947bc7d18db74f90a0, type: 3}
 --- !u!114 &472343680603872811
 MonoBehaviour:
