@@ -16,7 +16,9 @@ public enum EGameScene
     InnInterior,
     InnExterior,
     ConorInnInterior,
-    ConorInnExterior
+    ConorInnExterior,
+    AlphaInterior,
+    AlphaExterior
 }
 
 public class GameManager : MonoBehaviour
@@ -32,7 +34,9 @@ public class GameManager : MonoBehaviour
         {EGameScene.InnInterior, "ConorInnScene" },
         {EGameScene.InnExterior, "ConorDemoScene" },
         {EGameScene.ConorInnInterior, "ConorInnScene" },
-        {EGameScene.ConorInnExterior, "ConorDemoScene" }
+        {EGameScene.ConorInnExterior, "ConorDemoScene" },
+        {EGameScene.AlphaInterior, "Assets/Scenes/Alpha/AlphaInterior.unity" },
+        {EGameScene.AlphaExterior, "Assets/Scenes/Alpha/AlphaExterior.unity" },
     };
 
     private void Awake()
