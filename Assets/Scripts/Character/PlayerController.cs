@@ -21,8 +21,6 @@ public class PlayerActionScript : MonoBehaviour
     [SerializeField] private GameObject _HotBarPrefab;
     public Animator animator;
     public bool faceLeft = true;
-    [SerializeField] private InventoryManager _InventoryManager;
-    [SerializeField] private InventoryToggle _InventoryToggle;
 
     //if we cannot find a gamemanager and playerstate use this speed instead.
     //This is so players don't break on levels without a gamemanager
