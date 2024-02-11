@@ -2035,7 +2035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 445f89f489522f94e8e881a3cafcff32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 11400000, guid: de9ebc95cf4701644915e968425e8674, type: 2}
+  Data: {fileID: 11400000, guid: 0fe71c23029dc4788a7b9a712e4238cc, type: 2}
 --- !u!65 &500164168
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6141,7 +6141,6 @@ GameObject:
   - component: {fileID: 1120394304}
   - component: {fileID: 1120394303}
   - component: {fileID: 1120394302}
-  - component: {fileID: 1120394301}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Untagged
@@ -6149,19 +6148,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1120394301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1120394300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
 --- !u!114 &1120394302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6666,6 +6652,7 @@ GameObject:
   - component: {fileID: 1377241173}
   - component: {fileID: 1377241172}
   - component: {fileID: 1377241171}
+  - component: {fileID: 1377241175}
   m_Layer: 0
   m_Name: Player (1)
   m_TagString: Player
@@ -6752,6 +6739,37 @@ Transform:
   - {fileID: 1569167178}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1377241175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377241170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1056644193
+      Data2: 1094200141
+      Data3: 523248279
+      Data4: -654304205
+    Path: event:/BGM/Tough call
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1439565203
 GameObject:
   m_ObjectHideFlags: 0
