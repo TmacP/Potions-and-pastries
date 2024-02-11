@@ -7,6 +7,7 @@ using System.Linq;
 public class GatherableBehavoir : MonoBehaviour, IInteractable
 {
     [SerializeField] private GatherableData Data;
+    [SerializeField] private bool DestroyOnEmpty = true;
 
 //********IInteractable Interface **********
     public string InteractionPrompt => Data.InteractionPrompt;
@@ -48,24 +49,18 @@ public class GatherableBehavoir : MonoBehaviour, IInteractable
             Debug.Log("Gained 2x Item");
             GameEventManager.instance.GivePlayerItems(Items);
             Data.NumberOfInteractions--;
-            if (Data.NumberOfInteractions <= 0)
-            {
-                Destroy(this.gameObject);
-            }
+            OnInteractionFinished();
+            
         }
         else if(Result == EMiniGameCompleteResult.Success)
         {
             List<ItemData> Items = new List<ItemData>();
             GetItemsToGive(out Items);
 
-            Debug.Log("Gained 1x Item");
             GameEventManager.instance.GivePlayerItems(Items);
 
             Data.NumberOfInteractions--;
-            if (Data.NumberOfInteractions <= 0)
-            {
-                Destroy(this.gameObject);
-            }
+            OnInteractionFinished();
 
         }
         
@@ -83,5 +78,21 @@ public class GatherableBehavoir : MonoBehaviour, IInteractable
     {
         OutItems = new List<ItemData>();
         OutItems.AddRange(Data.CollectableItems);
+    }
+
+    void OnInteractionFinished()
+    {
+        if (Data.NumberOfInteractions <= 0)
+        {
+            if (DestroyOnEmpty)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                int LayerIndex = LayerMask.NameToLayer("Interact");
+                this.gameObject.layer &= (0x1 << LayerIndex);
+            }
+        }
     }
 }

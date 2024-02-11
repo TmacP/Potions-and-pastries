@@ -31,7 +31,7 @@ public class InventoryManager : MonoBehaviour
     {
         for (int i = 0; i < inventorySlots.Length; i++)
         {
-            if (inventorySlots[i].GetComponentInChildren<DraggableItem>() == item)
+            if (inventorySlots[i].GetComponentInChildren<DraggableItem>(true) == item)
             {
                 ChangeSelectedSlot(i);
                 break;
@@ -54,7 +54,7 @@ public class InventoryManager : MonoBehaviour
 
     void UpdateInfoPanel(int slotIndex)
     {
-        DraggableItem itemInSlot = inventorySlots[slotIndex].GetComponentInChildren<DraggableItem>();
+        DraggableItem itemInSlot = inventorySlots[slotIndex].GetComponentInChildren<DraggableItem>(true);
         InfoPanel infoPanel = FindObjectOfType<InfoPanel>(true);
         if (infoPanel != null)
         {
@@ -100,7 +100,6 @@ public class InventoryManager : MonoBehaviour
         {
             infoPanel.gameObject.SetActive(false);
         }
-        ClearInventory();
         GameEventManager.instance.OnCloseMenu -= CloseInventory;
     }
 
@@ -111,7 +110,7 @@ public class InventoryManager : MonoBehaviour
         {
             foreach (InventoryItemData InvItem in InventoryDataRef)
             {
-                AddItemAtIndex_InternalInitialize(InvItem);
+                AddItemToUI(InvItem);
             }
         }
         else
@@ -124,12 +123,17 @@ public class InventoryManager : MonoBehaviour
     {
         foreach(InventorySlot slot in inventorySlots)
         {
-            DraggableItem Item = slot.GetComponentInChildren<DraggableItem>();
+            DraggableItem Item = slot.GetComponentInChildren<DraggableItem>(true);
             if(Item != null)
             {
-                Destroy(Item.gameObject);
+                DestroyImmediate(Item.gameObject);
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        InventoryDataRef = null;
     }
 
     public void ChangeSelectedSlotBasedOnSlot(InventorySlot slot)
@@ -210,105 +214,93 @@ public class InventoryManager : MonoBehaviour
 
     public bool AddItem(ItemData item)
     {
-
+        InventoryDataRef.Sort((I1, I2) => I1.InventoryIndex.CompareTo(I2.InventoryIndex));
+        int smallestIndex = 0;
         // Find an item is re-occuring: add it to stack
-        for (int i = 0; i < inventorySlots.Length; i++)
+        foreach (InventoryItemData InvData in InventoryDataRef)
         {
-            InventorySlot slot = inventorySlots[i];
-            DraggableItem itemInSlot = slot.GetComponentInChildren<DraggableItem>();
-            if (itemInSlot != null && itemInSlot.ItemData.Data == item && itemInSlot.count < maxStack && itemInSlot.ItemData.Data.stackable == true)
+            if(InvData.Data == item)
             {
-                itemInSlot.count++;
-                itemInSlot.ItemData.CurrentStackCount++;
-                itemInSlot.RefreshCount();
-                RefreshInventory();
-                return true;
-            }
-        }
+                if(InvData.Data.stackable && InvData.CurrentStackCount < maxStack)
+                {
+                    InvData.CurrentStackCount++;
 
-        // Find an empty inv slot and spawn an item there
-        for (int i = 0; i < inventorySlots.Length; i++) 
-        { 
-            InventorySlot slot = inventorySlots[i];
-            DraggableItem itemInSlot = slot.GetComponentInChildren<DraggableItem>();
-            if (itemInSlot == null)
+                    DraggableItem itemInSlot = inventorySlots[InvData.InventoryIndex].GetComponent<DraggableItem>();
+                    if(itemInSlot != null)
+                    {
+                        itemInSlot.RefreshCount();
+                    }
+                    return true;
+                }
+            }
+            if(smallestIndex == InvData.InventoryIndex)
             {
-                int Index = Array.IndexOf(inventorySlots, slot);
-                int StackCount = 1;
-                InventoryItemData InvData = new InventoryItemData(item, Index, StackCount);
-                InventoryDataRef.Add(InvData);
-                SpawnNewItem(InvData, slot);
-                RefreshInventory();
-                return true;
+                smallestIndex++;
             }
         }
-        return false;
+        InventoryItemData NewItem = new InventoryItemData(item, smallestIndex, 1);
+        return AddItemAtIndex(NewItem, smallestIndex, false);
     }
 
-    public virtual bool AddItemAtIndex(InventoryItemData InvItem, int Index)
+    public virtual bool AddItemAtIndex(InventoryItemData InvItem, int Index, bool UpdateGameLog = true)
     {
         //Find Slot
-        if (Index >= inventorySlots.Length || Index < 0)
+        Assert.IsFalse(Index >= inventorySlots.Length || Index < 0);
+        foreach (InventoryItemData InvData in InventoryDataRef)
         {
-            return false;
+            if (InvData.InventoryIndex == Index )
+            {
+                if (InvData.Data.stackable && InvData.CurrentStackCount < maxStack)
+                {
+                    InvData.CurrentStackCount += InvItem.CurrentStackCount;
+
+                    DraggableItem itemInSlot = inventorySlots[InvData.InventoryIndex].GetComponent<DraggableItem>();
+                    if (itemInSlot != null)
+                    {
+                        itemInSlot.RefreshCount();
+                    }
+                    return true;
+                }
+                else
+                {
+                    Debug.Log("InventoryManager::AddItemAtIndex... Index is full");
+                    return false;
+                }
+            }
         }
-        InventorySlot slot = inventorySlots[Index];
-        DraggableItem itemInSlot = slot.GetComponentInChildren<DraggableItem>();
+
+        InvItem.InventoryIndex = Index;
+        InventoryDataRef.Add(InvItem);
+        AddItemToUI(InvItem);
+        return true;
+        
+    }
+
+    private void AddItemToUI(InventoryItemData InvItem)
+    {
+        Assert.IsFalse(InvItem.InventoryIndex >= inventorySlots.Length || InvItem.InventoryIndex < 0);
+        InventorySlot slot = inventorySlots[InvItem.InventoryIndex];
+        DraggableItem itemInSlot = slot.GetComponentInChildren<DraggableItem>(true);
         if (itemInSlot != null)
         {
             if (itemInSlot.ItemData.Data == InvItem.Data && itemInSlot.count < maxStack && itemInSlot.ItemData.Data.stackable == true)
             {
                 itemInSlot.count += InvItem.CurrentStackCount;
                 itemInSlot.RefreshCount();
-                return true;
+                return;
             }
             else
             {
-                Debug.Log("InventoryManager::AddItemAtIndex... Item stack exceeds max stackable");
-                return false;
+                return;
             }
-
-        }
-        else
-        {
-            InvItem.InventoryIndex = Index;
-            int StackCount = InvItem.CurrentStackCount > 0 ? InvItem.CurrentStackCount : 1;
-            InventoryDataRef.Add(InvItem);
-            SpawnNewItem(InvItem, slot);
-            return true;
-        }
-    }
-
-    private bool AddItemAtIndex_InternalInitialize(InventoryItemData InvItem)
-    {
-        
-        Assert.IsFalse(InvItem.InventoryIndex >= inventorySlots.Length || InvItem.InventoryIndex < 0);
-
-
-
-        InventorySlot slot = inventorySlots[InvItem.InventoryIndex];
-        Assert.IsNotNull(slot);
-        DraggableItem itemInSlot = slot.GetComponentInChildren<DraggableItem>();
-        if(itemInSlot != null)
-        {
-            if (itemInSlot.ItemData.Data == InvItem.Data && itemInSlot.count < maxStack && itemInSlot.ItemData.Data.stackable == true)
-            {
-                itemInSlot.count += InvItem.CurrentStackCount;
-                itemInSlot.RefreshCount();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
         }
         else
         {
             SpawnNewItem(InvItem, slot);
-            return true;
+            return;
         }
     }
+
 
     public virtual InventoryItemData RemoveItem(InventoryItemData InvItem)
     {
@@ -322,7 +314,7 @@ public class InventoryManager : MonoBehaviour
         InventorySlot slot = inventorySlots[Index];
         if (slot != null)
         {
-            DraggableItem ItemInSlot = slot.transform.GetComponentInChildren<DraggableItem>();
+            DraggableItem ItemInSlot = slot.transform.GetComponentInChildren<DraggableItem>(true);
             bool SuccessfulRemoval = InventoryDataRef.Remove(InvItem);
             if(ItemInSlot != null)
             {
@@ -339,7 +331,7 @@ public class InventoryManager : MonoBehaviour
     public ItemData GetSelectedItem(bool use)
     {
         InventorySlot slot = inventorySlots[selectedSlot];
-        DraggableItem itemInSlot = slot.GetComponentInChildren<DraggableItem>();
+        DraggableItem itemInSlot = slot.GetComponentInChildren<DraggableItem>(true);
 
         if(itemInSlot != null)
         {
