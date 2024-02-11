@@ -16,8 +16,14 @@ MonoBehaviour:
   InteractionPrompt: Brew
   SecondaryInteractionPrompt: 
   CraftableRecipes:
+  - {fileID: 11400000, guid: 03bd4b2ca253c4332a2fcc1373a01428, type: 2}
+  - {fileID: 11400000, guid: f100a72247ad1408d98cca14e080feb3, type: 2}
   - {fileID: 11400000, guid: ad69966b313a44dd794d511b92d2eed0, type: 2}
   - {fileID: 11400000, guid: abe5a3b8b4bf14279b0a8b1a7c06aacc, type: 2}
+  - {fileID: 11400000, guid: 4a18403946d4641d59b9eb11a9138e0e, type: 2}
+  - {fileID: 11400000, guid: fb2e662cc452b490a903fc25d00c87fc, type: 2}
+  - {fileID: 11400000, guid: 9ad5d1cd8d0c248d882abd9cd777685c, type: 2}
+  - {fileID: 11400000, guid: 7d6b50a6afdcc47df85d20f641c07606, type: 2}
   CraftingActionMiniGame:
     m_AssetGUID: 
     m_SubObjectName: 

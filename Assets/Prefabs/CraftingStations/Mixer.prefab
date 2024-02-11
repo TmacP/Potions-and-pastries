@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8048712933304520864}
   - component: {fileID: 3001296593192808978}
   m_Layer: 6
-  m_Name: Cauldron
+  m_Name: Mixer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,23 +123,23 @@ MonoBehaviour:
   Data: {fileID: 11400000, guid: 3d846b60d9f90bf498cabbfe43545b7c, type: 2}
   CurrentItems: []
   CurrentValidRecipes:
-  - {fileID: 11400000, guid: 03bd4b2ca253c4332a2fcc1373a01428, type: 2}
-  - {fileID: 11400000, guid: f100a72247ad1408d98cca14e080feb3, type: 2}
-  - {fileID: 11400000, guid: ad69966b313a44dd794d511b92d2eed0, type: 2}
-  - {fileID: 11400000, guid: abe5a3b8b4bf14279b0a8b1a7c06aacc, type: 2}
-  - {fileID: 11400000, guid: 4a18403946d4641d59b9eb11a9138e0e, type: 2}
-  - {fileID: 11400000, guid: fb2e662cc452b490a903fc25d00c87fc, type: 2}
-  - {fileID: 11400000, guid: 9ad5d1cd8d0c248d882abd9cd777685c, type: 2}
-  - {fileID: 11400000, guid: 7d6b50a6afdcc47df85d20f641c07606, type: 2}
+  - {fileID: 11400000, guid: b567e7e72389d41c2bb29fefda1621b8, type: 2}
+  - {fileID: 11400000, guid: f961fb48e0c1a4925a4f6a0b81ebb87b, type: 2}
+  - {fileID: 11400000, guid: 80a38b0d7ff384b5eb76e8ec7e8c7a42, type: 2}
+  - {fileID: 11400000, guid: 4d1c7050a3d1943abb3ae0e7dfffd4a9, type: 2}
+  - {fileID: 11400000, guid: 7780537adde64401b829c37472df0c94, type: 2}
+  - {fileID: 11400000, guid: 51230716888b94a298d3596d60b57494, type: 2}
+  - {fileID: 11400000, guid: ebb749372e3e44c3fb3af08d8ccd781c, type: 2}
+  - {fileID: 11400000, guid: 72460f0cf90964ed591d090560b2ee5c, type: 2}
   OutgoingItems:
-  - {fileID: 11400000, guid: e7b2ca26b17524c10b287d5535d9e622, type: 2}
-  - {fileID: 11400000, guid: 4408fe1591b2246cca7027d45d93f799, type: 2}
-  - {fileID: 11400000, guid: 0b0082e9300ae4bf7851b981b56d1712, type: 2}
-  - {fileID: 11400000, guid: ccc21294a3fdd40ef9921fe60091c76e, type: 2}
-  - {fileID: 11400000, guid: 3cd1e5b71e58b4b1695a3a10a8fe2d90, type: 2}
-  - {fileID: 11400000, guid: f720de278920e42129b4410b4486d7da, type: 2}
-  - {fileID: 11400000, guid: f41f36d12d89c4a778f062dd3826c0fe, type: 2}
-  - {fileID: 11400000, guid: 7ecb0743f755e4ea7b4417c73beebe8b, type: 2}
+  - {fileID: 11400000, guid: 570eca9eee6ab45028804159205c1903, type: 2}
+  - {fileID: 11400000, guid: 193dedd8501d34b15b0904dda26b7b84, type: 2}
+  - {fileID: 11400000, guid: dbe5f361f05bb4828852e2b284a49c2c, type: 2}
+  - {fileID: 11400000, guid: 97d8bf3bcc41a4ce19f093311bb85e82, type: 2}
+  - {fileID: 11400000, guid: fc13cc54974b44c10a23db8e054b58f9, type: 2}
+  - {fileID: 11400000, guid: ce07f0d4cfae946279100dc49f0e752f, type: 2}
+  - {fileID: 11400000, guid: 54d6ae10a4d204db9893b58f5edc984a, type: 2}
+  - {fileID: 11400000, guid: 935bc7709158046ed8ef6ebc39063e63, type: 2}
   CraftingStationUI:
     m_AssetGUID: 360f04fcc8299374e97e9829a2a650ee
     m_SubObjectName: 

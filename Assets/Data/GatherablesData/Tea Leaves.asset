@@ -10,20 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acbc4b1d07823a140a482df7049dfc8e, type: 3}
-  m_Name: DemoGatherable
+  m_Name: Tea Leaves
   m_EditorClassIdentifier: 
-  InteractionPrompt: Gather
-  GatherableName: 
+  InteractionPrompt: Gather Tea Leaves
+  GatherableName: Tea Leaves
   CollectableItems:
-  - {fileID: 11400000, guid: 5d2e6fe0ced5348df877ebc5e6a93765, type: 2}
-  - {fileID: 11400000, guid: 935bc7709158046ed8ef6ebc39063e63, type: 2}
   - {fileID: 11400000, guid: ff55d8bb7e08849f1b79d9d6e67bcf4d, type: 2}
-  - {fileID: 11400000, guid: 54d6ae10a4d204db9893b58f5edc984a, type: 2}
-  - {fileID: 11400000, guid: 870c3d2dc5e9d4a1e98ab108ded47f3a, type: 2}
-  - {fileID: 11400000, guid: 870c3d2dc5e9d4a1e98ab108ded47f3a, type: 2}
-  - {fileID: 11400000, guid: a8dfaea7c391b4bcfa212caf5784b16d, type: 2}
   ItemsPerInteraction: 0
-  NumberOfInteractions: -48
+  NumberOfInteractions: 1
   MiniGame:
     m_AssetGUID: 595e291c9b957934f9a4a77cae243c9e
     m_SubObjectName: 

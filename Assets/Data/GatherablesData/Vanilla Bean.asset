@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acbc4b1d07823a140a482df7049dfc8e, type: 3}
-  m_Name: TeaLeaves
+  m_Name: Vanilla Bean
   m_EditorClassIdentifier: 
-  InteractionPrompt: Gather Tea Leaves
-  GatherableName: Tea Leaves
+  InteractionPrompt: Gather Vanilla Bean
+  GatherableName: Vanilla Bean
   CollectableItems:
-  - {fileID: 11400000, guid: ff55d8bb7e08849f1b79d9d6e67bcf4d, type: 2}
+  - {fileID: 11400000, guid: c823f7b7fb8b1408c82714ad90b32ede, type: 2}
   ItemsPerInteraction: 0
   NumberOfInteractions: 1
   MiniGame:
