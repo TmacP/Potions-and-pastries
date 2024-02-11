@@ -50,9 +50,18 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerClickHandler
         {
             GameObject dropped = eventData.pointerDrag;
             DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
-            draggableItem.parentAfterDrag = transform;
-            draggableItem.ItemData.InventoryIndex = Array.IndexOf(inventoryManager.inventorySlots, this);
+
+            if (draggableItem.inventoryManager == this.inventoryManager)
+            {
+                draggableItem.parentAfterDrag = transform;
+                draggableItem.ItemData.InventoryIndex = Array.IndexOf(inventoryManager.inventorySlots, this);
+            }
+            else
+            {
+                draggableItem.inventoryManager.RemoveItem(draggableItem.ItemData);
+                this.inventoryManager.AddItemAtIndex(draggableItem.ItemData, Array.IndexOf(inventoryManager.inventorySlots, this));
+                Destroy(draggableItem.gameObject);
+            }
         }
     }
-
 }

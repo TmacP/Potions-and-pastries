@@ -30,7 +30,7 @@ public class InventoryToggle : MonoBehaviour
         }
         else
         {
-            GameEventManager.instance.InventoryClosed(InventoryManager);
+            //GameEventManager.instance.InventoryClosed(InventoryManager);
             return false;
         }
     }
