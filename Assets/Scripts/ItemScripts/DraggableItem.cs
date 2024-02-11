@@ -10,7 +10,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 {
     [Header("UI")]
     public Image image;
-    public Text countText;
+    public TextMeshProUGUI countText;
     private InfoPanel infoPanel;
 
     [HideInInspector] public InventoryItemData ItemData;
