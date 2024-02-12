@@ -10,7 +10,9 @@ public class DemoItemSpawn : MonoBehaviour
 
     public void PickupItem(int id)
     {
-        bool result = inventoryManager.AddItem(itemsToPickup[id]);
+        InventoryItemData InvData = new InventoryItemData(itemsToPickup[id], -1, -1);
+
+        bool result = inventoryManager.AddItem(InvData);
         if (result)
         {
             Debug.Log("Item added...");

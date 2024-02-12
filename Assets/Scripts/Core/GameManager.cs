@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Build.Pipeline;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,7 +15,9 @@ public enum EGameScene
     InnInterior,
     InnExterior,
     ConorInnInterior,
-    ConorInnExterior
+    ConorInnExterior,
+    AlphaInterior,
+    AlphaExterior
 }
 
 public class GameManager : MonoBehaviour
@@ -32,7 +33,9 @@ public class GameManager : MonoBehaviour
         {EGameScene.InnInterior, "ConorInnScene" },
         {EGameScene.InnExterior, "ConorDemoScene" },
         {EGameScene.ConorInnInterior, "ConorInnScene" },
-        {EGameScene.ConorInnExterior, "ConorDemoScene" }
+        {EGameScene.ConorInnExterior, "ConorDemoScene" },
+        {EGameScene.AlphaInterior, "Assets/Scenes/Alpha/AlphaInterior.unity" },
+        {EGameScene.AlphaExterior, "Assets/Scenes/Alpha/AlphaExterior.unity" },
     };
 
     private void Awake()
@@ -46,6 +49,7 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             PlayerState.Inventory.Clear();
+            PlayerState.ToolBar.Clear();
         }
     }
 

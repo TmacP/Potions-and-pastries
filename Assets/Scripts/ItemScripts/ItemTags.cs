@@ -15,14 +15,14 @@ public enum EItemTags
     Sweet, 
     Sour,
     Salty, 
-    Spicy,
     Bitter,
-    Savoury,
-    Meat,
-    Vegetable,
-    Fruit,
+    Fruity,
     Berry,
-    Herb,
+    Buttery,
+    Chocolatey,
+    Vanilley,
+    Doughy,
+
 };
 
 

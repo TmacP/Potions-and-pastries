@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerInventoryHUD
   - Barrel
+  - PlayerHUD
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - Water
   - UI
   - Interact
-  - 
+  - NavMesh
   - 
   - 
   - 

@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.HID;
+using UnityEngine.Timeline;
 
 public class PlayerActionScript : MonoBehaviour
 {
@@ -14,8 +17,12 @@ public class PlayerActionScript : MonoBehaviour
     private InputAction _menuOpenCloseACtion;
     public bool MenuOpenCloseInput { get; private set;}
 
-    [SerializeField] private InventoryManager _InventoryManager;
-    [SerializeField] private InventoryToggle _InventoryToggle;
+    [SerializeField] private GameObject _InventoryPrefab;
+    [SerializeField, HideInInspector] private InventoryManager _InventoryManager;
+    
+    [SerializeField] private GameObject _HotBarPrefab;
+    public Animator animator;
+    public bool faceLeft = true;
 
     //if we cannot find a gamemanager and playerstate use this speed instead.
     //This is so players don't break on levels without a gamemanager
@@ -34,12 +41,13 @@ public class PlayerActionScript : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        Debug.Log("Player Awake");
         _Rigidbody ??= GetComponent<Rigidbody>();
         _InteractorBehavoir ??= GetComponent<InteractorBehavoir>();
 
         _PlayerActions = new PlayerActions();
         _PlayerActions.PlayerActionMap.Enable();
+        
+        animator = transform.Find("F_BaseCharacter").GetComponent<Animator>();
         _PlayerActions.PlayerMovementMap.Enable();
         _PlayerActions.Inventory.Disable();
 
@@ -59,12 +67,38 @@ public class PlayerActionScript : MonoBehaviour
     public void Start()
     {
         GameEventManager.instance.OnChangeGameState += OnGameStateChanged;
-        if(_InventoryManager != null)
+        GameEventManager.instance.OnGivePlayerItems += OnGainItems;
+        GameEventManager.instance.OnPostInventoryOpen += PostInventoryOpen;
+        GameEventManager.instance.OnCloseMenu += CloseInventory_Internal;
+
+        GameObject[] GOS = GameObject.FindGameObjectsWithTag("PlayerHUD");
+        
+        if(GOS.Length > 0)
         {
-            _InventoryManager = Instantiate(_InventoryManager);
-            _InventoryManager.InitializeInventoryManager(GameManager.Instance.PlayerState.Inventory);
-            _InventoryToggle = _InventoryManager.GetComponent<InventoryToggle>();
+            GameObject HUD = GOS[0];
+
+            GameObject Toolbar = Instantiate(_HotBarPrefab);
+            Toolbar.transform.SetParent(HUD.transform, false);
+            Toolbar.transform.SetAsFirstSibling();
+
+            InventoryManager TBManager = Toolbar.GetComponent<InventoryManager>();
+            if (TBManager != null)
+            {
+                TBManager.InitializeInventoryManager(GameManager.Instance.PlayerState.ToolBar);
+                TBManager.CloseOnCloseMenuEvent = false;
+            }
+
+            if (_InventoryPrefab != null)
+            {
+                _InventoryPrefab = Instantiate(_InventoryPrefab);
+                //_InventoryPrefab.transform.SetParent(HUD.transform, false);
+                //_InventoryPrefab.transform.SetAsFirstSibling();
+                _InventoryManager = _InventoryPrefab.GetComponentInChildren<InventoryManager>();
+                Assert.IsNotNull(_InventoryManager);
+                _InventoryManager.InitializeInventoryManager(GameManager.Instance.PlayerState.Inventory);
+            }
         }
+        GameEventManager.instance.CloseMenu();
     }
     private void Update()
     {
@@ -77,6 +111,10 @@ public class PlayerActionScript : MonoBehaviour
         _PlayerActions.PlayerActionMap.Interact.canceled -= OnInteractStart;
         _PlayerActions.PlayerActionMap.OpenInventory.performed -= OnOpenInventory;
         _PlayerActions.Inventory.CloseInventory.performed -= OnCloseInventory;
+
+        GameEventManager.instance.OnChangeGameState -= OnGameStateChanged;
+        GameEventManager.instance.OnGivePlayerItems -= OnGainItems;
+        GameEventManager.instance.OnPostInventoryOpen -= PostInventoryOpen;
     }
 
     protected void OnGameStateChanged(EGameState NewGameState, EGameState OldGameState)
@@ -116,7 +154,25 @@ public class PlayerActionScript : MonoBehaviour
                 _PlayerMoveInput.x * Speed,
                 _Rigidbody.velocity.y,
                 _PlayerMoveInput.y * Speed);
+
+            animator.SetFloat("MoveSpeed", _Rigidbody.velocity.magnitude);
+
+            if (_PlayerMoveInput.x > 0 && faceLeft)
+            {
+                transform.Find("F_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+                faceLeft = false;
+            }
+            else if (_PlayerMoveInput.x < 0 && !faceLeft)
+            {
+                transform.Find("F_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+                faceLeft = true;
+            }
+
+
+
         }
+        
+
     }
 
     protected void OnInteractStart(InputAction.CallbackContext context)
@@ -137,66 +193,46 @@ public class PlayerActionScript : MonoBehaviour
 
     protected void OnOpenInventory(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed)
         {
-            if(_InventoryToggle == null)
+            if (!_InventoryManager.gameObject.activeSelf)
             {
-                GameObject[] Objects = GameObject.FindGameObjectsWithTag("PlayerInventoryHUD");
-                
-                foreach (GameObject obj in Objects)
-                {
-                    InventoryToggle toggle = obj.GetComponent<InventoryToggle>();
-                    if(toggle != null)
-                    {
-                        _InventoryToggle = toggle;
-                        break;
-                    }
-                }
+                GameEventManager.instance.CloseMenu();
+                _InventoryManager.gameObject.SetActive(true);
             }
-
-            if(_InventoryToggle != null)
+            else
             {
-                if(_InventoryToggle.Toggle())
-                {
-                    _PlayerActions.PlayerMovementMap.Disable();
-                    _PlayerActions.PlayerActionMap.Disable();
-                    _PlayerActions.Inventory.Enable();
-                }
-                else
-                {
-                    _PlayerActions.PlayerMovementMap.Enable();
-                    _PlayerActions.PlayerActionMap.Enable();
-                    _PlayerActions.Inventory.Disable();
-                }
+                OnCloseInventory(context);
             }
-            GameEventManager.instance.ToggleInventory();
         }
+    }
+
+    public void PostInventoryOpen()
+    {
+        _PlayerActions.PlayerMovementMap.Disable();
+        _PlayerActions.PlayerActionMap.Disable();
+        _PlayerActions.Inventory.Enable();
     }
 
     protected void OnCloseInventory(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            if (_InventoryToggle != null)
-            {
-                if (_InventoryToggle.Toggle())
-                {
-                    _PlayerActions.PlayerMovementMap.Disable();
-                    _PlayerActions.PlayerActionMap.Disable();
-                    _PlayerActions.Inventory.Enable();
-                }
-                else
-                {
-                    _PlayerActions.PlayerMovementMap.Enable();
-                    _PlayerActions.PlayerActionMap.Enable();
-                    _PlayerActions.Inventory.Disable();
-                }
-            }
-            GameEventManager.instance.ToggleInventory();
+            GameEventManager.instance.CloseMenu();
         }
     }
+    private void CloseInventory_Internal()
+    {
+        _PlayerActions.PlayerMovementMap.Enable();
+        _PlayerActions.PlayerActionMap.Enable();
+        _PlayerActions.Inventory.Disable();
+    }
 
-  
-
-
+    public void OnGainItems(List<InventoryItemData> Items)
+    {
+        foreach(InventoryItemData item in Items)
+        {
+            _InventoryManager.AddItem(item);
+        }
+    }
 }

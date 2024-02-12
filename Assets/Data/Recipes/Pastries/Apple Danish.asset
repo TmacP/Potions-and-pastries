@@ -17,6 +17,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d2e6fe0ced5348df877ebc5e6a93765, type: 2}
   - {fileID: 11400000, guid: 193dedd8501d34b15b0904dda26b7b84, type: 2}
   - {fileID: 11400000, guid: ce07f0d4cfae946279100dc49f0e752f, type: 2}
-  OutgoingItems: []
+  OutgoingItems:
+  - {fileID: 11400000, guid: 71cb35a69c62e46209e23caad3286b58, type: 2}
   CreationTime: 3
   Level: 0
