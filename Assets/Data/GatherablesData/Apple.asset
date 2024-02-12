@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbc4b1d07823a140a482df7049dfc8e, type: 3}
   m_Name: Apple
   m_EditorClassIdentifier: 
-  InteractionPrompt: Gather Tea Leaves
-  GatherableName: Tea Leaves
+  InteractionPrompt: Gather Apple
+  GatherableName: Apple
   CollectableItems:
-  - {fileID: 11400000, guid: ff55d8bb7e08849f1b79d9d6e67bcf4d, type: 2}
+  - {fileID: 11400000, guid: 5d2e6fe0ced5348df877ebc5e6a93765, type: 2}
   ItemsPerInteraction: 0
-  NumberOfInteractions: 1
+  NumberOfInteractions: -2
   MiniGame:
     m_AssetGUID: 595e291c9b957934f9a4a77cae243c9e
     m_SubObjectName: 
