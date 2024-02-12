@@ -18,6 +18,9 @@ public class NPCBehaviour : MonoBehaviour
         Order
     }
 
+    bool timerReached = false;
+    float timer = 0;
+
     public ENPCState NPCState;
 
     [SerializeField] private NPCData Data;
@@ -39,6 +42,7 @@ public class NPCBehaviour : MonoBehaviour
     void Update()
     {
         UpdateNPCState(NPCState);
+        Debug.Log(NPCState);
     }
 
     private void UpdateNPCState(ENPCState newState)
@@ -72,7 +76,7 @@ public class NPCBehaviour : MonoBehaviour
         float rangeX = Random.Range(-walkingRange, walkingRange);
 
         destination = new Vector3(transform.position.x + rangeX, transform.position.y, transform.position.z + rangeZ);
-
+        
         //returns true if ground is available for walking
         if (Physics.Raycast(destination, Vector3.down, groundLayer))
         {
@@ -84,6 +88,7 @@ public class NPCBehaviour : MonoBehaviour
         if (!pointSet)
         {
             WanderDest();
+
         }
         if (pointSet)
         {
@@ -98,7 +103,8 @@ public class NPCBehaviour : MonoBehaviour
     void StartIdle()
     {
         destination = new Vector3(agent.transform.position.x, agent.transform.position.y, agent.transform.position.z);
-        pointSet = true; 
+        pointSet = true;
+        WaitSecChangeState(5, ENPCState.Wander);
     }
                //need to change based on what scene is called
 //        if (SceneManager.GetActiveScene().name == "LindseyNPCScene")
@@ -135,6 +141,16 @@ public class NPCBehaviour : MonoBehaviour
         }
     }
 
-    
+    void WaitSecChangeState(int seconds, ENPCState newStateChange)
+    {
+        if (!timerReached) timer += Time.deltaTime;
+
+        if (!timerReached && timer > seconds)
+        {
+            //NPCState = newStateChange;
+            UpdateNPCState(newStateChange);
+            timerReached = true;
+        }
+    }
 
 }

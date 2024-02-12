@@ -2221,7 +2221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b354bdc9bd879949a2800f5b5b69a1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NPCState: 2
+  NPCState: 1
   Data: {fileID: 11400000, guid: dfd0317fe920edc4aab6c742772dc0b9, type: 2}
   groundLayer:
     serializedVersion: 2
