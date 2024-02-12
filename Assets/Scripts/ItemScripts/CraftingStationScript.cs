@@ -113,8 +113,10 @@ public class CraftingStationScript : MonoBehaviour, IInteractable
         CurrentValidRecipes = Data.CraftableRecipes
             .Where(recipe => recipe.RequiredItems.All(requiredItem => CurrentItems.Any(currentItem => currentItem.Data == requiredItem)))
             .ToList();
-        
-        OnRefreshedRecipe();
+        if(OnRefreshedRecipe != null)
+        {
+            OnRefreshedRecipe();
+        }
     }
 
     public bool TryCraft()
