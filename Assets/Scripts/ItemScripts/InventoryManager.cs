@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
-using static UnityEditor.Progress;
 
 public class InventoryManager : MonoBehaviour
 {
