@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Assertions;
@@ -14,7 +15,7 @@ public class CraftingStationScript : MonoBehaviour, IInteractable
 
     public List<InventoryItemData> CurrentItems = new List<InventoryItemData>();
     public List<RecipeData> CurrentValidRecipes = new List<RecipeData>();
-    public List<ItemData> OutgoingItems = new List<ItemData>();
+    public List<InventoryItemData> OutgoingItems = new List<InventoryItemData>();
     private bool IsCrafting = false;
     public float CraftingProgress = 0.0f;
     public AssetReference CraftingStationUI;
@@ -82,7 +83,7 @@ public class CraftingStationScript : MonoBehaviour, IInteractable
         {
             if(OutgoingItems.Count > 0)
             {
-                return "Take: " + OutgoingItems[0].Name;
+                return "Take: " + OutgoingItems[0].Data.Name;
             }
         }
         else if(IsCrafting)
@@ -117,7 +118,25 @@ public class CraftingStationScript : MonoBehaviour, IInteractable
         {
             OutgoingItems.Clear();
             RecipeData RecipeToCraft = CurrentValidRecipes[0];
-            OutgoingItems.AddRange(RecipeToCraft.OutgoingItems);
+            foreach(ItemData item in RecipeToCraft.OutgoingItems)
+            {
+                InventoryItemData InvItem = new InventoryItemData(item, -1, -1);
+                OutgoingItems.Add(InvItem);
+            }
+
+
+            HashSet<EItemTags> OutgoingTags = new HashSet<EItemTags>();
+            foreach(InventoryItemData item in CurrentItems)
+            {
+                OutgoingTags.AddRange(item.CurrentItemTags);
+            }
+
+            foreach(InventoryItemData item in OutgoingItems)
+            {
+                item.CurrentItemTags.AddRange(OutgoingTags);
+            }
+
+
             IsCrafting = true;
             CraftingProgress = 0.0f;
 

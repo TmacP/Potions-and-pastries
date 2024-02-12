@@ -283,6 +283,15 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ControllerMove"",
+                    ""type"": ""Button"",
+                    ""id"": ""30d4848c-b7da-4354-bfcb-76e786040c67"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -351,6 +360,17 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""action"": ""CloseInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e6213c1-e065-4b1b-b275-3fb0ba33fdbb"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ControllerMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -369,6 +389,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         // Inventory
         m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
         m_Inventory_CloseInventory = m_Inventory.FindAction("CloseInventory", throwIfNotFound: true);
+        m_Inventory_ControllerMove = m_Inventory.FindAction("ControllerMove", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -547,11 +568,13 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Inventory;
     private List<IInventoryActions> m_InventoryActionsCallbackInterfaces = new List<IInventoryActions>();
     private readonly InputAction m_Inventory_CloseInventory;
+    private readonly InputAction m_Inventory_ControllerMove;
     public struct InventoryActions
     {
         private @PlayerActions m_Wrapper;
         public InventoryActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @CloseInventory => m_Wrapper.m_Inventory_CloseInventory;
+        public InputAction @ControllerMove => m_Wrapper.m_Inventory_ControllerMove;
         public InputActionMap Get() { return m_Wrapper.m_Inventory; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -564,6 +587,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @CloseInventory.started += instance.OnCloseInventory;
             @CloseInventory.performed += instance.OnCloseInventory;
             @CloseInventory.canceled += instance.OnCloseInventory;
+            @ControllerMove.started += instance.OnControllerMove;
+            @ControllerMove.performed += instance.OnControllerMove;
+            @ControllerMove.canceled += instance.OnControllerMove;
         }
 
         private void UnregisterCallbacks(IInventoryActions instance)
@@ -571,6 +597,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @CloseInventory.started -= instance.OnCloseInventory;
             @CloseInventory.performed -= instance.OnCloseInventory;
             @CloseInventory.canceled -= instance.OnCloseInventory;
+            @ControllerMove.started -= instance.OnControllerMove;
+            @ControllerMove.performed -= instance.OnControllerMove;
+            @ControllerMove.canceled -= instance.OnControllerMove;
         }
 
         public void RemoveCallbacks(IInventoryActions instance)
@@ -602,5 +631,6 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     public interface IInventoryActions
     {
         void OnCloseInventory(InputAction.CallbackContext context);
+        void OnControllerMove(InputAction.CallbackContext context);
     }
 }

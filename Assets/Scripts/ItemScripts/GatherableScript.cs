@@ -28,8 +28,9 @@ public class GatherableBehavoir : MonoBehaviour, IInteractable
             }
             else
             {
-                List<ItemData> Items = new List<ItemData>();
+                List<InventoryItemData> Items = new List<InventoryItemData>();
                 GetItemsToGive(out Items);
+                GameEventManager.instance.GivePlayerItems(Items);
             }
             return true;
         }
@@ -42,7 +43,7 @@ public class GatherableBehavoir : MonoBehaviour, IInteractable
     {
         if(Result == EMiniGameCompleteResult.CriticalSuccess)
         {
-            List<ItemData> Items = new List<ItemData>();
+            List<InventoryItemData> Items = new List<InventoryItemData>();
             GetItemsToGive(out Items);
             Items.AddRange(Items);
 
@@ -54,7 +55,7 @@ public class GatherableBehavoir : MonoBehaviour, IInteractable
         }
         else if(Result == EMiniGameCompleteResult.Success)
         {
-            List<ItemData> Items = new List<ItemData>();
+            List<InventoryItemData> Items = new List<InventoryItemData>();
             GetItemsToGive(out Items);
 
             GameEventManager.instance.GivePlayerItems(Items);
@@ -74,10 +75,15 @@ public class GatherableBehavoir : MonoBehaviour, IInteractable
     }
 
 
-    void GetItemsToGive(out List<ItemData> OutItems)
+    void GetItemsToGive(out List<InventoryItemData> OutItems)
     {
-        OutItems = new List<ItemData>();
-        OutItems.AddRange(Data.CollectableItems);
+        OutItems = new List<InventoryItemData>();
+
+        foreach(ItemData ItemData in Data.CollectableItems)
+        {
+            InventoryItemData InvItem = new InventoryItemData(ItemData, -1, -1);
+            OutItems.Add(InvItem);
+        }
     }
 
     void OnInteractionFinished()

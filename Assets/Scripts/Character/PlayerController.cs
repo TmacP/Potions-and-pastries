@@ -220,9 +220,9 @@ public class PlayerActionScript : MonoBehaviour
         _PlayerActions.Inventory.Disable();
     }
 
-    public void OnGainItems(List<ItemData> Items)
+    public void OnGainItems(List<InventoryItemData> Items)
     {
-        foreach(ItemData item in Items)
+        foreach(InventoryItemData item in Items)
         {
             _InventoryManager.AddItem(item);
         }

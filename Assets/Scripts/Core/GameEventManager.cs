@@ -85,8 +85,8 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
-    public event Action<List<ItemData>> OnGivePlayerItems;
-    public void GivePlayerItems(List<ItemData> ItemData)
+    public event Action<List<InventoryItemData>> OnGivePlayerItems;
+    public void GivePlayerItems(List<InventoryItemData> ItemData)
     {
         if(OnGivePlayerItems != null)
         {

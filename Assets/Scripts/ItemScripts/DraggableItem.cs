@@ -77,7 +77,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             infoPanel = FindObjectOfType<InfoPanel>();
             if (infoPanel != null)
             {
-                infoPanel.SetInfo(ItemData.Data.name, ItemData.Data.Description, ItemData.Data.image);
+                infoPanel.SetInfo(ItemData.Data.name, ItemData.Data.Description, ItemData.CurrentItemTags, ItemData.Data.image);
             }
             // Call to select the slot in InventoryManager
             inventoryManager.SelectSlotBasedOnItem(this);

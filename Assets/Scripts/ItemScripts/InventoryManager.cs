@@ -63,7 +63,7 @@ public class InventoryManager : MonoBehaviour
 
         if (itemInSlot != null && infoPanel != null)
         {
-            infoPanel.SetInfo(itemInSlot.ItemData.Data.name, itemInSlot.ItemData.Data.Description, itemInSlot.ItemData.Data.image);
+            infoPanel.SetInfo(itemInSlot.ItemData.Data.name, itemInSlot.ItemData.Data.Description, itemInSlot.ItemData.CurrentItemTags, itemInSlot.ItemData.Data.image);
         }
         else if (infoPanel != null)
         {
@@ -212,16 +212,16 @@ public class InventoryManager : MonoBehaviour
     }
 
 
-    public bool AddItem(ItemData item)
+    public bool AddItem(InventoryItemData item)
     {
         InventoryDataRef.Sort((I1, I2) => I1.InventoryIndex.CompareTo(I2.InventoryIndex));
         int smallestIndex = 0;
         // Find an item is re-occuring: add it to stack
         foreach (InventoryItemData InvData in InventoryDataRef)
         {
-            if(InvData.Data == item)
+            if(InventoryItemData.IsEquivalent(InvData,item))
             {
-                if(InvData.Data.stackable && InvData.CurrentStackCount < maxStack)
+                if (InvData.Data.stackable && InvData.CurrentStackCount < maxStack)
                 {
                     InvData.CurrentStackCount++;
 
@@ -238,8 +238,10 @@ public class InventoryManager : MonoBehaviour
                 smallestIndex++;
             }
         }
-        InventoryItemData NewItem = new InventoryItemData(item, smallestIndex, 1);
-        return AddItemAtIndex(NewItem, smallestIndex, false);
+
+        item.InventoryIndex = smallestIndex;
+        item.CurrentStackCount = 1;
+        return AddItemAtIndex(item, smallestIndex, false);
     }
 
     public virtual bool AddItemAtIndex(InventoryItemData InvItem, int Index, bool UpdateGameLog = true)
@@ -250,7 +252,7 @@ public class InventoryManager : MonoBehaviour
         {
             if (InvData.InventoryIndex == Index )
             {
-                if (InvData.Data.stackable && InvData.CurrentStackCount < maxStack)
+                if (InventoryItemData.IsEquivalent(InvItem, InvData) && InvData.Data.stackable && InvData.CurrentStackCount < maxStack)
                 {
                     InvData.CurrentStackCount += InvItem.CurrentStackCount;
 
