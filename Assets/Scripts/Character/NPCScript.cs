@@ -20,11 +20,11 @@ public class NPCBehaviour : MonoBehaviour
 
     public ENPCState NPCState;
 
-    //[SerializeField] private NPCData Data;
+    [SerializeField] private NPCData Data;
     NavMeshAgent agent;
     [SerializeField] LayerMask groundLayer;
 
-    //for setting points to walk to, Wander or FindTable
+    //for setting points to walk to (Wander or FindTable)
     Vector3 destination;
     bool pointSet;
     [SerializeField] float walkingRange;
@@ -32,7 +32,7 @@ public class NPCBehaviour : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        StartCoroutine(UpdateNPCState(NPCState));
+        //StartCoroutine(UpdateNPCState(NPCState));
     }
 
     // Update is called once per frame
@@ -41,7 +41,7 @@ public class NPCBehaviour : MonoBehaviour
         UpdateNPCState(NPCState);
     }
 
-    private IEnumerator UpdateNPCState(ENPCState newState)
+    private void UpdateNPCState(ENPCState newState)
     {
         NPCState = newState;
 
@@ -62,7 +62,8 @@ public class NPCBehaviour : MonoBehaviour
                 Debug.Log("NPCScript::UpdateNPCState unknown NPC state given");
                 break;
         }
-        yield return new WaitForSeconds(1);
+        //yield return null;
+       // yield return new WaitForSeconds(1);
     }
 
     void WanderDest()
@@ -134,6 +135,6 @@ public class NPCBehaviour : MonoBehaviour
         }
     }
 
-
+    
 
 }

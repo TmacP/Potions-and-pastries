@@ -2222,6 +2222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NPCState: 2
+  Data: {fileID: 11400000, guid: dfd0317fe920edc4aab6c742772dc0b9, type: 2}
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
