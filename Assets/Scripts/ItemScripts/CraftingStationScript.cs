@@ -71,6 +71,11 @@ public class CraftingStationScript : MonoBehaviour, IInteractable
 
 //********* End of IInteractable
 
+    private void Start()
+    {
+        RecalculateValidRecipes();
+    }
+
     public void OnItemAdd(InventoryItemData Item)
     {
         //CurrentItems.Add(Item);
