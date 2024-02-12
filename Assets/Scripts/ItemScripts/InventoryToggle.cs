@@ -35,9 +35,9 @@ public class InventoryToggle : MonoBehaviour
         }
     }
 
-    void GainItems(List<ItemData> items)
+    void GainItems(List<InventoryItemData> items)
     {
-        foreach (ItemData item in items)
+        foreach (InventoryItemData item in items)
         {
             InventoryManager.AddItem(item);
         }

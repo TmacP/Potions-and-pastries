@@ -22,11 +22,8 @@ public class InteractorBehavoir : MonoBehaviour
         if(CollidersCount > 0)
         {
             IInteractable NewInteractable = _Colliders[0].GetComponent<IInteractable>();
-            if(NewInteractable != Interactable)
-            {
-                Interactable = NewInteractable;
-                GameEventManager.instance.ChangeInteractionTarget(NewInteractable, this);
-            }
+            Interactable = NewInteractable;
+            GameEventManager.instance.ChangeInteractionTarget(NewInteractable, this);
         }
         else
         {

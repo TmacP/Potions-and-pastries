@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Assertions;
 
 public class CraftingStationScript : MonoBehaviour, IInteractable
 {
@@ -13,56 +15,88 @@ public class CraftingStationScript : MonoBehaviour, IInteractable
 
     public List<InventoryItemData> CurrentItems = new List<InventoryItemData>();
     public List<RecipeData> CurrentValidRecipes = new List<RecipeData>();
-    public List<ItemData> OutgoingItems = new List<ItemData>();
-    private bool CraftingFinished = false;
+    public List<InventoryItemData> OutgoingItems = new List<InventoryItemData>();
+    private bool IsCrafting = false;
+    public float CraftingProgress = 0.0f;
     public AssetReference CraftingStationUI;
     public event Action OnRefreshedRecipe;
 
 
     //************ IINteractable
-    public string InteractionPrompt => Data.InteractionPrompt;
+    public string InteractionPrompt => GetInteractionPrompt();
 
     public bool TryInteract(InteractorBehavoir InInteractor)
     {
         //Open Crafting UI screen
 
-        if(CraftingFinished)
+        if(IsCrafting && CraftingProgress >= 1.0f)
         {
             GameEventManager.instance.GivePlayerItems(OutgoingItems);
             OutgoingItems.Clear();
+            IsCrafting = false;
+            CraftingProgress = 0.0f;
+            return true;
         }
-
-        if(CraftingStationUI != null)
+        else if(IsCrafting && CraftingProgress < 1.0f)
         {
-            GameObject GO = CraftingStationUI.InstantiateAsync().WaitForCompletion();
-            if(GO != null)
+            return false;
+        }
+        else
+        {
+            if (CraftingStationUI != null)
             {
-                InventoryManager[] Managers = GO.GetComponentsInChildren<InventoryManager>();
-
-                foreach(InventoryManager manager in Managers)
+                GameObject GO = CraftingStationUI.InstantiateAsync().WaitForCompletion();
+                if (GO != null)
                 {
-                    CraftingInventoryManager craftingInventoryManager = manager as CraftingInventoryManager;
-                    if (craftingInventoryManager != null)
+                    InventoryManager[] Managers = GO.GetComponentsInChildren<InventoryManager>();
+
+                    foreach (InventoryManager manager in Managers)
                     {
-                        craftingInventoryManager.InitializeCraftingInventory(CurrentItems, this);
+                        CraftingInventoryManager craftingInventoryManager = manager as CraftingInventoryManager;
+                        if (craftingInventoryManager != null)
+                        {
+                            craftingInventoryManager.InitializeCraftingInventory(CurrentItems, this);
+                        }
+                        else
+                        {
+                            manager.InitializeInventoryManager(GameManager.Instance.PlayerState.Inventory);
+                        }
                     }
-                    else
-                    {
-                        manager.InitializeInventoryManager(GameManager.Instance.PlayerState.Inventory);
-                    }
+                    return true;
                 }
             }
         }
-
         return false;
     }
 
 //********* End of IInteractable
 
+    private void Start()
+    {
+        RecalculateValidRecipes();
+    }
+
     public void OnItemAdd(InventoryItemData Item)
     {
         //CurrentItems.Add(Item);
         RecalculateValidRecipes();
+    }
+
+    public string GetInteractionPrompt()
+    {
+        if(CraftingProgress >= 1.0f && IsCrafting)
+        {
+            if(OutgoingItems.Count > 0)
+            {
+                return "Take: " + OutgoingItems[0].Data.Name;
+            }
+        }
+        else if(IsCrafting)
+        {
+            return "";
+        }
+
+        return Data.InteractionPrompt;
     }
 
     public void OnItemRemove(InventoryItemData Item)
@@ -89,8 +123,39 @@ public class CraftingStationScript : MonoBehaviour, IInteractable
         {
             OutgoingItems.Clear();
             RecipeData RecipeToCraft = CurrentValidRecipes[0];
-            OutgoingItems.AddRange(RecipeToCraft.OutgoingItems);
-            CraftingFinished = false;
+            foreach(ItemData item in RecipeToCraft.OutgoingItems)
+            {
+                InventoryItemData InvItem = new InventoryItemData(item, -1, -1);
+                OutgoingItems.Add(InvItem);
+            }
+
+
+            HashSet<EItemTags> OutgoingTags = new HashSet<EItemTags>();
+            foreach(InventoryItemData item in CurrentItems)
+            {
+                OutgoingTags.AddRange(item.CurrentItemTags);
+            }
+
+            foreach(InventoryItemData item in OutgoingItems)
+            {
+                item.CurrentItemTags.AddRange(OutgoingTags);
+            }
+
+
+            IsCrafting = true;
+            CraftingProgress = 0.0f;
+
+            for (int i = 0; i < CurrentItems.Count; i++)
+            {
+                InventoryItemData InvItem = CurrentItems[i];
+                Assert.IsNotNull(InvItem);
+                InvItem.CurrentStackCount--; 
+                if(InvItem.CurrentStackCount <= 0)
+                {
+                    CurrentItems.RemoveAt(i);
+                }
+            }
+
             Invoke("FinishCraft", RecipeToCraft.CreationTime);
             GameEventManager.instance.CloseMenu();
             return true;
@@ -105,7 +170,8 @@ public class CraftingStationScript : MonoBehaviour, IInteractable
     public bool FinishCraft()
     {
         Debug.Log("CRAFTING DONE");
-        CraftingFinished =true;
+        IsCrafting = true;
+        CraftingProgress = 1.0f;
         return true;
     }
 }

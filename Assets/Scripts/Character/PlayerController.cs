@@ -87,8 +87,8 @@ public class PlayerActionScript : MonoBehaviour
             if (_InventoryPrefab != null)
             {
                 _InventoryPrefab = Instantiate(_InventoryPrefab);
-                _InventoryPrefab.transform.SetParent(HUD.transform, false);
-                _InventoryPrefab.transform.SetAsFirstSibling();
+                //_InventoryPrefab.transform.SetParent(HUD.transform, false);
+                //_InventoryPrefab.transform.SetAsFirstSibling();
                 _InventoryManager = _InventoryPrefab.GetComponentInChildren<InventoryManager>();
                 Assert.IsNotNull(_InventoryManager);
                 _InventoryManager.InitializeInventoryManager(GameManager.Instance.PlayerState.Inventory);
@@ -220,9 +220,9 @@ public class PlayerActionScript : MonoBehaviour
         _PlayerActions.Inventory.Disable();
     }
 
-    public void OnGainItems(List<ItemData> Items)
+    public void OnGainItems(List<InventoryItemData> Items)
     {
-        foreach(ItemData item in Items)
+        foreach(InventoryItemData item in Items)
         {
             _InventoryManager.AddItem(item);
         }

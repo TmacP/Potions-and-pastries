@@ -14,6 +14,11 @@ public class CraftingInventoryManager : InventoryManager
     public TextMeshProUGUI CraftName;
     public TextMeshProUGUI CraftDescription;
 
+    public void Start()
+    {
+        OnRefreshedRecipe();
+    }
+
     public void InitializeCraftingInventory(List<InventoryItemData> InventoryRef, CraftingStationScript InCraftingStation)
     {
         CraftingStation = InCraftingStation;
@@ -21,7 +26,7 @@ public class CraftingInventoryManager : InventoryManager
         InitializeInventoryManager(InventoryRef);
     }
 
-    public override bool AddItemAtIndex(InventoryItemData InvItem, int Index)
+    public override bool AddItemAtIndex(InventoryItemData InvItem, int Index, bool UpdateGameLog = true)
     {
         bool result = base.AddItemAtIndex(InvItem, Index);
         if(CraftingStation != null)

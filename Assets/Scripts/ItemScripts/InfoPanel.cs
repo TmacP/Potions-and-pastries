@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,15 +9,25 @@ public class InfoPanel : MonoBehaviour
 {
     public TMP_Text InfoBoxName;
     public TMP_Text InfoBoxDescription;
+    public TMP_Text InfoBoxTags;
     public Image InfoBoxImage;
     public Button UseItemButton;
     public Button DestroyItemButton;
 
-    public void SetInfo(string name, string description, Sprite image)
+    public void SetInfo(string name, string description, HashSet<EItemTags> Tags, Sprite image)
     {
         this.gameObject.SetActive(true);
         InfoBoxName.text = name;
         InfoBoxDescription.text = description;
+
+        string TagString = "";
+
+        foreach(EItemTags tag in Tags)
+        {
+            TagString += Enum.GetName(typeof(EItemTags), tag).ToString() + ", ";
+        }
+
+        InfoBoxTags.text = TagString;
         InfoBoxImage.sprite = image;
         InfoBoxImage.color = new Color(1, 1, 1);
         UseItemButton.gameObject.SetActive(true);
