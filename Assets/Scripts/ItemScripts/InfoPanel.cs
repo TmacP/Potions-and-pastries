@@ -15,14 +15,13 @@ public class InfoPanel : MonoBehaviour
     public void SetInfo(string name, string description, Sprite image)
     {
         this.gameObject.SetActive(true);
-        Debug.Log(name + description);
         InfoBoxName.text = name;
         InfoBoxDescription.text = description;
         InfoBoxImage.sprite = image;
         InfoBoxImage.color = new Color(1, 1, 1);
         UseItemButton.gameObject.SetActive(true);
         DestroyItemButton.gameObject.SetActive(true);
-
+       
     }
 
     public void ClearInfo()
