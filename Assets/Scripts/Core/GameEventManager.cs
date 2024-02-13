@@ -123,4 +123,13 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+    public event Action<OrderData> OnDoneNPCOrder;
+    public void DoneNPCOrder(OrderData NPCOrderData)
+    {
+        if (OnDoneNPCOrder != null)
+        {
+            OnDoneNPCOrder(NPCOrderData);
+        }
+    }
+
 }

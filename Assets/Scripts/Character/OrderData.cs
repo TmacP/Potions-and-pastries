@@ -8,6 +8,7 @@ public class OrderData
 {
     public GameObject NPCTarget;
     public ItemData Item; //for later
+    public int OrderId;
 
     public List<EItemTags> NPCLikes;
     public List<EItemTags> NPCDislikes;

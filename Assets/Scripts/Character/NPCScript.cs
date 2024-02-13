@@ -16,7 +16,8 @@ public class NPCBehaviour : MonoBehaviour
         Wander,
         Idle,
         FindTable,
-        Order
+        Order,
+        AcceptFood
     }
 
     public ENPCState NPCState;
@@ -37,7 +38,6 @@ public class NPCBehaviour : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        //StartCoroutine(UpdateNPCState(NPCState));
     }
 
     // Update is called once per frame
@@ -71,15 +71,15 @@ public class NPCBehaviour : MonoBehaviour
             case ENPCState.Order:
                 Debug.Log("Order state entered");
                 GameEventManager.instance.TakeNPCOrder(NpcOrder);
-
+                break;
+            case ENPCState.AcceptFood:
+                ReceivedOrder();
+                GameEventManager.instance.DoneNPCOrder(NpcOrder);
                 break;
             default:
                 Debug.Log("NPCScript::UpdateNPCState unknown NPC state given");
                 break;
         }
-
-        //yield return null;
-       // yield return new WaitForSeconds(1);
     }
 
     void WanderDest()
@@ -172,6 +172,10 @@ public class NPCBehaviour : MonoBehaviour
     }
 
 
+    void ReceivedOrder()
+    {
+
+    }
 
 
     void WaitSecChangeState(float seconds, ENPCState newStateChange)
@@ -187,5 +191,4 @@ public class NPCBehaviour : MonoBehaviour
     {
         UpdateNPCState(NextNPCState);
     }
-
 }
