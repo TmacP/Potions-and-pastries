@@ -115,4 +115,13 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+    public event Action<OrderData> OnTakeNPCOrder;
+    public void TakeNPCOrder(OrderData NPCOrderData)
+    {
+        if (OnTakeNPCOrder != null)
+        {
+            OnTakeNPCOrder(NPCOrderData);
+        }
+    }
+
 }

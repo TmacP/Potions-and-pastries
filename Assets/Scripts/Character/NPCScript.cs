@@ -32,6 +32,8 @@ public class NPCBehaviour : MonoBehaviour
     bool pointSet;
     [SerializeField] float walkingRange;
 
+    [SerializeField] OrderData NpcOrder;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -68,11 +70,14 @@ public class NPCBehaviour : MonoBehaviour
                 break;
             case ENPCState.Order:
                 Debug.Log("Order state entered");
+                GameEventManager.instance.TakeNPCOrder(NpcOrder);
+
                 break;
             default:
                 Debug.Log("NPCScript::UpdateNPCState unknown NPC state given");
                 break;
         }
+
         //yield return null;
        // yield return new WaitForSeconds(1);
     }
@@ -166,14 +171,7 @@ public class NPCBehaviour : MonoBehaviour
         }
     }
 
-    public event Action<ItemData> OnNPCOrder;
-    public void GiveNPCOrder(ItemData NPCOrderData)
-    {
-        if (OnNPCOrder != null)
-        {
-            OnNPCOrder(NPCOrderData);
-        }
-    }
+
 
 
     void WaitSecChangeState(float seconds, ENPCState newStateChange)
