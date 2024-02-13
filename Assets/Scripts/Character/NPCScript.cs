@@ -12,6 +12,7 @@ public class NPCBehaviour : MonoBehaviour
 {
     public enum ENPCState
     {
+        None = 0,
         Wander,
         Idle,
         FindTable,
@@ -22,6 +23,8 @@ public class NPCBehaviour : MonoBehaviour
     float timer = 0;
 
     public ENPCState NPCState;
+
+    public ENPCState NextNPCState = ENPCState.None;
 
     [SerializeField] private NPCData Data;
     NavMeshAgent agent;
@@ -47,8 +50,14 @@ public class NPCBehaviour : MonoBehaviour
 
     private void UpdateNPCState(ENPCState newState)
     {
-        NPCState = newState;
+        if (NPCState != newState)
+        {
+            Debug.Log("Changing State");
+            NextNPCState = ENPCState.None;
+        }
 
+        NPCState = newState;
+        
         switch (newState)
         {
             case ENPCState.Wander:
@@ -92,7 +101,10 @@ public class NPCBehaviour : MonoBehaviour
         }
         if (pointSet)
         {
+            WaitSecChangeState(3, ENPCState.Idle);
+            Debug.Log("Point Set");
             agent.SetDestination(destination);
+            
         }
         if (Vector3.Distance(transform.position, destination) < 10)
         {
@@ -103,6 +115,7 @@ public class NPCBehaviour : MonoBehaviour
     void StartIdle()
     {
         destination = new Vector3(agent.transform.position.x, agent.transform.position.y, agent.transform.position.z);
+        agent.SetDestination(destination);
         pointSet = true;
         WaitSecChangeState(5, ENPCState.Wander);
     }
@@ -141,16 +154,19 @@ public class NPCBehaviour : MonoBehaviour
         }
     }
 
-    void WaitSecChangeState(int seconds, ENPCState newStateChange)
+    void WaitSecChangeState(float seconds, ENPCState newStateChange)
     {
-        if (!timerReached) timer += Time.deltaTime;
-
-        if (!timerReached && timer > seconds)
+        if(this.NextNPCState == ENPCState.None)
         {
-            //NPCState = newStateChange;
-            UpdateNPCState(newStateChange);
-            timerReached = true;
+            this.NextNPCState = newStateChange;
+            Invoke("OnUpdateNPCState", seconds);
         }
+    }
+
+    void OnUpdateNPCState()
+    {
+        UpdateNPCState(NextNPCState);
+        timerReached = true;
     }
 
 }
