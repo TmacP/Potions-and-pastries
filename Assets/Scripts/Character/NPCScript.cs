@@ -19,9 +19,6 @@ public class NPCBehaviour : MonoBehaviour
         Order
     }
 
-    bool timerReached = false;
-    float timer = 0;
-
     public ENPCState NPCState;
 
     public ENPCState NextNPCState = ENPCState.None;
@@ -45,14 +42,14 @@ public class NPCBehaviour : MonoBehaviour
     void Update()
     {
         UpdateNPCState(NPCState);
-        Debug.Log(NPCState);
+        //Debug.Log(NPCState);
     }
 
     private void UpdateNPCState(ENPCState newState)
     {
         if (NPCState != newState)
         {
-            Debug.Log("Changing State");
+            //Debug.Log("Changing State");
             NextNPCState = ENPCState.None;
         }
 
@@ -70,6 +67,7 @@ public class NPCBehaviour : MonoBehaviour
                 WalkToTable();
                 break;
             case ENPCState.Order:
+                Debug.Log("Order state entered");
                 break;
             default:
                 Debug.Log("NPCScript::UpdateNPCState unknown NPC state given");
@@ -102,7 +100,7 @@ public class NPCBehaviour : MonoBehaviour
         if (pointSet)
         {
             WaitSecChangeState(3, ENPCState.Idle);
-            Debug.Log("Point Set");
+            //Debug.Log("Point Set");
             agent.SetDestination(destination);
             
         }
@@ -114,11 +112,23 @@ public class NPCBehaviour : MonoBehaviour
 
     void StartIdle()
     {
-        destination = new Vector3(agent.transform.position.x, agent.transform.position.y, agent.transform.position.z);
-        agent.SetDestination(destination);
-        pointSet = true;
-        WaitSecChangeState(5, ENPCState.Wander);
+        if (pointSet)
+        {
+            agent.SetDestination(destination);
+        }
+        if (!pointSet)
+        {
+            destination = new Vector3(agent.transform.position.x, agent.transform.position.y, agent.transform.position.z);
+            agent.SetDestination(destination);
+            WaitSecChangeState(3, ENPCState.Wander);
+        }
+        if (Vector3.Distance(transform.position, destination) < 10)
+        {
+            pointSet = false;
+        }
+
     }
+
                //need to change based on what scene is called
 //        if (SceneManager.GetActiveScene().name == "LindseyNPCScene")
 //        {
@@ -151,8 +161,20 @@ public class NPCBehaviour : MonoBehaviour
         if (pointSet)
         {
             agent.SetDestination(destination);
+            //change to order state 3 sec after table is reached
+            if (agent.transform.position == destination) WaitSecChangeState(3, ENPCState.Order);
         }
     }
+
+    public event Action<ItemData> OnNPCOrder;
+    public void GiveNPCOrder(ItemData NPCOrderData)
+    {
+        if (OnNPCOrder != null)
+        {
+            OnNPCOrder(NPCOrderData);
+        }
+    }
+
 
     void WaitSecChangeState(float seconds, ENPCState newStateChange)
     {
@@ -166,7 +188,6 @@ public class NPCBehaviour : MonoBehaviour
     void OnUpdateNPCState()
     {
         UpdateNPCState(NextNPCState);
-        timerReached = true;
     }
 
 }
