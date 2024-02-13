@@ -1,0 +1,56 @@
+ID	Dialogue	Trigger (barrel tagged "barrel" and voiceline activated if in NPC view)	Audio Asset Ref		
+	Rogue			Criteria: objects name and times seen	
+		Food		Response: some dialog	
+1	I could eat an entire elephant, you don't have any? do you...	NPCState.Class=Rogue, NPCState.Favourite=Doughy, NPCState.Hungry, GameState=Night, NPCState.ProvidingOrder < 1		Remember: increment seen times	
+	I'm berry hungry, so feed me cherrys.	NPCState.Class=Rogue, NPCState.Favourite=[Doughy,Berry] NPCState.Hungry, GameState=Night, NPCState.ProvidingOrder < 1			
+2	I'm on a diet but today ends with Y so I get to have what I like!	NPCState.Class=Rogue, NPCState.Favourite=Doughy, NPCState.Hungry, GameState=Night, NPCState.LastRecivedOrder < 1		Context (Facts)	
+					
+		Drink		Query (list of facts) {fact1, fact2, etc}	26 mins
+3	After last night the only thing that will help is another night like last. Bring me a drink will ya!	NPCState.Class=Rogue, NPCState.Favourite=Bitter, NPCState.Thirsty, GameState=Night, NPCState.ProvidingOrder < 1		function that tests the facts (pick rule with most matches, search for response after first dialogue is done)	
+					
+4	That will do the trick!	NPCState.Class=Rogue, NPCState.Favourite=Bitter, NPCState.Thirsty, GameState=Night, NPCState.LastRecivedOrder < 1		Concept	
+					
+		Conversation		Criteria	
+5	I'm not always sneaking around like this, I swear!	NPCState.Class=Rogue, GameState=Day, PlayerState=Converse		Response	
+					
+	Magician			39 min C++ specific slide	
+		Food		46:23 stopping point	
+6	Whats a person gotta do around here to get their gullet filled?	NPCState.Class=Magician, NPCState.Favourite=Doughy, NPCState.Hungry, GameState=Night, NPCState.ProvidingOrder < 1			
+					
+7	Lucky I didn't turn you into a toad!	NPCState.Class=Magician, NPCState.Favourite=Doughy, NPCState.Hungry, GameState=Night, NPCState.LastRecivedOrder < 1			
+					
+		Drink			
+8	I need some brew to dip my nose into!	NPCState.Class=Magician, NPCState.Favourite=Bitter, NPCState.Thirsty, GameState=Night, NPCState.ProvidingOrder < 1			
+					
+9	Fantastic I can tell you know-se your way around a cauldron!	NPCState.Class=Magician, NPCState.Favourite=Bitter, NPCState.Thirsty, GameState=Night, NPCState.LastRecivedOrder < 1			
+					
+		Conversation			
+10	Once I was just a simple labourer until I got in with a bad covenant; now I'm simply laboured	NPCState.Class=Magician, GameState=Day, PlayerState=Converse			
+					
+	Ranger				
+		Food			
+11	Well I'm not here to kick spiders, Get me some grub!	NPCState.Class=Ranger, NPCState.Favourite=Doughy, NPCState.Hungry, GameState=Night, NPCState.ProvidingOrder < 1			
+					
+12	Well, since you're the only kitchen, I'd say you're the best kitchen around	NPCState.Class=Ranger, NPCState.Favourite=Doughy, NPCState.Hungry, GameState=Night, NPCState.LastRecivedOrder < 1			
+					
+		Drink			
+13	If you don't have something to make me handsome bring me something to make me handy!	NPCState.Class=Ranger, NPCState.Favourite=Bitter, NPCState.Thirsty, GameState=Night, NPCState.ProvidingOrder < 1			
+					
+14	Keep em coming, I like my bum warm and my potions cold!	NPCState.Class=Ranger, NPCState.Favourite=Bitter, NPCState.Thirsty, GameState=Night, NPCState.LastRecivedOrder < 1			
+					
+		Conversation			
+15	I think I'm lost... no wait... yep, I'm lost!	NPCState.Class=Ranger, GameState=Day, PlayerState=Converse			
+					
+	Fighter				
+		Food			
+16	I'm not getting any younger but I'm getting hungry!	NPCState.Class=Fighter, NPCState.Favourite=Doughy, NPCState.Hungry, GameState=Night, NPCState.ProvidingOrder < 1			
+					
+17	That smells delicious!	NPCState.Class=Fighter, NPCState.Favourite=Doughy, NPCState.Hungry, GameState=Night, NPCState.LastRecivedOrder < 1			
+					
+		Drink			
+18	I'll have what their having!	NPCState.Class=Fighter, NPCState.Favourite=Bitter, NPCState.Thirsty, GameState=Night, NPCState.ProvidingOrder < 1			
+					
+19	I didn't order this!	NPCState.Class=Fighter, NPCState.Favourite=Bitter, NPCState.Thirsty, GameState=Night, NPCState.LastRecivedOrder < 1			
+					
+		Conversation			
+20	In the morning I'm doing stomach crunches. I can do 1000 now.	NPCState.Class=Fighter, GameState=Day, PlayerState=Converse			
