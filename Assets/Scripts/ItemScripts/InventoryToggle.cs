@@ -30,14 +30,14 @@ public class InventoryToggle : MonoBehaviour
         }
         else
         {
-            GameEventManager.instance.InventoryClosed(InventoryManager);
+            //GameEventManager.instance.InventoryClosed(InventoryManager);
             return false;
         }
     }
 
-    void GainItems(List<ItemData> items)
+    void GainItems(List<InventoryItemData> items)
     {
-        foreach (ItemData item in items)
+        foreach (InventoryItemData item in items)
         {
             InventoryManager.AddItem(item);
         }

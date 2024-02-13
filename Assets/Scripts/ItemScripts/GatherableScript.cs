@@ -7,6 +7,7 @@ using System.Linq;
 public class GatherableBehavoir : MonoBehaviour, IInteractable
 {
     [SerializeField] private GatherableData Data;
+    [SerializeField] private bool DestroyOnEmpty = true;
 
 //********IInteractable Interface **********
     public string InteractionPrompt => Data.InteractionPrompt;
@@ -27,8 +28,9 @@ public class GatherableBehavoir : MonoBehaviour, IInteractable
             }
             else
             {
-                List<ItemData> Items = new List<ItemData>();
+                List<InventoryItemData> Items = new List<InventoryItemData>();
                 GetItemsToGive(out Items);
+                GameEventManager.instance.GivePlayerItems(Items);
             }
             return true;
         }
@@ -41,31 +43,25 @@ public class GatherableBehavoir : MonoBehaviour, IInteractable
     {
         if(Result == EMiniGameCompleteResult.CriticalSuccess)
         {
-            List<ItemData> Items = new List<ItemData>();
+            List<InventoryItemData> Items = new List<InventoryItemData>();
             GetItemsToGive(out Items);
             Items.AddRange(Items);
 
             Debug.Log("Gained 2x Item");
             GameEventManager.instance.GivePlayerItems(Items);
             Data.NumberOfInteractions--;
-            if (Data.NumberOfInteractions <= 0)
-            {
-                Destroy(this.gameObject);
-            }
+            OnInteractionFinished();
+            
         }
         else if(Result == EMiniGameCompleteResult.Success)
         {
-            List<ItemData> Items = new List<ItemData>();
+            List<InventoryItemData> Items = new List<InventoryItemData>();
             GetItemsToGive(out Items);
 
-            Debug.Log("Gained 1x Item");
             GameEventManager.instance.GivePlayerItems(Items);
 
             Data.NumberOfInteractions--;
-            if (Data.NumberOfInteractions <= 0)
-            {
-                Destroy(this.gameObject);
-            }
+            OnInteractionFinished();
 
         }
         
@@ -79,9 +75,30 @@ public class GatherableBehavoir : MonoBehaviour, IInteractable
     }
 
 
-    void GetItemsToGive(out List<ItemData> OutItems)
+    void GetItemsToGive(out List<InventoryItemData> OutItems)
     {
-        OutItems = new List<ItemData>();
-        OutItems.AddRange(Data.CollectableItems);
+        OutItems = new List<InventoryItemData>();
+
+        foreach(ItemData ItemData in Data.CollectableItems)
+        {
+            InventoryItemData InvItem = new InventoryItemData(ItemData, -1, -1);
+            OutItems.Add(InvItem);
+        }
+    }
+
+    void OnInteractionFinished()
+    {
+        if (Data.NumberOfInteractions <= 0)
+        {
+            if (DestroyOnEmpty)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                int LayerIndex = LayerMask.NameToLayer("Interact");
+                this.gameObject.layer &= (0x1 << LayerIndex);
+            }
+        }
     }
 }

@@ -1,0 +1,447 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 976044e1e3e56ed418297ea707175277, type: 3}
+  m_Name: QuipsContainer
+  m_EditorClassIdentifier: 
+  Data:
+  - ID: 1
+    Dialogue: I could eat an entire elephant, you don't have any? do you...
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: Rogue
+    - Source: 1
+      Property: 2
+      Comparison: 1
+      ConditionValue: Doughy
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 2
+      Property: 0
+      Comparison: 1
+      ConditionValue: Night
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 2
+    Dialogue: I'm on a diet but today ends with Y so I get to have what I like!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: Rogue
+    - Source: 1
+      Property: 2
+      Comparison: 1
+      ConditionValue: Doughy
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 2
+      Property: 0
+      Comparison: 1
+      ConditionValue: Night
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 3
+    Dialogue: After last night the only thing that will help is another night like
+      last. Bring me a drink will ya!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: Rogue
+    - Source: 1
+      Property: 2
+      Comparison: 1
+      ConditionValue: Bitter
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 2
+      Property: 0
+      Comparison: 1
+      ConditionValue: Night
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 4
+    Dialogue: That will do the trick!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: Rogue
+    - Source: 1
+      Property: 2
+      Comparison: 1
+      ConditionValue: Bitter
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 2
+      Property: 0
+      Comparison: 1
+      ConditionValue: Night
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 5
+    Dialogue: I'm not always sneaking around like this, I swear!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: Rogue
+    - Source: 2
+      Property: 0
+      Comparison: 1
+      ConditionValue: Day
+    - Source: 3
+      Property: 0
+      Comparison: 1
+      ConditionValue: Converse
+  - ID: 6
+    Dialogue: Whats a person gotta do around here to get their gullet filled?
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: Magician
+    - Source: 1
+      Property: 2
+      Comparison: 1
+      ConditionValue: Doughy
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 2
+      Property: 0
+      Comparison: 1
+      ConditionValue: Night
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 7
+    Dialogue: Lucky I didn't turn you into a toad!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: Magician
+    - Source: 1
+      Property: 2
+      Comparison: 1
+      ConditionValue: Doughy
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 2
+      Property: 0
+      Comparison: 1
+      ConditionValue: Night
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 8
+    Dialogue: I need some brew to dip my nose into!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: Magician
+    - Source: 1
+      Property: 2
+      Comparison: 1
+      ConditionValue: Bitter
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 2
+      Property: 0
+      Comparison: 1
+      ConditionValue: Night
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 9
+    Dialogue: Fantastic I can tell you know-se your way around a cauldron!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: Magician
+    - Source: 1
+      Property: 2
+      Comparison: 1
+      ConditionValue: Bitter
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 2
+      Property: 0
+      Comparison: 1
+      ConditionValue: Night
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 10
+    Dialogue: Once I was just a simple labourer until I got in with a bad covenant;
+      now I'm simply laboured
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: Magician
+    - Source: 2
+      Property: 0
+      Comparison: 1
+      ConditionValue: Day
+    - Source: 3
+      Property: 0
+      Comparison: 1
+      ConditionValue: Converse
+  - ID: 11
+    Dialogue: Well I'm not here to kick spiders, Get me some grub!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: Ranger
+    - Source: 1
+      Property: 2
+      Comparison: 1
+      ConditionValue: Doughy
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 2
+      Property: 0
+      Comparison: 1
+      ConditionValue: Night
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 12
+    Dialogue: Well, since you're the only kitchen, I'd say you're the best kitchen
+      around
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: Ranger
+    - Source: 1
+      Property: 2
+      Comparison: 1
+      ConditionValue: Doughy
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 2
+      Property: 0
+      Comparison: 1
+      ConditionValue: Night
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 13
+    Dialogue: If you don't have something to make me handsome bring me something
+      to make me handy!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: Ranger
+    - Source: 1
+      Property: 2
+      Comparison: 1
+      ConditionValue: Bitter
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 2
+      Property: 0
+      Comparison: 1
+      ConditionValue: Night
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 14
+    Dialogue: Keep em coming, I like my bum warm and my potions cold!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: Ranger
+    - Source: 1
+      Property: 2
+      Comparison: 1
+      ConditionValue: Bitter
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 2
+      Property: 0
+      Comparison: 1
+      ConditionValue: Night
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 15
+    Dialogue: I think I'm lost... no wait... yep, I'm lost!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: Ranger
+    - Source: 2
+      Property: 0
+      Comparison: 1
+      ConditionValue: Day
+    - Source: 3
+      Property: 0
+      Comparison: 1
+      ConditionValue: Converse
+  - ID: 16
+    Dialogue: I'm not getting any younger but I'm getting hungry!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: Fighter
+    - Source: 1
+      Property: 2
+      Comparison: 1
+      ConditionValue: Doughy
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 2
+      Property: 0
+      Comparison: 1
+      ConditionValue: Night
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 17
+    Dialogue: That smells delicious!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: Fighter
+    - Source: 1
+      Property: 2
+      Comparison: 1
+      ConditionValue: Doughy
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 2
+      Property: 0
+      Comparison: 1
+      ConditionValue: Night
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 18
+    Dialogue: I'll have what their having!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: Fighter
+    - Source: 1
+      Property: 2
+      Comparison: 1
+      ConditionValue: Bitter
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 2
+      Property: 0
+      Comparison: 1
+      ConditionValue: Night
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 19
+    Dialogue: I didn't order this!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: Fighter
+    - Source: 1
+      Property: 2
+      Comparison: 1
+      ConditionValue: Bitter
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 2
+      Property: 0
+      Comparison: 1
+      ConditionValue: Night
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 20
+    Dialogue: In the morning I'm doing stomach crunches. I can do 1000 now.
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: Fighter
+    - Source: 2
+      Property: 0
+      Comparison: 1
+      ConditionValue: Day
+    - Source: 3
+      Property: 0
+      Comparison: 1
+      ConditionValue: Converse

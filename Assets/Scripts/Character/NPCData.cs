@@ -26,10 +26,20 @@ public class NPCData : ScriptableObject
 [Serializable]
 public class NPCCharacterData
 {
-
     public NPCData Data;
     public NPCCharacterData(NPCData inData)
     {
         Data = inData;
     }
+}
+
+[Serializable]
+public class NPCDialogueState
+{
+    public string Class;
+    public string[] Favourite;
+    public string Hungry;
+    public string Thirsty;
+    public string ProvidingOrder;
+    public string LastRecivedOrder;
 }

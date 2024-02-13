@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerInventoryHUD
   - Barrel
+  - PlayerHUD
   - Table
   layers:
   - Default
