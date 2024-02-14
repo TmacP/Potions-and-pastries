@@ -15,7 +15,7 @@ MonoBehaviour:
   Description: An Apple Cupcake, good luck bobbing for these.
   RequiredItems:
   - {fileID: 11400000, guid: 193dedd8501d34b15b0904dda26b7b84, type: 2}
-  - {fileID: 11400000, guid: 22d499c94fac1e34ab91c98d81c6dd32, type: 2}
+  - {fileID: 11400000, guid: 5d2e6fe0ced5348df877ebc5e6a93765, type: 2}
   - {fileID: 11400000, guid: dbe5f361f05bb4828852e2b284a49c2c, type: 2}
   OutgoingItems:
   - {fileID: 11400000, guid: 25639ef63d20245b4831769fc491bc93, type: 2}
