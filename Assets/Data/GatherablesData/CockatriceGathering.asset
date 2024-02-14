@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: CockatriceGathering
   m_EditorClassIdentifier: 
   InteractionPrompt: Gather Eggs
-  GatherableName: 
-  CollectableItems: []
+  GatherableName: Egg
+  CollectableItems:
+  - {fileID: 11400000, guid: a1afc0841d6614713a88a7a9246ebac3, type: 2}
   ItemsPerInteraction: 0
   NumberOfInteractions: 0
   MiniGame:
