@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4681d9fc9a7fd7347a230851067a1272, type: 3}
+  m_Name: Icing
+  m_EditorClassIdentifier: 
+  Description: Icing
+  RequiredItems:
+  - {fileID: 11400000, guid: 97d8bf3bcc41a4ce19f093311bb85e82, type: 2}
+  - {fileID: 11400000, guid: 570eca9eee6ab45028804159205c1903, type: 2}
+  OutgoingItems:
+  - {fileID: 11400000, guid: dbe5f361f05bb4828852e2b284a49c2c, type: 2}
+  CreationTime: 0
+  Level: 0

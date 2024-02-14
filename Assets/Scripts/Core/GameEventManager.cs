@@ -58,23 +58,51 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
-    public event Action OnToggleInventory;
-    public void ToggleInventory()
+    public event Action<InventoryManager> OnInventoryOpen;
+    public void InventoryOpen(InventoryManager inventoryManager)
     {
-        if(OnToggleInventory != null)
+        if (OnInventoryOpen!= null)
         {
-            OnToggleInventory();
+            OnInventoryOpen(inventoryManager);
         }
     }
 
-    public event Action<List<ItemData>> OnGivePlayerItems;
-    public void GivePlayerItems(List<ItemData> ItemData)
+    public event Action OnCloseMenu;
+    public void CloseMenu()
+    {
+        if (OnCloseMenu != null)
+        {
+            OnCloseMenu();
+        }
+    }
+
+    public event Action OnPostInventoryOpen;
+    public void PostInventoryOpen()
+    {
+        if (OnPostInventoryOpen != null)
+        {
+            OnPostInventoryOpen();
+        }
+    }
+
+    public event Action<List<InventoryItemData>> OnGivePlayerItems;
+    public void GivePlayerItems(List<InventoryItemData> ItemData)
     {
         if(OnGivePlayerItems != null)
         {
             OnGivePlayerItems(ItemData);
         }
     }
+
+    public event Action<List<ItemData>> OnRemovePlayerItems;
+    public void RemovePlayerItems(List<ItemData> ItemData)
+    {
+        if(OnRemovePlayerItems != null)
+        {
+            OnRemovePlayerItems(ItemData);
+        }
+    }
+
 
 
     public event Action<EMiniGameCompleteResult> OnMiniGameComplete;

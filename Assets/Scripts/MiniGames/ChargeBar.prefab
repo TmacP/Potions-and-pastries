@@ -193,7 +193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProgressBar: {fileID: 3524116781429138603}
   ChargePercentText: {fileID: 4150899410601237999}
-  ChargeSpeed: 25
+  ChargeSpeed: 100
   ChargeMax: 100
 --- !u!1 &4449395732039359209
 GameObject:

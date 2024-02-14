@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4681d9fc9a7fd7347a230851067a1272, type: 3}
   m_Name: Vanilla Cupcake
   m_EditorClassIdentifier: 
-  Description: 
+  Description: A Vanilla Cupcake, how brilliant.
   RequiredItems:
   - {fileID: 11400000, guid: 193dedd8501d34b15b0904dda26b7b84, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 935bc7709158046ed8ef6ebc39063e63, type: 2}
   - {fileID: 11400000, guid: dbe5f361f05bb4828852e2b284a49c2c, type: 2}
-  OutgoingItems: []
-  CreationTime: 0
+  OutgoingItems:
+  - {fileID: 11400000, guid: bc91cff53c839480f857e02e8331ca77, type: 2}
+  CreationTime: 3
   Level: 0

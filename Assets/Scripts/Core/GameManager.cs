@@ -15,7 +15,9 @@ public enum EGameScene
     InnInterior,
     InnExterior,
     ConorInnInterior,
-    ConorInnExterior
+    ConorInnExterior,
+    AlphaInterior,
+    AlphaExterior
 }
 
 public class GameManager : MonoBehaviour
@@ -24,14 +26,16 @@ public class GameManager : MonoBehaviour
 
     //We store this here so it persists between levels
     public PlayerStateData PlayerState;
-
+    
     [SerializeField]
     private readonly Dictionary<EGameScene, string> GameScenes = new Dictionary<EGameScene, string>()
     {
         {EGameScene.InnInterior, "ConorInnScene" },
         {EGameScene.InnExterior, "ConorDemoScene" },
         {EGameScene.ConorInnInterior, "ConorInnScene" },
-        {EGameScene.ConorInnExterior, "ConorDemoScene" }
+        {EGameScene.ConorInnExterior, "ConorDemoScene" },
+        {EGameScene.AlphaInterior, "Assets/Scenes/Alpha/AlphaInterior.unity" },
+        {EGameScene.AlphaExterior, "Assets/Scenes/Alpha/AlphaExterior.unity" },
     };
 
     private void Awake()
@@ -44,6 +48,8 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
+            PlayerState.Inventory.Clear();
+            PlayerState.ToolBar.Clear();
         }
     }
 

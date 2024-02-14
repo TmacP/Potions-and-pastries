@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4681d9fc9a7fd7347a230851067a1272, type: 3}
+  m_Name: Vegetable shortening
+  m_EditorClassIdentifier: 
+  Description: Vegetable shortening
+  RequiredItems:
+  - {fileID: 11400000, guid: b1da62a8b7cce4a779a2fc85a0ad6719, type: 2}
+  OutgoingItems:
+  - {fileID: 11400000, guid: ce07f0d4cfae946279100dc49f0e752f, type: 2}
+  CreationTime: 0
+  Level: 0

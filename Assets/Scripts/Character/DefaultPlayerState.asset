@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: DefaultPlayerState
   m_EditorClassIdentifier: 
   MoveSpeed: 20
+  Inventory: []
