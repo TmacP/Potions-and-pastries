@@ -935,6 +935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OrderText: {fileID: 847513111}
+  NPC: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2417,7 +2418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b354bdc9bd879949a2800f5b5b69a1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NPCState: 3
+  NPCState: 1
   NextNPCState: 0
   Data: {fileID: 11400000, guid: dfd0317fe920edc4aab6c742772dc0b9, type: 2}
   groundLayer:

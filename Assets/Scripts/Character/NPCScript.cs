@@ -73,7 +73,6 @@ public class NPCBehaviour : MonoBehaviour
                 GameEventManager.instance.TakeNPCOrder(NpcOrder);
                 break;
             case ENPCState.AcceptFood:
-                ReceivedOrder();
                 GameEventManager.instance.DoneNPCOrder(NpcOrder);
                 break;
             default:
@@ -125,7 +124,7 @@ public class NPCBehaviour : MonoBehaviour
         {
             destination = new Vector3(agent.transform.position.x, agent.transform.position.y, agent.transform.position.z);
             agent.SetDestination(destination);
-            WaitSecChangeState(3, ENPCState.Wander);
+            WaitSecChangeState(3, ENPCState.FindTable);
         }
         if (Vector3.Distance(transform.position, destination) < 10)
         {
@@ -148,11 +147,20 @@ public class NPCBehaviour : MonoBehaviour
 
     void FindTablePosition()
     {
-        //could take off # for X position depending on how big the table is
-        //currently have table part of NavMesh Layer and baked so it is not able to be walked on
-        destination = new Vector3(GameObject.FindGameObjectWithTag("Table").transform.position.x, transform.position.y, GameObject.FindGameObjectWithTag("Table").transform.position.z);
+        //destination = new Vector3(GameObject.FindGameObjectWithTag("Table").transform.position.x, transform.position.y, GameObject.FindGameObjectWithTag("Table").transform.position.z);
+        
+        
+        if (GameObject.FindGameObjectWithTag("Table") != null)
+        {
+            destination = new Vector3(GameObject.FindGameObjectWithTag("Table").transform.position.x, transform.position.y, GameObject.FindGameObjectWithTag("Table").transform.position.z);
+            
+        }
+        else
+        {
+            UpdateNPCState(ENPCState.Wander);
+        }
         //returns true if ground is available for walking
-        if (Physics.Raycast(destination, Vector3.down, groundLayer)) 
+        if (Physics.Raycast(destination, Vector3.down, groundLayer) && destination != null) 
         {
             pointSet = true;
         }
@@ -170,13 +178,6 @@ public class NPCBehaviour : MonoBehaviour
             if (agent.transform.position == destination) WaitSecChangeState(3, ENPCState.Order);
         }
     }
-
-
-    void ReceivedOrder()
-    {
-
-    }
-
 
     void WaitSecChangeState(float seconds, ENPCState newStateChange)
     {
