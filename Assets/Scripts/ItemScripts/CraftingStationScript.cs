@@ -147,7 +147,7 @@ public class CraftingStationScript : MonoBehaviour, IInteractable
             IsCrafting = true;
             CraftingProgress = 0.0f;
 
-            for (int i = 0; i < CurrentItems.Count; i++)
+            for (int i = CurrentItems.Count-1; i >= 0; i--)
             {
                 InventoryItemData InvItem = CurrentItems[i];
                 Assert.IsNotNull(InvItem);
