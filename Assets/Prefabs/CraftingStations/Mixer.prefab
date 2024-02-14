@@ -132,14 +132,31 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ebb749372e3e44c3fb3af08d8ccd781c, type: 2}
   - {fileID: 11400000, guid: 72460f0cf90964ed591d090560b2ee5c, type: 2}
   OutgoingItems:
-  - {fileID: 11400000, guid: 570eca9eee6ab45028804159205c1903, type: 2}
-  - {fileID: 11400000, guid: 193dedd8501d34b15b0904dda26b7b84, type: 2}
-  - {fileID: 11400000, guid: dbe5f361f05bb4828852e2b284a49c2c, type: 2}
-  - {fileID: 11400000, guid: 97d8bf3bcc41a4ce19f093311bb85e82, type: 2}
-  - {fileID: 11400000, guid: fc13cc54974b44c10a23db8e054b58f9, type: 2}
-  - {fileID: 11400000, guid: ce07f0d4cfae946279100dc49f0e752f, type: 2}
-  - {fileID: 11400000, guid: 54d6ae10a4d204db9893b58f5edc984a, type: 2}
-  - {fileID: 11400000, guid: 935bc7709158046ed8ef6ebc39063e63, type: 2}
+  - Data: {fileID: 0}
+    InventoryIndex: 0
+    CurrentStackCount: 0
+  - Data: {fileID: 0}
+    InventoryIndex: 0
+    CurrentStackCount: 0
+  - Data: {fileID: 0}
+    InventoryIndex: 0
+    CurrentStackCount: 0
+  - Data: {fileID: 0}
+    InventoryIndex: 0
+    CurrentStackCount: 0
+  - Data: {fileID: 0}
+    InventoryIndex: 0
+    CurrentStackCount: 0
+  - Data: {fileID: 0}
+    InventoryIndex: 0
+    CurrentStackCount: 0
+  - Data: {fileID: 0}
+    InventoryIndex: 0
+    CurrentStackCount: 0
+  - Data: {fileID: 0}
+    InventoryIndex: 0
+    CurrentStackCount: 0
+  CraftingProgress: 0
   CraftingStationUI:
     m_AssetGUID: 360f04fcc8299374e97e9829a2a650ee
     m_SubObjectName: 

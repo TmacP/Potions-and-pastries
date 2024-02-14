@@ -175,7 +175,7 @@ public class NPCBehaviour : MonoBehaviour
         {
             agent.SetDestination(destination);
             //change to order state 3 sec after table is reached
-            if (agent.transform.position == destination) WaitSecChangeState(3, ENPCState.Order);
+            if ((agent.transform.position - destination).magnitude < 0.5) WaitSecChangeState(3, ENPCState.Order);
         }
     }
 
