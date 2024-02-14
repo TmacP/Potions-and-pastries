@@ -69,14 +69,14 @@ public class NPCBehaviour : MonoBehaviour
                 WalkToTable();
                 break;
             case ENPCState.Order:
-                Debug.Log("Order state entered");
+                //Debug.Log("Order state entered");
                 GameEventManager.instance.TakeNPCOrder(NpcOrder);
                 break;
             case ENPCState.AcceptFood:
                 GameEventManager.instance.DoneNPCOrder(NpcOrder);
                 break;
             default:
-                Debug.Log("NPCScript::UpdateNPCState unknown NPC state given");
+                //Debug.Log("NPCScript::UpdateNPCState unknown NPC state given");
                 break;
         }
     }

@@ -23,8 +23,15 @@ public class DialogueBehavoir : MonoBehaviour, IInteractable
         DialogueData Dialogue = DialogueManager.instance.GetDialogue(State);
         if(Dialogue != null)
         {
-            DialogueUI.SetActive(true);
-            DialogueText.SetText(Dialogue.Dialogue);
+            if(DialogueUI != null && DialogueText != null)
+            {
+                DialogueUI.SetActive(true);
+                DialogueText.SetText(Dialogue.Dialogue);
+            }
+            else
+            {
+                Debug.Log("Null Dialogue UI Elements");
+            }
         }
         else
         {
