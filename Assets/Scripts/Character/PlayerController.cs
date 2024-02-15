@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
@@ -152,8 +153,14 @@ public class PlayerController : MonoBehaviour
                 _Rigidbody.velocity.y,
                 _PlayerMoveInput.y * Speed);
 
-            frontAnimator.SetFloat("MoveSpeed", _Rigidbody.velocity.magnitude);
-            backAnimator.SetFloat("MoveSpeed", _Rigidbody.velocity.magnitude);
+            if(frontAnimator.gameObject.activeSelf == true)
+            {
+                frontAnimator.SetFloat("MoveSpeed", _Rigidbody.velocity.magnitude);
+            }
+            if(backAnimator.gameObject.activeSelf == true)
+            {
+                backAnimator.SetFloat("MoveSpeed", _Rigidbody.velocity.magnitude);
+            }
 
             if (_PlayerMoveInput.x > 0 && faceLeft)
             {
@@ -182,11 +189,7 @@ public class PlayerController : MonoBehaviour
                 faceBack = false;
                 transform.Find("B_BaseCharacter").gameObject.SetActive(false);
             }
-
-
         }
-        
-
     }
 
     protected void OnInteractStart(InputAction.CallbackContext context)
