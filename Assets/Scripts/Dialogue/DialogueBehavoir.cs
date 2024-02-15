@@ -39,6 +39,9 @@ public class DialogueBehavoir : MonoBehaviour, IInteractable
         {
             Debug.Log("Null Dialogue Return");
         }
+
+        //This will be moved in the future - its just a quick fix!!!
+        GameEventManager.instance.NPCRecieveOrder();
     }
 
     

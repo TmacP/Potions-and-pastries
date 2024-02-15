@@ -132,6 +132,16 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+    public event Action OnNPCRecieveOrder;
+    public void NPCRecieveOrder()
+    {
+        if (OnNPCRecieveOrder != null)
+        {
+            OnNPCRecieveOrder();
+}
+    }
+
+
     public event Action<DialogueData> OnShowDialogueQuip;
     public void ShowDialogueQuip(DialogueData DialogueQuip)
     {
@@ -140,5 +150,7 @@ public class GameEventManager : MonoBehaviour
             OnShowDialogueQuip(DialogueQuip);
         }
     }
+
+    
 
 }

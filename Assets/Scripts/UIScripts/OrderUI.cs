@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using static NPCBehaviour;
-using static UnityEditor.Progress;
 
 public class OrderUI : MonoBehaviour
 {
