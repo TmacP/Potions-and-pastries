@@ -96,8 +96,8 @@ ScriptedImporter:
   rigSpriteImportData:
   - name: L UpperArm
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -432,8 +432,8 @@ ScriptedImporter:
     spritePosition: {x: 780, y: 680}
   - name: L LowerArm
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -779,8 +779,8 @@ ScriptedImporter:
     spritePosition: {x: 595, y: 410}
   - name: Head
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1183,8 +1183,8 @@ ScriptedImporter:
     spritePosition: {x: 644, y: 963}
   - name: Neck
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1539,8 +1539,8 @@ ScriptedImporter:
     spritePosition: {x: 915, y: 892}
   - name: Torso
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1921,8 +1921,8 @@ ScriptedImporter:
     spritePosition: {x: 828, y: 566}
   - name: Pelvis
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -2270,8 +2270,8 @@ ScriptedImporter:
     spritePosition: {x: 819, y: 366}
   - name: L UpperLeg
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -2628,8 +2628,8 @@ ScriptedImporter:
     spritePosition: {x: 821, y: 211}
   - name: L LowerLeg
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -2986,12 +2986,12 @@ ScriptedImporter:
     spritePosition: {x: 845, y: 38}
   - name: R UpperLeg
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 359
+      x: 357
       y: 1090
       width: 179
       height: 261
@@ -3342,8 +3342,8 @@ ScriptedImporter:
     spritePosition: {x: 1003, y: 231}
   - name: R UpperLeg
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -3700,8 +3700,8 @@ ScriptedImporter:
     spritePosition: {x: 1006, y: 58}
   - name: R UpperArm
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -4036,13 +4036,13 @@ ScriptedImporter:
     spritePosition: {x: 1104, y: 687}
   - name: R LowerArm
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 1530
+      x: 2
+      y: 1528
       width: 275
       height: 356
     spriteID: 9626dd69800334e42929d04aef193da6

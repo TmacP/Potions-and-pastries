@@ -96,8 +96,8 @@ ScriptedImporter:
   rigSpriteImportData:
   - name: R_UpperArm
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -432,8 +432,8 @@ ScriptedImporter:
     spritePosition: {x: 1113, y: 684}
   - name: R_LowerArm
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -779,8 +779,8 @@ ScriptedImporter:
     spritePosition: {x: 1177, y: 414}
   - name: R_Brow
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1084,8 +1084,8 @@ ScriptedImporter:
     spritePosition: {x: 1027, y: 1284}
   - name: R_Eye
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1389,8 +1389,8 @@ ScriptedImporter:
     spritePosition: {x: 1072, y: 1142}
   - name: Layer 19
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1705,8 +1705,8 @@ ScriptedImporter:
     spritePosition: {x: 661, y: 1286}
   - name: L_Eye
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -2010,8 +2010,8 @@ ScriptedImporter:
     spritePosition: {x: 716, y: 1153}
   - name: Nose
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -2304,8 +2304,8 @@ ScriptedImporter:
     spritePosition: {x: 870, y: 1134}
   - name: Mouth
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -2653,8 +2653,8 @@ ScriptedImporter:
     spritePosition: {x: 884, y: 1024}
   - name: Head
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -3068,8 +3068,8 @@ ScriptedImporter:
     spritePosition: {x: 651, y: 963}
   - name: Neck
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -3424,12 +3424,12 @@ ScriptedImporter:
     spritePosition: {x: 914, y: 892}
   - name: Torso
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
+      x: 2
       y: 774
       width: 347
       height: 376
@@ -3815,8 +3815,8 @@ ScriptedImporter:
     spritePosition: {x: 827, y: 566}
   - name: Pelvis
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -4164,8 +4164,8 @@ ScriptedImporter:
     spritePosition: {x: 818, y: 366}
   - name: R_UpperLeg
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -4522,8 +4522,8 @@ ScriptedImporter:
     spritePosition: {x: 999, y: 211}
   - name: R_LowerLeg
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -4858,12 +4858,12 @@ ScriptedImporter:
     spritePosition: {x: 1002, y: 38}
   - name: L_UpperLeg
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 357
+      x: 355
       y: 1092
       width: 179
       height: 261
@@ -5214,8 +5214,8 @@ ScriptedImporter:
     spritePosition: {x: 820, y: 231}
   - name: L_LowerLeg
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -5561,8 +5561,8 @@ ScriptedImporter:
     spritePosition: {x: 841, y: 58}
   - name: L_UpperArm
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -5897,8 +5897,8 @@ ScriptedImporter:
     spritePosition: {x: 789, y: 691}
   - name: L_LowerArm
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -6264,6 +6264,27 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: -603, y: 1104}
     spritePosition: {x: 607, y: 429}
+  - name: F_BaseCharacter_0
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1024
+      height: 2048
+    spriteID: af0b9f4fc8dcdac4f872010c05abcdbd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 0}
   characterData:
     bones:
     - name: bone_1
