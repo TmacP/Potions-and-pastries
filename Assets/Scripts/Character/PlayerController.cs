@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
     public bool faceLeft = true;
     public Animator frontAnimator;
     public Animator backAnimator;
-    private bool faceLeft = true;
     private bool faceBack = false;
 
     //if we cannot find a gamemanager and playerstate use this speed instead.
