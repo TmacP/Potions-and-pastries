@@ -123,6 +123,8 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+
+    //This is redundant use OnNPCRecieveOrder instead
     public event Action<OrderData> OnDoneNPCOrder;
     public void DoneNPCOrder(OrderData NPCOrderData)
     {

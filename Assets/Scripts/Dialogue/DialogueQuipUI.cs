@@ -37,8 +37,6 @@ public class DialogueQuipUI : MonoBehaviour
 
     public void CloseDialogue()
     {
-        Debug.Log("Closing Dialogue");
-        Debug.Log(Time.time - LastUpdate > PanelLifetime/1.5);
         if (Time.time - LastUpdate > PanelLifetime/1.5) 
         {
             QuipUIPanel.SetActive(false);

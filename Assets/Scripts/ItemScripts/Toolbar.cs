@@ -10,6 +10,7 @@ public class Toolbar : MonoBehaviour
     void Start()
     {
         GameEventManager.instance.OnNPCRecieveOrder += OnRecieveOrder;
+        PlayerController.instance.toolbar = this;
     }
 
     public void OnDisable()
@@ -20,11 +21,11 @@ public class Toolbar : MonoBehaviour
     public void OnRecieveOrder()
     {
         ToolbarManager.ClearInventory();
+        ToolbarManager.InventoryDataRef.Clear();
     }
 
-    // Update is called once per frame
-    void Update()
+    public List<InventoryItemData> GetItems()
     {
-        
+        return ToolbarManager.InventoryDataRef;
     }
 }

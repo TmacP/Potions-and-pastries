@@ -16,6 +16,8 @@ public class OrderUI : MonoBehaviour
     void Start()
     {
         GameEventManager.instance.OnTakeNPCOrder += OnTakeNPCOrder;
+        GameEventManager.instance.OnDoneNPCOrder += OnDoneNPCOrder;
+        GameEventManager.instance.OnNPCRecieveOrder += OnReceivedNPCOrder;
 
     }
     public void OnTakeNPCOrder(OrderData order)
@@ -23,15 +25,21 @@ public class OrderUI : MonoBehaviour
         OrderText.SetText("Can I get something " + Enum.GetName(typeof(EItemTags), order.NPCLikes[0]) + "?");
     }
 
+    public void OnDoneNPCOrder(OrderData order)
+    {
+        OrderText.SetText("");
+    }
+
     public void OnReceivedNPCOrder()
     {
         OrderText.SetText("Order done");
-
     }
 
     public void OnDisable()
     {
         GameEventManager.instance.OnTakeNPCOrder -= OnTakeNPCOrder;
+        GameEventManager.instance.OnDoneNPCOrder -= OnTakeNPCOrder;
+        GameEventManager.instance.OnNPCRecieveOrder -= OnReceivedNPCOrder;
     }
 
 

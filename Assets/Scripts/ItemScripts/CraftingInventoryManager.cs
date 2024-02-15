@@ -16,7 +16,6 @@ public class CraftingInventoryManager : InventoryManager
 
     public void Start()
     {
-        OnRefreshedRecipe();
     }
 
     public void InitializeCraftingInventory(List<InventoryItemData> InventoryRef, CraftingStationScript InCraftingStation)

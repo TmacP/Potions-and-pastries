@@ -25,7 +25,7 @@ public class CraftingStationScript : MonoBehaviour, IInteractable
     //************ IINteractable
     public string InteractionPrompt => GetInteractionPrompt();
 
-    public bool TryInteract(InteractorBehavoir InInteractor)
+    public bool TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
     {
         //Open Crafting UI screen
 
@@ -62,6 +62,7 @@ public class CraftingStationScript : MonoBehaviour, IInteractable
                             manager.InitializeInventoryManager(GameManager.Instance.PlayerState.Inventory);
                         }
                     }
+                    RecalculateValidRecipes();
                     return true;
                 }
             }
@@ -171,7 +172,6 @@ public class CraftingStationScript : MonoBehaviour, IInteractable
 
     public bool FinishCraft()
     {
-        Debug.Log("CRAFTING DONE");
         IsCrafting = true;
         CraftingProgress = 1.0f;
         return true;

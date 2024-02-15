@@ -20,11 +20,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField, HideInInspector] private InventoryManager _InventoryManager;
     
     [SerializeField] private GameObject _HotBarPrefab;
-    public Animator animator;
-    public bool faceLeft = true;
+    public Toolbar toolbar;
     public Animator frontAnimator;
     public Animator backAnimator;
     private bool faceBack = false;
+    private bool faceLeft = true;
+
+    
 
     //if we cannot find a gamemanager and playerstate use this speed instead.
     //This is so players don't break on levels without a gamemanager
@@ -49,7 +51,6 @@ public class PlayerController : MonoBehaviour
         _PlayerActions = new PlayerActions();
         _PlayerActions.PlayerActionMap.Enable();
         
-        animator = transform.Find("F_BaseCharacter").GetComponent<Animator>();
         _PlayerActions.PlayerMovementMap.Enable();
         _PlayerActions.Inventory.Disable();
         frontAnimator = transform.Find("F_BaseCharacter").GetComponent<Animator>();
@@ -196,7 +197,15 @@ public class PlayerController : MonoBehaviour
     {
         if(_InteractorBehavoir != null)
         {
-            _InteractorBehavoir.TryInteract();
+            if(toolbar != null)
+            {
+                List<InventoryItemData> Data = toolbar.GetItems();
+                _InteractorBehavoir.TryInteract(Data);
+            }
+            else
+            {
+                _InteractorBehavoir.TryInteract();
+            }
         }
     }
 

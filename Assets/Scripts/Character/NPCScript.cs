@@ -7,7 +7,7 @@ using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
-public class NPCBehaviour : MonoBehaviour
+public class NPCBehaviour : MonoBehaviour, IInteractable
 
 {
     public enum ENPCState
@@ -23,6 +23,7 @@ public class NPCBehaviour : MonoBehaviour
     public ENPCState NPCState;
 
     public ENPCState NextNPCState = ENPCState.None;
+    public DialogueBehavoir _DialogueBehavoir;
 
     [SerializeField] private NPCData Data;
     NavMeshAgent agent;
@@ -34,6 +35,48 @@ public class NPCBehaviour : MonoBehaviour
     [SerializeField] float walkingRange;
 
     [SerializeField] OrderData NpcOrder;
+
+
+
+//*************IInteractable interface***********
+    public string InteractionPrompt => GetInteractionPrompt();
+
+
+    public bool TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
+    {
+
+       if(NPCState == ENPCState.Order && InteractionItem != null && InteractionItem.Count > 0)
+       {
+            GameEventManager.instance.DoneNPCOrder(NpcOrder);
+            GameEventManager.instance.NPCRecieveOrder();
+            WaitSecChangeState(0.5f, ENPCState.Wander);
+        }
+       else if(_DialogueBehavoir != null)
+       {
+            _DialogueBehavoir.TryDialogue();
+            return true;
+       }
+        return false;
+    }
+
+//*******end of IInteractable
+
+    public string GetInteractionPrompt()
+    {
+        if (NPCState == ENPCState.Order)
+        {
+            return "Give Order";
+        }
+        else
+        {
+            return "Speak";
+        }
+    }
+
+    public void Awake()
+    {
+        _DialogueBehavoir = GetComponent<DialogueBehavoir>();
+    }
 
     void Start()
     {
@@ -192,4 +235,6 @@ public class NPCBehaviour : MonoBehaviour
     {
         UpdateNPCState(NextNPCState);
     }
+
+    
 }
