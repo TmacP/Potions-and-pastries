@@ -23,13 +23,15 @@ public class DialogueBehavoir : MonoBehaviour, IInteractable
         DialogueData Dialogue = DialogueManager.instance.GetDialogue(State);
         if(Dialogue != null)
         {
-            if(DialogueUI != null && DialogueText != null)
+            GameEventManager.instance.ShowDialogueQuip(Dialogue);
+            if (DialogueUI != null && DialogueText != null)
             {
                 DialogueUI.SetActive(true);
                 DialogueText.SetText(Dialogue.Dialogue);
             }
             else
             {
+                Debug.Log(Dialogue.Dialogue);
                 Debug.Log("Null Dialogue UI Elements");
             }
         }

@@ -132,4 +132,13 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+    public event Action<DialogueData> OnShowDialogueQuip;
+    public void ShowDialogueQuip(DialogueData DialogueQuip)
+    {
+        if(OnShowDialogueQuip != null)
+        {
+            OnShowDialogueQuip(DialogueQuip);
+        }
+    }
+
 }

@@ -6,12 +6,12 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.HID;
 using UnityEngine.Timeline;
 
-public class PlayerActionScript : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    public static PlayerActionScript instance;
+    public static PlayerController instance;
 
 
-    private PlayerActions _PlayerActions;
+    public PlayerActions _PlayerActions;
     private Rigidbody _Rigidbody;
     private InteractorBehavoir _InteractorBehavoir;
 
