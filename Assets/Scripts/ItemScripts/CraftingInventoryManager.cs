@@ -35,9 +35,9 @@ public class CraftingInventoryManager : InventoryManager
         return result;
     }
 
-    public override InventoryItemData RemoveItem(InventoryItemData InvItem)
+    public override InventoryItemData RemoveItem(InventoryItemData InvItem, bool RemoveEntireStack = false)
     {
-        InventoryItemData ID = base.RemoveItem(InvItem);
+        InventoryItemData ID = base.RemoveItem(InvItem, RemoveEntireStack);
         if(CraftingStation != null)
         {
             CraftingStation.OnItemRemove(InvItem);

@@ -62,6 +62,15 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToolbarScroll"",
+                    ""type"": ""Value"",
+                    ""id"": ""5b9e5538-b27b-40d4-8bee-6d564565df7c"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -183,6 +192,17 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""OpenInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a49629e2-8e95-4192-b7bc-e840d47e17c9"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToolbarScroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -383,6 +403,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         m_PlayerActionMap_Jump = m_PlayerActionMap.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActionMap_SecondaryInteract = m_PlayerActionMap.FindAction("SecondaryInteract", throwIfNotFound: true);
         m_PlayerActionMap_OpenInventory = m_PlayerActionMap.FindAction("OpenInventory", throwIfNotFound: true);
+        m_PlayerActionMap_ToolbarScroll = m_PlayerActionMap.FindAction("ToolbarScroll", throwIfNotFound: true);
         // PlayerMovementMap
         m_PlayerMovementMap = asset.FindActionMap("PlayerMovementMap", throwIfNotFound: true);
         m_PlayerMovementMap_Move = m_PlayerMovementMap.FindAction("Move", throwIfNotFound: true);
@@ -455,6 +476,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActionMap_Jump;
     private readonly InputAction m_PlayerActionMap_SecondaryInteract;
     private readonly InputAction m_PlayerActionMap_OpenInventory;
+    private readonly InputAction m_PlayerActionMap_ToolbarScroll;
     public struct PlayerActionMapActions
     {
         private @PlayerActions m_Wrapper;
@@ -463,6 +485,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_PlayerActionMap_Jump;
         public InputAction @SecondaryInteract => m_Wrapper.m_PlayerActionMap_SecondaryInteract;
         public InputAction @OpenInventory => m_Wrapper.m_PlayerActionMap_OpenInventory;
+        public InputAction @ToolbarScroll => m_Wrapper.m_PlayerActionMap_ToolbarScroll;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -484,6 +507,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @OpenInventory.started += instance.OnOpenInventory;
             @OpenInventory.performed += instance.OnOpenInventory;
             @OpenInventory.canceled += instance.OnOpenInventory;
+            @ToolbarScroll.started += instance.OnToolbarScroll;
+            @ToolbarScroll.performed += instance.OnToolbarScroll;
+            @ToolbarScroll.canceled += instance.OnToolbarScroll;
         }
 
         private void UnregisterCallbacks(IPlayerActionMapActions instance)
@@ -500,6 +526,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @OpenInventory.started -= instance.OnOpenInventory;
             @OpenInventory.performed -= instance.OnOpenInventory;
             @OpenInventory.canceled -= instance.OnOpenInventory;
+            @ToolbarScroll.started -= instance.OnToolbarScroll;
+            @ToolbarScroll.performed -= instance.OnToolbarScroll;
+            @ToolbarScroll.canceled -= instance.OnToolbarScroll;
         }
 
         public void RemoveCallbacks(IPlayerActionMapActions instance)
@@ -623,6 +652,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnSecondaryInteract(InputAction.CallbackContext context);
         void OnOpenInventory(InputAction.CallbackContext context);
+        void OnToolbarScroll(InputAction.CallbackContext context);
     }
     public interface IPlayerMovementMapActions
     {

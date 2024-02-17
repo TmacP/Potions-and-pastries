@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
     {
         GameEventManager.instance.OnChangeGameState += OnGameStateChanged;
         GameEventManager.instance.OnGivePlayerItems += OnGainItems;
+        GameEventManager.instance.OnRemovePlayerItems += OnRemoveItems;
         GameEventManager.instance.OnPostInventoryOpen += PostInventoryOpen;
         GameEventManager.instance.OnCloseMenu += CloseInventory_Internal;
 
@@ -113,7 +114,9 @@ public class PlayerController : MonoBehaviour
 
         GameEventManager.instance.OnChangeGameState -= OnGameStateChanged;
         GameEventManager.instance.OnGivePlayerItems -= OnGainItems;
+        GameEventManager.instance.OnRemovePlayerItems -= OnRemoveItems;
         GameEventManager.instance.OnPostInventoryOpen -= PostInventoryOpen;
+        GameEventManager.instance.OnCloseMenu -= CloseInventory_Internal;
     }
 
     protected void OnGameStateChanged(EGameState NewGameState, EGameState OldGameState)
@@ -199,8 +202,14 @@ public class PlayerController : MonoBehaviour
         {
             if(toolbar != null)
             {
-                List<InventoryItemData> Data = toolbar.GetItems();
+                List<InventoryItemData> Data = new List<InventoryItemData>();
+                InventoryItemData ActionItem = toolbar.GetSelectedItem();
+                if (ActionItem != null)
+                {
+                    Data.Add(toolbar.GetSelectedItem());
+                }
                 _InteractorBehavoir.TryInteract(Data);
+
             }
             else
             {
@@ -259,6 +268,14 @@ public class PlayerController : MonoBehaviour
         foreach(InventoryItemData item in Items)
         {
             _InventoryManager.AddItem(item);
+        }
+    }
+
+    public void OnRemoveItems(List<InventoryItemData> Items)
+    {
+        foreach (InventoryItemData item in Items)
+        {
+            toolbar.ToolbarManager.RemoveItem(item);
         }
     }
 }

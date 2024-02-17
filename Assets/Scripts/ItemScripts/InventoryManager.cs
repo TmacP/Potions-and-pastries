@@ -4,18 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class InventoryManager : MonoBehaviour
 {
     public InventorySlot[] inventorySlots;
     public GameObject draggableItemPrefab;
     //This should be set to something external from the inventory manager - the data and UI should be seperate
-    public List<InventoryItemData> InventoryDataRef; 
+    public List<InventoryItemData> InventoryDataRef;
 
     [SerializeField] private GameObject mainInventoryGroup;
     public int maxStack = 5;
 
-    int selectedSlot = -1;
+    public int selectedSlot = -1;
 
     public bool CloseOnCloseMenuEvent = true;
 
@@ -32,14 +33,14 @@ public class InventoryManager : MonoBehaviour
         {
             if (inventorySlots[i].GetComponentInChildren<DraggableItem>(true) == item)
             {
-                ChangeSelectedSlot(i);
+                SetSelectedSlot(i);
                 break;
             }
         }
     }
 
 
-    void ChangeSelectedSlot(int newValue)
+    public void SetSelectedSlot(int newValue)
     {
         if (selectedSlot >= 0)
         {
@@ -49,6 +50,16 @@ public class InventoryManager : MonoBehaviour
         selectedSlot = newValue;
 
         UpdateInfoPanel(selectedSlot);
+    }
+
+    public void ChangeSelectedSlot(int DeltaSlot)
+    {
+        int NewSlot = selectedSlot + DeltaSlot;
+
+        if(NewSlot >= 0 && NewSlot < inventorySlots.Length)
+        {
+            SetSelectedSlot(NewSlot);
+        }
     }
 
     void UpdateInfoPanel(int slotIndex)
@@ -140,7 +151,7 @@ public class InventoryManager : MonoBehaviour
         int slotIndex = Array.IndexOf(inventorySlots, slot);
         if (slotIndex != -1)
         {
-            ChangeSelectedSlot(slotIndex);
+            SetSelectedSlot(slotIndex);
         }
     }
 
@@ -165,38 +176,38 @@ public class InventoryManager : MonoBehaviour
             {
                 if (currentColumn < slotsPerRow - 1)
                 {
-                    ChangeSelectedSlot(selectedSlot + 1);
+                    SetSelectedSlot(selectedSlot + 1);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 if (currentColumn > 0)
                 {
-                    ChangeSelectedSlot(selectedSlot - 1);
+                    SetSelectedSlot(selectedSlot - 1);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if (selectedSlot >= 7) // Assuming main inventory starts from index 7
                 {
-                    ChangeSelectedSlot(selectedSlot - slotsPerRow);
+                    SetSelectedSlot(selectedSlot - slotsPerRow);
                 }
                 else
                 {
                     // Special case for navigating from toolbar to main inventory
-                    ChangeSelectedSlot(7 + currentColumn); // Adjusted based on layout
+                    SetSelectedSlot(7 + currentColumn); // Adjusted based on layout
                 }
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 if (currentRow < (inventorySlots.Length / slotsPerRow) - 1)
                 {
-                    ChangeSelectedSlot(selectedSlot + slotsPerRow);
+                    SetSelectedSlot(selectedSlot + slotsPerRow);
                 }
                 else
                 {
                     // Loop back to the toolbar when at the bottom of the inventory
-                    ChangeSelectedSlot(currentColumn); // This will select the corresponding toolbar slot
+                    SetSelectedSlot(currentColumn); // This will select the corresponding toolbar slot
                 }
             }
         }
@@ -205,7 +216,7 @@ public class InventoryManager : MonoBehaviour
             bool isNumber = int.TryParse(Input.inputString, out int number);
             if (number > 0 && isNumber && number < 8)
             {
-                ChangeSelectedSlot((int)number - 1);
+                SetSelectedSlot((int)number - 1);
             }
         }
     }
@@ -302,8 +313,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-
-    public virtual InventoryItemData RemoveItem(InventoryItemData InvItem)
+    public virtual InventoryItemData RemoveItem(InventoryItemData InvItem, bool RemoveEntireStack = false)
     {
         int Index = InvItem.InventoryIndex;
 
@@ -316,27 +326,46 @@ public class InventoryManager : MonoBehaviour
         if (slot != null)
         {
             DraggableItem ItemInSlot = slot.transform.GetComponentInChildren<DraggableItem>(true);
-            bool SuccessfulRemoval = InventoryDataRef.Remove(InvItem);
-            if(ItemInSlot != null)
+            if(RemoveEntireStack)
             {
-                Destroy(ItemInSlot.gameObject);
-            }
-            if (SuccessfulRemoval)
-            {
+                bool SuccessfulRemoval = InventoryDataRef.Remove(InvItem);
+                if (ItemInSlot != null)
+                {
+                    Destroy(ItemInSlot.gameObject);
+                }
                 return InvItem;
             }
+
+            InvItem.CurrentStackCount--;
+            if (RemoveEntireStack || InvItem.CurrentStackCount <= 0 )
+            {
+                bool SuccessfulRemoval = InventoryDataRef.Remove(InvItem);
+                if (ItemInSlot != null)
+                {
+                    Destroy(ItemInSlot.gameObject);
+                }
+            }
+            else
+            {
+                Debug.Log("Refreshing Count: " + InvItem.CurrentStackCount);
+                ItemInSlot.RefreshCount();
+            }
+            return InvItem;
         }
         return null;
     }
 
-    public ItemData GetSelectedItem(bool use)
+    public InventoryItemData GetSelectedItem(bool use)
     {
+        if(selectedSlot < 0 || selectedSlot >= inventorySlots.Length)
+            return null;
+
         InventorySlot slot = inventorySlots[selectedSlot];
         DraggableItem itemInSlot = slot.GetComponentInChildren<DraggableItem>(true);
 
         if(itemInSlot != null)
         {
-            ItemData itemData = itemInSlot.ItemData.Data;
+            InventoryItemData itemData = itemInSlot.ItemData;
             if (use)
             {
                 itemInSlot.count--;
@@ -355,6 +384,30 @@ public class InventoryManager : MonoBehaviour
         }
         return null;
 
+    }
+
+    public bool UseItem(int ItemIndex)
+    {
+        InventorySlot slot = inventorySlots[ItemIndex];
+        DraggableItem itemInSlot = slot.GetComponentInChildren<DraggableItem>(true);
+
+        if (itemInSlot != null)
+        {
+            InventoryItemData itemData = itemInSlot.ItemData;
+            RemoveItem(itemData);
+            itemInSlot.count--;
+            itemInSlot.ItemData.CurrentStackCount--;
+            if (itemInSlot.count <= 0)
+            {
+                RemoveItem(itemData);
+            }
+            else
+            {
+                itemInSlot.RefreshCount();
+            }
+            return true;
+        }
+        return false;
     }
 
     void SpawnNewItem(InventoryItemData item, InventorySlot slot)

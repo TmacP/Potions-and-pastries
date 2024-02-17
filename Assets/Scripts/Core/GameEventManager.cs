@@ -94,8 +94,8 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
-    public event Action<List<ItemData>> OnRemovePlayerItems;
-    public void RemovePlayerItems(List<ItemData> ItemData)
+    public event Action<List<InventoryItemData>> OnRemovePlayerItems;
+    public void RemovePlayerItems(List<InventoryItemData> ItemData)
     {
         if(OnRemovePlayerItems != null)
         {
