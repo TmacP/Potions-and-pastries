@@ -19,6 +19,8 @@ public class InventoryManager : MonoBehaviour
     public int selectedSlot = -1;
 
     public bool CloseOnCloseMenuEvent = true;
+    private int slotsPerRow = 4; // inventory layout
+
 
 
     public virtual void InitializeInventoryManager(List<InventoryItemData> InventoryData)
@@ -99,6 +101,7 @@ public class InventoryManager : MonoBehaviour
     private void OnEnable()
     {
         GameEventManager.instance.OnCloseMenu += CloseInventory;
+        GameEventManager.instance.OnRefreshInventory += RefreshInventory;
         GameEventManager.instance.PostInventoryOpen();
         RefreshInventory();
     }
@@ -111,9 +114,10 @@ public class InventoryManager : MonoBehaviour
             infoPanel.gameObject.SetActive(false);
         }
         GameEventManager.instance.OnCloseMenu -= CloseInventory;
+        GameEventManager.instance.OnRefreshInventory -= RefreshInventory;
     }
 
-    public void RefreshInventory()
+    public virtual void RefreshInventory()
     {
         ClearInventory();
         if (InventoryDataRef != null)
@@ -125,20 +129,27 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
-            Debug.Log(name + "No InventoryData");
+            //Debug.Log(name + "No InventoryData");
         }
     }
 
     public void ClearInventory()
     {
-        foreach(InventorySlot slot in inventorySlots)
+        if(IsInventoryOpen() == true)
         {
-            DraggableItem Item = slot.GetComponentInChildren<DraggableItem>(true);
-            if(Item != null)
+            foreach (InventorySlot slot in inventorySlots)
             {
-                DestroyImmediate(Item.gameObject);
+                if(slot != null)
+                {
+                    DraggableItem Item = slot.GetComponentInChildren<DraggableItem>(true);
+                    if (Item != null)
+                    {
+                        DestroyImmediate(Item.gameObject);
+                    }
+                }
             }
         }
+        
     }
 
     private void OnDestroy()
@@ -163,7 +174,6 @@ public class InventoryManager : MonoBehaviour
     }
 
 
-    private int slotsPerRow = 7; // inventory layout
 
     private void Update()
     {
@@ -226,6 +236,12 @@ public class InventoryManager : MonoBehaviour
     {
         InventoryDataRef.Sort((I1, I2) => I1.InventoryIndex.CompareTo(I2.InventoryIndex));
         int smallestIndex = 0;
+
+        if (item.CurrentStackCount < 1)
+        {
+            item.CurrentStackCount = 1;
+        }
+
         // Find an item is re-occuring: add it to stack
         foreach (InventoryItemData InvData in InventoryDataRef)
         {
@@ -233,7 +249,8 @@ public class InventoryManager : MonoBehaviour
             {
                 if (InvData.Data.stackable && InvData.CurrentStackCount < maxStack)
                 {
-                    InvData.CurrentStackCount++;
+                    //This is a bug since we can get stacks bigger than 5
+                    InvData.CurrentStackCount+= item.CurrentStackCount;
 
                     DraggableItem itemInSlot = inventorySlots[InvData.InventoryIndex].GetComponent<DraggableItem>();
                     if(itemInSlot != null)
@@ -250,8 +267,8 @@ public class InventoryManager : MonoBehaviour
         }
 
         item.InventoryIndex = smallestIndex;
-        item.CurrentStackCount = 1;
         return AddItemAtIndex(item, smallestIndex, false);
+
     }
 
     public virtual bool AddItemAtIndex(InventoryItemData InvItem, int Index, bool UpdateGameLog = true)
@@ -264,13 +281,14 @@ public class InventoryManager : MonoBehaviour
             {
                 if (InventoryItemData.IsEquivalent(InvItem, InvData) && InvData.Data.stackable && InvData.CurrentStackCount < maxStack)
                 {
-                    InvData.CurrentStackCount += InvItem.CurrentStackCount;
+                    InvData.CurrentStackCount++; //InvItem.CurrentStackCount;
 
                     DraggableItem itemInSlot = inventorySlots[InvData.InventoryIndex].GetComponent<DraggableItem>();
                     if (itemInSlot != null)
                     {
                         itemInSlot.RefreshCount();
                     }
+                    GameEventManager.instance.RefreshInventory();
                     return true;
                 }
                 else
@@ -284,6 +302,7 @@ public class InventoryManager : MonoBehaviour
         InvItem.InventoryIndex = Index;
         InventoryDataRef.Add(InvItem);
         AddItemToUI(InvItem);
+        GameEventManager.instance.RefreshInventory();
         return true;
         
     }
@@ -355,6 +374,10 @@ public class InventoryManager : MonoBehaviour
         return null;
     }
 
+    public InventoryItemData GetItemByType(ItemData item)
+    {
+        return InventoryDataRef.FirstOrDefault(i => i.Data == item);
+    }
     public InventoryItemData GetSelectedItem(bool use)
     {
         if(selectedSlot < 0 || selectedSlot >= inventorySlots.Length)

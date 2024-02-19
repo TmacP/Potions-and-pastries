@@ -103,6 +103,23 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+    public event Action OnRefreshInventory;
+    public void RefreshInventory()
+    {
+        if (OnRefreshInventory != null)
+        {
+            OnRefreshInventory();
+        }
+    }
+
+    public event Action<RecipeData> OnRecipeDataSelected;
+    public void RecipeDataSelected(RecipeData InRecipeData)
+    {
+        if(OnRecipeDataSelected != null)
+        {
+            OnRecipeDataSelected(InRecipeData);
+        }
+    }
 
 
     public event Action<EMiniGameCompleteResult> OnMiniGameComplete;

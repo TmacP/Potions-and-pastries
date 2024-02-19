@@ -14,7 +14,8 @@ public class CraftingStationScript : MonoBehaviour, IInteractable
     public CraftingStationData Data;
 
     public List<InventoryItemData> CurrentItems = new List<InventoryItemData>();
-    public List<RecipeData> CurrentValidRecipes = new List<RecipeData>();
+    public List<RecipeData> CurrentValidRecipes = new List<RecipeData>(); //this is based off of what is in Current Items
+    public List<RecipeData> PossibleValidRecipes = new List<RecipeData>(); //this is based off of the player inventory
     public List<InventoryItemData> OutgoingItems = new List<InventoryItemData>();
     private bool IsCrafting = false;
     public float CraftingProgress = 0.0f;
@@ -110,11 +111,34 @@ public class CraftingStationScript : MonoBehaviour, IInteractable
     //We can worry about changing this if it ever is slow
     public void RecalculateValidRecipes()
     {
+        //Current Recipes
         CurrentValidRecipes.Clear();
         CurrentValidRecipes = Data.CraftableRecipes
             .Where(recipe => recipe.RequiredItems.All(requiredItem => CurrentItems.Any(currentItem => currentItem.Data == requiredItem)))
             .ToList();
-        if(OnRefreshedRecipe != null)
+
+
+        //Possible Recipes
+        PossibleValidRecipes.Clear();
+
+        //Theres definitely a cleaner way than just adding two lists but its fine for now - the lists are small
+        List<InventoryItemData> AllItems = new List<InventoryItemData>();
+        AllItems.AddRange(CurrentItems);
+        if (PlayerController.instance != null && PlayerController.instance._InventoryManager != null)
+        {
+            AllItems.AddRange(PlayerController.instance._InventoryManager.InventoryDataRef);
+        }
+        else
+        {
+            Debug.Log("No Player Controller");
+        }
+        PossibleValidRecipes = Data.CraftableRecipes
+        .Where(recipe => recipe.RequiredItems.All(requiredItem => AllItems.Any(currentItem => currentItem.Data == requiredItem)))
+        .ToList();
+        
+
+        
+        if (OnRefreshedRecipe != null)
         {
             OnRefreshedRecipe();
         }
@@ -145,23 +169,49 @@ public class CraftingStationScript : MonoBehaviour, IInteractable
             }
 
 
-            IsCrafting = true;
-            CraftingProgress = 0.0f;
-
-            for (int i = CurrentItems.Count-1; i >= 0; i--)
+            if(RecipeToCraft.CreationTime == 0)
             {
-                InventoryItemData InvItem = CurrentItems[i];
-                Assert.IsNotNull(InvItem);
-                InvItem.CurrentStackCount--; 
-                if(InvItem.CurrentStackCount <= 0)
+                for (int i = CurrentItems.Count - 1; i >= 0; i--)
                 {
-                    CurrentItems.RemoveAt(i);
+                    InventoryItemData InvItem = CurrentItems[i];
+                    Assert.IsNotNull(InvItem);
+                    InvItem.CurrentStackCount--;
+                    if (InvItem.CurrentStackCount <= 0)
+                    {
+                        CurrentItems.RemoveAt(i);
+                    }
                 }
+
+                GameEventManager.instance.GivePlayerItems(OutgoingItems);
+                OutgoingItems.Clear();
+                IsCrafting = false;
+                CraftingProgress = 0.0f;
+                GameEventManager.instance.RefreshInventory();
+                RecalculateValidRecipes();
+                return true;
+            }
+            else
+            {
+                IsCrafting = true;
+                CraftingProgress = 0.0f;
+
+                for (int i = CurrentItems.Count - 1; i >= 0; i--)
+                {
+                    InventoryItemData InvItem = CurrentItems[i];
+                    Assert.IsNotNull(InvItem);
+                    InvItem.CurrentStackCount--;
+                    if (InvItem.CurrentStackCount <= 0)
+                    {
+                        CurrentItems.RemoveAt(i);
+                    }
+                }
+
+                Invoke("FinishCraft", RecipeToCraft.CreationTime);
+                GameEventManager.instance.CloseMenu();
+                return true;
             }
 
-            Invoke("FinishCraft", RecipeToCraft.CreationTime);
-            GameEventManager.instance.CloseMenu();
-            return true;
+            
         }
         else
         {

@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     public bool MenuOpenCloseInput { get; private set;}
 
     [SerializeField] private GameObject _InventoryPrefab;
-    [SerializeField, HideInInspector] private InventoryManager _InventoryManager;
+    [SerializeField, HideInInspector] public InventoryManager _InventoryManager;
     
     [SerializeField] private GameObject _HotBarPrefab;
     public Toolbar toolbar;

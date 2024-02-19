@@ -11,6 +11,7 @@ public class RecipeButton : MonoBehaviour, ISelectHandler, ISubmitHandler, IPoin
     [ SerializeField] private TMP_Text _recipeName;
     [ SerializeField ] private TMP_Text _recipeDescription;
     [SerializeField] private Image _recipeImage;
+    [HideInInspector] public RecipeData _recipeData;
     
     [SerializeField]  private RecipeButtonEvent _onSelectEvent;
     [SerializeField]  private RecipeButtonEvent _onSubmitEvent;
@@ -32,24 +33,27 @@ public class RecipeButton : MonoBehaviour, ISelectHandler, ISubmitHandler, IPoin
     {
         if (_onClickEvent != null)
             _onClickEvent.Invoke(this);
-        else
-            Debug.LogError("OnClickEvent is not assigned.");
+        //This isnt an error since there are times where the button is not disabled
+        //else
+            //Debug.LogError("OnClickEvent is not assigned.");
     }
 
     public void OnSelect(BaseEventData eventData)
     {
         if (_onSelectEvent != null)
             _onSelectEvent.Invoke(this);
-        else
-            Debug.LogError("OnSelectEvent is not assigned.");
+        //This isnt an error since there are times where the button is not disabled
+        //else
+        //    Debug.LogError("OnSelectEvent is not assigned.");
     }
 
     public void OnSubmit(BaseEventData eventData)
     {
         if (_onSubmitEvent != null)
             _onSubmitEvent.Invoke(this);
-        else
-            Debug.LogError("OnSubmitEvent is not assigned.");
+        //This isnt an error since there are times where the button is not disabled
+        //else
+        //    Debug.LogError("OnSubmitEvent is not assigned.");
     }
 
     public void ObtainSelectionFocus()
@@ -59,6 +63,12 @@ public class RecipeButton : MonoBehaviour, ISelectHandler, ISubmitHandler, IPoin
             _onSelectEvent.Invoke(this);
         else
             Debug.LogError("OnSelectEvent is not assigned.");
+    }
+
+
+    public void OnButtonClicked()
+    {
+        GameEventManager.instance.RecipeDataSelected(_recipeData);
     }
 }
 

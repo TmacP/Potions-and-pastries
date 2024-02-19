@@ -213,8 +213,9 @@ GameObject:
   - component: {fileID: 7995974043059930127}
   - component: {fileID: 5966068504180947529}
   - component: {fileID: 4340062895942160129}
+  - component: {fileID: 9189333217327197103}
   m_Layer: 5
-  m_Name: Scroll View
+  m_Name: RecipeScrollPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -309,6 +310,23 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &9189333217327197103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2738475442751242543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f073f36000da5de4d95947ce8346a5f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CraftingStation: {fileID: 0}
+  _content: {fileID: 4238993231618352335}
+  _prefabListItem: {fileID: 6433959930467806532, guid: 82b6d8880ee192744afac2b4e9cc057f, type: 3}
+  _defaultSelectedIndex: 0
+  _testButtonCount: 10
 --- !u!1 &4796904696912371583
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,7 +569,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4191042473452433404, guid: 82b6d8880ee192744afac2b4e9cc057f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4191042473452433404, guid: 82b6d8880ee192744afac2b4e9cc057f, type: 3}
       propertyPath: m_AnchorMin.x
@@ -559,7 +577,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4191042473452433404, guid: 82b6d8880ee192744afac2b4e9cc057f, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4191042473452433404, guid: 82b6d8880ee192744afac2b4e9cc057f, type: 3}
       propertyPath: m_SizeDelta.x
@@ -599,11 +617,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4191042473452433404, guid: 82b6d8880ee192744afac2b4e9cc057f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 90.295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4191042473452433404, guid: 82b6d8880ee192744afac2b4e9cc057f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4191042473452433404, guid: 82b6d8880ee192744afac2b4e9cc057f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
