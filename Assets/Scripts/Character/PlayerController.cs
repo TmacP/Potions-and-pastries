@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public PlayerActions _PlayerActions;
     private Rigidbody _Rigidbody;
     private InteractorBehavoir _InteractorBehavoir;
+    private InputAction _menuOpenCloseACtion;
+    public bool MenuOpenCloseInput { get; private set;}
 
     [SerializeField] private GameObject _InventoryPrefab;
     [SerializeField, HideInInspector] private InventoryManager _InventoryManager;
@@ -65,6 +67,8 @@ public class PlayerController : MonoBehaviour
         _PlayerActions.PlayerActionMap.Interact.canceled += OnInteractCancelled;
         _PlayerActions.PlayerActionMap.OpenInventory.performed += OnOpenInventory;
         _PlayerActions.Inventory.CloseInventory.performed += OnCloseInventory;
+        //_PlayerActions.PlayerActionMap.MenuOpenClose.performed += OnMenuOpen;
+        _menuOpenCloseACtion = _PlayerActions.PlayerActionMap.MenuOpenClose;
     }
 
     public void Start()
@@ -103,6 +107,10 @@ public class PlayerController : MonoBehaviour
             }
         }
         GameEventManager.instance.CloseMenu();
+    }
+    private void Update()
+    {
+        MenuOpenCloseInput = _menuOpenCloseACtion.WasPressedThisFrame();
     }
 
     public void OnDisable()
