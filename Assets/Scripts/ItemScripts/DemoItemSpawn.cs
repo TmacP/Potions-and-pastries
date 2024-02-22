@@ -25,7 +25,7 @@ public class DemoItemSpawn : MonoBehaviour
 
     public void GetSelectedItem()
     {
-        ItemData receivedItem = inventoryManager.GetSelectedItem(false);
+        InventoryItemData receivedItem = inventoryManager.GetSelectedItem(false);
         if (receivedItem != null)
         {
             Debug.Log("Recieved item:" + receivedItem);
@@ -35,7 +35,7 @@ public class DemoItemSpawn : MonoBehaviour
 
     public void UseSelectedItem()
     {
-        ItemData receivedItem = inventoryManager.GetSelectedItem(true);
+        InventoryItemData receivedItem = inventoryManager.GetSelectedItem(true);
         if (receivedItem != null)
         {
             Debug.Log("Used item:" + receivedItem);

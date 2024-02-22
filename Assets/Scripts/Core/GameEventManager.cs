@@ -94,8 +94,8 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
-    public event Action<List<ItemData>> OnRemovePlayerItems;
-    public void RemovePlayerItems(List<ItemData> ItemData)
+    public event Action<List<InventoryItemData>> OnRemovePlayerItems;
+    public void RemovePlayerItems(List<InventoryItemData> ItemData)
     {
         if(OnRemovePlayerItems != null)
         {
@@ -103,6 +103,23 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+    public event Action OnRefreshInventory;
+    public void RefreshInventory()
+    {
+        if (OnRefreshInventory != null)
+        {
+            OnRefreshInventory();
+        }
+    }
+
+    public event Action<RecipeData> OnRecipeDataSelected;
+    public void RecipeDataSelected(RecipeData InRecipeData)
+    {
+        if(OnRecipeDataSelected != null)
+        {
+            OnRecipeDataSelected(InRecipeData);
+        }
+    }
 
 
     public event Action<EMiniGameCompleteResult> OnMiniGameComplete;

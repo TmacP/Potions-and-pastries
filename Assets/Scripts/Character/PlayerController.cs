@@ -15,9 +15,11 @@ public class PlayerController : MonoBehaviour
     public PlayerActions _PlayerActions;
     private Rigidbody _Rigidbody;
     private InteractorBehavoir _InteractorBehavoir;
+    private InputAction _menuOpenCloseACtion;
+    public bool MenuOpenCloseInput { get; private set;}
 
     [SerializeField] private GameObject _InventoryPrefab;
-    [SerializeField, HideInInspector] private InventoryManager _InventoryManager;
+    [SerializeField, HideInInspector] public InventoryManager _InventoryManager;
     
     [SerializeField] private GameObject _HotBarPrefab;
     public Toolbar toolbar;
@@ -65,12 +67,15 @@ public class PlayerController : MonoBehaviour
         _PlayerActions.PlayerActionMap.Interact.canceled += OnInteractCancelled;
         _PlayerActions.PlayerActionMap.OpenInventory.performed += OnOpenInventory;
         _PlayerActions.Inventory.CloseInventory.performed += OnCloseInventory;
+        //_PlayerActions.PlayerActionMap.MenuOpenClose.performed += OnMenuOpen;
+        _menuOpenCloseACtion = _PlayerActions.PlayerActionMap.MenuOpenClose;
     }
 
     public void Start()
     {
         GameEventManager.instance.OnChangeGameState += OnGameStateChanged;
         GameEventManager.instance.OnGivePlayerItems += OnGainItems;
+        GameEventManager.instance.OnRemovePlayerItems += OnRemoveItems;
         GameEventManager.instance.OnPostInventoryOpen += PostInventoryOpen;
         GameEventManager.instance.OnCloseMenu += CloseInventory_Internal;
 
@@ -103,6 +108,10 @@ public class PlayerController : MonoBehaviour
         }
         GameEventManager.instance.CloseMenu();
     }
+    private void Update()
+    {
+        MenuOpenCloseInput = _menuOpenCloseACtion.WasPressedThisFrame();
+    }
 
     public void OnDisable()
     {
@@ -113,7 +122,9 @@ public class PlayerController : MonoBehaviour
 
         GameEventManager.instance.OnChangeGameState -= OnGameStateChanged;
         GameEventManager.instance.OnGivePlayerItems -= OnGainItems;
+        GameEventManager.instance.OnRemovePlayerItems -= OnRemoveItems;
         GameEventManager.instance.OnPostInventoryOpen -= PostInventoryOpen;
+        GameEventManager.instance.OnCloseMenu -= CloseInventory_Internal;
     }
 
     protected void OnGameStateChanged(EGameState NewGameState, EGameState OldGameState)
@@ -199,8 +210,14 @@ public class PlayerController : MonoBehaviour
         {
             if(toolbar != null)
             {
-                List<InventoryItemData> Data = toolbar.GetItems();
+                List<InventoryItemData> Data = new List<InventoryItemData>();
+                InventoryItemData ActionItem = toolbar.GetSelectedItem();
+                if (ActionItem != null)
+                {
+                    Data.Add(toolbar.GetSelectedItem());
+                }
                 _InteractorBehavoir.TryInteract(Data);
+
             }
             else
             {
@@ -259,6 +276,14 @@ public class PlayerController : MonoBehaviour
         foreach(InventoryItemData item in Items)
         {
             _InventoryManager.AddItem(item);
+        }
+    }
+
+    public void OnRemoveItems(List<InventoryItemData> Items)
+    {
+        foreach (InventoryItemData item in Items)
+        {
+            toolbar.ToolbarManager.RemoveItem(item);
         }
     }
 }

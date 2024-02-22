@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class DialogueBehavoir : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class DialogueBehavoir : MonoBehaviour
     [SerializeField] public NPCDialogueState State;
     [SerializeField] public GameObject DialogueUI;
     [SerializeField] public TextMeshProUGUI DialogueText;
+    [SerializeField] public float DialogueDisplayTime = 3.0f;
+    [SerializeField] public int DialogueDisplayCounter = 0;
 
     public void TryDialogue()
     {
@@ -20,6 +23,8 @@ public class DialogueBehavoir : MonoBehaviour
             {
                 DialogueUI.SetActive(true);
                 DialogueText.SetText(Dialogue.Dialogue);
+                DialogueDisplayCounter++;
+                Invoke("EndQuipDialogue", DialogueDisplayTime);
             }
             else
             {
@@ -30,6 +35,16 @@ public class DialogueBehavoir : MonoBehaviour
         else
         {
             Debug.Log("Null Dialogue Return");
+        }
+    }
+
+
+    public void EndQuipDialogue()
+    {
+        DialogueDisplayCounter--;
+        if(DialogueDisplayCounter <= 0)
+        {
+            DialogueUI.SetActive(false);
         }
     }
  

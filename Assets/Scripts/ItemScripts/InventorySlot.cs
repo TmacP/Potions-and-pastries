@@ -87,7 +87,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerClickHandler, 
             }
             else
             {
-                draggableItem.inventoryManager.RemoveItem(draggableItem.ItemData);
+                draggableItem.inventoryManager.RemoveItem(draggableItem.ItemData, true);
                 this.inventoryManager.AddItemAtIndex(draggableItem.ItemData, Array.IndexOf(inventoryManager.inventorySlots, this));
                 Destroy(draggableItem.gameObject);
             }

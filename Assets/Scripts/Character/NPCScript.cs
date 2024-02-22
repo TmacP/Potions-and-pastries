@@ -48,7 +48,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
        if(NPCState == ENPCState.Order && InteractionItem != null && InteractionItem.Count > 0)
        {
             GameEventManager.instance.DoneNPCOrder(NpcOrder);
-            GameEventManager.instance.NPCRecieveOrder();
+            GameEventManager.instance.RemovePlayerItems(InteractionItem);
             WaitSecChangeState(0.5f, ENPCState.Wander);
         }
        else if(_DialogueBehavoir != null)
