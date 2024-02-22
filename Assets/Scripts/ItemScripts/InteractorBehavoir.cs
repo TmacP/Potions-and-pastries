@@ -44,11 +44,11 @@ public class InteractorBehavoir : MonoBehaviour
         }
     }
 
-    public bool TryInteract()
+    public bool TryInteract(List<InventoryItemData> InteractionItems = null)
     {
         if (Interactable != null)
         {
-            return Interactable.TryInteract(this);
+            return Interactable.TryInteract(this, InteractionItems);
         }
         return false;
     }

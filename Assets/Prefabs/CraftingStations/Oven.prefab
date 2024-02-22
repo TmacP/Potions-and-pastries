@@ -136,18 +136,43 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1c4b7ec8cfe0e47d3b563454a414a1e1, type: 2}
   - {fileID: 11400000, guid: 736e60f5c699c45a38aabf45567e92e5, type: 2}
   OutgoingItems:
-  - {fileID: 11400000, guid: 25639ef63d20245b4831769fc491bc93, type: 2}
-  - {fileID: 11400000, guid: 71cb35a69c62e46209e23caad3286b58, type: 2}
-  - {fileID: 11400000, guid: 7794fb5684c4347aeb81b631b2466eac, type: 2}
-  - {fileID: 11400000, guid: 3094330f0b52d4043991ddfc7027f1a7, type: 2}
-  - {fileID: 11400000, guid: 0e1745d11846843108729588d50b009f, type: 2}
-  - {fileID: 11400000, guid: 39be8dd7ac4a14731967a353407e2ef4, type: 2}
-  - {fileID: 11400000, guid: bc7cf12cda5fc465dba5694787d2d489, type: 2}
-  - {fileID: 11400000, guid: f9976972b9105467bae99007e9bca16d, type: 2}
-  - {fileID: 11400000, guid: 1d5f3c81f72d2492a911dace2534860c, type: 2}
-  - {fileID: 11400000, guid: bc91cff53c839480f857e02e8331ca77, type: 2}
-  - {fileID: 11400000, guid: d729f2fb1d082444c95484581ee2b0ae, type: 2}
-  - {fileID: 11400000, guid: 55352be756d594fbcae647ea0d86d112, type: 2}
+  - Data: {fileID: 0}
+    InventoryIndex: 0
+    CurrentStackCount: 0
+  - Data: {fileID: 0}
+    InventoryIndex: 0
+    CurrentStackCount: 0
+  - Data: {fileID: 0}
+    InventoryIndex: 0
+    CurrentStackCount: 0
+  - Data: {fileID: 0}
+    InventoryIndex: 0
+    CurrentStackCount: 0
+  - Data: {fileID: 0}
+    InventoryIndex: 0
+    CurrentStackCount: 0
+  - Data: {fileID: 0}
+    InventoryIndex: 0
+    CurrentStackCount: 0
+  - Data: {fileID: 0}
+    InventoryIndex: 0
+    CurrentStackCount: 0
+  - Data: {fileID: 0}
+    InventoryIndex: 0
+    CurrentStackCount: 0
+  - Data: {fileID: 0}
+    InventoryIndex: 0
+    CurrentStackCount: 0
+  - Data: {fileID: 0}
+    InventoryIndex: 0
+    CurrentStackCount: 0
+  - Data: {fileID: 0}
+    InventoryIndex: 0
+    CurrentStackCount: 0
+  - Data: {fileID: 0}
+    InventoryIndex: 0
+    CurrentStackCount: 0
+  CraftingProgress: 0
   CraftingStationUI:
     m_AssetGUID: 360f04fcc8299374e97e9829a2a650ee
     m_SubObjectName: 

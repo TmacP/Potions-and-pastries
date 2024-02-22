@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
 public enum EGameState
@@ -55,11 +56,12 @@ public class GameManager : MonoBehaviour
 
 
     private EGameState GameState;
+    private EGameScene GameScene;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -91,9 +93,20 @@ public class GameManager : MonoBehaviour
         GameState = NewGameState;
     }
 
+    public EGameState GetGameState()
+    {
+        return GameState;
+    }
+
+    public EGameScene GetGameScene()
+    {
+        return GameScene;
+    }
+
     public void ChangeGameScene(EGameScene NewScene)
     {
         string SceneName;
+        GameScene = NewScene;
 
         //This is to handle any special cases before we change scenes
         switch (NewScene)

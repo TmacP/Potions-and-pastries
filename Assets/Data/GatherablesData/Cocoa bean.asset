@@ -16,8 +16,9 @@ MonoBehaviour:
   GatherableName: Cocoa Bean
   CollectableItems:
   - {fileID: 11400000, guid: 5b7a7155bda0d4be294995aef174f67e, type: 2}
+  - {fileID: 11400000, guid: 5b7a7155bda0d4be294995aef174f67e, type: 2}
   ItemsPerInteraction: 0
-  NumberOfInteractions: 1
+  NumberOfInteractions: 0
   MiniGame:
     m_AssetGUID: 595e291c9b957934f9a4a77cae243c9e
     m_SubObjectName: 

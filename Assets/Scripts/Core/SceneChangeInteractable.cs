@@ -10,7 +10,7 @@ public class SceneChangeInteractable : MonoBehaviour, IInteractable
 //**************** IInteractable
     public string InteractionPrompt => Prompt;
 
-    public bool TryInteract(InteractorBehavoir InInteractor)
+    public bool TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
     {
         GameManager.Instance.ChangeGameScene(NewLocationScene);
         return true;

@@ -16,6 +16,7 @@ MonoBehaviour:
   GatherableName: Palm Fruit
   CollectableItems:
   - {fileID: 11400000, guid: b1da62a8b7cce4a779a2fc85a0ad6719, type: 2}
+  - {fileID: 11400000, guid: b1da62a8b7cce4a779a2fc85a0ad6719, type: 2}
   ItemsPerInteraction: 0
   NumberOfInteractions: 1
   MiniGame:

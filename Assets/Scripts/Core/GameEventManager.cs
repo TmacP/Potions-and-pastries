@@ -94,8 +94,8 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
-    public event Action<List<ItemData>> OnRemovePlayerItems;
-    public void RemovePlayerItems(List<ItemData> ItemData)
+    public event Action<List<InventoryItemData>> OnRemovePlayerItems;
+    public void RemovePlayerItems(List<InventoryItemData> ItemData)
     {
         if(OnRemovePlayerItems != null)
         {
@@ -103,6 +103,23 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+    public event Action OnRefreshInventory;
+    public void RefreshInventory()
+    {
+        if (OnRefreshInventory != null)
+        {
+            OnRefreshInventory();
+        }
+    }
+
+    public event Action<RecipeData> OnRecipeDataSelected;
+    public void RecipeDataSelected(RecipeData InRecipeData)
+    {
+        if(OnRecipeDataSelected != null)
+        {
+            OnRecipeDataSelected(InRecipeData);
+        }
+    }
 
 
     public event Action<EMiniGameCompleteResult> OnMiniGameComplete;
@@ -113,5 +130,46 @@ public class GameEventManager : MonoBehaviour
             OnMiniGameComplete(CompletionResult);
         }
     }
+
+    public event Action<OrderData> OnTakeNPCOrder;
+    public void TakeNPCOrder(OrderData NPCOrderData)
+    {
+        if (OnTakeNPCOrder != null)
+        {
+            OnTakeNPCOrder(NPCOrderData);
+        }
+    }
+
+
+    //This is redundant use OnNPCRecieveOrder instead
+    public event Action<OrderData> OnDoneNPCOrder;
+    public void DoneNPCOrder(OrderData NPCOrderData)
+    {
+        if (OnDoneNPCOrder != null)
+        {
+            OnDoneNPCOrder(NPCOrderData);
+        }
+    }
+
+    public event Action OnNPCRecieveOrder;
+    public void NPCRecieveOrder()
+    {
+        if (OnNPCRecieveOrder != null)
+        {
+            OnNPCRecieveOrder();
+}
+    }
+
+
+    public event Action<DialogueData> OnShowDialogueQuip;
+    public void ShowDialogueQuip(DialogueData DialogueQuip)
+    {
+        if(OnShowDialogueQuip != null)
+        {
+            OnShowDialogueQuip(DialogueQuip);
+        }
+    }
+
+    
 
 }

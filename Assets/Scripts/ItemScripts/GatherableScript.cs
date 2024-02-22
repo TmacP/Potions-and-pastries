@@ -12,7 +12,7 @@ public class GatherableBehavoir : MonoBehaviour, IInteractable
 //********IInteractable Interface **********
     public string InteractionPrompt => Data.InteractionPrompt;
 
-    public bool TryInteract(InteractorBehavoir InInteractor)
+    public bool TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
     { 
         if(Data.CollectableItems.Count > 0)
         {

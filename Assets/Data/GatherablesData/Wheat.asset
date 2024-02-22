@@ -16,6 +16,7 @@ MonoBehaviour:
   GatherableName: Wheat
   CollectableItems:
   - {fileID: 11400000, guid: 70b815af1f4f44134959198efc11a5a5, type: 2}
+  - {fileID: 11400000, guid: 70b815af1f4f44134959198efc11a5a5, type: 2}
   ItemsPerInteraction: 0
   NumberOfInteractions: 1
   MiniGame:
