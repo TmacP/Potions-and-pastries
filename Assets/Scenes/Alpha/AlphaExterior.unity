@@ -821,6 +821,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.7549996
       objectReference: {fileID: 0}
+    - target: {fileID: 7417501741547137843, guid: 6f76ad500bc0f4bcbbc6dd02b89570af, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2095,3 +2099,4 @@ SceneRoots:
   - {fileID: 924142295}
   - {fileID: 52704343}
   - {fileID: 1615904034}
+  - {fileID: 1306966151}

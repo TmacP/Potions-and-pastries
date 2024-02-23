@@ -94,102 +94,18 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: Layer 2
+  - name: Good Copy 3
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 1480
-      width: 133
-      height: 538
-    spriteID: 5422e6053f0334d8f86d9fcb1883fd47
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 1480}
-    spritePosition: {x: 649, y: 0}
-  - name: Layer 3
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 672
-      width: 247
-      height: 348
-    spriteID: 96558eb0218ea47d2ba2ee2f9262db38
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 672}
-    spritePosition: {x: 426, y: 130}
-  - name: Layer 4
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 579
-      y: 1028
-      width: 200
-      height: 240
-    spriteID: 0f3247ae85e154fa78e98ed09e4cf6dd
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 579, y: 1028}
-    spritePosition: {x: 723, y: 487}
-  - name: Layer 5
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 952
-      y: 216
-      width: 392
-      height: 85
-    spriteID: 9d75c4e26d6e9445089be36418071724
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 952, y: 216}
-    spritePosition: {x: 310, y: 474}
-  - name: Layer 6
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 952
+      x: 967
       y: 4
-      width: 478
-      height: 204
-    spriteID: 42815c88061b34588b253f45b455b55a
+      width: 460
+      height: 188
+    spriteID: 7ff3ed25753b84ebfae29ccdd849dae5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -197,20 +113,62 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 952, y: 4}
-    spritePosition: {x: 227, y: 485}
-  - name: Layer 7
+    uvTransform: {x: 967, y: 4}
+    spritePosition: {x: 737, y: 492}
+  - name: Good Copy 4
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 1438
+      x: 758
+      y: 267
+      width: 194
+      height: 259
+    spriteID: 8cd75f0780aae49bfafb76b47d1d393a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 758, y: 267}
+    spritePosition: {x: 720, y: 482}
+  - name: Good Copy 6
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 267
+      width: 282
+      height: 372
+    spriteID: f1d30b12b15e74b0ba3f852525bae7d7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 267}
+    spritePosition: {x: 444, y: 492}
+  - name: Good Copy 7
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 484
       y: 4
       width: 475
-      height: 200
-    spriteID: 4267555634b86431aa419d0832fd2c0a
+      height: 190
+    spriteID: bf08eed5b675f41408c244aad1067618
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -218,20 +176,20 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 1438, y: 4}
-    spritePosition: {x: 725, y: 478}
-  - name: Layer 8
+    uvTransform: {x: 484, y: 4}
+    spritePosition: {x: 234, y: 499}
+  - name: Good Copy 2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 1028
-      width: 192
-      height: 444
-    spriteID: d207ef4afde7b4961a04d3584370baf3
+      x: 1435
+      y: 4
+      width: 356
+      height: 235
+    spriteID: 1cbacd874dff34458a300e1218268d4e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -239,9 +197,30 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 1028}
-    spritePosition: {x: 705, y: 512}
-  - name: Layer 9
+    uvTransform: {x: 1435, y: 4}
+    spritePosition: {x: 741, y: 270}
+  - name: Good Copy 8
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 960
+      y: 267
+      width: 397
+      height: 100
+    spriteID: 25e20090743474caab1b2240e13138d7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 960, y: 267}
+    spritePosition: {x: 306, y: 466}
+  - name: Good Copy 9
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -250,9 +229,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 654
-      height: 409
-    spriteID: 4850e59c78d4440908f226c14fc63f50
+      width: 472
+      height: 255
+    spriteID: a0622ff8ff33847cbb3f5eb4a47e7eeb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -261,19 +240,19 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 259, y: 96}
-  - name: Layer 10
+    spritePosition: {x: 241, y: 251}
+  - name: Good Copy 10
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 666
-      y: 4
-      width: 278
-      height: 402
-    spriteID: b07827e44f5c944f7a753c54f10be73e
+      x: 294
+      y: 267
+      width: 239
+      height: 350
+    spriteID: 7efacd704c2ae453fb195738828200bf
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -281,20 +260,20 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 666, y: 4}
-    spritePosition: {x: 445, y: 482}
-  - name: Layer 11
+    uvTransform: {x: 294, y: 267}
+    spritePosition: {x: 451, y: 146}
+  - name: Good Copy 11
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 204
-      y: 1028
-      width: 218
-      height: 363
-    spriteID: 9d490a45d86ba4d7fb8575f3cf01125b
+      x: 235
+      y: 647
+      width: 135
+      height: 447
+    spriteID: 8c1c2d2385b09439d8bde0e80323cfae
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -302,51 +281,9 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 204, y: 1028}
-    spritePosition: {x: 700, y: 149}
-  - name: Layer 12
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 1438
-      y: 212
-      width: 479
-      height: 151
-    spriteID: 4336af07ebaef42b7831a3fb529c7e4b
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 1438, y: 212}
-    spritePosition: {x: 729, y: 445}
-  - name: Layer 13
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 430
-      y: 1028
-      width: 141
-      height: 431
-    spriteID: 233823078a9b4476e91df3bb17db5995
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 430, y: 1028}
-    spritePosition: {x: 559, y: 44}
-  - name: Layer 14
+    uvTransform: {x: 235, y: 647}
+    spritePosition: {x: 557, y: 31}
+  - name: Good Copy 12
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -354,10 +291,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 421
-      width: 365
-      height: 243
-    spriteID: 53dee0b07a913458ca6e80d851acc0ff
+      y: 647
+      width: 223
+      height: 460
+    spriteID: b80ed2269735f46dbb754e9486d58e20
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -365,8 +302,50 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 421}
-    spritePosition: {x: 738, y: 266}
+    uvTransform: {x: 4, y: 647}
+    spritePosition: {x: 694, y: 494}
+  - name: Good Copy
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 541
+      y: 267
+      width: 209
+      height: 361
+    spriteID: 1f33298bdf6d049df8495739eb79f9ea
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 541, y: 267}
+    spritePosition: {x: 709, y: 150}
+  - name: Layer 2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1115
+      width: 133
+      height: 538
+    spriteID: 1b315fe04e6384c17be7d6c236719e01
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 1115}
+    spritePosition: {x: 649, y: 0}
   characterData:
     bones: []
     parts: []
@@ -401,133 +380,123 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: Layer 2
-    spriteName: Layer 2
+  - name: Good Copy 3
+    spriteName: Good Copy 3
     isGroup: 0
     parentIndex: -1
-    spriteID: 5422e6053f0334d8f86d9fcb1883fd47
+    spriteID: 7ff3ed25753b84ebfae29ccdd849dae5
     layerID: 0
-    mosaicPosition: {x: 4, y: 1480}
+    mosaicPosition: {x: 967, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Layer 3
-    spriteName: Layer 3
+  - name: Good Copy 4
+    spriteName: Good Copy 4
     isGroup: 0
     parentIndex: -1
-    spriteID: 96558eb0218ea47d2ba2ee2f9262db38
-    layerID: -7500618
-    mosaicPosition: {x: 4, y: 672}
+    spriteID: 8cd75f0780aae49bfafb76b47d1d393a
+    layerID: -1009304896
+    mosaicPosition: {x: 758, y: 267}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Layer 4
-    spriteName: Layer 4
+  - name: Good Copy 6
+    spriteName: Good Copy 6
     isGroup: 0
     parentIndex: -1
-    spriteID: 0f3247ae85e154fa78e98ed09e4cf6dd
-    layerID: -7500613
-    mosaicPosition: {x: 579, y: 1028}
+    spriteID: f1d30b12b15e74b0ba3f852525bae7d7
+    layerID: -1009304898
+    mosaicPosition: {x: 4, y: 267}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Layer 5
-    spriteName: Layer 5
+  - name: Good Copy 7
+    spriteName: Good Copy 7
     isGroup: 0
     parentIndex: -1
-    spriteID: 9d75c4e26d6e9445089be36418071724
-    layerID: -7500612
-    mosaicPosition: {x: 952, y: 216}
+    spriteID: bf08eed5b675f41408c244aad1067618
+    layerID: -1009304899
+    mosaicPosition: {x: 484, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Layer 6
-    spriteName: Layer 6
+  - name: Good Copy 2
+    spriteName: Good Copy 2
     isGroup: 0
     parentIndex: -1
-    spriteID: 42815c88061b34588b253f45b455b55a
-    layerID: -7500615
-    mosaicPosition: {x: 952, y: 4}
+    spriteID: 1cbacd874dff34458a300e1218268d4e
+    layerID: -1009304902
+    mosaicPosition: {x: 1435, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Layer 7
-    spriteName: Layer 7
+  - name: Good Copy 8
+    spriteName: Good Copy 8
     isGroup: 0
     parentIndex: -1
-    spriteID: 4267555634b86431aa419d0832fd2c0a
-    layerID: -7500614
-    mosaicPosition: {x: 1438, y: 4}
+    spriteID: 25e20090743474caab1b2240e13138d7
+    layerID: -1009304908
+    mosaicPosition: {x: 960, y: 267}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Layer 8
-    spriteName: Layer 8
+  - name: Good Copy 9
+    spriteName: Good Copy 9
     isGroup: 0
     parentIndex: -1
-    spriteID: d207ef4afde7b4961a04d3584370baf3
-    layerID: -7500609
-    mosaicPosition: {x: 4, y: 1028}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: Layer 9
-    spriteName: Layer 9
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 4850e59c78d4440908f226c14fc63f50
-    layerID: -7500608
+    spriteID: a0622ff8ff33847cbb3f5eb4a47e7eeb
+    layerID: -1009304909
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Layer 10
-    spriteName: Layer 10
+  - name: Good Copy 10
+    spriteName: Good Copy 10
     isGroup: 0
     parentIndex: -1
-    spriteID: b07827e44f5c944f7a753c54f10be73e
-    layerID: -514254776
-    mosaicPosition: {x: 666, y: 4}
+    spriteID: 7efacd704c2ae453fb195738828200bf
+    layerID: -264785109
+    mosaicPosition: {x: 294, y: 267}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Layer 11
-    spriteName: Layer 11
+  - name: Good Copy 11
+    spriteName: Good Copy 11
     isGroup: 0
     parentIndex: -1
-    spriteID: 9d490a45d86ba4d7fb8575f3cf01125b
-    layerID: -2080338717
-    mosaicPosition: {x: 204, y: 1028}
+    spriteID: 8c1c2d2385b09439d8bde0e80323cfae
+    layerID: -1830869050
+    mosaicPosition: {x: 235, y: 647}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Layer 12
-    spriteName: Layer 12
+  - name: Good Copy 12
+    spriteName: Good Copy 12
     isGroup: 0
     parentIndex: -1
-    spriteID: 4336af07ebaef42b7831a3fb529c7e4b
-    layerID: -1677054190
-    mosaicPosition: {x: 1438, y: 212}
+    spriteID: b80ed2269735f46dbb754e9486d58e20
+    layerID: -1427584523
+    mosaicPosition: {x: 4, y: 647}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Layer 13
-    spriteName: Layer 13
+  - name: Good Copy
+    spriteName: Good Copy
     isGroup: 0
     parentIndex: -1
-    spriteID: 233823078a9b4476e91df3bb17db5995
-    layerID: 1051829165
-    mosaicPosition: {x: 430, y: 1028}
+    spriteID: 1f33298bdf6d049df8495739eb79f9ea
+    layerID: -117556084
+    mosaicPosition: {x: 541, y: 267}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Layer 14
-    spriteName: Layer 14
+  - name: Layer 2
+    spriteName: Layer 2
     isGroup: 0
     parentIndex: -1
-    spriteID: 53dee0b07a913458ca6e80d851acc0ff
-    layerID: 1455113692
-    mosaicPosition: {x: 4, y: 421}
+    spriteID: 1b315fe04e6384c17be7d6c236719e01
+    layerID: -7500619
+    mosaicPosition: {x: 4, y: 1115}
     flatten: 0
     isImported: 1
     isVisible: 1
