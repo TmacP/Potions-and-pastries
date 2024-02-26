@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
 
-
     public PlayerActions _PlayerActions;
     private Rigidbody _Rigidbody;
     private InteractorBehavoir _InteractorBehavoir;

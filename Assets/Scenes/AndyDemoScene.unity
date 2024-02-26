@@ -732,6 +732,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -0.1948566
       objectReference: {fileID: 0}
+    - target: {fileID: -3527442843165321924, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
+      propertyPath: m_Name
+      value: Hair
+      objectReference: {fileID: 0}
     - target: {fileID: -2673787989066018777, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
       propertyPath: m_SortingOrder
       value: 13
@@ -784,6 +788,22 @@ PrefabInstance:
       propertyPath: m_BoneTransforms.Array.data[0]
       value: 
       objectReference: {fileID: 1209136706}
+    - target: {fileID: 1826223978929903518, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1826223978929903518, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1826223978929903518, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2206102580794447953, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
+      propertyPath: m_Name
+      value: Hat
+      objectReference: {fileID: 0}
     - target: {fileID: 2457768940174888951, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
       propertyPath: m_SortingOrder
       value: 13
@@ -1988,6 +2008,9 @@ PrefabInstance:
       addedObject: {fileID: 1302022205}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7993466284212888700, guid: 37e1fa14e52aa2b44827f45a811c784a, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 1496533273}
+    - targetCorrespondingSourceObject: {fileID: 7993466284212888700, guid: 37e1fa14e52aa2b44827f45a811c784a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1496533270}
   m_SourcePrefab: {fileID: 100100000, guid: 37e1fa14e52aa2b44827f45a811c784a, type: 3}
@@ -2393,6 +2416,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4752217483165265861, guid: 37e1fa14e52aa2b44827f45a811c784a, type: 3}
   m_PrefabInstance: {fileID: 1334045835}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1496533273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496533265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5327d55c3f10e498b6ad0b21b2594c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionHat: 0
+  colorHat: {r: 0, g: 0, b: 0, a: 0}
+  frontCharacterHats:
+  - {fileID: 0}
+  - {fileID: -2689181164752678562, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
+  backCharacterHats:
+  - {fileID: 0}
+  - {fileID: -995325287601032012, guid: 60a542632f46ece4aa81ae12fc53e532, type: 3}
 --- !u!1001 &1519827555
 PrefabInstance:
   m_ObjectHideFlags: 0

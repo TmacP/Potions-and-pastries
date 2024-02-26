@@ -2978,7 +2978,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 922, y: 157}
     spritePosition: {x: 884, y: 1024}
-  - name: Hat
+  - name: F1_ConeHat
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 7
@@ -3327,7 +3327,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: -812, y: -782}
     spritePosition: {x: 816, y: 1592}
-  - name: Hair
+  - name: F1_ScruffyHair
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 7
@@ -4222,7 +4222,7 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 1157
+      x: 1155
       y: 4
       width: 736
       height: 762
