@@ -7,17 +7,23 @@ public class CharacterCustomization : MonoBehaviour
     private Transform frontCharacter;
     private Transform backCharacter;
 
+    // Hat variables
     public int positionHat;
     public Color colorHat;
     [SerializeField] public List<Sprite> frontCharacterHats;
     [SerializeField] public List<Sprite> backCharacterHats;
+
+    // Skin variables
+    public Color colorSkin;
+
 
 
     void Awake()
     {
         frontCharacter = transform.Find("F_BaseCharacter");
         backCharacter = transform.Find("B_BaseCharacter");
-        this.colorHat = Color.white;
+        colorHat = Color.white;
+        colorSkin = Color.white;
     }
 
     public void setHat(int pos)
@@ -43,5 +49,14 @@ public class CharacterCustomization : MonoBehaviour
         frontCharacter.transform.Find("Hat").GetComponent<SpriteRenderer>().color = this.colorHat;
         backCharacter.transform.Find("Hat").GetComponent<SpriteRenderer>().sprite = this.backCharacterHats[this.positionHat];
         backCharacter.transform.Find("Hat").GetComponent<SpriteRenderer>().color = this.colorHat;
+
+        frontCharacter.transform.Find("Head").GetComponent<SpriteRenderer>().color = this.colorSkin;
+        frontCharacter.transform.Find("Neck").GetComponent<SpriteRenderer>().color = this.colorSkin;
+        frontCharacter.transform.Find("R_Hand").GetComponent<SpriteRenderer>().color = this.colorSkin;
+        frontCharacter.transform.Find("L_Hand").GetComponent<SpriteRenderer>().color = this.colorSkin;
+        backCharacter.transform.Find("Head").GetComponent<SpriteRenderer>().color = this.colorSkin;
+        backCharacter.transform.Find("Neck").GetComponent<SpriteRenderer>().color = this.colorSkin;
+        backCharacter.transform.Find("R_Hand").GetComponent<SpriteRenderer>().color = this.colorSkin;
+        backCharacter.transform.Find("L_Hand").GetComponent<SpriteRenderer>().color = this.colorSkin;
     }
 }
