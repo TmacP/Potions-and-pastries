@@ -1,7 +1,14 @@
-Once upon a time...
+_inkStory.variablesState["NPCState.Friendship"] = 0
+_inkStory.variablesState["NPCState.Class"] = Rogue
 
- * There were two choices.
- * There were four lines of content.
+int friendship = (int) _inkStory.variablesState["NPCState.Friendship"]
+string class = (string) _inkStory.variablesState["NPCState.Class"]
 
-- They lived happily ever after.
+
+You see the npc hard at work...
+
+ * Hello bish,
+ * Bet you would
+
+- They did what they done
     -> END
