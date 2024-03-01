@@ -1,14 +1,16 @@
-_inkStory.variablesState["NPCState.Friendship"] = 0
-_inkStory.variablesState["NPCState.Class"] = Rogue
+int friendship = 0  // (int) _inkStory.variablesState["NPCState.Friendship"]
+string class = Warrior //(string) _inkStory.variablesState["NPCState.Class"]
 
-int friendship = (int) _inkStory.variablesState["NPCState.Friendship"]
-string class = (string) _inkStory.variablesState["NPCState.Class"]
+=== tutorial ===
+You see someone hard at work...
+"Hello, you must be the new owner of the inn. Would you like an explanation about thing?"
 
-
-You see the npc hard at work...
-
- * Hello bish,
- * Bet you would
+ * Yes, I'm new here can you explain.
+ * No, I already know what to do.
 
 - They did what they done
-    -> END
+    -> end_day
+
+=== end_day ===
+The sun is starting to set. We better go inside
+ -> END
