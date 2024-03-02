@@ -1,11 +1,12 @@
-VAR friendship = 0  // (int) _inkStory.variablesState["NPCState.Friendship"]
-VAR class = "Warrior" //(string) _inkStory.variablesState["NPCState.Class"]
+
 
 -> first_day
 
 === first_day
 = tutorial
 After a long trip from the city you finally reach your new inn. Standing outside you see a {class} hard at work
+// pause story till talk to npc
+// talk to npc .. unity input
 He says, "Hello, you must be the new owner. Would you like an explanation about running thing?"
 
  * "Yes, I'm new here[".] can you explain.", you say.
@@ -26,15 +27,70 @@ He says, "Hello, you must be the new owner. Would you like an explanation about 
 
 = end_tutorial
 "Great, since you know what you're doing I'll leave you to it.", he replies.
+// pause story till end the  first day
 -> end_first_day
 
 
 = end_first_day
 The sun is starting to set. We better go inside and get ready for our first customers.
+// pause story till start of second day
 -> second_day
 
 === second_day
-After your first night you slept like a baby. It feels amazing to finally have your own place. It was rather exciting meeting all those adventurers. Too bad you were so busy serving you didn't get much time to talk to them. I'd bet they've got some wild storys about the sort of quests they're on. Maybe we will get a chance to ask them while we are out gathering more ingredients for tonight.
+
+After your first night you slept like a baby. It feels amazing to finally have your own place. It was rather exciting meeting all those adventurers. Too bad you were so busy serving you didn't get much time to chat. I'd bet they've got some wild storys about the sort of quests they're on. Maybe we will get a chance to ask them while we are out gathering more ingredients for tonight. -> talk
+
+= talk
+// pause story till talk to npc
+// get the class of the npc and our friendship lvl with them
+//Rogue
+//Magician
+//Ranger
+//Fighter
+VAR class = "Rogue"
+VAR friendship = 1
+VAR name = "Jane Doe"
+
+{
+- friendship >= 1:
+    {
+        - class == "Rogue":
+            -> Rogue
+        - class == "Magician":
+            -> Magician
+        - class == "Ranger":
+            -> Ranger
+        - class == "Fighter":
+            -> Fighter
+    }
+    - else:
+        "I don't trust strangers" 
+}
+
+= Rogue
+They say, "Hello, I'm Rogue {name}. It is nice to have a chance to talk. You were so busy last night. How are you enjoying your inn so far?"
+    * "Alot[."], it has so much potential. With some work things will really go great."
+    * "Not much[."], I didn't realise how much work it took to run things."
+- "Yea, it is a lot of work, but the potential is there. I can't wait to see what you do with the place."
+    -> finish
+= Magician
+"I'm Magician {name} bish"
+- -> finish
+= Ranger
+"I'm Ranger {name} bish"
+- -> finish
+= Fighter
+"I'm Fighter {name} bish"
+- -> finish
+
+
+= finish
+
+
+
+
+
+
 
 
 
