@@ -1684,9 +1684,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 360527388035086225, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
+      propertyPath: _DialogueBehavoir
+      value: 
+      objectReference: {fileID: 1126799875}
     - target: {fileID: 1061340997620488695, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284311210255950050, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3940693880173128429, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_AngularSpeed
@@ -18137,6 +18145,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5738778707072835271, guid: aa206af5aa62740cf8f73d8331684aa0, type: 3}
+--- !u!114 &1126799875 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4396183003958145319, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
+  m_PrefabInstance: {fileID: 90071650}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9949e48d73bb85a4ba2fbaecbbbb2be3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1128351499
 PrefabInstance:
   m_ObjectHideFlags: 0
