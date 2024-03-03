@@ -1,13 +1,11 @@
-
-
 -> first_day
 
 === first_day
 = tutorial
-After a long trip from the city you finally reach your new inn. Standing outside you see a {class} hard at work
+After a long trip from the city you finally reach your new inn. Standing outside you see someone hard at work
 // pause story till talk to npc
 // talk to npc .. unity input
-He says, "Hello, you must be the new owner. Would you like an explanation about running thing?"
+They say, "Hello, you must be the new owner. Would you like an explanation about running thing?"
 
  * "Yes, I'm new here[".] can you explain.", you say.
  * "No, I already know what to do[".]", you say. -> end_tutorial
@@ -26,7 +24,7 @@ He says, "Hello, you must be the new owner. Would you like an explanation about 
     -> end_tutorial
 
 = end_tutorial
-"Great, since you know what you're doing I'll leave you to it.", he replies.
+"Great, since you know what you're doing I'll leave you to it.", they reply.
 // pause story till end the  first day
 -> end_first_day
 
