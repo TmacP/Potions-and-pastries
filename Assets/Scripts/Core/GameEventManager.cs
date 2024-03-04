@@ -94,12 +94,12 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
-    public event Action<long > OnPostPlayerGoldChanged;
-    public void PostPlayerGoldChanged(long NewGoldValue)
+    public event Action<long, long > OnPostPlayerGoldChanged;
+    public void PostPlayerGoldChanged(long NewGoldValue, long DeltaGold)
     {
         if (OnPostPlayerGoldChanged != null)
         {
-            OnPostPlayerGoldChanged(NewGoldValue);
+            OnPostPlayerGoldChanged(NewGoldValue, DeltaGold);
         }
     }
 

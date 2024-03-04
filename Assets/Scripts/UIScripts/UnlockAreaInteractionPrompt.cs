@@ -46,7 +46,7 @@ public class UnlockAreaInteractionPrompt : MonoBehaviour
         {
             PlayerGoldText.text = GameManager.Instance.PlayerState.Gold.ToString() + "$";
         }
-        UpdateButtonEnable(GameManager.Instance.PlayerState.Gold);
+        UpdateButtonEnable(GameManager.Instance.PlayerState.Gold, 0);
     }
 
     private void OnDisable()
@@ -56,7 +56,7 @@ public class UnlockAreaInteractionPrompt : MonoBehaviour
         GameEventManager.instance.OnCloseMenu -= OnCancelled;
     }
 
-    public void UpdateButtonEnable(long NewGoldAmount)
+    public void UpdateButtonEnable(long NewGoldAmount, long DeltaGold)
     {
         UnlockButton.interactable = NewGoldAmount >= UnlockCost;
         if (PlayerGoldText != null)
@@ -67,7 +67,6 @@ public class UnlockAreaInteractionPrompt : MonoBehaviour
 
     public void OnCancelled()
     {
-        Debug.Log("Cancelling");
         Destroy(gameObject);
     }
 

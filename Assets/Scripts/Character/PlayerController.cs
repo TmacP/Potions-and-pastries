@@ -298,6 +298,6 @@ public class PlayerController : MonoBehaviour
         CurrentGold = CurrentGold > 0 ? CurrentGold : 0;
         long DeltaGold = GameManager.Instance.PlayerState.Gold - CurrentGold;
         GameManager.Instance.PlayerState.Gold = CurrentGold;
-        GameEventManager.instance.PostPlayerGoldChanged(DeltaGold);
+        GameEventManager.instance.PostPlayerGoldChanged(CurrentGold, DeltaGold);
     }
 }
