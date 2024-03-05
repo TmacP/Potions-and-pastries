@@ -746,7 +746,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: -1252, y: 833}
     spritePosition: {x: 1256, y: 414}
-  - name: R-UpperArm
+  - name: R_UpperArm
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 7
@@ -2019,7 +2019,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 1144, y: -154}
     spritePosition: {x: 662, y: 1284}
-  - name: R_Eye
+  - name: L_Eye
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 7
