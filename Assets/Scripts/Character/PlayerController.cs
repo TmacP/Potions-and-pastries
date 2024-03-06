@@ -78,6 +78,7 @@ public class PlayerController : MonoBehaviour
         GameEventManager.instance.OnRemovePlayerItems += OnRemoveItems;
         GameEventManager.instance.OnPostInventoryOpen += PostInventoryOpen;
         GameEventManager.instance.OnCloseMenu += CloseInventory_Internal;
+        GameEventManager.instance.OnPurchase += OnPurchase;
 
         GameObject[] GOS = GameObject.FindGameObjectsWithTag("PlayerHUD");
         
@@ -125,6 +126,7 @@ public class PlayerController : MonoBehaviour
         GameEventManager.instance.OnRemovePlayerItems -= OnRemoveItems;
         GameEventManager.instance.OnPostInventoryOpen -= PostInventoryOpen;
         GameEventManager.instance.OnCloseMenu -= CloseInventory_Internal;
+        GameEventManager.instance.OnPurchase -= OnPurchase;
     }
 
     protected void OnGameStateChanged(EGameState NewGameState, EGameState OldGameState)
@@ -285,5 +287,17 @@ public class PlayerController : MonoBehaviour
         {
             toolbar.ToolbarManager.RemoveItem(item);
         }
+    }
+
+    public void OnPurchase(int Cost)
+    {
+        //Kinda convoluted but safe
+        long CurrentGold = GameManager.Instance.PlayerState.Gold;
+        CurrentGold -= Cost;
+        Assert.IsTrue(CurrentGold > 0);
+        CurrentGold = CurrentGold > 0 ? CurrentGold : 0;
+        long DeltaGold = GameManager.Instance.PlayerState.Gold - CurrentGold;
+        GameManager.Instance.PlayerState.Gold = CurrentGold;
+        GameEventManager.instance.PostPlayerGoldChanged(CurrentGold, DeltaGold);
     }
 }

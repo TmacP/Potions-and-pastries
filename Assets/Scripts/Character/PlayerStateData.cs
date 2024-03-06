@@ -8,9 +8,14 @@ public class PlayerStateData : ScriptableObject
 {
     public float MoveSpeed;
 
+    public long Gold = 100;
+
     public List<InventoryItemData> Inventory = new List<InventoryItemData>();
 
     public List<InventoryItemData> ToolBar = new List<InventoryItemData>();
 }
+
+
+
 
 
