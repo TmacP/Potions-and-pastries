@@ -16,8 +16,9 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         Wander,
         Idle,
         FindTable,
-        Order,
-        AcceptFood
+        WaitForOrder,
+        Eating,
+        Leaving // foundTable = false;
     }
 
     public ENPCState NPCState;
@@ -36,6 +37,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
 
     [SerializeField] OrderData NpcOrder;
 
+    bool foundTable;
 
 
 //*************IInteractable interface***********
@@ -45,7 +47,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
     public bool TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
     {
 
-       if(NPCState == ENPCState.Order && InteractionItem != null && InteractionItem.Count > 0)
+       if(NPCState == ENPCState.WaitForOrder && InteractionItem != null && InteractionItem.Count > 0)
        {
             GameEventManager.instance.DoneNPCOrder(NpcOrder);
             GameEventManager.instance.RemovePlayerItems(InteractionItem);
@@ -63,7 +65,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
 
     public string GetInteractionPrompt()
     {
-        if (NPCState == ENPCState.Order)
+        if (NPCState == ENPCState.WaitForOrder)
         {
             return "Give Order";
         }
@@ -81,17 +83,27 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        UpdateNPCState(NPCState);
+        foundTable = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateNPCState(NPCState);
-        //Debug.Log(NPCState);
+
+        //            UpdateNPCState(NPCState);
+        if (Vector3.Distance(transform.position, destination) < 10 && pointSet)
+        {
+            pointSet = false;
+            WaitSecChangeState(0, NPCState);
+            Debug.Log(NPCState);
+        }
+
     }
 
     private void UpdateNPCState(ENPCState newState)
     {
+
         if (NPCState != newState)
         {
             //Debug.Log("Changing State");
@@ -107,16 +119,18 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
                 break;
             case ENPCState.Idle:
                 StartIdle();
+
                 break;
             case ENPCState.FindTable:
                 WalkToTable();
                 break;
-            case ENPCState.Order:
+            case ENPCState.WaitForOrder:
                 //Debug.Log("Order state entered");
                 GameEventManager.instance.TakeNPCOrder(NpcOrder);
                 break;
-            case ENPCState.AcceptFood:
+            case ENPCState.Eating:
                 GameEventManager.instance.DoneNPCOrder(NpcOrder);
+
                 break;
             default:
                 //Debug.Log("NPCScript::UpdateNPCState unknown NPC state given");
@@ -151,28 +165,25 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
             agent.SetDestination(destination);
             
         }
-        if (Vector3.Distance(transform.position, destination) < 10)
-        {
-            pointSet = false;
-        }
     }
 
     void StartIdle()
     {
-        if (pointSet)
-        {
-            agent.SetDestination(destination);
-        }
-        if (!pointSet)
-        {
-            destination = new Vector3(agent.transform.position.x, agent.transform.position.y, agent.transform.position.z);
-            agent.SetDestination(destination);
+ //       if (pointSet)
+ //       {
+ //           agent.SetDestination(destination);
+ //       }
+ //       if (!pointSet)
+ //       {
+ //           destination = new Vector3(agent.transform.position.x, agent.transform.position.y, agent.transform.position.z);
+ //           agent.SetDestination(destination);
+
             WaitSecChangeState(3, ENPCState.FindTable);
-        }
-        if (Vector3.Distance(transform.position, destination) < 10)
-        {
-            pointSet = false;
-        }
+ //       }
+ //       if (Vector3.Distance(transform.position, destination) < 10)
+ //       {
+
+//        }
 
     }
 
@@ -196,7 +207,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         if (GameObject.FindGameObjectWithTag("Table") != null)
         {
             destination = new Vector3(GameObject.FindGameObjectWithTag("Table").transform.position.x, transform.position.y, GameObject.FindGameObjectWithTag("Table").transform.position.z);
-            
+            foundTable = true;
         }
         else
         {
@@ -210,31 +221,35 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
     }
     void WalkToTable()
     {
-        if (!pointSet)
+        if (!foundTable)
         {
             FindTablePosition();
         }
-        if (pointSet)
+        if (foundTable)
         {
             agent.SetDestination(destination);
             //change to order state 3 sec after table is reached
-            if ((agent.transform.position - destination).magnitude < 0.5) WaitSecChangeState(3, ENPCState.Order);
+            if ((agent.transform.position - destination).magnitude < 0.5){
+                WaitSecChangeState(3, ENPCState.WaitForOrder);
+                foundTable = false; ///TEMP
+            }
         }
+
     }
 
     void WaitSecChangeState(float seconds, ENPCState newStateChange)
     {
-        if(this.NextNPCState == ENPCState.None)
+        if (this.NextNPCState == ENPCState.None)
         {
             this.NextNPCState = newStateChange;
             Invoke("OnUpdateNPCState", seconds);
+            //set state here
         }
     }
 
     void OnUpdateNPCState()
     {
         UpdateNPCState(NextNPCState);
+        //update state here
     }
-
-    
 }
