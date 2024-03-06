@@ -16,6 +16,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         Wander,
         Idle,
         FindTable,
+        DecideOnOrder,
         WaitForOrder,
         Eating,
         Leaving // foundTable = false;
@@ -119,10 +120,12 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
                 break;
             case ENPCState.Idle:
                 StartIdle();
-
                 break;
             case ENPCState.FindTable:
                 WalkToTable();
+                break;
+            case ENPCState.DecideOnOrder:
+                WaitSecChangeState(3, ENPCState.WaitForOrder);
                 break;
             case ENPCState.WaitForOrder:
                 //Debug.Log("Order state entered");
@@ -130,7 +133,9 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
                 break;
             case ENPCState.Eating:
                 GameEventManager.instance.DoneNPCOrder(NpcOrder);
-
+                break;
+            case ENPCState.Leaving:
+                
                 break;
             default:
                 //Debug.Log("NPCScript::UpdateNPCState unknown NPC state given");
@@ -202,11 +207,11 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
     void FindTablePosition()
     {
         //destination = new Vector3(GameObject.FindGameObjectWithTag("Table").transform.position.x, transform.position.y, GameObject.FindGameObjectWithTag("Table").transform.position.z);
-        
-        
-        if (GameObject.FindGameObjectWithTag("Table") != null)
+
+        GameObject Table = GameObject.FindGameObjectWithTag("Table");
+        if (Table != null)
         {
-            destination = new Vector3(GameObject.FindGameObjectWithTag("Table").transform.position.x, transform.position.y, GameObject.FindGameObjectWithTag("Table").transform.position.z);
+            destination = Table.transform.position;
             foundTable = true;
         }
         else
@@ -229,9 +234,12 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         {
             agent.SetDestination(destination);
             //change to order state 3 sec after table is reached
-            if ((agent.transform.position - destination).magnitude < 0.5){
+//            (agent.transform.position - destination).magnitude < 2)
+            
+            if (Vector3.Distance(transform.position, destination) < 200)
+            {
                 WaitSecChangeState(3, ENPCState.WaitForOrder);
-                foundTable = false; ///TEMP
+       //         foundTable = false; ///TEMP
             }
         }
 
