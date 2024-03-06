@@ -1,7 +1,9 @@
--> first_day
+-> first_day // normal 
 //-> second_day // debug
+//-> third_day // debug
 
-// FIRST DAY
+// FIRST DAY *****************************************
+// tutorial dialogue
 === first_day
 = fresh_day
 After a long trip from the city you finally reach your new inn. Standing outside you see someone hard at work
@@ -29,13 +31,14 @@ They say, "Hello, you must be the new owner. Would you like an explanation about
 ~ nextPathString = "second_day"
 -> DONE
 
-// SECOND DAY
+// SECOND DAY *****************************************
+// Introduce caracters and cave
 === second_day
 // get the class of the npc [Rogue Magician Ranger Fighter] and our friendship lvl with them
 //VAR class = "Rogue"
 //VAR class = "Magician"
-VAR class = "Ranger"
-//VAR class = "Fighter"
+//VAR class = "Ranger"
+VAR class = "Fighter"
 VAR friendship = 1
 VAR name = "Jane Doe"
 {
@@ -86,7 +89,7 @@ They say, "I'm Ranger {name}. I guess you're probably wondering what all these p
     -> why
     * "What like for spelunking?" 
     -> spelunking
-    * "Well I'm not going in any freaky cave[."], even if there is treasure, and glory". 
+    * "Well I'm not going in any freaky cave[."], even if there is treasure, and glory." 
     -> end_cave_intro
     
     - (why) "Supposedly inside there are all sorts of monsters inside which one could fight to prove their bravery."
@@ -97,27 +100,170 @@ They say, "I'm Ranger {name}. I guess you're probably wondering what all these p
     
     - (end_cave_intro) "And I don't blame you. Who'd run the inn? Besides you don't look like the type to follow others."
         "Thanks"
-        "I respect that, even if you do seem a little timid"
-        "Hey"
+        "I respect that, even if you do seem a little timid."
+        "Hey."
 
 - -> finish
 
 = Fighter
-"I'm Fighter {name} bish"
+They say, "I'm Fighter {name}. So you decided to try running an inn, very bold of you, you know most buisinesses fail. But I admire your courage."
+"Thanks... I think."
+- (cave)
+    * "What are you up to[?"], out here anyways?"
+    -> why
+    * "You aren't another one[."] of those cave explorors are you?"
+    -> what
+    * "Well I hope you figure out all that[."], even if you seem a little confused I'm sure it will all work out." 
+    -> end_cave_intro
+    
+- (why)
+"You know I've been so busy chasing wealth I never even stopped to ask myself that. What even am I doing out here?"
+"?"-> cave
+
+- (what) 
+"Amazing, how could you tell? And who told you about the cave it is supposed to be a secret." -> cave
+
+- (end_cave_intro) "You know, even when things look like they are going badly things have a way of working themselves out."
+ 
 - -> finish
 
 = finish
 ~ nextPathString = "third_day"
 -> DONE
 
-// THIRD DAY
+// THIRD DAY *****************************************
+// adventurers find the cave
 === third_day
+// get the class of the npc [Rogue Magician Ranger Fighter] and our friendship lvl with them
+//VAR class = "Rogue"
+//VAR class = "Magician"
+~ class = "Ranger"
+//~ class = "Fighter"
+~ friendship = 1
+~ name = "Jane Doe"
+{
+- friendship >= 1:
+    {
+        - class == "Rogue":
+            -> Rogue
+        - class == "Magician":
+            -> Magician
+        - class == "Ranger":
+            -> Ranger
+        - class == "Fighter":
+            -> Fighter
+    }
+    - else:
+        "I don't trust strangers" 
+}
+
+= Rogue
+They say, "H"
+- (find_cave)
+    * "Did you find it yet?" 
+    -> one
+    * "What is it like inside" 
+    -> two
+    * "Sounds interesting" 
+    -> end_cave_entrance
+    
+- (one) 
+"Yes found the entrance"
+    -> find_cave
+"
+- (two) 
+"Inside is like"
+    -> find_cave
+    
+- (end_cave_entrance) 
+"See you later"
+    -> finish
+    
+= Magician
+They say, "H"
+- (find_cave)
+    * "Did you find it yet?" 
+    -> one
+    * "What is it like inside" 
+    -> two
+    * "Sounds interesting" 
+    -> end_cave_entrance
+    
+- (one) 
+"Yes found the entrance"
+    -> find_cave
+"
+- (two) 
+"Inside is like"
+    -> find_cave
+    
+- (end_cave_entrance) 
+"See you later"
+- -> finish
+
+= Ranger
+They say, "H"
+- (find_cave)
+    * "Did you find it yet?" 
+    -> one
+    * "What is it like inside" 
+    -> two
+    * "Sounds interesting" 
+    -> end_cave_entrance
+    
+- (one) 
+"Yes found the entrance"
+    -> find_cave
+"
+- (two) 
+"Inside is like"
+    -> find_cave
+    
+- (end_cave_entrance) 
+"See you later"
+
+- -> finish
+
+= Fighter
+They say, "H"
+- (find_cave)
+    * "Did you find it yet?" 
+    -> one
+    * "What is it like inside" 
+    -> two
+    * "Sounds interesting" 
+    -> end_cave_entrance
+    
+- (one) 
+"Yes found the entrance"
+    -> find_cave
+"
+- (two) 
+"Inside is like"
+    -> find_cave
+    
+- (end_cave_entrance) 
+"See you later"
+- -> finish
+
+= finish
 ~ nextPathString = "fourth_day"
 -> DONE
 
-// FOURTH DAY
+// FOURTH DAY *****************************************
+// adventurers find a monster gaurding treasure
 === fourth_day
-~ nextPathString = "fourth_day"
+~ nextPathString = "fifth_day"
 -> DONE
+
+// FIFTH DAY *****************************************
+// adventurers find a monster gaurding treasure
+=== fifth_day
+~ nextPathString = "sixth_day"
+-> DONE
+
+// SIXTH DAY *****************************************
+// adventurers defeat monster and get treasure END OF STORY
+=== sixth_day
 
  -> END
