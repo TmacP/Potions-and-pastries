@@ -39,6 +39,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
     [SerializeField] OrderData NpcOrder;
 
     bool foundTable;
+    bool foundDoor;
 
 
 //*************IInteractable interface***********
@@ -86,18 +87,20 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         agent = GetComponent<NavMeshAgent>();
         UpdateNPCState(NPCState);
         foundTable = false;
+        foundDoor = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //   Debug.Log(NPCState);
+        //Debug.Log(Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Table").transform.position));
 
-        //            UpdateNPCState(NPCState);
+        Debug.Log(pointSet);
         if (Vector3.Distance(transform.position, destination) < 10 && pointSet)
         {
             pointSet = false;
             WaitSecChangeState(0, NPCState);
-            Debug.Log(NPCState);
         }
 
     }
@@ -135,7 +138,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
                 GameEventManager.instance.DoneNPCOrder(NpcOrder);
                 break;
             case ENPCState.Leaving:
-                
+                WalkToDoor();
                 break;
             default:
                 //Debug.Log("NPCScript::UpdateNPCState unknown NPC state given");
@@ -174,40 +177,13 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
 
     void StartIdle()
     {
- //       if (pointSet)
- //       {
- //           agent.SetDestination(destination);
- //       }
- //       if (!pointSet)
- //       {
- //           destination = new Vector3(agent.transform.position.x, agent.transform.position.y, agent.transform.position.z);
- //           agent.SetDestination(destination);
-
             WaitSecChangeState(3, ENPCState.FindTable);
- //       }
- //       if (Vector3.Distance(transform.position, destination) < 10)
- //       {
-
-//        }
-
     }
 
-               //need to change based on what scene is called
-//        if (SceneManager.GetActiveScene().name == "LindseyNPCScene")
-//        {
-//            Debug.Log(NPCState);
-//            UpdateNPCState(ENPCState.Wander);
-//        }
-//        else if (SceneManager.GetActiveScene().name != "LindseyNPCScene")
-//        {
-//            UpdateNPCState(ENPCState.FindTable);
-//        }
     
 
     void FindTablePosition()
     {
-        //destination = new Vector3(GameObject.FindGameObjectWithTag("Table").transform.position.x, transform.position.y, GameObject.FindGameObjectWithTag("Table").transform.position.z);
-
         GameObject Table = GameObject.FindGameObjectWithTag("Table");
         if (Table != null)
         {
@@ -233,10 +209,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         if (foundTable)
         {
             agent.SetDestination(destination);
-            //change to order state 3 sec after table is reached
-//            (agent.transform.position - destination).magnitude < 2)
-            
-            if (Vector3.Distance(transform.position, destination) < 200)
+            if (Vector3.Distance(transform.position, destination) < 200) //&& agent.transform.position == destination)
             {
                 WaitSecChangeState(3, ENPCState.WaitForOrder);
        //         foundTable = false; ///TEMP
@@ -244,6 +217,49 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         }
 
     }
+
+
+    void FindDoorPosition()
+    {
+        GameObject Door = GameObject.FindGameObjectWithTag("Door");
+        if (Door!= null)
+        {
+            destination = Door.transform.position;
+            foundDoor = true;
+        }
+        else
+        {
+            UpdateNPCState(ENPCState.Wander);
+        }
+        //returns true if ground is available for walking
+        if (Physics.Raycast(destination, Vector3.down, groundLayer) && destination != null)
+        {
+            pointSet = true;
+        }
+    }
+    void WalkToDoor()
+    {
+        if (!foundDoor)
+        {
+            FindDoorPosition();
+        }
+        if (foundDoor)
+        {
+            agent.SetDestination(destination);
+
+            if (Vector3.Distance(transform.position, destination) < 20)
+            {
+                WaitSecChangeState(3, ENPCState.Leaving);
+                //         foundTable = false; ///TEMP
+            }
+        }
+
+    }
+
+
+
+
+
 
     void WaitSecChangeState(float seconds, ENPCState newStateChange)
     {
@@ -259,5 +275,20 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
     {
         UpdateNPCState(NextNPCState);
         //update state here
+    }
+
+    private ENPCState RandomChance(ENPCState currentState, ENPCState changedToState)
+    {
+        float RandNum = Random.Range(0, 100);
+
+        if(RandNum <= 50)
+        {
+            return changedToState;
+        }
+        else 
+        {
+            return currentState;
+        }
+        
     }
 }
