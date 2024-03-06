@@ -1,9 +1,13 @@
 -> first_day
 
 === first_day
-= tutorial
+= fresh_day
 After a long trip from the city you finally reach your new inn. Standing outside you see someone hard at work
 // pause story till talk to npc
+// set 
+VAR nextPathString = "first_day.tutorial"
+-> DONE
+= tutorial
 // talk to npc .. unity input
 They say, "Hello, you must be the new owner. Would you like an explanation about running thing?"
 
