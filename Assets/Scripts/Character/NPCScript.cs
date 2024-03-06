@@ -138,7 +138,8 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
                 GameEventManager.instance.DoneNPCOrder(NpcOrder);
                 break;
             case ENPCState.Leaving:
-                WalkToDoor();
+                //WalkToDoor();
+                WaitSecChangeState(3, ENPCState.Wander); //temp
                 break;
             default:
                 //Debug.Log("NPCScript::UpdateNPCState unknown NPC state given");
