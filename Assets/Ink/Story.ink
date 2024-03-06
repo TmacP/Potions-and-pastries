@@ -29,8 +29,10 @@ They say, "Hello, you must be the new owner. Would you like an explanation about
 
 = end_tutorial
 "Great, since you know what you're doing I'll leave you to it.", they reply.
-// pause story till end the  first day
--> end_first_day
+~ nextPathString = "first_day.end_first_day"
+-> DONE
+
+
 
 
 = end_first_day

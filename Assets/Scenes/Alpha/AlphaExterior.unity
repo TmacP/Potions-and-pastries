@@ -1713,6 +1713,10 @@ PrefabInstance:
       value: True
       objectReference: {fileID: 0}
     - target: {fileID: 4396183003958145319, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
+      propertyPath: basicInkExample
+      value: 
+      objectReference: {fileID: 924142297}
+    - target: {fileID: 4396183003958145319, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: State.ProvidingOrder
       value: .5
       objectReference: {fileID: 0}
