@@ -4,13 +4,6 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
-public enum EGameState
-{
-    MainState,
-    PauseState,
-    MovementDisabledState,
-    QuitState
-}
 
 public enum EGameScene
 {
@@ -22,13 +15,19 @@ public enum EGameScene
     AlphaExterior
 }
 
+
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
     //We store this here so it persists between levels
     public PlayerStateData PlayerState;
-    
+
+    private EGameState GameState;
+    public GameStateData PersistantGameState;
+    private EGameScene GameScene;
+
     [SerializeField]
     private readonly Dictionary<EGameScene, string> GameScenes = new Dictionary<EGameScene, string>()
     {
@@ -56,19 +55,26 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private EGameState GameState;
-    private EGameScene GameScene;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-
+        GameEventManager.instance.OnUnlockRegion += OnUnlockRegion;
+        GameEventManager.instance.OnDoorUnlocked += OnDoorUnlock;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void OnDisable()
+    {
+        GameEventManager.instance.OnUnlockRegion -= OnUnlockRegion;
+        GameEventManager.instance.OnDoorUnlocked -= OnDoorUnlock;
+
     }
 
     public void ChangeGameState(EGameState NewGameState)
@@ -124,6 +130,22 @@ public class GameManager : MonoBehaviour
         if (FoundGameScene)
         {
             SceneManager.LoadScene(SceneName);
+        }
+    }
+
+    public void OnUnlockRegion(EGameRegion Region)
+    {
+        if(!PersistantGameState.UnlockedRegions.Contains(Region))
+        {
+            PersistantGameState.UnlockedRegions.Add(Region);
+        }
+    }
+
+    public void OnDoorUnlock(int DoorID)
+    {
+        if (!PersistantGameState.OpenedDoors.Contains(DoorID))
+        {
+            PersistantGameState.OpenedDoors.Add(DoorID);
         }
     }
 }

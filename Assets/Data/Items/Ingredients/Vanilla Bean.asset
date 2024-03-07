@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Vanilla Bean
   Description: Vanilla Bean
   ItemType: 0
-  ItemTags: 0a000000
+  ItemTags: 
   image: {fileID: 21300000, guid: 6896fad4d9bb74162abd540e92080cdb, type: 3}
   SceneAsset:
     m_AssetGUID: 

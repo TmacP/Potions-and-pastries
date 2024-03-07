@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerState: {fileID: 11400000, guid: fcec8e895cbc98243b477bc0b62bf321, type: 2}
+  PersistantGameState: {fileID: 11400000, guid: db529c15727d0634da62169c32da5e3e, type: 2}
 --- !u!114 &1215578725604136649
 MonoBehaviour:
   m_ObjectHideFlags: 0

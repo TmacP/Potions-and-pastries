@@ -13,8 +13,15 @@ public class DialogueBehavoir : MonoBehaviour
     [SerializeField] public float DialogueDisplayTime = 3.0f;
     [SerializeField] public int DialogueDisplayCounter = 0;
 
+// reference to ink
+    public BasicInkExample basicInkExample; //
+
     public void TryDialogue()
     {
+        if(basicInkExample != null)
+        {
+            basicInkExample.ContinueStory(); // WE CONTINUE THE STORY WHEN TALK TO NPC
+        }
         DialogueData Dialogue = DialogueManager.instance.GetDialogue(State);
         if(Dialogue != null)
         {

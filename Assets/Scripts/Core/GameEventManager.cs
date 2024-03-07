@@ -106,6 +106,24 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+    public event Action<int> OnPurchase;
+    public void Purchase(int Cost)
+    {
+        if (OnPurchase != null)
+        {
+            OnPurchase(Cost);
+        }
+    }
+
+    public event Action<long, long > OnPostPlayerGoldChanged;
+    public void PostPlayerGoldChanged(long NewGoldValue, long DeltaGold)
+    {
+        if (OnPostPlayerGoldChanged != null)
+        {
+            OnPostPlayerGoldChanged(NewGoldValue, DeltaGold);
+        }
+    }
+
     public event Action<List<InventoryItemData>> OnGivePlayerItems;
     public void GivePlayerItems(List<InventoryItemData> ItemData)
     {
@@ -151,6 +169,26 @@ public class GameEventManager : MonoBehaviour
             OnMiniGameComplete(CompletionResult);
         }
     }
+
+    public event Action<EGameRegion> OnUnlockRegion;
+    public void UnlockRegion(EGameRegion Region)
+    {
+        if (OnUnlockRegion != null)
+        {
+            OnUnlockRegion(Region);
+        }
+    }
+
+    public event Action<int> OnDoorUnlocked;
+    public void DoorUnlocked(int DoorID)
+    {
+        if (OnDoorUnlocked != null)
+        {
+            OnDoorUnlocked(DoorID);
+        }
+    }
+
+
 
     public event Action<OrderData> OnTakeNPCOrder;
     public void TakeNPCOrder(OrderData NPCOrderData)
