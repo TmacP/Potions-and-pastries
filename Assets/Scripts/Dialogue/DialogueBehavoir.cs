@@ -18,7 +18,10 @@ public class DialogueBehavoir : MonoBehaviour
 
     public void TryDialogue()
     {
-        basicInkExample.ContinueStory(); // WE CONTINUE THE STORY WHEN TALK TO NPC
+        if(basicInkExample != null)
+        {
+            basicInkExample.ContinueStory(); // WE CONTINUE THE STORY WHEN TALK TO NPC
+        }
         DialogueData Dialogue = DialogueManager.instance.GetDialogue(State);
         if(Dialogue != null)
         {
