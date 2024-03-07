@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Sugar Cane
   Description: Some sugar cane
   ItemType: 0
-  ItemTags: 02000000
+  ItemTags: 
   image: {fileID: 21300000, guid: 6a1f49db55d0c409aa63a3d3b20455b6, type: 3}
   SceneAsset:
     m_AssetGUID: 
