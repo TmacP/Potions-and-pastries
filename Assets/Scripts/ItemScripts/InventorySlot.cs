@@ -94,5 +94,10 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerClickHandler, 
         }
     }
 
+    public bool IsEmpty()
+    {
+        return transform.childCount == 0;
+    }
+
 
 }

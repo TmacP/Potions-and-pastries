@@ -43,8 +43,8 @@ public class Toolbar : MonoBehaviour
 
     public void OnRecieveOrder()
     {
-        ToolbarManager.ClearInventory();
-        ToolbarManager.InventoryDataRef.Clear();
+        //ToolbarManager.ClearInventory();
+        //ToolbarManager.InventoryDataRef.Clear();
     }
 
     public List<InventoryItemData> GetItems()
@@ -57,7 +57,7 @@ public class Toolbar : MonoBehaviour
         return ToolbarManager.GetSelectedItem(false);
     }
 
-    public bool UseSelectedItem()
+    virtual public bool UseSelectedItem()
     {
         return ToolbarManager.UseItem(ToolbarManager.selectedSlot);
     }

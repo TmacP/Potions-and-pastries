@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OpenDeckBuildingScreen",
+                    "type": "Button",
+                    "id": "0f0c13a8-81e0-474d-90eb-22bcb89e4643",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -212,6 +221,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "MenuOpenClose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "34087ba2-3587-49bf-a097-a634f0087ae9",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenDeckBuildingScreen",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

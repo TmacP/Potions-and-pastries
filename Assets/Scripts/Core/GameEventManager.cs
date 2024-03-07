@@ -139,6 +139,32 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+    public event Action<QuestData> OnQuestGiven;
+    public void QuestGiven(QuestData newQuest)
+    {
+        if (OnQuestGiven != null)
+        {
+            OnQuestGiven(newQuest);
+        }
+    }
+
+    public event Action OnQuestStatusRefreshed;
+    public void QuestStatusRefreshed()
+    {
+        if (OnQuestStatusRefreshed != null)
+        {
+            OnQuestStatusRefreshed();
+        }
+    }
+
+    public event Action<QuestData> OnQuestComplete;
+    public void QuestComplete(QuestData Quest)
+    {
+        if (OnQuestComplete != null)
+        {
+            OnQuestComplete(Quest);
+        }
+    }
 
     public event Action<EMiniGameCompleteResult> OnMiniGameComplete;
     public void MiniGameComplete(EMiniGameCompleteResult CompletionResult)

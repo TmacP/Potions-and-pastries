@@ -10,10 +10,6 @@ public enum EGameScene
 {
     InnInterior,
     InnExterior,
-    ConorInnInterior,
-    ConorInnExterior,
-    AlphaInterior,
-    AlphaExterior
 }
 
 
@@ -32,12 +28,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private readonly Dictionary<EGameScene, string> GameScenes = new Dictionary<EGameScene, string>()
     {
-        {EGameScene.InnInterior, "ConorInnScene" },
-        {EGameScene.InnExterior, "ConorDemoScene" },
-        {EGameScene.ConorInnInterior, "ConorInnScene" },
-        {EGameScene.ConorInnExterior, "ConorDemoScene" },
-        {EGameScene.AlphaInterior, "Assets/Scenes/Alpha/AlphaInterior.unity" },
-        {EGameScene.AlphaExterior, "Assets/Scenes/Alpha/AlphaExterior.unity" },
+        {EGameScene.InnInterior, "AlphaInterior" },
+        {EGameScene.InnExterior, "AlphaExterior" }
     };
 
     private void Awake()
@@ -63,6 +55,16 @@ public class GameManager : MonoBehaviour
     {
         GameEventManager.instance.OnUnlockRegion += OnUnlockRegion;
         GameEventManager.instance.OnDoorUnlocked += OnDoorUnlock;
+
+        string Name = SceneManager.GetActiveScene().name;
+        foreach (KeyValuePair<EGameScene, string> pair in GameScenes)
+        {
+            if(pair.Value == Name)
+            {
+                GameScene = pair.Key;
+                break;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -120,8 +122,10 @@ public class GameManager : MonoBehaviour
         switch (NewScene)
         {
             case EGameScene.InnInterior:
+                ChangeGameState(EGameState.MainState);
                 break;
             case EGameScene.InnExterior:
+                ChangeGameState(EGameState.MainState);
                 break;
             default:
                 Debug.Log("Gamemanager::ChangeGameScene unkown game scene given");

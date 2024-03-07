@@ -21,8 +21,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject _InventoryPrefab;
     [SerializeField, HideInInspector] public InventoryManager _InventoryManager;
     
+    [SerializeField] private GameObject _DeckBuildingScreenPrefab;
+
     [SerializeField] private GameObject _HotBarPrefab;
+    [SerializeField] private GameObject _CardHandPrefab;
     public Toolbar toolbar;
+
     public Animator frontAnimator;
     public Animator backAnimator;
     private bool faceBack = false;
@@ -67,6 +71,7 @@ public class PlayerController : MonoBehaviour
         _PlayerActions.PlayerActionMap.Interact.canceled += OnInteractCancelled;
         _PlayerActions.PlayerActionMap.OpenInventory.performed += OnOpenInventory;
         _PlayerActions.Inventory.CloseInventory.performed += OnCloseInventory;
+        _PlayerActions.PlayerActionMap.OpenDeckBuildingScreen.performed += OnOpenDeckBuildingScreen;
         //_PlayerActions.PlayerActionMap.MenuOpenClose.performed += OnMenuOpen;
         _menuOpenCloseACtion = _PlayerActions.PlayerActionMap.MenuOpenClose;
     }
@@ -79,6 +84,7 @@ public class PlayerController : MonoBehaviour
         GameEventManager.instance.OnPostInventoryOpen += PostInventoryOpen;
         GameEventManager.instance.OnCloseMenu += CloseInventory_Internal;
         GameEventManager.instance.OnPurchase += OnPurchase;
+        
 
         GameObject[] GOS = GameObject.FindGameObjectsWithTag("PlayerHUD");
         
@@ -86,16 +92,7 @@ public class PlayerController : MonoBehaviour
         {
             GameObject HUD = GOS[0];
 
-            GameObject Toolbar = Instantiate(_HotBarPrefab);
-            Toolbar.transform.SetParent(HUD.transform, false);
-            Toolbar.transform.SetAsFirstSibling();
-
-            InventoryManager TBManager = Toolbar.GetComponent<InventoryManager>();
-            if (TBManager != null)
-            {
-                TBManager.InitializeInventoryManager(GameManager.Instance.PlayerState.ToolBar);
-                TBManager.CloseOnCloseMenuEvent = false;
-            }
+            InstantiateToolbar();
 
             if (_InventoryPrefab != null)
             {
@@ -120,6 +117,7 @@ public class PlayerController : MonoBehaviour
         _PlayerActions.PlayerActionMap.Interact.canceled -= OnInteractStart;
         _PlayerActions.PlayerActionMap.OpenInventory.performed -= OnOpenInventory;
         _PlayerActions.Inventory.CloseInventory.performed -= OnCloseInventory;
+        _PlayerActions.PlayerActionMap.OpenDeckBuildingScreen.performed -= OnOpenDeckBuildingScreen;
 
         GameEventManager.instance.OnChangeGameState -= OnGameStateChanged;
         GameEventManager.instance.OnGivePlayerItems -= OnGainItems;
@@ -137,6 +135,11 @@ public class PlayerController : MonoBehaviour
                 _PlayerActions.PlayerActionMap.Enable();
                 _PlayerActions.PlayerMovementMap.Enable();
                 break;
+            case EGameState.NightState:
+                _PlayerActions.PlayerActionMap.Enable();
+                _PlayerActions.PlayerMovementMap.Enable();
+                InstantiateToolbar(true);
+                break;
             case EGameState.PauseState:
                 _PlayerActions.PlayerActionMap.Disable();
                 _PlayerActions.PlayerMovementMap.Disable();
@@ -145,6 +148,7 @@ public class PlayerController : MonoBehaviour
                 _PlayerActions.PlayerActionMap.Enable();
                 _PlayerActions.PlayerMovementMap.Disable();
                 break;
+            
             default:
                 Debug.Log("Gamemanager::ChangeGameState unknown game state given");
                 break;
@@ -240,7 +244,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            if (!_InventoryManager.gameObject.activeSelf)
+            if (!_InventoryManager.gameObject.activeSelf && GameManager.Instance.GetGameState() != EGameState.NightState)
             {
                 GameEventManager.instance.CloseMenu();
                 _InventoryManager.gameObject.SetActive(true);
@@ -299,5 +303,68 @@ public class PlayerController : MonoBehaviour
         long DeltaGold = GameManager.Instance.PlayerState.Gold - CurrentGold;
         GameManager.Instance.PlayerState.Gold = CurrentGold;
         GameEventManager.instance.PostPlayerGoldChanged(CurrentGold, DeltaGold);
+    }
+
+    public void OnOpenDeckBuildingScreen(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (_DeckBuildingScreenPrefab != null && GameManager.Instance.GetGameState() != EGameState.NightState)
+            {
+                GameEventManager.instance.CloseMenu();
+                Instantiate(_DeckBuildingScreenPrefab);
+            }
+            else
+            {
+                OnCloseInventory(context);
+            }
+        }
+    }
+
+    private void InstantiateToolbar(bool CardHand = false)
+    {
+        if(toolbar != null)
+        {
+            Destroy(toolbar.gameObject);
+        }
+
+        GameObject[] GOS = GameObject.FindGameObjectsWithTag("PlayerHUD");
+        if (GOS.Length > 0)
+        {
+            GameObject HUD = GOS[0];
+
+            if(CardHand)
+            {
+                GameObject Toolbar = Instantiate(_CardHandPrefab);
+                Toolbar.transform.SetParent(HUD.transform, false);
+                Toolbar.transform.SetAsFirstSibling();
+
+                InventoryManager TBManager = Toolbar.GetComponent<InventoryManager>();
+                if (TBManager != null)
+                {
+                    TBManager.InitializeInventoryManager(GameManager.Instance.PlayerState.CardHand);
+                    TBManager.CloseOnCloseMenuEvent = false;
+                }
+                toolbar = Toolbar.GetComponent<Toolbar>();
+            }
+            else
+            {
+                GameObject Toolbar = Instantiate(_HotBarPrefab);
+                Toolbar.transform.SetParent(HUD.transform, false);
+                Toolbar.transform.SetAsFirstSibling();
+
+                InventoryManager TBManager = Toolbar.GetComponent<InventoryManager>();
+                if (TBManager != null)
+                {
+                    TBManager.InitializeInventoryManager(GameManager.Instance.PlayerState.ToolBar);
+                    TBManager.CloseOnCloseMenuEvent = false;
+                }
+                toolbar = Toolbar.GetComponent<Toolbar>();
+            }
+            
+        }
+
+
+        
     }
 }

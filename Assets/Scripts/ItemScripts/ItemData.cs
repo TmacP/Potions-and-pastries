@@ -36,12 +36,17 @@ public class InventoryItemData
     public int CurrentStackCount;
     public HashSet<EItemTags> CurrentItemTags = new HashSet<EItemTags>();
 
-    public InventoryItemData(ItemData InData, int InInventoryIndex, int InCurrentStackCount = 1)
+    public bool bIsCard = false;
+    public ECardActionType CardActionType = ECardActionType.None;
+
+
+    public InventoryItemData(ItemData InData, int InInventoryIndex, int InCurrentStackCount = 1, bool InIsCard = false)
     {
         Data = InData;
         CurrentItemTags.AddRange(Data.ItemTags);
         InventoryIndex = InInventoryIndex;
         CurrentStackCount = InCurrentStackCount;
+        bIsCard = InIsCard;
     }
 
 

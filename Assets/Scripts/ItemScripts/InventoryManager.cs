@@ -17,6 +17,7 @@ public class InventoryManager : MonoBehaviour
     public int maxStack = 5;
 
     public int selectedSlot = -1;
+    private bool bIsCardInventory = false;
 
     public bool CloseOnCloseMenuEvent = true;
     private int slotsPerRow = 4; // inventory layout
@@ -279,6 +280,7 @@ public class InventoryManager : MonoBehaviour
         {
             if (InvData.InventoryIndex == Index )
             {
+                InvItem.bIsCard = bIsCardInventory;
                 if (InventoryItemData.IsEquivalent(InvItem, InvData) && InvData.Data.stackable && InvData.CurrentStackCount < maxStack)
                 {
                     InvData.CurrentStackCount++; //InvItem.CurrentStackCount;
