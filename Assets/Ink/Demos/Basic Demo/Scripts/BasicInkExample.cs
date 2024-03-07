@@ -30,7 +30,7 @@ public class BasicInkExample : MonoBehaviour {
 		// Read all the content until we can't continue any more
 		while (story.canContinue) {
 			// Continue gets the next line of the story
-			string text = story.Continue ();
+			string text = story.Continue();
 			// This removes any white space from the text.
 			text = text.Trim();
 			// Display the text on screen!
@@ -48,14 +48,20 @@ public class BasicInkExample : MonoBehaviour {
 				});
 			}
 		}
-		// If we've read all the content and there's no choices, the story is finished!
-		else {
-			Button choice = CreateChoiceView("End of story.\nRestart?");
-			choice.onClick.AddListener(delegate{
-				StartStory();
-			});
-		}
 	}
+
+// WE CONTINUE THE STORY WHEN TALK TO NPC *****************
+public void ContinueStory()
+{
+	Debug.Log("ContinueStory");
+	// next path string is 
+	string nextPathString = (string) story.variablesState["nextPathString"];
+	Debug.Log("nextPathString: = " + nextPathString);
+	story.ChoosePathString(nextPathString);
+	//story.ChoosePathString("first_day.tutorial"); // works but is hardcoded...
+	RefreshView();
+
+}
 
 	// When we click the choice button, tell the story to choose that choice!
 	void OnClickChoiceButton (Choice choice) {
