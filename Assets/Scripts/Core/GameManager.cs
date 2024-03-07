@@ -8,7 +8,8 @@ public enum EGameState
 {
     MainState,
     PauseState,
-    MovementDisabledState
+    MovementDisabledState,
+    QuitState
 }
 
 public enum EGameScene

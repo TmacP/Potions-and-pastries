@@ -1,8 +1,11 @@
+using Palmmedia.ReportGenerator.Core;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.HID;
 using UnityEngine.Timeline;
@@ -16,13 +19,18 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _Rigidbody;
     private InteractorBehavoir _InteractorBehavoir;
 
-    private PlayerInput _playerInput;
-    private InputAction _menuOpenCloseAction;
-    public bool MenuOpenCloseInput { get; private set;}
+    //private InputAction _menuOpenCloseAction;
+    //public bool MenuOpenCloseInput { get; private set;}
 
     [SerializeField] private GameObject _InventoryPrefab;
     [SerializeField, HideInInspector] public InventoryManager _InventoryManager;
     
+    [SerializeField] private GameObject _PauseMenuPrefab;
+   
+
+    [SerializeField] private GameObject _AllMenuFromPause;
+
+
     [SerializeField] private GameObject _HotBarPrefab;
     public Toolbar toolbar;
     public Animator frontAnimator;
@@ -69,9 +77,8 @@ public class PlayerController : MonoBehaviour
         _PlayerActions.PlayerActionMap.Interact.canceled += OnInteractCancelled;
         _PlayerActions.PlayerActionMap.OpenInventory.performed += OnOpenInventory;
         _PlayerActions.Inventory.CloseInventory.performed += OnCloseInventory;
-        //_PlayerActions.PlayerActionMap.MenuOpenClose.performed += OnMenuOpen;
-        //_playerInput = GetComponent<PlayerInput>();
-        _menuOpenCloseAction = _PlayerActions.PlayerActionMap.MenuOpenClose;
+        //_menuOpenCloseAction = _PlayerActions.PlayerActionMap.MenuOpenClose;
+        _PlayerActions.PlayerActionMap.MenuOpenClose.performed += OnPauseMenuOpen;
         
     }
 
@@ -114,7 +121,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        MenuOpenCloseInput = _menuOpenCloseAction.WasPressedThisFrame();
+        //MenuOpenCloseInput = _menuOpenCloseAction.WasPressedThisFrame();
     }
 
     public void OnDisable()
@@ -123,12 +130,14 @@ public class PlayerController : MonoBehaviour
         _PlayerActions.PlayerActionMap.Interact.canceled -= OnInteractStart;
         _PlayerActions.PlayerActionMap.OpenInventory.performed -= OnOpenInventory;
         _PlayerActions.Inventory.CloseInventory.performed -= OnCloseInventory;
+        _PlayerActions.PlayerActionMap.MenuOpenClose.performed -= OnPauseMenuOpen;
 
         GameEventManager.instance.OnChangeGameState -= OnGameStateChanged;
         GameEventManager.instance.OnGivePlayerItems -= OnGainItems;
         GameEventManager.instance.OnRemovePlayerItems -= OnRemoveItems;
         GameEventManager.instance.OnPostInventoryOpen -= PostInventoryOpen;
         GameEventManager.instance.OnCloseMenu -= CloseInventory_Internal;
+        GameEventManager.instance.OnClosePauseMenu -= ClosePauseMenu;
     }
 
     protected void OnGameStateChanged(EGameState NewGameState, EGameState OldGameState)
@@ -146,6 +155,9 @@ public class PlayerController : MonoBehaviour
             case EGameState.MovementDisabledState:
                 _PlayerActions.PlayerActionMap.Enable();
                 _PlayerActions.PlayerMovementMap.Disable();
+                break;
+            case EGameState.QuitState:
+                Application.Quit();
                 break;
             default:
                 Debug.Log("Gamemanager::ChangeGameState unknown game state given");
@@ -261,6 +273,39 @@ public class PlayerController : MonoBehaviour
         _PlayerActions.Inventory.Enable();
     }
 
+
+    protected void OnPauseMenuOpen(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (!_PauseMenuPrefab.gameObject.activeSelf)
+            {
+
+                _PauseMenuPrefab.gameObject.SetActive(true);
+                OnGameStateChanged(EGameState.PauseState, EGameState.MainState);    
+                
+            }
+            else
+            {
+                OnPauseMenuClose();
+            }
+        }
+    }
+
+    public void OnPauseMenuClose()
+    {
+        OnGameStateChanged(EGameState.MainState, EGameState.PauseState);
+        GameEventManager.instance.ClosePauseMenu();
+        _PauseMenuPrefab.gameObject.SetActive(false);
+        //EventSystem.current.SetSelectedGameObject(null);
+        /*
+        foreach (Transform child in _PauseMenuPrefab.transform)
+        {
+            child.gameObject.SetActive(false);
+        }*/
+        
+    }
+
     protected void OnCloseInventory(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -274,6 +319,17 @@ public class PlayerController : MonoBehaviour
         _PlayerActions.PlayerActionMap.Enable();
         _PlayerActions.Inventory.Disable();
     }
+
+    
+    private void ClosePauseMenu()
+    {
+        _PlayerActions.PlayerMovementMap.Enable();
+        _PlayerActions.PlayerActionMap.Enable();
+        _PauseMenuPrefab.gameObject.SetActive(false);
+        // what to do here??
+    }
+
+
 
     public void OnGainItems(List<InventoryItemData> Items)
     {
@@ -289,5 +345,10 @@ public class PlayerController : MonoBehaviour
         {
             toolbar.ToolbarManager.RemoveItem(item);
         }
+    }
+
+    public void KillGame()
+    {
+        OnGameStateChanged(EGameState.QuitState, EGameState.MainState);
     }
 }
