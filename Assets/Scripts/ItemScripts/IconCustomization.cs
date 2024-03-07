@@ -11,12 +11,12 @@ public class IconCustomization : MonoBehaviour
     public void setFillingColor(Color color)
     {
         this.fillingColor = color;
-        //transform.Find("Filling").GetComponent<SpriteRenderer>().color = this.fillingColor;
+        transform.Find("Filling").GetComponent<Image>().color = this.fillingColor;
     }
 
     void Update()
     {
-        // For testing only
+        // For testing and showcase only, delete when ready to use 
         transform.Find("Filling").GetComponent<Image>().color = this.fillingColor;
     }
 
