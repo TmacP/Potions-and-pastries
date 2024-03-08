@@ -71,15 +71,6 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""MenuOpenClose"",
-                    ""type"": ""Button"",
-                    ""id"": ""e3fd73d6-5318-4040-9064-57237868d7e4"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -212,28 +203,6 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ToolbarScroll"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""896450d9-f40d-40dc-bcc9-818d4677088c"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""MenuOpenClose"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""55511209-0d22-4b9d-8754-b31c66ba686b"",
-                    ""path"": ""<Gamepad>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""MenuOpenClose"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -424,6 +393,65 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Menu"",
+            ""id"": ""32721adb-5a82-4a7c-9b73-7bb1b02f5d89"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""ba70af0e-2f73-40a1-bda9-9e929beab012"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MenuOpenClose"",
+                    ""type"": ""Button"",
+                    ""id"": ""cbd4288b-1984-40b6-9895-67e8bb44d53a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""096e47bb-c78c-4408-8517-e960c04aad22"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ea25166e-4b09-4fda-8b98-56726db093ba"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""MenuOpenClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98576b12-197f-487d-8abd-ecef4035dd3e"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""MenuOpenClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -458,7 +486,6 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         m_PlayerActionMap_SecondaryInteract = m_PlayerActionMap.FindAction("SecondaryInteract", throwIfNotFound: true);
         m_PlayerActionMap_OpenInventory = m_PlayerActionMap.FindAction("OpenInventory", throwIfNotFound: true);
         m_PlayerActionMap_ToolbarScroll = m_PlayerActionMap.FindAction("ToolbarScroll", throwIfNotFound: true);
-        m_PlayerActionMap_MenuOpenClose = m_PlayerActionMap.FindAction("MenuOpenClose", throwIfNotFound: true);
         // PlayerMovementMap
         m_PlayerMovementMap = asset.FindActionMap("PlayerMovementMap", throwIfNotFound: true);
         m_PlayerMovementMap_Move = m_PlayerMovementMap.FindAction("Move", throwIfNotFound: true);
@@ -466,6 +493,10 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
         m_Inventory_CloseInventory = m_Inventory.FindAction("CloseInventory", throwIfNotFound: true);
         m_Inventory_ControllerMove = m_Inventory.FindAction("ControllerMove", throwIfNotFound: true);
+        // Menu
+        m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+        m_Menu_Newaction = m_Menu.FindAction("New action", throwIfNotFound: true);
+        m_Menu_MenuOpenClose = m_Menu.FindAction("MenuOpenClose", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -532,7 +563,6 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActionMap_SecondaryInteract;
     private readonly InputAction m_PlayerActionMap_OpenInventory;
     private readonly InputAction m_PlayerActionMap_ToolbarScroll;
-    private readonly InputAction m_PlayerActionMap_MenuOpenClose;
     public struct PlayerActionMapActions
     {
         private @PlayerActions m_Wrapper;
@@ -542,7 +572,6 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         public InputAction @SecondaryInteract => m_Wrapper.m_PlayerActionMap_SecondaryInteract;
         public InputAction @OpenInventory => m_Wrapper.m_PlayerActionMap_OpenInventory;
         public InputAction @ToolbarScroll => m_Wrapper.m_PlayerActionMap_ToolbarScroll;
-        public InputAction @MenuOpenClose => m_Wrapper.m_PlayerActionMap_MenuOpenClose;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -567,9 +596,6 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @ToolbarScroll.started += instance.OnToolbarScroll;
             @ToolbarScroll.performed += instance.OnToolbarScroll;
             @ToolbarScroll.canceled += instance.OnToolbarScroll;
-            @MenuOpenClose.started += instance.OnMenuOpenClose;
-            @MenuOpenClose.performed += instance.OnMenuOpenClose;
-            @MenuOpenClose.canceled += instance.OnMenuOpenClose;
         }
 
         private void UnregisterCallbacks(IPlayerActionMapActions instance)
@@ -589,9 +615,6 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @ToolbarScroll.started -= instance.OnToolbarScroll;
             @ToolbarScroll.performed -= instance.OnToolbarScroll;
             @ToolbarScroll.canceled -= instance.OnToolbarScroll;
-            @MenuOpenClose.started -= instance.OnMenuOpenClose;
-            @MenuOpenClose.performed -= instance.OnMenuOpenClose;
-            @MenuOpenClose.canceled -= instance.OnMenuOpenClose;
         }
 
         public void RemoveCallbacks(IPlayerActionMapActions instance)
@@ -709,6 +732,60 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         }
     }
     public InventoryActions @Inventory => new InventoryActions(this);
+
+    // Menu
+    private readonly InputActionMap m_Menu;
+    private List<IMenuActions> m_MenuActionsCallbackInterfaces = new List<IMenuActions>();
+    private readonly InputAction m_Menu_Newaction;
+    private readonly InputAction m_Menu_MenuOpenClose;
+    public struct MenuActions
+    {
+        private @PlayerActions m_Wrapper;
+        public MenuActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Menu_Newaction;
+        public InputAction @MenuOpenClose => m_Wrapper.m_Menu_MenuOpenClose;
+        public InputActionMap Get() { return m_Wrapper.m_Menu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+        public void AddCallbacks(IMenuActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MenuActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MenuActionsCallbackInterfaces.Add(instance);
+            @Newaction.started += instance.OnNewaction;
+            @Newaction.performed += instance.OnNewaction;
+            @Newaction.canceled += instance.OnNewaction;
+            @MenuOpenClose.started += instance.OnMenuOpenClose;
+            @MenuOpenClose.performed += instance.OnMenuOpenClose;
+            @MenuOpenClose.canceled += instance.OnMenuOpenClose;
+        }
+
+        private void UnregisterCallbacks(IMenuActions instance)
+        {
+            @Newaction.started -= instance.OnNewaction;
+            @Newaction.performed -= instance.OnNewaction;
+            @Newaction.canceled -= instance.OnNewaction;
+            @MenuOpenClose.started -= instance.OnMenuOpenClose;
+            @MenuOpenClose.performed -= instance.OnMenuOpenClose;
+            @MenuOpenClose.canceled -= instance.OnMenuOpenClose;
+        }
+
+        public void RemoveCallbacks(IMenuActions instance)
+        {
+            if (m_Wrapper.m_MenuActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMenuActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MenuActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MenuActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MenuActions @Menu => new MenuActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -734,7 +811,6 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         void OnSecondaryInteract(InputAction.CallbackContext context);
         void OnOpenInventory(InputAction.CallbackContext context);
         void OnToolbarScroll(InputAction.CallbackContext context);
-        void OnMenuOpenClose(InputAction.CallbackContext context);
     }
     public interface IPlayerMovementMapActions
     {
@@ -744,5 +820,10 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     {
         void OnCloseInventory(InputAction.CallbackContext context);
         void OnControllerMove(InputAction.CallbackContext context);
+    }
+    public interface IMenuActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
+        void OnMenuOpenClose(InputAction.CallbackContext context);
     }
 }

@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
         _PlayerActions.PlayerActionMap.Enable();
         
         _PlayerActions.PlayerMovementMap.Enable();
+        _PlayerActions.Menu.Enable();
         _PlayerActions.Inventory.Disable();
         frontAnimator = transform.Find("F_BaseCharacter").GetComponent<Animator>();
         backAnimator = transform.Find("B_BaseCharacter").GetComponent<Animator>();
@@ -78,7 +79,7 @@ public class PlayerController : MonoBehaviour
         _PlayerActions.PlayerActionMap.OpenInventory.performed += OnOpenInventory;
         _PlayerActions.Inventory.CloseInventory.performed += OnCloseInventory;
         //_menuOpenCloseAction = _PlayerActions.PlayerActionMap.MenuOpenClose;
-        _PlayerActions.PlayerActionMap.MenuOpenClose.performed += OnPauseMenuOpen;
+        _PlayerActions.Menu.MenuOpenClose.performed += OnPauseMenuOpen;
         
     }
 
@@ -131,7 +132,7 @@ public class PlayerController : MonoBehaviour
         _PlayerActions.PlayerActionMap.Interact.canceled -= OnInteractStart;
         _PlayerActions.PlayerActionMap.OpenInventory.performed -= OnOpenInventory;
         _PlayerActions.Inventory.CloseInventory.performed -= OnCloseInventory;
-        _PlayerActions.PlayerActionMap.MenuOpenClose.performed -= OnPauseMenuOpen;
+        _PlayerActions.Menu.MenuOpenClose.performed -= OnPauseMenuOpen;
 
         GameEventManager.instance.OnChangeGameState -= OnGameStateChanged;
         GameEventManager.instance.OnGivePlayerItems -= OnGainItems;
@@ -284,8 +285,11 @@ public class PlayerController : MonoBehaviour
             {
 
                 _PauseMenuPrefab.gameObject.SetActive(true);
-                OnGameStateChanged(EGameState.PauseState, EGameState.MainState);    
+                OnGameStateChanged(EGameState.PauseState, EGameState.MainState);
                 
+                
+
+
             }
             else
             {
@@ -299,6 +303,7 @@ public class PlayerController : MonoBehaviour
         OnGameStateChanged(EGameState.MainState, EGameState.PauseState);
         GameEventManager.instance.ClosePauseMenu();
         _PauseMenuPrefab.gameObject.SetActive(false);
+      
         //EventSystem.current.SetSelectedGameObject(null);
         /*
         foreach (Transform child in _PauseMenuPrefab.transform)
