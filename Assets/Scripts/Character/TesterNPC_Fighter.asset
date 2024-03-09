@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7af16123f4600e458c7e531f27c5e05, type: 3}
-  m_Name: TesterNPC
+  m_Name: TesterNPC_Fighter
   m_EditorClassIdentifier: 
-  Name: Bartholomew
+  Name: Frank
+  Friendship: 0
+  Archetype: 3
   NPCLikes: 020000000a000000
   NPCDislikes: 0900000005000000
   image: {fileID: 0}
