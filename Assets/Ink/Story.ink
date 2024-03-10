@@ -1,8 +1,8 @@
 VAR class = ""
 VAR friendship = 0
 VAR name = ""
-VAR day = 0
-
+VAR day = 1
+VAR nextPathString = ""
 
 -> first_day
 //-> second_day // debug
@@ -11,9 +11,6 @@ VAR day = 0
 // FIRST DAY *****************************************
 // tutorial dialogue
 === first_day
-= fresh_day
-VAR nextPathString = "first_day.tutorial" // where we want to continue when we talk to npc
--> DONE
 
 = tutorial
 They say, "Hello, you must be the new owner. Would you like an explanation about running thing?"
@@ -39,7 +36,7 @@ They say, "Hello, you must be the new owner. Would you like an explanation about
 // SECOND DAY *****************************************
 // Introduce caracters and cave
 === second_day
-
+{ day < 2 : -> DONE}
 {
 - friendship >= 1:
     {
@@ -134,6 +131,7 @@ They say, "I'm Fighter {name}. So you decided to try running an inn, very bold o
 // THIRD DAY *****************************************
 // adventurers find the cave
 === third_day
+{ day < 3 : -> DONE}
 {
 - friendship >= 1:
     {
@@ -247,17 +245,20 @@ They say, "H"
 // FOURTH DAY *****************************************
 // adventurers find a monster gaurding treasure
 === fourth_day
+{ day < 4 : -> DONE}
 ~ nextPathString = "fifth_day"
 -> DONE
 
 // FIFTH DAY *****************************************
 // adventurers find a monster gaurding treasure
 === fifth_day
+{ day < 5 : -> DONE}
 ~ nextPathString = "sixth_day"
 -> DONE
 
 // SIXTH DAY *****************************************
 // adventurers defeat monster and get treasure END OF STORY
 === sixth_day
+{ day < 6 : -> DONE}
 
  -> END

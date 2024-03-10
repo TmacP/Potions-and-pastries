@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         GameEventManager.instance.OnUnlockRegion += OnUnlockRegion;
         GameEventManager.instance.OnDoorUnlocked += OnDoorUnlock;
 
-        GameDay = 0; // we start on day 0 for the tutorial
+        GameDay = 1; // we start on day 1 for the tutorial
     }
 
     // Update is called once per frame
