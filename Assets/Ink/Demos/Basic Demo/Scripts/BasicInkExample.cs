@@ -5,15 +5,26 @@ using UnityEngine.UI;
 
 // This is a super bare bones example of how to play and display a ink story in Unity.
 public class BasicInkExample : MonoBehaviour {
+	static public BasicInkExample instance;
 	bool DebugMode = false;
     public static event Action<Story> OnCreateStory;
 	
-    void Awake () {
-		// Remove the default message
-		RemoveChildren();
-		StartStory();
-	}
+	private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+        if(instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+			// Remove the default message
+			RemoveChildren();
+			StartStory();
+        }
 
+    }
 	// Creates a new Story object with the compiled story which we can then play!
 	void StartStory () {
 		story = new Story (inkJSONAsset.text);

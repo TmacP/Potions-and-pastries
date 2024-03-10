@@ -2,7 +2,7 @@ VAR class = ""
 VAR friendship = 0
 VAR name = ""
 VAR day = 1
-VAR nextPathString = "first_day.tutorial"
+VAR nextPathString = ""
 
 -> first_day
 //-> second_day // debug
@@ -11,8 +11,7 @@ VAR nextPathString = "first_day.tutorial"
 // FIRST DAY *****************************************
 // tutorial dialogue
 === first_day
-= fresh_day
--> DONE
+
 = tutorial
 They say, "Hello, you must be the new owner. Would you like an explanation about running thing?"
 
