@@ -1,4 +1,10 @@
--> first_day // normal 
+VAR class = ""
+VAR friendship = 0
+VAR name = ""
+VAR day = 0
+
+
+-> first_day
 //-> second_day // debug
 //-> third_day // debug
 
@@ -6,7 +12,6 @@
 // tutorial dialogue
 === first_day
 = fresh_day
-After a long trip from the city you finally reach your new inn. Standing outside you see someone hard at work
 VAR nextPathString = "first_day.tutorial" // where we want to continue when we talk to npc
 -> DONE
 
@@ -34,13 +39,7 @@ They say, "Hello, you must be the new owner. Would you like an explanation about
 // SECOND DAY *****************************************
 // Introduce caracters and cave
 === second_day
-// get the class of the npc [Rogue Magician Ranger Fighter] and our friendship lvl with them
-//VAR class = "Rogue"
-//VAR class = "Magician"
-//VAR class = "Ranger"
-VAR class = "Fighter"
-VAR friendship = 1
-VAR name = "Jane Doe"
+
 {
 - friendship >= 1:
     {
@@ -55,6 +54,7 @@ VAR name = "Jane Doe"
     }
     - else:
         "I don't trust strangers" 
+        -> finish
 }
 
 = Rogue
@@ -134,13 +134,6 @@ They say, "I'm Fighter {name}. So you decided to try running an inn, very bold o
 // THIRD DAY *****************************************
 // adventurers find the cave
 === third_day
-// get the class of the npc [Rogue Magician Ranger Fighter] and our friendship lvl with them
-//VAR class = "Rogue"
-//VAR class = "Magician"
-~ class = "Ranger"
-//~ class = "Fighter"
-~ friendship = 1
-~ name = "Jane Doe"
 {
 - friendship >= 1:
     {
@@ -155,6 +148,7 @@ They say, "I'm Fighter {name}. So you decided to try running an inn, very bold o
     }
     - else:
         "I don't trust strangers" 
+        -> finish
 }
 
 = Rogue

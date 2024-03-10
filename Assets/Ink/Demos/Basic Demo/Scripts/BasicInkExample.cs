@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 // This is a super bare bones example of how to play and display a ink story in Unity.
 public class BasicInkExample : MonoBehaviour {
+	bool DebugMode = true;
     public static event Action<Story> OnCreateStory;
 	
     void Awake () {
@@ -53,10 +54,18 @@ public class BasicInkExample : MonoBehaviour {
 // WE CONTINUE THE STORY WHEN TALK TO NPC *****************
 public void ContinueStory()
 {
-	Debug.Log("ContinueStory");
+	// here we set the variables in inkle for npc class friendship and name
+	story.variablesState["class"] = "Rogue";
+	story.variablesState["friendship"] = 0;
+	story.variablesState["name"] = "NPC";
+	story.variablesState["day"] = GameManager.Instance.GameDay;
+
+	if (DebugMode) {Debug.Log("Day: " + GameManager.Instance.GameDay); }
+
+	if (DebugMode) {Debug.Log("ContinueStory");}
 	// next path string is 
 	string nextPathString = (string) story.variablesState["nextPathString"];
-	Debug.Log("nextPathString: = " + nextPathString);
+	if (DebugMode) {Debug.Log("nextPathString: = " + nextPathString);}
 	story.ChoosePathString(nextPathString);
 	//story.ChoosePathString("first_day.tutorial"); // works but is hardcoded...
 	RefreshView();
