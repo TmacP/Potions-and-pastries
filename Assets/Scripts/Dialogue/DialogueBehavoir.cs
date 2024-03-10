@@ -6,6 +6,7 @@ using UnityEngine.Assertions;
 
 public class DialogueBehavoir : MonoBehaviour
 {
+    bool DebugMode = false;
 
     [SerializeField] public NPCDialogueState State;
     [SerializeField] public GameObject DialogueUI;
@@ -20,9 +21,10 @@ public class DialogueBehavoir : MonoBehaviour
 
     public void TryDialogue()
     {
-        Debug.Log("TryDialogue" + npcData);
+
         if (npcData != null)
         {
+        if (DebugMode) {Debug.Log("TryDialogue, npcData: " + npcData);}
         basicInkExample.ContinueStory(npcData); // WE CONTINUE THE STORY WHEN TALK TO NPC
         }
         

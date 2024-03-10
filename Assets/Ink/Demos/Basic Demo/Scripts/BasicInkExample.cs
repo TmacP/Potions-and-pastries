@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 // This is a super bare bones example of how to play and display a ink story in Unity.
 public class BasicInkExample : MonoBehaviour {
-	bool DebugMode = true;
+	bool DebugMode = false;
     public static event Action<Story> OnCreateStory;
 	
     void Awake () {
@@ -68,7 +68,7 @@ public void ContinueStory(NPCData npcData)
 	story.variablesState["name"] = npcData.Name;
 	story.variablesState["day"] = GameManager.Instance.GameDay;
 
-	// next path string is 
+	// next path string is to continue the story after a DONE
 	string nextPathString = (string) story.variablesState["nextPathString"];
 	if (DebugMode) {Debug.Log("nextPathString: = " + nextPathString);}
 	story.ChoosePathString(nextPathString);

@@ -2,7 +2,7 @@ VAR class = ""
 VAR friendship = 0
 VAR name = ""
 VAR day = 1
-VAR nextPathString = ""
+VAR nextPathString = "first_day.tutorial"
 
 -> first_day
 //-> second_day // debug
@@ -12,9 +12,7 @@ VAR nextPathString = ""
 // tutorial dialogue
 === first_day
 = fresh_day
-~ nextPathString = "first_day.tutorial" // where we want to continue when we talk to npc
 -> DONE
-{ day < 1 : -> DONE}
 = tutorial
 They say, "Hello, you must be the new owner. Would you like an explanation about running thing?"
 
@@ -32,14 +30,13 @@ They say, "Hello, you must be the new owner. Would you like an explanation about
 -> end_tutorial
 
 = end_tutorial
-~ nextPathString = "second_day"
 "Great, since you know what you're doing I'll leave you to it.", they reply.
+~ nextPathString = "second_day"
 -> DONE
 
 // SECOND DAY *****************************************
 // Introduce caracters and cave
 === second_day
-{ not first_day : -> first_day}
 { day < 2 : -> DONE}
 {
 - friendship >= 1:
