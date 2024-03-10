@@ -11,11 +11,10 @@ VAR nextPathString = ""
 // FIRST DAY *****************************************
 // tutorial dialogue
 === first_day
-
 = fresh_day
 ~ nextPathString = "first_day.tutorial" // where we want to continue when we talk to npc
 -> DONE
-{ day != 1 : -> DONE}
+{ day < 1 : -> DONE}
 = tutorial
 They say, "Hello, you must be the new owner. Would you like an explanation about running thing?"
 
@@ -33,14 +32,15 @@ They say, "Hello, you must be the new owner. Would you like an explanation about
 -> end_tutorial
 
 = end_tutorial
-"Great, since you know what you're doing I'll leave you to it.", they reply.
 ~ nextPathString = "second_day"
+"Great, since you know what you're doing I'll leave you to it.", they reply.
 -> DONE
 
 // SECOND DAY *****************************************
 // Introduce caracters and cave
 === second_day
-{ day != 2 : -> DONE}
+{ not first_day : -> first_day}
+{ day < 2 : -> DONE}
 {
 - friendship >= 1:
     {
@@ -135,7 +135,7 @@ They say, "I'm Fighter {name}. So you decided to try running an inn, very bold o
 // THIRD DAY *****************************************
 // adventurers find the cave
 === third_day
-{ day != 3 : -> DONE}
+{ day < 3 : -> DONE}
 {
 - friendship >= 1:
     {
@@ -249,20 +249,20 @@ They say, "H"
 // FOURTH DAY *****************************************
 // adventurers find a monster gaurding treasure
 === fourth_day
-{ day != 4 : -> DONE}
+{ day < 4 : -> DONE}
 ~ nextPathString = "fifth_day"
 -> DONE
 
 // FIFTH DAY *****************************************
 // adventurers find a monster gaurding treasure
 === fifth_day
-{ day != 5 : -> DONE}
+{ day < 5 : -> DONE}
 ~ nextPathString = "sixth_day"
 -> DONE
 
 // SIXTH DAY *****************************************
 // adventurers defeat monster and get treasure END OF STORY
 === sixth_day
-{ day != 6 : -> DONE}
+{ day < 6 : -> DONE}
 
  -> END

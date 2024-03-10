@@ -52,22 +52,27 @@ public class BasicInkExample : MonoBehaviour {
 	}
 
 // WE CONTINUE THE STORY WHEN TALK TO NPC *****************
-public void ContinueStory()
+public void ContinueStory(NPCData npcData)
 {
 	// here we set the variables in inkle for npc class friendship and name
-	story.variablesState["class"] = "Rogue";
-	story.variablesState["friendship"] = 0;
-	story.variablesState["name"] = "NPC";
+	if (DebugMode) {
+		Debug.Log("ContinueStory");
+		Debug.Log("Class: " + npcData.Archetype.ToString() );
+		Debug.Log("Friendship: " + npcData.Friendship);
+		Debug.Log("Name: " + npcData.Name);
+		Debug.Log("Day: " + GameManager.Instance.GameDay); 
+		}
+	// set the variables in inkle
+	story.variablesState["class"] = npcData.Archetype.ToString();
+	story.variablesState["friendship"] = npcData.Friendship;
+	story.variablesState["name"] = npcData.Name;
 	story.variablesState["day"] = GameManager.Instance.GameDay;
 
-	if (DebugMode) {Debug.Log("Day: " + GameManager.Instance.GameDay); }
-
-	if (DebugMode) {Debug.Log("ContinueStory");}
 	// next path string is 
 	string nextPathString = (string) story.variablesState["nextPathString"];
 	if (DebugMode) {Debug.Log("nextPathString: = " + nextPathString);}
 	story.ChoosePathString(nextPathString);
-	//story.ChoosePathString("first_day.tutorial"); // works but is hardcoded...
+
 	RefreshView();
 
 }
