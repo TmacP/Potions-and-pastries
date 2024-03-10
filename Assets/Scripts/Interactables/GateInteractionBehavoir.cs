@@ -11,6 +11,7 @@ public class GateInteractionBehavoir : MonoBehaviour, IInteractable
     public EGameRegion BlockedRegion = EGameRegion.None;
     public int OpenCost = 10;
     public int ID = -1;
+    public bool fence_rotation;
 
 
     public bool bGateOpen;
@@ -59,17 +60,25 @@ public class GateInteractionBehavoir : MonoBehaviour, IInteractable
             
             int LayerIndex = LayerMask.NameToLayer("Interact");
             this.gameObject.layer &= (0x1 << LayerIndex);
-            if (GateComponent != null)
+            if (GateComponent != null && !fence_rotation)
             {
 
                 GateComponent.transform.rotation = Quaternion.Euler(0, 90, 0);
             }
+            else if (GateComponent != null && fence_rotation)
+            {
+                GateComponent.transform.localRotation = Quaternion.Euler(0, 180, 0);
+            }
         }
         else
         {
-            if (GateComponent != null)
+            if (GateComponent != null && !fence_rotation)
             {
-                GateComponent.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                GateComponent.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if (GateComponent != null && fence_rotation)
+            {
+                GateComponent.transform.localRotation = Quaternion.Euler(0, 90, 0);
 
             }
         }
