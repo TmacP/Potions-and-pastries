@@ -17,6 +17,18 @@ public class GateInteractionBehavoir : MonoBehaviour, IInteractable
     public bool bGateOpen;
     [SerializeField] private GameObject GateComponent; //This is the component we should rotate to open the gate
 
+    // Singleton instance of BasicInkExample
+    private static BasicInkExample _inkInstance;
+    public static BasicInkExample InkInstance
+    {
+        get
+        {
+            if (_inkInstance == null)
+                _inkInstance = FindObjectOfType<BasicInkExample>();
+            return _inkInstance;
+        }
+    }
+
 //************ Start of IINteractable Interface***********
     public string InteractionPrompt => "Unlock " + BlockedRegion.ToString();
 
@@ -49,6 +61,10 @@ public class GateInteractionBehavoir : MonoBehaviour, IInteractable
         if(ID == GateID)
         {
             SetGateState(true);
+            // set our inkle gate var to open
+            if (InkInstance != null){
+            InkInstance.OpenGate(ID);
+            }
         }
     }
 

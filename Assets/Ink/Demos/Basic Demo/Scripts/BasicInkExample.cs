@@ -6,7 +6,7 @@ using UnityEngine.UI;
 // This is a super bare bones example of how to play and display a ink story in Unity.
 public class BasicInkExample : MonoBehaviour {
 	static public BasicInkExample instance;
-	bool DebugMode = false;
+	bool DebugMode = true;
     public static event Action<Story> OnCreateStory;
 	
 	private void Awake()
@@ -61,6 +61,28 @@ public class BasicInkExample : MonoBehaviour {
 			}
 		}
 	}
+
+public void OpenGate(int GateID)
+{
+	if (DebugMode) {Debug.Log("OpenGate" + GateID);}
+
+	if (GateID == 0) {
+	story.variablesState["appleGate"] = true;
+	}
+
+	if (GateID == 1) {
+	story.variablesState["cherryGate"] = true;
+	}
+
+	if (GateID == 2) {
+	story.variablesState["vanillaGate"] = true;
+	}
+
+	if (GateID == 3) {
+	story.variablesState["chocolateGate"] = true;
+	}
+
+}
 
 // WE CONTINUE THE STORY WHEN TALK TO NPC *****************
 public void ContinueStory(NPCData npcData)

@@ -4,6 +4,13 @@ VAR name = ""
 VAR day = 1
 VAR nextPathString = ""
 
+// Are our 4 gates open?
+VAR appleGate = false
+VAR cherryGate = false
+VAR vanillaGate = false
+VAR chocolateGate = false
+
+
 -> first_day
 //-> second_day // debug
 //-> third_day // debug
