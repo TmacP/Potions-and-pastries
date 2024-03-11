@@ -93,13 +93,18 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
     // Update is called once per frame
     void Update()
     {
-        //   Debug.Log(NPCState);
-        //Debug.Log(Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Table").transform.position));
+        //  Debug.Log(foundTable);
+        //Debug.Log(Vector3.Distance(agent.transform.position, destination));
 
-        Debug.Log(pointSet);
-        if (Vector3.Distance(transform.position, destination) < 10 && pointSet)
+        //Debug.Log(pointSet);
+        if (Vector3.Distance(agent.transform.position, destination) < 10 && pointSet)
         {
             pointSet = false;
+            WaitSecChangeState(0, NPCState);
+        }
+        if (Vector3.Distance(agent.transform.position, destination) < 0.5 && foundTable)
+        {
+        //    Debug.Log("HIT");
             WaitSecChangeState(0, NPCState);
         }
 
@@ -210,10 +215,15 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         if (foundTable)
         {
             agent.SetDestination(destination);
-            if (Vector3.Distance(transform.position, destination) < 200) //&& agent.transform.position == destination)
+            //Debug.Log(Vector3.Distance(agent.transform.position, destination) < 0.5);
+
+            //not hitting here for some reason???????????????? Stays stuck at table
+            if (Vector3.Distance(agent.transform.position, destination) < 0.5)
             {
+                Debug.Log("Made it here");
+                foundTable = false; ///TEMP
                 WaitSecChangeState(3, ENPCState.WaitForOrder);
-       //         foundTable = false; ///TEMP
+
             }
         }
 
@@ -248,7 +258,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         {
             agent.SetDestination(destination);
 
-            if (Vector3.Distance(transform.position, destination) < 20)
+            if (Vector3.Distance(agent.transform.position, destination) < 20)
             {
                 WaitSecChangeState(3, ENPCState.Leaving);
                 //         foundTable = false; ///TEMP
