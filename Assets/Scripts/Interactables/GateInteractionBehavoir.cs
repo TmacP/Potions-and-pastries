@@ -56,12 +56,10 @@ public class GateInteractionBehavoir : MonoBehaviour, IInteractable
         bGateOpen = Open;
         if (bGateOpen)
         {
-            
             int LayerIndex = LayerMask.NameToLayer("Interact");
             this.gameObject.layer &= (0x1 << LayerIndex);
             if (GateComponent != null)
             {
-
                 GateComponent.transform.rotation = Quaternion.Euler(0, 90, 0);
             }
         }
@@ -70,12 +68,7 @@ public class GateInteractionBehavoir : MonoBehaviour, IInteractable
             if (GateComponent != null)
             {
                 GateComponent.transform.localRotation = Quaternion.Euler(0, 0, 0);
-
             }
         }
-        
-
     }
-
-   
 }

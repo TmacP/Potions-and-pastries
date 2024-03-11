@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -10,7 +11,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerClickHandler, 
     public Image image;
     public Color selectedColor, notSelectedColor;
     public InventoryManager inventoryManager;
-
+    
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
@@ -75,10 +76,39 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerClickHandler, 
 
     public void OnDrop(PointerEventData eventData)
     {
+        GameObject dropped = eventData.pointerDrag;
+        DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
+
+        if (transform.childCount > 0)
+        {
+            DraggableItem Item = GetComponentInChildren<DraggableItem>();
+            Assert.IsTrue(Item != null);
+            if(InventoryItemData.IsEquivalent(Item.ItemData, draggableItem.ItemData))
+            {
+                int NewStack = Item.ItemData.CurrentStackCount + draggableItem.ItemData.CurrentStackCount;
+                if(NewStack > inventoryManager.maxStack)
+                {
+                    Item.ItemData.CurrentStackCount = inventoryManager.maxStack;
+                    draggableItem.ItemData.CurrentStackCount = NewStack - inventoryManager.maxStack;
+                }
+                else
+                {
+                    Item.ItemData.CurrentStackCount = NewStack;
+                    draggableItem.ItemData.CurrentStackCount = 0;
+                }
+                if(draggableItem.ItemData.CurrentStackCount <= 0)
+                {
+                    draggableItem.inventoryManager.RemoveItem(draggableItem.ItemData, true);
+                    //this.inventoryManager.AddItemAtIndex(draggableItem.ItemData, Array.IndexOf(inventoryManager.inventorySlots, this));
+                }
+                Destroy(draggableItem.gameObject);
+                GameEventManager.instance.RefreshInventory();
+            }
+        }
+        else
         if (transform.childCount == 0) // Check if theres nothing underneath the item
         {
-            GameObject dropped = eventData.pointerDrag;
-            DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
+            
 
             if (draggableItem.inventoryManager == this.inventoryManager)
             {

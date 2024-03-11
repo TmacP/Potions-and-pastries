@@ -22,16 +22,7 @@ public class Toolbar : MonoBehaviour
             if(PlayerController.instance._PlayerActions.PlayerActionMap.enabled)
             {
                 Vector2 Scroll = PlayerController.instance._PlayerActions.PlayerActionMap.ToolbarScroll.ReadValue<Vector2>();
-
-                if(Scroll.y > 0.1)
-                {
-                    ToolbarManager.ChangeSelectedSlot(1);
-                }
-                else if(Scroll.y < -0.1)
-                {
-                    ToolbarManager.ChangeSelectedSlot(-1);
-                }
-
+                UpdateScrollSlot(Scroll.y);
             }
         }
     }
@@ -60,5 +51,18 @@ public class Toolbar : MonoBehaviour
     virtual public bool UseSelectedItem()
     {
         return ToolbarManager.UseItem(ToolbarManager.selectedSlot);
+    }
+
+
+    virtual public void UpdateScrollSlot(float ScrollValue)
+    {
+        if (ScrollValue > 0.1)
+        {
+            ToolbarManager.ChangeSelectedSlot(1);
+        }
+        else if (ScrollValue < -0.1)
+        {
+            ToolbarManager.ChangeSelectedSlot(-1);
+        }
     }
 }

@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
             Instance = this;
             PlayerState.Inventory.Clear();
             PlayerState.ToolBar.Clear();
+            PlayerState.CardHand.Clear();
+            PlayerState.Deck.Clear();
+            PlayerState.Discard.Clear();
         }
     }
 
@@ -87,11 +90,15 @@ public class GameManager : MonoBehaviour
     {
         if(GameState == NewGameState) { return; }
 
-        GameEventManager.instance.ChangeGameState(NewGameState, GameState);
         switch (NewGameState) 
         {
             case EGameState.MainState:
                 Time.timeScale = 1.0f;
+                PlayerController.instance.GetComponent<DeckManager>().OnChangeGameScene(NewGameState);
+                break;
+            case EGameState.NightState:
+                Time.timeScale = 1.0f; 
+                PlayerController.instance.GetComponent<DeckManager>().FlattenDeckInventory();
                 break;
             case EGameState.PauseState:
                 Time.timeScale = 0.0f;
@@ -104,6 +111,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
         GameState = NewGameState;
+        GameEventManager.instance.ChangeGameState(NewGameState, GameState);
     }
 
     public EGameState GetGameState()

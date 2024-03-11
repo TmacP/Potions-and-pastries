@@ -44,7 +44,6 @@ public class DeckBuildingScreen : MonoBehaviour
         if(GameManager.Instance.GetGameScene() == EGameScene.InnInterior)
         {
             GameManager.Instance.ChangeGameState(EGameState.NightState);
-            Debug.Log(GameManager.Instance.GetGameState());
             GameEventManager.instance.CloseMenu();
         }
     }

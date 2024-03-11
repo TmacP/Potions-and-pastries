@@ -56,6 +56,10 @@ public class InventoryItemData
         {
             return false;
         }
+        if( lhs.CurrentItemTags == null || rhs.CurrentItemTags == null)
+        {
+            return false;
+        }
         if (!lhs.CurrentItemTags.SequenceEqual(rhs.CurrentItemTags))
         {
             return false;

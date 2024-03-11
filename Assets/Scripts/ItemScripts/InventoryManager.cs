@@ -253,6 +253,13 @@ public class InventoryManager : MonoBehaviour
                     //This is a bug since we can get stacks bigger than 5
                     InvData.CurrentStackCount+= item.CurrentStackCount;
 
+                    if(InvData.CurrentStackCount > maxStack)
+                    {
+                        int Excess = InvData.CurrentStackCount - maxStack;
+                        InventoryItemData ExcessItem = new InventoryItemData(item.Data, -1, Excess);
+                        AddItem(ExcessItem);
+                    }
+
                     DraggableItem itemInSlot = inventorySlots[InvData.InventoryIndex].GetComponent<DraggableItem>();
                     if(itemInSlot != null)
                     {
@@ -409,6 +416,15 @@ public class InventoryManager : MonoBehaviour
         }
         return null;
 
+    }
+
+    public InventorySlot GetSlotByIndex(int SlotIndex)
+    {
+        if(SlotIndex >= 0 && SlotIndex < inventorySlots.Length)
+        {
+            return inventorySlots[SlotIndex];
+        }
+        return null;
     }
 
     public bool UseItem(int ItemIndex)

@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
+using UnityEngine.XR;
 
 public enum ECardActionType
 {
@@ -31,12 +34,37 @@ public class DeckManager : MonoBehaviour
     {
         Deck = GameManager.Instance.PlayerState.Deck;
         Discard = GameManager.Instance.PlayerState.Discard;
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void OnChangeGameScene(EGameState NewState)
+    {
+        CleanDeck();
+
+        if (NewState == EGameState.MainState)
+        {
+            RecombineDeck();
+        }
+        else if(NewState == EGameState.NightState)
+        {
+            FlattenDeckInventory();
+        }
+    }
+
+    public void CleanDeck()
+    {
+        List<InventoryItemData> Hand = GameManager.Instance.PlayerState.CardHand;
+        Deck.AddRange(Hand);
+        Deck.AddRange(Discard);
+        Discard.Clear();
+        Hand.Clear();
     }
 
 
@@ -56,11 +84,67 @@ public class DeckManager : MonoBehaviour
 
     public InventoryItemData DrawCard()
     {
+        int prelength = Deck.Count;
         if(Deck.Count <= 0) 
             return null;
         InventoryItemData returnCard = Deck[0];
         Deck.RemoveAt(0);
         return returnCard;
+    }
+
+    public void DiscardToDeck()
+    {
+        Deck.AddRange(Discard);
+        Discard.Clear();
+    }
+
+    public void FlattenDeckInventory()
+    {
+        
+        List<InventoryItemData> NewDeck = new List<InventoryItemData>();
+        for(int i = 0; i < Deck.Count; i++)
+        {
+            InventoryItemData Item = Deck[i];
+            for(int j = 0; j < Item.CurrentStackCount; j++)
+            {
+                InventoryItemData NewCard = new InventoryItemData(Item.Data, -1, 1, true);
+                NewDeck.Add(NewCard);
+            }
+        }
+
+
+        GameManager.Instance.PlayerState.Deck.Clear();
+        foreach(InventoryItemData Item in NewDeck)
+        {
+            GameManager.Instance.PlayerState.Deck.Add(Item);
+        }
+    }
+
+    public void RecombineDeck()
+    {
+        Dictionary<ItemData, InventoryItemData> NewDeckMap = new Dictionary<ItemData, InventoryItemData>();
+
+        foreach(InventoryItemData Item in Deck)
+        {
+            InventoryItemData NewItem = null;
+            ;
+            if(NewDeckMap.TryGetValue(Item.Data, out NewItem) && NewItem != null)
+            {
+                Assert.IsTrue(Item.CurrentStackCount == 1);
+                NewItem.CurrentStackCount += Item.CurrentStackCount;
+            }
+            else
+            {
+                InventoryItemData NewCard = new InventoryItemData(Item.Data, Item.InventoryIndex, 1, true);
+                NewDeckMap.Add(NewCard.Data, NewCard);
+            }
+        }
+
+        GameManager.Instance.PlayerState.Deck.Clear();
+        foreach(KeyValuePair<ItemData, InventoryItemData> Pair in NewDeckMap)
+        {
+            GameManager.Instance.PlayerState.Deck.Add(Pair.Value);
+        }
     }
 }
 

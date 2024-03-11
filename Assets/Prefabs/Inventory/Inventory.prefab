@@ -456,7 +456,7 @@ MonoBehaviour:
   draggableItemPrefab: {fileID: 2154762147796331838, guid: 8d8f37d06e71ff04b820b162ae62679d, type: 3}
   InventoryDataRef: []
   mainInventoryGroup: {fileID: 3414011958575405660}
-  maxStack: 5
+  maxStack: 2
   selectedSlot: -1
   CloseOnCloseMenuEvent: 1
 --- !u!1 &4527122260259098906
