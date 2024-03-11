@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TesterNPC_Ranger
   m_EditorClassIdentifier: 
   Name: Rosy
-  Friendship: 0
+  Friendship: 1
   Archetype: 2
   NPCLikes: 020000000a000000
   NPCDislikes: 0900000005000000
