@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5096247496245929197}
   - component: {fileID: 8155918108347347979}
   - component: {fileID: 5448167487042274276}
-  - component: {fileID: 3566021603364306825}
   - component: {fileID: 2616642736277170745}
   m_Layer: 5
   m_Name: Inkle
@@ -84,23 +83,10 @@ MonoBehaviour:
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
-  m_ChildControlHeight: 0
+  m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &3566021603364306825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2846967590237626825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ce0d8573e1b2ff42af74cb80f3e5ece, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  key: 27
 --- !u!114 &2616642736277170745
 MonoBehaviour:
   m_ObjectHideFlags: 0

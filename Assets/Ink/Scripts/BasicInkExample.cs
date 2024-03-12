@@ -47,6 +47,9 @@ public class BasicInkExample : MonoBehaviour {
 			text = text.Trim();
 			// Display the text on screen!
 			CreateContentView(text);
+
+			// set time to 0
+			//Time.timeScale = 0;
 		}
 
 		// Display all the choices, if there are any!
@@ -148,16 +151,10 @@ public void ContinueStory(NPCData npcData)
 		}
 	}
 
-	[SerializeField]
-	private TextAsset inkJSONAsset = null;
+	[SerializeField] private TextAsset inkJSONAsset = null;
 	public Story story;
-
-	[SerializeField]
-	private Canvas canvas = null;
-
+	[SerializeField] private Canvas canvas = null;
 	// UI Prefabs
-	[SerializeField]
-	private Text textPrefab = null;
-	[SerializeField]
-	private Button buttonPrefab = null;
+	[SerializeField] private Text textPrefab = null;
+	[SerializeField] private Button buttonPrefab = null;
 }

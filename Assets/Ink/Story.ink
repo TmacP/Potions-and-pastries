@@ -18,6 +18,10 @@ VAR chocolateGate = false
 // FIRST DAY *****************************************
 // tutorial dialogue
 === first_day
+It is the start of something wonderful
+~ nextPathString = "first_day.tutorial"
+-> DONE
+
 
 = tutorial
 They say, "Hello, you must be the new owner. Would you like an explanation about running thing?"
