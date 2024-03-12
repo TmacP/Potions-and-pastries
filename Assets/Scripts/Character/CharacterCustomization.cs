@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
+
 
 public class CharacterCustomization : MonoBehaviour
 {
@@ -8,69 +10,38 @@ public class CharacterCustomization : MonoBehaviour
     private Transform backCharacter;
 
     // Hat variables
-    public int positionHat;
+    public string nameHat;
     public Color colorHat;
-    [SerializeField] public List<Sprite> frontCharacterHats;
-    [SerializeField] public List<Sprite> backCharacterHats;
 
     // Hair/Brow variables 
-    public int positionHair;
+    public string nameHair;
     public Color colorHair;
-    [SerializeField] public List<Sprite> frontCharacterHair;
-    [SerializeField] public List<Sprite> backCharacterHair;
 
     // Eye variables
-    public int positionEye;
-    [SerializeField] public List<Sprite> rightCharacterEye;
-    [SerializeField] public List<Sprite> leftCharacterEye;
+    public string nameEye;
 
     // Nose variables
-    public int positionNose;
+    public string nameNose;
     public Color colorNose;
-    [SerializeField] public List<Sprite> frontCharacterNose;
 
     // Mouth variables 
-    public int positionMouth;
-    [SerializeField] public List<Sprite> frontCharacterMouth;
+    public string nameMouth;
 
     // Skin variables
     public Color colorSkin;
 
     // Top variables
-    public int positionTops;
+    public string nameTorso;
+    public string nameArm;
     public Color colorTop;
-    //      FrontSprites
-    [SerializeField] public List<Sprite> frontCharacterTorso;
-    [SerializeField] public List<Sprite> frontCharacterRightUpperArm;
-    [SerializeField] public List<Sprite> frontCharacterRightLowerArm;
-    [SerializeField] public List<Sprite> frontCharacterLeftUpperArm;
-    [SerializeField] public List<Sprite> frontCharacterLeftLowerArm;
-    //      BackSprites
-    [SerializeField] public List<Sprite> backCharacterTorso;
-    [SerializeField] public List<Sprite> backCharacterRightUpperArm;
-    [SerializeField] public List<Sprite> backCharacterRightLowerArm;
-    [SerializeField] public List<Sprite> backCharacterLeftUpperArm;
-    [SerializeField] public List<Sprite> backCharacterLeftLowerArm;
-
+    
     // Bottom variables 
-    public int positionBottoms;
+    public string nameBottom;
     public Color colorBottom;
-    //      FrontSprites
-    [SerializeField] public List<Sprite> frontCharacterPelvis;
-    [SerializeField] public List<Sprite> frontCharacterRightUpperLeg;
-    [SerializeField] public List<Sprite> frontCharacterLeftUpperLeg;
-    //      BackSprites
-    [SerializeField] public List<Sprite> backCharacterPelvis;
-    [SerializeField] public List<Sprite> backCharacterRightUpperLeg;
-    [SerializeField] public List<Sprite> backCharacterLeftUpperLeg;
 
     // Shoe variables
-    public int positionShoes;
+    public string nameShoes;
     public Color colorShoe;
-    [SerializeField] public List<Sprite> frontCharacterRightLowerLeg;
-    [SerializeField] public List<Sprite> frontCharacterLeftLowerLeg;
-    [SerializeField] public List<Sprite> backCharacterRightLowerLeg;
-    [SerializeField] public List<Sprite> backCharacterLeftLowerLeg;
 
     void Awake()
     {
@@ -78,23 +49,11 @@ public class CharacterCustomization : MonoBehaviour
         backCharacter = transform.Find("B_BaseCharacter");
     }
 
-    public void setHat(int pos)
+    public void setHat(string hatName)
     {
-        if (pos > this.frontCharacterHats.Count)
-        {
-            Debug.Log("Error: Character hat int position (" + pos + " ) exceeds list of front wearable hats ("+ this.frontCharacterHats.Count + ")!");
-        }
-        else if (pos > this.backCharacterHats.Count)
-        {
-            Debug.Log("Error: Character hat int position (" + pos + " ) exceeds list of back wearable hats (" + this.backCharacterHats.Count + ")!");
-        }
-        else
-        {
-            this.positionHat = pos;
-            frontCharacter.transform.Find("Hat").GetComponent<SpriteRenderer>().sprite = this.frontCharacterHats[this.positionHat];
-            backCharacter.transform.Find("Hat").GetComponent<SpriteRenderer>().sprite = this.backCharacterHats[this.positionHat];
-            
-        }
+         this.nameHat = hatName;
+         frontCharacter.transform.Find("Hat").GetComponent<SpriteResolver>().SetCategoryAndLabel("FrontHat", this.nameHat);
+         backCharacter.transform.Find("Hat").GetComponent<SpriteResolver>().SetCategoryAndLabel("BackHat", this.nameHat);
     } 
 
     public void setHatColor(Color color)
@@ -115,22 +74,11 @@ public class CharacterCustomization : MonoBehaviour
         }
     }
 
-    public void setHair(int pos)
+    public void setHair(string hairName)
     {
-        if (pos > this.frontCharacterHair.Count)
-        {
-            Debug.Log("Error: Character hair int position (" + pos + " ) exceeds list of front wearable hair (" + this.frontCharacterHair.Count + ")!");
-        }
-        else if (pos > this.backCharacterHair.Count)
-        {
-            Debug.Log("Error: Character hair int position (" + pos + " ) exceeds list of back wearable hair (" + this.backCharacterHair.Count + ")!");
-        }
-        else
-        {
-            this.positionHair = pos;
-            frontCharacter.transform.Find("Hair").GetComponent<SpriteRenderer>().sprite = this.frontCharacterHair[this.positionHair];
-            backCharacter.transform.Find("Hair").GetComponent<SpriteRenderer>().sprite = this.backCharacterHair[this.positionHair];
-        }
+        this.nameHair = hairName;
+        frontCharacter.transform.Find("Hair").GetComponent<SpriteResolver>().SetCategoryAndLabel("FrontHair", this.nameHair);
+        backCharacter.transform.Find("Hair").GetComponent<SpriteResolver>().SetCategoryAndLabel("BackHair", this.nameHair);
     }
 
     public void setHairColor(Color color)
@@ -153,35 +101,17 @@ public class CharacterCustomization : MonoBehaviour
         }
     }
 
-    public void setEyes(int pos)
+    public void setEyes(string eyeName)
     {
-        if (pos > this.rightCharacterEye.Count)
-        {
-            Debug.Log("Error: Character right eye int position (" + pos + " ) exceeds list of right eyes (" + this.rightCharacterEye.Count + ")!");
-        }
-        else if (pos > this.leftCharacterEye.Count)
-        {
-            Debug.Log("Error: Character left eye int position (" + pos + " ) exceeds list of left eyes (" + this.leftCharacterEye.Count + ")!");
-        }
-        else
-        {
-            this.positionEye = pos;
-            frontCharacter.transform.Find("R_Eye").GetComponent<SpriteRenderer>().sprite = this.rightCharacterEye[this.positionEye];
-            frontCharacter.transform.Find("L_Eye").GetComponent<SpriteRenderer>().sprite = this.leftCharacterEye[this.positionEye];
-        }
+        this.nameEye = eyeName;
+        frontCharacter.transform.Find("R_Eye").GetComponent<SpriteResolver>().SetCategoryAndLabel("RightEye", this.nameEye);
+        frontCharacter.transform.Find("L_Eye").GetComponent<SpriteResolver>().SetCategoryAndLabel("LeftEye", this.nameEye);
     }
 
-    public void setNose(int pos)
+    public void setNose(string noseName)
     {
-        if (pos > this.frontCharacterNose.Count)
-        {
-            Debug.Log("Error: Character nose int position (" + pos + " ) exceeds list of front wearable noses (" + this.frontCharacterNose.Count + ")!");
-        }
-        else
-        {
-            this.positionNose = pos;
-            frontCharacter.transform.Find("Nose").GetComponent<SpriteRenderer>().sprite = this.frontCharacterNose[this.positionNose];
-        }
+        this.nameNose = noseName;
+        frontCharacter.transform.Find("Nose").GetComponent<SpriteResolver>().SetCategoryAndLabel("Nose", this.nameNose);
     }
 
     public void setNoseColor(Color color)
@@ -197,17 +127,10 @@ public class CharacterCustomization : MonoBehaviour
         }
     }
 
-    public void setMouth(int pos)
+    public void setMouth(string mouthName)
     {
-        if (pos > this.frontCharacterMouth.Count)
-        {
-            Debug.Log("Error: Character mouth int position (" + pos + " ) exceeds list of front wearable mouthes (" + this.frontCharacterMouth.Count + ")!");
-        }
-        else
-        {
-            this.positionMouth = pos;
-            frontCharacter.transform.Find("Mouth").GetComponent<SpriteRenderer>().sprite = this.frontCharacterMouth[this.positionMouth];
-        }
+        this.nameMouth = mouthName;
+        frontCharacter.transform.Find("Mouth").GetComponent<SpriteResolver>().SetCategoryAndLabel("Mouth", this.nameMouth);
     }
 
     public void setSkinColor(Color color)
@@ -264,36 +187,26 @@ public class CharacterCustomization : MonoBehaviour
         }
     } 
 
-    public void setTop(int pos)
+    public void setTorso(string torsoName)
     {
-        if (pos > this.frontCharacterTorso.Count || pos > this.backCharacterTorso.Count)
-        {
-            Debug.Log("Error: Character torso int position exceeds list of front or back wearable torsos!");
-        }
-        else if (pos > this.frontCharacterRightUpperArm.Count || pos > this.backCharacterRightUpperArm.Count || pos > this.frontCharacterRightLowerArm.Count || pos > this.backCharacterRightLowerArm.Count)
-        {
-            Debug.Log("Error: Character right arm(upper or lower) int position exceeds list of front or back wearable right arms (upper or lower)!");
-        } 
-        else if (pos > this.frontCharacterLeftUpperArm.Count || pos > this.backCharacterLeftUpperArm.Count || pos > this.frontCharacterLeftLowerArm.Count || pos > this.backCharacterLeftLowerArm.Count)
-        {
-            Debug.Log("Error: Character left arm(upper or lower) int position exceeds list of front or back wearable left arms (upper or lower)!");
-        }
-        else
-        {
-            this.positionTops = pos;
-            frontCharacter.transform.Find("Torso").GetComponent<SpriteRenderer>().sprite = this.frontCharacterTorso[this.positionTops];
-            backCharacter.transform.Find("Torso").GetComponent<SpriteRenderer>().sprite = this.backCharacterTorso[this.positionTops];
+        this.nameTorso = torsoName;
+        frontCharacter.transform.Find("Torso").GetComponent<SpriteResolver>().SetCategoryAndLabel("FrontTorso", this.nameTorso);
+        backCharacter.transform.Find("Torso").GetComponent<SpriteResolver>().SetCategoryAndLabel("BackTorso", this.nameTorso);
+    }
 
-            frontCharacter.transform.Find("R_UpperArm").GetComponent<SpriteRenderer>().sprite = this.frontCharacterRightUpperArm[this.positionTops];
-            backCharacter.transform.Find("R_UpperArm").GetComponent<SpriteRenderer>().sprite = this.backCharacterRightUpperArm[this.positionTops];
-            frontCharacter.transform.Find("R_LowerArm").GetComponent<SpriteRenderer>().sprite = this.frontCharacterRightLowerArm[this.positionTops];
-            backCharacter.transform.Find("R_LowerArm").GetComponent<SpriteRenderer>().sprite = this.backCharacterRightLowerArm[this.positionTops];
+    public void setArm(string armName)
+    {
+        this.nameArm = armName;
 
-            frontCharacter.transform.Find("L_UpperArm").GetComponent<SpriteRenderer>().sprite = this.frontCharacterLeftUpperArm[this.positionTops];
-            backCharacter.transform.Find("L_UpperArm").GetComponent<SpriteRenderer>().sprite = this.backCharacterLeftUpperArm[this.positionTops];
-            frontCharacter.transform.Find("L_LowerArm").GetComponent<SpriteRenderer>().sprite = this.frontCharacterLeftLowerArm[this.positionTops];
-            backCharacter.transform.Find("L_LowerArm").GetComponent<SpriteRenderer>().sprite = this.backCharacterLeftLowerArm[this.positionTops];
-        }
+        frontCharacter.transform.Find("R_UpperArm").GetComponent<SpriteResolver>().SetCategoryAndLabel("FrontRightUpperArm", this.nameArm);
+        backCharacter.transform.Find("R_UpperArm").GetComponent<SpriteResolver>().SetCategoryAndLabel("BackRightUpperArm", this.nameArm);
+        frontCharacter.transform.Find("R_LowerArm").GetComponent<SpriteResolver>().SetCategoryAndLabel("FrontRightLowerArm", this.nameArm);
+        backCharacter.transform.Find("R_LowerArm").GetComponent<SpriteResolver>().SetCategoryAndLabel("BackRightLowerArm", this.nameArm);
+
+        frontCharacter.transform.Find("L_UpperArm").GetComponent<SpriteResolver>().SetCategoryAndLabel("FrontLeftUpperArm", this.nameArm);
+        backCharacter.transform.Find("L_UpperArm").GetComponent<SpriteResolver>().SetCategoryAndLabel("BackLeftUpperArm", this.nameArm);
+        frontCharacter.transform.Find("L_LowerArm").GetComponent<SpriteResolver>().SetCategoryAndLabel("FrontLeftLowerArm", this.nameArm);
+        backCharacter.transform.Find("L_LowerArm").GetComponent<SpriteResolver>().SetCategoryAndLabel("BackLeftLowerArm", this.nameArm);
     }
 
     public void setBottomColor(Color color)
@@ -320,32 +233,17 @@ public class CharacterCustomization : MonoBehaviour
         }
     }
 
-    public void setBottom(int pos)
+    public void setBottom(string bottomName)
     {
-        if (pos > this.frontCharacterPelvis.Count || pos > this.backCharacterPelvis.Count)
-        {
-            Debug.Log("Error: Character pelvis int position exceeds list of front or back wearable pelvises!");
-        }
-        else if (pos > this.frontCharacterRightUpperLeg.Count || pos > this.backCharacterRightUpperLeg.Count)
-        {
-            Debug.Log("Error: Character right upper leg int position exceeds list of front or back wearable right upper legs!");
-        }
-        else if (pos > this.frontCharacterLeftUpperLeg.Count || pos > this.backCharacterLeftUpperLeg.Count)
-        {
-            Debug.Log("Error: Character left upper leg int position exceeds list of front or back wearable left upper legs!"); ;
-        }
-        else
-        {
-            this.positionBottoms = pos;
-            frontCharacter.transform.Find("Pelvis").GetComponent<SpriteRenderer>().sprite = this.frontCharacterPelvis[this.positionBottoms];
-            backCharacter.transform.Find("Pelvis").GetComponent<SpriteRenderer>().sprite = this.backCharacterPelvis[this.positionBottoms];
+        this.nameBottom = bottomName;
+        frontCharacter.transform.Find("Pelvis").GetComponent<SpriteResolver>().SetCategoryAndLabel("FrontPelvis", this.nameBottom);
+        backCharacter.transform.Find("Pelvis").GetComponent<SpriteResolver>().SetCategoryAndLabel("BackPelvis", this.nameBottom);
 
-            frontCharacter.transform.Find("R_UpperLeg").GetComponent<SpriteRenderer>().sprite = this.frontCharacterRightUpperLeg[this.positionBottoms];
-            backCharacter.transform.Find("R_UpperLeg").GetComponent<SpriteRenderer>().sprite = this.backCharacterRightUpperLeg[this.positionBottoms];
+        frontCharacter.transform.Find("R_UpperLeg").GetComponent<SpriteResolver>().SetCategoryAndLabel("FrontRightUpperLeg", this.nameBottom);
+        backCharacter.transform.Find("R_UpperLeg").GetComponent<SpriteResolver>().SetCategoryAndLabel("BackRightUpperLeg", this.nameBottom);
 
-            frontCharacter.transform.Find("L_UpperLeg").GetComponent<SpriteRenderer>().sprite = this.frontCharacterLeftUpperLeg[this.positionBottoms];
-            backCharacter.transform.Find("L_UpperLeg").GetComponent<SpriteRenderer>().sprite = this.backCharacterLeftUpperLeg[this.positionBottoms];
-        }
+        frontCharacter.transform.Find("L_UpperLeg").GetComponent<SpriteResolver>().SetCategoryAndLabel("FrontLeftUpperLeg", this.nameBottom);
+        backCharacter.transform.Find("L_UpperLeg").GetComponent<SpriteResolver>().SetCategoryAndLabel("BackLeftUpperLeg", this.nameBottom);
     }
 
     public void setShoeColor(Color color)
@@ -370,52 +268,42 @@ public class CharacterCustomization : MonoBehaviour
         }
     }
 
-    public void setShoe(int pos)
+    public void setShoe(string shoeName)
     {
-        if (pos > this.frontCharacterRightLowerLeg.Count || pos > this.backCharacterRightLowerLeg.Count)
-        {
-            Debug.Log("Error: Character right lower leg int position exceeds list of front or back wearable right lower legs!");
-        }
-        else if (pos > this.frontCharacterLeftLowerLeg.Count || pos > this.backCharacterLeftLowerLeg.Count)
-        {
-            Debug.Log("Error: Character left lower leg int position exceeds list of front or back wearable left lower legs!"); ;
-        }
-        else
-        {
-            this.positionShoes = pos;
+        this.nameShoes = shoeName;
 
-            frontCharacter.transform.Find("R_LowerLeg").GetComponent<SpriteRenderer>().sprite = this.frontCharacterRightLowerLeg[this.positionShoes];
-            backCharacter.transform.Find("R_LowerLeg").GetComponent<SpriteRenderer>().sprite = this.backCharacterRightLowerLeg[this.positionShoes];
+        frontCharacter.transform.Find("R_LowerLeg").GetComponent<SpriteResolver>().SetCategoryAndLabel("FrontRightLowerLeg", this.nameShoes);
+        backCharacter.transform.Find("R_LowerLeg").GetComponent<SpriteResolver>().SetCategoryAndLabel("BackRightLowerLeg", this.nameShoes);
 
-            frontCharacter.transform.Find("L_LowerLeg").GetComponent<SpriteRenderer>().sprite = this.frontCharacterLeftLowerLeg[this.positionShoes];
-            backCharacter.transform.Find("L_LowerLeg").GetComponent<SpriteRenderer>().sprite = this.backCharacterLeftLowerLeg[this.positionShoes];
-        }
+        frontCharacter.transform.Find("L_LowerLeg").GetComponent<SpriteResolver>().SetCategoryAndLabel("FrontLeftLowerLeg", this.nameShoes);
+        backCharacter.transform.Find("L_LowerLeg").GetComponent<SpriteResolver>().SetCategoryAndLabel("BackRightLowerLeg", this.nameShoes);
     }
 
     void Start()
     {
-        setHat(1);
+        setHat("None");
         setHatColor(new Color(255, 0, 0, 255));
 
-        setHair(1);
-        setHairColor(new Color(137, 98, 67, 255));
+        setHair("SpikeyHair");
+        setHairColor(new Color(255, 0, 0, 255));
 
-        setEyes(0);
+        setEyes("LashesEye");
 
-        setNose(0);
-        setNoseColor(new Color(224, 183, 115, 255));
+        setNose("BigNose");
+        setNoseColor(new Color(255, 0, 0, 255));
 
-        setMouth(0); 
+        setMouth("OpenSmileMouth"); 
 
-        setSkinColor(new Color(224, 183, 115, 255));
+        setSkinColor(new Color(255, 0, 0, 255));
 
-        setTop(0);
-        setTopColor(new Color(210, 227, 119, 255));
+        setTorso("GambesonTorso");
+        setArm("PaddedArm");
+        setTopColor(new Color(255, 0, 0, 255));
 
-        setBottom(0);
-        setBottomColor(new Color(239, 209, 132, 255));
+        setBottom("TrouserPants");
+        setBottomColor(new Color(255, 0, 0, 255));
 
-        setShoe(0);
+        setShoe("Boots");
         setShoeColor(new Color(0, 0, 255, 255));
 
     }
