@@ -70,6 +70,7 @@ public class CharacterCustomization : MonoBehaviour
         {
             this.colorHat = color;
             frontCharacter.transform.Find("Hat").GetComponent<SpriteRenderer>().color = this.colorHat;
+
             backCharacter.transform.Find("Hat").GetComponent<SpriteRenderer>().color = this.colorHat;
         }
     }
@@ -282,29 +283,29 @@ public class CharacterCustomization : MonoBehaviour
     void Start()
     {
         setHat("None");
-        setHatColor(new Color(255, 0, 0, 255));
+        setHatColor(new Color(255, 00, 0, 255));
 
         setHair("SpikeyHair");
-        setHairColor(new Color(255, 0, 0, 255));
+        setHairColor(new Color(0.137f, 0.196f, 0.361f));
 
         setEyes("LashesEye");
 
         setNose("BigNose");
-        setNoseColor(new Color(255, 0, 0, 255));
+        setNoseColor(new Color(1f, 0.91f, 0.765f));
 
         setMouth("OpenSmileMouth"); 
 
-        setSkinColor(new Color(255, 0, 0, 255));
+        setSkinColor(new Color(1f, 0.91f, 0.765f));
 
         setTorso("GambesonTorso");
         setArm("PaddedArm");
-        setTopColor(new Color(255, 0, 0, 255));
+        setTopColor(new Color(0.82f, 0.82f, 0.82f));
 
         setBottom("TrouserPants");
-        setBottomColor(new Color(255, 0, 0, 255));
+        setBottomColor(new Color(0.341f, 0.204f, 0.102f));
 
         setShoe("Boots");
-        setShoeColor(new Color(0, 0, 255, 255));
+        setShoeColor(new Color(0.341f, 0.2f, 0f));
 
     }
 }

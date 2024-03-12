@@ -442,7 +442,7 @@ PrefabInstance:
     - target: {fileID: -2528306912490393941, guid: 60a542632f46ece4aa81ae12fc53e532, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 5211892421448477025, guid: 60a542632f46ece4aa81ae12fc53e532, type: 3}
+      objectReference: {fileID: -6330268137398668739, guid: 972c5f4d07d1bad4c8cd9861f32d0338, type: 3}
     - target: {fileID: -2528306912490393941, guid: 60a542632f46ece4aa81ae12fc53e532, type: 3}
       propertyPath: m_SortingOrder
       value: 6
@@ -1087,9 +1087,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 0.034781232
-  m_labelHash: 8.066659e-33
+  m_labelHash: 6.52487e-21
   m_SpriteKey: 0
-  m_SpriteHash: 314603294
+  m_SpriteHash: 943063280
 --- !u!1 &273721704 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 503386916899147866, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
@@ -2376,7 +2376,7 @@ MonoBehaviour:
   m_CategoryHash: 8.530453e-23
   m_labelHash: 8.066659e-33
   m_SpriteKey: 0
-  m_SpriteHash: 185933837
+  m_SpriteHash: 766756503
 --- !u!1001 &1570451960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2700,6 +2700,18 @@ PrefabInstance:
     - target: {fileID: -4463570893806768291, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.1948566
+      objectReference: {fileID: 0}
+    - target: {fileID: -3987457458278752979, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
+      propertyPath: m_Color.b
+      value: 0.46666667
+      objectReference: {fileID: 0}
+    - target: {fileID: -3987457458278752979, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8901961
+      objectReference: {fileID: 0}
+    - target: {fileID: -3987457458278752979, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8235294
       objectReference: {fileID: 0}
     - target: {fileID: -2673787989066018777, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
       propertyPath: m_Color.b
@@ -3143,11 +3155,11 @@ PrefabInstance:
     - target: {fileID: -5137990651318645721, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
       propertyPath: m_BoneTransforms.Array.data[0]
       value: 
-      objectReference: {fileID: 488849831}
+      objectReference: {fileID: 614928151}
     - target: {fileID: -5137990651318645721, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
       propertyPath: m_BoneTransforms.Array.data[1]
       value: 
-      objectReference: {fileID: 614928151}
+      objectReference: {fileID: 488849831}
     - target: {fileID: -4463570893806768291, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.1948566
