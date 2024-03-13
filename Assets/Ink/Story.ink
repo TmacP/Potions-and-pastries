@@ -48,7 +48,7 @@ They say, "Hello, you must be the new owner. Would you like an explanation about
 
 
 = post_tutorial
-{ day == 2 : -> second_day } // break out of loop if it is 2nd day
+{ day >= 2 : -> second_day } // break out of loop if it is 2nd day
 {
         - class == "Rogue":
             -> Rogue
@@ -85,6 +85,8 @@ They say, "Hello, you must be the new owner. Would you like an explanation about
 // Introduce caracters and cave
 
 === second_day
+// SECOND DAY *****************************************
+// searching for cave entrance
 ~ nextPathString = "second_day" // will loop in second day
 
 {
@@ -206,12 +208,9 @@ They say, "I'm Fighter {name}. So you decided to try running an inn, very bold o
         + [Continue]
         -> DONE
 
-
-// THIRD DAY *****************************************
-// adventurers find the cave
-
+// day 2 post story dialogue
 = post
-{ day == 3 : -> third_day } // break out of loop if it is 2nd day
+{ day >= 3 : -> third_day } // break out of loop if it is 3nd day
 {
         - class == "Rogue":
             -> Rogue
@@ -245,15 +244,87 @@ They say, "I'm Fighter {name}. So you decided to try running an inn, very bold o
 
 === third_day
 // THIRD DAY *****************************************
-// adventurers find the cave
+// adventurers found the cave entrance
 ~ nextPathString = "third_day"
- -> END
+{
+    - class == "Rogue":
+        -> Rogue_intro
+    - class == "Magician":
+        -> Magician_intro
+    - class == "Ranger":
+        -> Ranger_intro
+    - class == "Fighter":
+        -> Fighter_intro
+}
+
+= Rogue_intro
+{ third_day.Rogue_intro > 1 : -> post}
+  "Okay best of luck.", you say.
+  + [Continue]
+ -> DONE
+ 
+
+= Magician_intro
+{ third_day.Magician_intro > 1 : -> post}
+They say, "Hey, I'm Magician
+
+        + [Continue]
+        -> DONE
+
+= Ranger_intro
+{ third_day.Ranger_intro > 1 : -> post}
+They 
+        + [Continue]
+        -> DONE
+
+= Fighter_intro
+{ third_day.Fighter_intro > 1 : -> post}
+They say
+        + [Continue]
+        -> DONE
+
+// day 3 post story dialogue
+= post
+{ day >= 4 : -> fourth_day } // break out of loop if it is 4th day
+{
+        - class == "Rogue":
+            -> Rogue
+        - class == "Magician":
+            -> Magician
+        - class == "Ranger":
+            -> Ranger
+        - class == "Fighter":
+            -> Fighter
+    }
+    
+- (Rogue)
+{ &If your done looking around you should go inside and get ready for the night! | Are you lost? | hmm... }
++ [Continue]
+-> DONE
+
+- (Magician)
+{ &How are you doing? | Nice weather we're having! | You're a chatty one! }
++ [Continue]
+-> DONE
+
+- (Ranger)
+{ &I'm busy | Don't interrupt me | What is it? }
++ [Continue]
+-> DONE
+
+- (Fighter)
+{ &Hey I'm training! | Can't stop to talk, getting sick gains!  }
++ [Continue]
+-> DONE
+
+
+ -> END // END OF STORY
  
  
 
 === fourth_day
  // FOURTH DAY *****************************************
-// adventurers find a monster gaurding treasure
+// adventurers go inside cave
 ~ nextPathString = "fifth_day"
 -> DONE
 
