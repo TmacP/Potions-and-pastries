@@ -16,7 +16,6 @@ MonoBehaviour:
   InteractionPrompt: Bake
   SecondaryInteractionPrompt: 
   CraftableRecipes:
-  - {fileID: 11400000, guid: e2e9e1c5450e7454ab4d1ae29a4d8782, type: 2}
   - {fileID: 11400000, guid: 9fb104857bab44541b69bed64574159a, type: 2}
   - {fileID: 11400000, guid: 7ceb4d5070d8d47dd83ed2c9393f15cf, type: 2}
   - {fileID: 11400000, guid: 21fbc404f9ebb42dbbbe8d60b927ef96, type: 2}

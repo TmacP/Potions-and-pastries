@@ -43,7 +43,6 @@ public class PlayerController : MonoBehaviour
     //if we cannot find a gamemanager and playerstate use this speed instead.
     //This is so players don't break on levels without a gamemanager
     private readonly float _fallbackSpeed = 20.0f;
-    private readonly float _downwardForce = 20.0f;
 
 
     private void Awake()
@@ -169,66 +168,60 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-private void FixedUpdate()
-{
-    if (_Rigidbody)
+    private void FixedUpdate()
     {
-        float Speed = _fallbackSpeed;
-        float Gravity = _downwardForce;
-        if(GameManager.Instance && GameManager.Instance.PlayerState)
+        if (_Rigidbody)
         {
-            Speed = GameManager.Instance.PlayerState.MoveSpeed;
-            Gravity = GameManager.Instance.PlayerState.Gravity;
-        }
+            float Speed = _fallbackSpeed;
+            if(GameManager.Instance && GameManager.Instance.PlayerState)
+            {
+                Speed = GameManager.Instance.PlayerState.MoveSpeed;
+            }
 
-        Vector2 _PlayerMoveInput = _PlayerActions.PlayerMovementMap.Move.ReadValue<Vector2>();
-        _Rigidbody.velocity = new Vector3(
-            _PlayerMoveInput.x * Speed,
-            _Rigidbody.velocity.y,
-            _PlayerMoveInput.y * Speed);
+            Vector2 _PlayerMoveInput = _PlayerActions.PlayerMovementMap.Move.ReadValue<Vector2>();
+            _Rigidbody.velocity = new Vector3(
+                _PlayerMoveInput.x * Speed,
+                _Rigidbody.velocity.y,
+                _PlayerMoveInput.y * Speed);
 
-        // Add downward force
-        _Rigidbody.AddForce(Vector3.down * _downwardForce, ForceMode.Acceleration);
+            if(frontAnimator.gameObject.activeSelf == true)
+            {
+                frontAnimator.SetFloat("MoveSpeed", _Rigidbody.velocity.magnitude);
+            }
+            if(backAnimator.gameObject.activeSelf == true)
+            {
+                backAnimator.SetFloat("MoveSpeed", _Rigidbody.velocity.magnitude);
+            }
 
-        if(frontAnimator.gameObject.activeSelf == true)
-        {
-            frontAnimator.SetFloat("MoveSpeed", _Rigidbody.velocity.magnitude);
-        }
-        if(backAnimator.gameObject.activeSelf == true)
-        {
-            backAnimator.SetFloat("MoveSpeed", _Rigidbody.velocity.magnitude);
-        }
+            if (_PlayerMoveInput.x > 0 && faceLeft)
+            {
+                transform.Find("F_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+                transform.Find("B_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+                faceLeft = false;
+            }
+            else if (_PlayerMoveInput.x < 0 && !faceLeft)
+            {
+                transform.Find("F_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+                transform.Find("B_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+                faceLeft = true;
+            }
 
-        if (_PlayerMoveInput.x > 0 && faceLeft)
-        {
-            transform.Find("F_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
-            transform.Find("B_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
-            faceLeft = false;
-        }
-        else if (_PlayerMoveInput.x < 0 && !faceLeft)
-        {
-            transform.Find("F_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
-            transform.Find("B_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
-            faceLeft = true;
-        }
-
-        if (_PlayerMoveInput.y > 0 && !faceBack)
-        {
-            frontAnimator.Rebind();
-            transform.Find("F_BaseCharacter").gameObject.SetActive(false);
-            faceBack = true;
-            transform.Find("B_BaseCharacter").gameObject.SetActive(true);
-        }
-        else if (_PlayerMoveInput.y < 0 && faceBack)
-        {
-            backAnimator.Rebind();
-            transform.Find("F_BaseCharacter").gameObject.SetActive(true);
-            faceBack = false;
-            transform.Find("B_BaseCharacter").gameObject.SetActive(false);
+            if (_PlayerMoveInput.y > 0 && !faceBack)
+            {
+                frontAnimator.Rebind();
+                transform.Find("F_BaseCharacter").gameObject.SetActive(false);
+                faceBack = true;
+                transform.Find("B_BaseCharacter").gameObject.SetActive(true);
+            }
+            else if (_PlayerMoveInput.y < 0 && faceBack)
+            {
+                backAnimator.Rebind();
+                transform.Find("F_BaseCharacter").gameObject.SetActive(true);
+                faceBack = false;
+                transform.Find("B_BaseCharacter").gameObject.SetActive(false);
+            }
         }
     }
-}
-
 
     protected void OnInteractStart(InputAction.CallbackContext context)
     {

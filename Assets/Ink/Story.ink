@@ -1,16 +1,14 @@
-VAR class = ""
-VAR friendship = 0
-VAR name = ""
-VAR day = 1
-VAR nextPathString = ""
-
--> first_day
+-> first_day // normal 
 //-> second_day // debug
 //-> third_day // debug
 
 // FIRST DAY *****************************************
 // tutorial dialogue
 === first_day
+= fresh_day
+After a long trip from the city you finally reach your new inn. Standing outside you see someone hard at work
+VAR nextPathString = "first_day.tutorial" // where we want to continue when we talk to npc
+-> DONE
 
 = tutorial
 They say, "Hello, you must be the new owner. Would you like an explanation about running thing?"
@@ -36,7 +34,13 @@ They say, "Hello, you must be the new owner. Would you like an explanation about
 // SECOND DAY *****************************************
 // Introduce caracters and cave
 === second_day
-{ day < 2 : -> DONE}
+// get the class of the npc [Rogue Magician Ranger Fighter] and our friendship lvl with them
+//VAR class = "Rogue"
+//VAR class = "Magician"
+//VAR class = "Ranger"
+VAR class = "Fighter"
+VAR friendship = 1
+VAR name = "Jane Doe"
 {
 - friendship >= 1:
     {
@@ -51,7 +55,6 @@ They say, "Hello, you must be the new owner. Would you like an explanation about
     }
     - else:
         "I don't trust strangers" 
-        -> finish
 }
 
 = Rogue
@@ -131,7 +134,13 @@ They say, "I'm Fighter {name}. So you decided to try running an inn, very bold o
 // THIRD DAY *****************************************
 // adventurers find the cave
 === third_day
-{ day < 3 : -> DONE}
+// get the class of the npc [Rogue Magician Ranger Fighter] and our friendship lvl with them
+//VAR class = "Rogue"
+//VAR class = "Magician"
+~ class = "Ranger"
+//~ class = "Fighter"
+~ friendship = 1
+~ name = "Jane Doe"
 {
 - friendship >= 1:
     {
@@ -146,7 +155,6 @@ They say, "I'm Fighter {name}. So you decided to try running an inn, very bold o
     }
     - else:
         "I don't trust strangers" 
-        -> finish
 }
 
 = Rogue
@@ -245,20 +253,17 @@ They say, "H"
 // FOURTH DAY *****************************************
 // adventurers find a monster gaurding treasure
 === fourth_day
-{ day < 4 : -> DONE}
 ~ nextPathString = "fifth_day"
 -> DONE
 
 // FIFTH DAY *****************************************
 // adventurers find a monster gaurding treasure
 === fifth_day
-{ day < 5 : -> DONE}
 ~ nextPathString = "sixth_day"
 -> DONE
 
 // SIXTH DAY *****************************************
 // adventurers defeat monster and get treasure END OF STORY
 === sixth_day
-{ day < 6 : -> DONE}
 
  -> END

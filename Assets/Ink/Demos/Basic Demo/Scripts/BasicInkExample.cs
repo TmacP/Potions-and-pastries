@@ -5,26 +5,14 @@ using UnityEngine.UI;
 
 // This is a super bare bones example of how to play and display a ink story in Unity.
 public class BasicInkExample : MonoBehaviour {
-	static public BasicInkExample instance;
-	bool DebugMode = false;
     public static event Action<Story> OnCreateStory;
 	
-	private void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-        if(instance != null)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            instance = this;
-			// Remove the default message
-			RemoveChildren();
-			StartStory();
-        }
+    void Awake () {
+		// Remove the default message
+		RemoveChildren();
+		StartStory();
+	}
 
-    }
 	// Creates a new Story object with the compiled story which we can then play!
 	void StartStory () {
 		story = new Story (inkJSONAsset.text);
@@ -63,27 +51,14 @@ public class BasicInkExample : MonoBehaviour {
 	}
 
 // WE CONTINUE THE STORY WHEN TALK TO NPC *****************
-public void ContinueStory(NPCData npcData)
+public void ContinueStory()
 {
-	// here we set the variables in inkle for npc class friendship and name
-	if (DebugMode) {
-		Debug.Log("ContinueStory");
-		Debug.Log("Class: " + npcData.Archetype.ToString() );
-		Debug.Log("Friendship: " + npcData.Friendship);
-		Debug.Log("Name: " + npcData.Name);
-		Debug.Log("Day: " + GameManager.Instance.GameDay); 
-		}
-	// set the variables in inkle
-	story.variablesState["class"] = npcData.Archetype.ToString();
-	story.variablesState["friendship"] = npcData.Friendship;
-	story.variablesState["name"] = npcData.Name;
-	story.variablesState["day"] = GameManager.Instance.GameDay;
-
-	// next path string is to continue the story after a DONE
+	Debug.Log("ContinueStory");
+	// next path string is 
 	string nextPathString = (string) story.variablesState["nextPathString"];
-	if (DebugMode) {Debug.Log("nextPathString: = " + nextPathString);}
+	Debug.Log("nextPathString: = " + nextPathString);
 	story.ChoosePathString(nextPathString);
-
+	//story.ChoosePathString("first_day.tutorial"); // works but is hardcoded...
 	RefreshView();
 
 }

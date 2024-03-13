@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
 
     //We store this here so it persists between levels
     public PlayerStateData PlayerState;
-    public int GameDay; // inkle needs to know what day it
 
     private EGameState GameState;
     public GameStateData PersistantGameState;
@@ -63,8 +62,6 @@ public class GameManager : MonoBehaviour
     {
         GameEventManager.instance.OnUnlockRegion += OnUnlockRegion;
         GameEventManager.instance.OnDoorUnlocked += OnDoorUnlock;
-
-        GameDay = 1; // we start on day 1 for the tutorial
     }
 
     // Update is called once per frame

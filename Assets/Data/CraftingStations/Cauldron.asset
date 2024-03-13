@@ -16,8 +16,6 @@ MonoBehaviour:
   InteractionPrompt: Brew
   SecondaryInteractionPrompt: 
   CraftableRecipes:
-  - {fileID: 11400000, guid: 2b770067452fc4964abecbae525f5f7b, type: 2}
-  - {fileID: 11400000, guid: 5fdac2903c9e5444a8bef6b7455d0aeb, type: 2}
   - {fileID: 11400000, guid: 03bd4b2ca253c4332a2fcc1373a01428, type: 2}
   - {fileID: 11400000, guid: f100a72247ad1408d98cca14e080feb3, type: 2}
   - {fileID: 11400000, guid: ad69966b313a44dd794d511b92d2eed0, type: 2}
