@@ -282,7 +282,8 @@ public class CharacterCustomization : MonoBehaviour
 
     void Start()
     {
-        setHat("None");
+        // Testing purposes only, please delete "Start()" once ready to use 
+        setHat("ConeHat");
         setHatColor(new Color(255, 00, 0, 255));
 
         setHair("SpikeyHair");
@@ -306,6 +307,5 @@ public class CharacterCustomization : MonoBehaviour
 
         setShoe("Boots");
         setShoeColor(new Color(0.341f, 0.2f, 0f));
-
     }
 }

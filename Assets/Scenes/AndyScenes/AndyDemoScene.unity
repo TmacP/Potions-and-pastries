@@ -1531,22 +1531,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2206102580794447953, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
   m_PrefabInstance: {fileID: 1809632494}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &881703385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 881703383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_CategoryHash: 9.387147e-20
-  m_labelHash: 9.501502e-11
-  m_SpriteKey: 0
-  m_SpriteHash: 918889302
 --- !u!114 &881703386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2836,14 +2820,18 @@ PrefabInstance:
     - target: {fileID: 1826223978929903518, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -2689181164752678562, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
+      objectReference: {fileID: 4172053899700724021, guid: 2eacd006090202f42b577e0b83a83843, type: 3}
     - target: {fileID: 1826223978929903518, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 0.5896226
       objectReference: {fileID: 0}
     - target: {fileID: 1826223978929903518, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 0.87303424
+      objectReference: {fileID: 0}
+    - target: {fileID: 1826223978929903518, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1826223978929903518, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -2994,9 +2982,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2206102580794447953, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
       insertIndex: -1
       addedObject: {fileID: 881703386}
-    - targetCorrespondingSourceObject: {fileID: 2206102580794447953, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 881703385}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 3cfe58526798eab4e96b39d1da2f6f86, type: 3}
 --- !u!4 &1847773339 stripped
 Transform:
