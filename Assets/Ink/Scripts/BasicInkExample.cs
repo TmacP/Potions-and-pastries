@@ -53,7 +53,7 @@ public class BasicInkExample : MonoBehaviour {
 
 		// Display all the choices, if there are any!
 		if(story.currentChoices.Count > 0) {
-						// pause game
+			// pause game
 			GameManager.Instance.ChangeGameState(EGameState.PauseState);
 			for (int i = 0; i < story.currentChoices.Count; i++) {
 				Choice choice = story.currentChoices [i];

@@ -4600,6 +4600,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TesterNPC_Rogue
       objectReference: {fileID: 0}
+    - target: {fileID: 7652326422821051359, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8767521128432996269, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_BlockingObjects
       value: 0
@@ -14896,6 +14900,10 @@ PrefabInstance:
     - target: {fileID: 6496059226077843748, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_Color.r
       value: 0.6431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 7652326422821051359, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7842401233010149083, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_Color.b
@@ -66206,7 +66214,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2076561156948077999, guid: 3e652b8b422df324eae4d94fde6aab7c, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5214794799815918491, guid: 3e652b8b422df324eae4d94fde6aab7c, type: 3}
       propertyPath: m_Pivot.x
@@ -75003,6 +75011,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.9137255
       objectReference: {fileID: 0}
+    - target: {fileID: 7652326422821051359, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7842401233010149083, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_Color.b
       value: 0.65537417
@@ -78975,6 +78987,10 @@ PrefabInstance:
     - target: {fileID: 6496059226077843748, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_Color.r
       value: 0.9003568
+      objectReference: {fileID: 0}
+    - target: {fileID: 7652326422821051359, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7842401233010149083, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_Color.b
