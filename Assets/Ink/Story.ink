@@ -14,9 +14,10 @@ VAR chocolateGate = false
 -> first_day
 
 
+
+=== first_day
 // FIRST DAY *****************************************
 // tutorial dialogue
-=== first_day
 After a long trip from the city you finally arrive at your new inn. You see people outside. Maybe you should try talking to them and introduce yourself. This feels like the start of something wonderful.
 + [Continue]
 ~ nextPathString = "first_day.tutorial"
@@ -82,6 +83,7 @@ They say, "Hello, you must be the new owner. Would you like an explanation about
 
 // SECOND DAY *****************************************
 // Introduce caracters and cave
+
 === second_day
 ~ nextPathString = "second_day" // will loop in second day
 
@@ -120,7 +122,7 @@ They say, "Hello, I'm Rogue {name}. It is nice to have a chance to talk. You wer
  
 
 = Magician_intro
-
+{ second_day.Magician_intro > 1 : -> post}
 They say, "Hey, I'm Magician {name}. So you're the new owner of the inn."
 
 "That's right."
@@ -130,8 +132,7 @@ They say, "Hey, I'm Magician {name}. So you're the new owner of the inn."
     * "What are you doing[."] out here anyways?", you ask.
     
     * "Sure...[."] I'll get right on that.", you say.
-        + [Continue]
-        -> DONE
+        -> fin
         
 - "Shh, that's my business. Plus if I told you I'd have to worry about you poisoning me and trying to steal my boots"
 
@@ -140,11 +141,14 @@ They say, "Hey, I'm Magician {name}. So you're the new owner of the inn."
 "Exactally what a theif would say! Maybe once we are better friends I'll let you know. As long as I don't see you eyeing my boots."
 
 "What ever you say. I'll leave you alone to keep being weird then"
+
+- (fin)
+
         + [Continue]
         -> DONE
 
 = Ranger_intro
-
+{ second_day.Ranger_intro > 1 : -> post}
 They say, "I'm Ranger {name}. I guess you're probably wondering what all these people are doing out here anyways?"
 
 * "Funny you should mention that[."], I was just about to ask.", you say. 
@@ -154,48 +158,51 @@ They say, "I'm Ranger {name}. I guess you're probably wondering what all these p
 - (cave)
     * "Why would they care about a cave" 
     -> why
-    * "What like for spelunking?" 
+    * "What like for spelunking?"
     -> spelunking
     * "Well I'm not going in any freaky cave[."], even if there is treasure, and glory." 
     -> end_cave_intro
     
-    - (why) "Supposedly inside there are all sorts of monsters inside which one could fight to prove their bravery."
-    -> cave
-"
-    - (spelunking) "That and the rumors of a wealth of gold and precious gems hidden inside its depths."
+    - (why) 
+    "Supposedly inside there are all sorts of monsters inside which one could fight to prove their bravery." -> cave
+    
+    - (spelunking) 
+    "That and the rumors of a wealth of gold and precious gems hidden inside its depths." 
     -> cave
     
-    - (end_cave_intro) "And I don't blame you. Who'd run the inn? Besides you don't look like the type to follow others."
+    - (end_cave_intro) 
+        "And I don't blame you. Who'd run the inn? Besides you don't look like the type to follow others."
         "Thanks"
         "I respect that, even if you do seem a little timid."
         "Hey."
-
-    + [Continue]
-    -> DONE
+        + [Continue]
+        -> DONE
 
 = Fighter_intro
-
+{ second_day.Fighter_intro > 1 : -> post}
 They say, "I'm Fighter {name}. So you decided to try running an inn, very bold of you, you know most buisinesses fail. But I admire your courage."
 
 "Thanks... I think."
 
 - (cave)
-    * "What are you up to[?"], out here anyways?"
+    * "What are you up to[?"], out here anyways?" 
     -> why
-    * "You aren't another one[."] of those cave explorors are you?"
+    * "You aren't another one[."] of those cave explorors are you?" 
     -> what
     * "Well I hope you figure out all that[."], even if you seem a little confused I'm sure it will all work out." 
     -> end_cave_intro
     
 - (why)
 "You know I've been so busy chasing wealth I never even stopped to ask myself that. What even am I doing out here?"
-"?"-> cave
+"?"
+-> cave
 
 - (what) 
-"Amazing, how could you tell? And who told you about the cave it is supposed to be a secret." -> cave
+"Amazing, how could you tell? And who told you about the cave it is supposed to be a secret." 
+-> cave
 
-- (end_cave_intro) "You know, even when things look like they are going badly things have a way of working themselves out."
- 
+- (end_cave_intro)
+"You know, even when things look like they are going badly things have a way of working themselves out."
         + [Continue]
         -> DONE
 
@@ -236,7 +243,27 @@ They say, "I'm Fighter {name}. So you decided to try running an inn, very bold o
 + [Continue]
 -> DONE
 
-
 === third_day
+// THIRD DAY *****************************************
+// adventurers find the cave
 ~ nextPathString = "third_day"
+ -> END
+ 
+ 
+
+=== fourth_day
+ // FOURTH DAY *****************************************
+// adventurers find a monster gaurding treasure
+~ nextPathString = "fifth_day"
+-> DONE
+
+=== fifth_day
+// FIFTH DAY *****************************************
+// adventurers find a monster gaurding treasure
+~ nextPathString = "sixth_day"
+-> DONE
+
+=== sixth_day
+// SIXTH DAY *****************************************
+// adventurers defeat monster and get treasure END OF STORY
  -> END
