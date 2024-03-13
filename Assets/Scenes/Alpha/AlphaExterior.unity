@@ -4558,7 +4558,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4714055777043972144, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -29.5
+      value: -6.02
       objectReference: {fileID: 0}
     - target: {fileID: 4714055777043972144, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4566,7 +4566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4714055777043972144, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 22
+      value: 26.79
       objectReference: {fileID: 0}
     - target: {fileID: 4714055777043972144, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_LocalRotation.w
@@ -28689,7 +28689,7 @@ Transform:
   m_GameObject: {fileID: 680093041}
   serializedVersion: 2
   m_LocalRotation: {x: 0.19509031, y: 0, z: 0, w: 0.98078537}
-  m_LocalPosition: {x: -0.679, y: 5.4648848, z: 10.589567}
+  m_LocalPosition: {x: 19.79, y: 5.4648843, z: 19.209566}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -36938,7 +36938,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4752217483165265861, guid: 37e1fa14e52aa2b44827f45a811c784a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.679
+      value: 19.79
       objectReference: {fileID: 0}
     - target: {fileID: 4752217483165265861, guid: 37e1fa14e52aa2b44827f45a811c784a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -36946,7 +36946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4752217483165265861, guid: 37e1fa14e52aa2b44827f45a811c784a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 22.6
+      value: 31.22
       objectReference: {fileID: 0}
     - target: {fileID: 4752217483165265861, guid: 37e1fa14e52aa2b44827f45a811c784a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -66474,7 +66474,7 @@ Transform:
   m_GameObject: {fileID: 1621213550}
   serializedVersion: 2
   m_LocalRotation: {x: 0.19509031, y: 0, z: 0, w: 0.98078537}
-  m_LocalPosition: {x: -0.679, y: 5.4648848, z: 10.589567}
+  m_LocalPosition: {x: 19.79, y: 5.4648843, z: 19.209566}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -68520,6 +68520,38 @@ PrefabInstance:
     - target: {fileID: 2846967590237626825, guid: d03f924e9203d45deb66b4c8213f1036, type: 3}
       propertyPath: m_Name
       value: Inkle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920014068774576071, guid: d03f924e9203d45deb66b4c8213f1036, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920014068774576071, guid: d03f924e9203d45deb66b4c8213f1036, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920014068774576071, guid: d03f924e9203d45deb66b4c8213f1036, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920014068774576071, guid: d03f924e9203d45deb66b4c8213f1036, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920014068774576071, guid: d03f924e9203d45deb66b4c8213f1036, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920014068774576071, guid: d03f924e9203d45deb66b4c8213f1036, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920014068774576071, guid: d03f924e9203d45deb66b4c8213f1036, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920014068774576071, guid: d03f924e9203d45deb66b4c8213f1036, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5096247496245929197, guid: d03f924e9203d45deb66b4c8213f1036, type: 3}
       propertyPath: m_Pivot.x

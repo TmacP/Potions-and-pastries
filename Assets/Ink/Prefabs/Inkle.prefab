@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8155918108347347979}
   - component: {fileID: 5448167487042274276}
   - component: {fileID: 2616642736277170745}
+  - component: {fileID: 108778038097206606}
   m_Layer: 5
   m_Name: Inkle
   m_TagString: Untagged
@@ -104,3 +105,11 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!222 &108778038097206606
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2846967590237626825}
+  m_CullTransparentMesh: 1
