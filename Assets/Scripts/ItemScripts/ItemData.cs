@@ -67,6 +67,16 @@ public class InventoryItemData
         return true;
 
     }
+
+    public InventoryItemData CreateCopy()
+    {
+        InventoryItemData returnData = new InventoryItemData(this.Data, this.InventoryIndex);
+        returnData.CurrentStackCount = this.CurrentStackCount;
+        returnData.CurrentItemTags = new HashSet<EItemTags>(this.CurrentItemTags);
+        returnData.bIsCard = this.bIsCard;
+        returnData.CardActionType = this.CardActionType;
+        return returnData;
+    }
 }
 
 

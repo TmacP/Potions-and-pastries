@@ -42,7 +42,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
     public string InteractionPrompt => GetInteractionPrompt();
 
 
-    public bool TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
+    public EInteractionResult TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
     {
 
        if(NPCState == ENPCState.Order && InteractionItem != null && InteractionItem.Count > 0)
@@ -54,9 +54,9 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
        else if(_DialogueBehavoir != null)
        {
             _DialogueBehavoir.TryDialogue();
-            return true;
+            return EInteractionResult.Success;
        }
-        return false;
+       return EInteractionResult.Failure;
     }
 
 //*******end of IInteractable

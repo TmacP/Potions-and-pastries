@@ -476,7 +476,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &43744791986317000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,12 +587,14 @@ MonoBehaviour:
   draggableItemPrefab: {fileID: 2154762147796331838, guid: 8d8f37d06e71ff04b820b162ae62679d, type: 3}
   InventoryDataRef: []
   mainInventoryGroup: {fileID: 5073865226360968105}
-  maxStack: 5
+  maxStack: 1
   selectedSlot: -1
-  CloseOnCloseMenuEvent: 1
+  CloseOnCloseMenuEvent: 0
+  bIsMainMenu: 0
   CraftingStation: {fileID: 0}
   RecipePanelRef: []
   CraftImage: {fileID: 3711940611271203108}
+  Arrow: {fileID: 3620773930063083325}
   CraftName: {fileID: 7790583327396057544}
   CraftDescription: {fileID: 0}
 --- !u!1 &5711694159794209441

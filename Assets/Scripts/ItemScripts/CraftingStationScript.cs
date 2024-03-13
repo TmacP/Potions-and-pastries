@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Assertions;
 
-public class CraftingStationScript : MonoBehaviour, IInteractable
+public class CraftingStationScript : MonoBehaviour, IInteractableExtension
 {
 
     public CraftingStationData Data;
@@ -21,12 +21,48 @@ public class CraftingStationScript : MonoBehaviour, IInteractable
     public float CraftingProgress = 0.0f;
     public AssetReference CraftingStationUI;
     public event Action OnRefreshedRecipe;
+    public GameObject WorldSpaceCraftingUI;
+    [HideInInspector]
+    public CraftingInventoryManager CraftingInvManager;
 
 
     //************ IINteractable
     public string InteractionPrompt => GetInteractionPrompt();
 
-    public bool TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
+    public string GetInteractionPrompt()
+    {
+        if (CraftingProgress >= 1.0f && IsCrafting)
+        {
+            if (OutgoingItems.Count > 0)
+            {
+                return "Take: " + OutgoingItems[0].Data.Name;
+            }
+        }
+        else if (IsCrafting)
+        {
+            return "";
+        }
+
+        return Data.InteractionPrompt;
+    }
+
+    public string GetSecondaryInteractionPrompt(InventoryItemData InteractionItem = null)
+    {
+        if (InteractionItem == null)
+            return "Use Card";
+        string result = "";
+        if(InteractionItem.CardActionType == ECardActionType.Use_Trash || InteractionItem.CardActionType == ECardActionType.Use_Discard)
+        {
+            result = "Add " + InteractionItem.Data.Name;
+        }
+        else
+        {
+            result = InteractionItem.CardActionType.ToString();
+        }
+        return result;
+    }
+
+    public EInteractionResult TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
     {
         //Open Crafting UI screen
 
@@ -36,42 +72,99 @@ public class CraftingStationScript : MonoBehaviour, IInteractable
             OutgoingItems.Clear();
             IsCrafting = false;
             CraftingProgress = 0.0f;
-            return true;
+            return EInteractionResult.Success;
         }
         else if(IsCrafting && CraftingProgress < 1.0f)
         {
-            return false;
+            return EInteractionResult.Failure;
         }
         else
         {
-            if (CraftingStationUI != null)
+            if(CurrentValidRecipes.Count > 0)
             {
-                GameObject GO = CraftingStationUI.InstantiateAsync().WaitForCompletion();
-                if (GO != null)
-                {
-                    InventoryManager[] Managers = GO.GetComponentsInChildren<InventoryManager>();
-
-                    foreach (InventoryManager manager in Managers)
-                    {
-                        CraftingInventoryManager craftingInventoryManager = manager as CraftingInventoryManager;
-                        if (craftingInventoryManager != null)
-                        {
-                            craftingInventoryManager.InitializeCraftingInventory(CurrentItems, this);
-                        }
-                        else
-                        {
-                            manager.InitializeInventoryManager(GameManager.Instance.PlayerState.Inventory);
-                        }
-                    }
-                    RecalculateValidRecipes();
-                    return true;
-                }
+                TryCraft();
             }
         }
-        return false;
+        
+        //else
+        //{
+        //    if (CraftingStationUI != null)
+        //    {
+        //        GameObject GO = CraftingStationUI.InstantiateAsync().WaitForCompletion();
+        //        if (GO != null)
+        //        {
+        //            InventoryManager[] Managers = GO.GetComponentsInChildren<InventoryManager>();
+
+        //            foreach (InventoryManager manager in Managers)
+        //            {
+        //                CraftingInventoryManager craftingInventoryManager = manager as CraftingInventoryManager;
+        //                if (craftingInventoryManager != null)
+        //                {
+        //                    craftingInventoryManager.InitializeCraftingInventory(CurrentItems, this);
+        //                }
+        //                else
+        //                {
+        //                    manager.InitializeInventoryManager(GameManager.Instance.PlayerState.Inventory);
+        //                }
+        //            }
+        //            RecalculateValidRecipes();
+        //            return true;
+        //        }
+        //    }
+        //}
+        return EInteractionResult.Failure;
     }
 
-//********* End of IInteractable
+    public EInteractionResult TrySecondaryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItems = null)
+    {
+        if (InteractionItems != null && InteractionItems.Count > 0 && InteractionItems[0].bIsCard)
+        {
+            ECardActionType Action = InteractionItems[0].CardActionType;
+            if (IsCrafting)
+            {
+                if(Data.CardActions.Contains(Action))
+                {
+                    FinishCraft();
+                    return EInteractionResult.Success_ConsumeItem;
+                }
+                else
+                {
+                    return EInteractionResult.Failure;
+                }
+            }
+            else if (Action == ECardActionType.Use_Trash || Action == ECardActionType.Use_Discard)
+            {
+                if (WorldSpaceCraftingUI != null)
+                {
+                    WorldSpaceCraftingUI.SetActive(true);
+                    if (CraftingInvManager == null)
+                    {
+                        CraftingInvManager = WorldSpaceCraftingUI.GetComponentInChildren<CraftingInventoryManager>();
+                    }
+                    Assert.IsNotNull(CraftingInvManager);
+                    Assert.IsNotNull(InteractionItems[0]);
+                    CraftingInvManager.AddItem(InteractionItems[0].CreateCopy());
+                    return EInteractionResult.Success_ConsumeItem;
+                }
+            }
+                
+        }
+        return EInteractionResult.Failure;
+    }
+
+    //********* End of IInteractable
+
+    private void Awake()
+    {
+        Assert.IsNotNull(WorldSpaceCraftingUI);
+        CraftingInvManager = WorldSpaceCraftingUI.GetComponentInChildren<CraftingInventoryManager>();
+        Assert.IsNotNull(CraftingInvManager);
+        if (CraftingInvManager != null)
+        {
+            CraftingInvManager.InitializeCraftingInventory(CurrentItems, this);
+        }
+        Assert.IsNotNull(WorldSpaceCraftingUI);
+    }
 
     private void Start()
     {
@@ -84,23 +177,7 @@ public class CraftingStationScript : MonoBehaviour, IInteractable
         RecalculateValidRecipes();
     }
 
-    public string GetInteractionPrompt()
-    {
-        if(CraftingProgress >= 1.0f && IsCrafting)
-        {
-            if(OutgoingItems.Count > 0)
-            {
-                return "Take: " + OutgoingItems[0].Data.Name;
-            }
-        }
-        else if(IsCrafting)
-        {
-            return "";
-        }
-
-        return Data.InteractionPrompt;
-    }
-
+    
     public void OnItemRemove(InventoryItemData Item)
     {
         //CurrentItems.Remove(Item);
@@ -226,6 +303,8 @@ public class CraftingStationScript : MonoBehaviour, IInteractable
         CraftingProgress = 1.0f;
         return true;
     }
+
+    
 }
 
 

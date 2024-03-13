@@ -35,6 +35,7 @@ public class CardHandManager : Toolbar
 
     public override bool UseSelectedItem()
     {
+        Deck.DiscardCard(GetSelectedItem());
         bool Sucess = base.UseSelectedItem();
         if (Sucess && Deck != null)
         {

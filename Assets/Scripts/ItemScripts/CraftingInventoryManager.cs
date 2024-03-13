@@ -16,8 +16,10 @@ public class CraftingInventoryManager : InventoryManager
     public List<RecipePanel> RecipePanelRef = new List<RecipePanel>();
 
     public Image CraftImage;
+    public Image Arrow;
     public TextMeshProUGUI CraftName;
     public TextMeshProUGUI CraftDescription;
+
 
     public void Start()
     {
@@ -31,7 +33,7 @@ public class CraftingInventoryManager : InventoryManager
         InitializeInventoryManager(InventoryRef);
 
         RecipePanel[] recipePanel = this.transform.parent.GetComponentsInChildren<RecipePanel>();
-        foreach(var recipe in recipePanel)
+        foreach (var recipe in recipePanel)
         {
             recipe.InitializeRecipes(InCraftingStation);
             RecipePanelRef.Add(recipe);
@@ -69,8 +71,11 @@ public class CraftingInventoryManager : InventoryManager
 
     protected override void CloseInventory()
     {
-        Destroy(this.gameObject);
-        Destroy(this.transform.parent.gameObject);
+        if(CloseOnCloseMenuEvent)
+        {
+            Destroy(this.gameObject);
+            Destroy(this.transform.parent.gameObject);
+        }
     }
 
     public void OnRefreshedRecipe()
@@ -98,9 +103,22 @@ public class CraftingInventoryManager : InventoryManager
         }
         else
         {
-            CraftImage.gameObject.SetActive(false);
-            CraftName.SetText("");
-            CraftDescription.SetText("");
+            if (Arrow != null)
+            {
+                Arrow.gameObject.SetActive(false);
+            }
+            if (CraftImage != null)
+            {
+                CraftImage.gameObject.SetActive(false);
+            }
+            if (CraftName != null)
+            {
+                CraftName.SetText("");
+            }
+            if (CraftDescription != null)
+            {
+                CraftDescription.SetText("");
+            }
         }
     }
 
@@ -160,5 +178,10 @@ public class CraftingInventoryManager : InventoryManager
         }
 
         GameEventManager.instance.RefreshInventory();
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("Removed");
     }
 }

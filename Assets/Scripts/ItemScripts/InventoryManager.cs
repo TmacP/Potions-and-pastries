@@ -20,6 +20,7 @@ public class InventoryManager : MonoBehaviour
     private bool bIsCardInventory = false;
 
     public bool CloseOnCloseMenuEvent = true;
+    public bool bIsMainMenu = true;
     private int slotsPerRow = 4; // inventory layout
 
 
@@ -103,7 +104,10 @@ public class InventoryManager : MonoBehaviour
     {
         GameEventManager.instance.OnCloseMenu += CloseInventory;
         GameEventManager.instance.OnRefreshInventory += RefreshInventory;
-        GameEventManager.instance.PostInventoryOpen();
+        if(bIsMainMenu)
+        {
+            GameEventManager.instance.PostInventoryOpen();
+        }
         RefreshInventory();
     }
 
@@ -274,6 +278,11 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
+        if(smallestIndex >= inventorySlots.Length)
+        {
+            return false;
+        }
+
         item.InventoryIndex = smallestIndex;
         return AddItemAtIndex(item, smallestIndex, false);
 
@@ -441,6 +450,7 @@ public class InventoryManager : MonoBehaviour
             if (itemInSlot.count <= 0)
             {
                 RemoveItem(itemData);
+                RefreshInventory();
             }
             else
             {

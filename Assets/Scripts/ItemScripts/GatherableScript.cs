@@ -12,7 +12,7 @@ public class GatherableBehavoir : MonoBehaviour, IInteractable
 //********IInteractable Interface **********
     public string InteractionPrompt => Data.InteractionPrompt;
 
-    public bool TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
+    public EInteractionResult TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
     { 
         if(Data.CollectableItems.Count > 0)
         {
@@ -32,10 +32,10 @@ public class GatherableBehavoir : MonoBehaviour, IInteractable
                 GetItemsToGive(out Items);
                 GameEventManager.instance.GivePlayerItems(Items);
             }
-            return true;
+            return EInteractionResult.Success;
         }
         
-        return false;
+        return EInteractionResult.Failure;
     }
 //************ End of IInteractable ************
 
@@ -82,6 +82,7 @@ public class GatherableBehavoir : MonoBehaviour, IInteractable
         foreach(ItemData ItemData in Data.CollectableItems)
         {
             InventoryItemData InvItem = new InventoryItemData(ItemData, -1, -1);
+            InvItem.CardActionType = ECardActionType.Use_Discard;
             OutItems.Add(InvItem);
         }
     }

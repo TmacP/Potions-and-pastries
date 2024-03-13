@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
         //I didn't think we needed to remove them ondisable but apperently we do or the scene changes get weird
         _PlayerActions.PlayerActionMap.Interact.started += OnInteractStart;
         _PlayerActions.PlayerActionMap.Interact.canceled += OnInteractCancelled;
+        _PlayerActions.PlayerActionMap.SecondaryInteract.performed += OnSecondaryInteract;
         _PlayerActions.PlayerActionMap.OpenInventory.performed += OnOpenInventory;
         _PlayerActions.Inventory.CloseInventory.performed += OnCloseInventory;
         _PlayerActions.PlayerActionMap.OpenDeckBuildingScreen.performed += OnOpenDeckBuildingScreen;
@@ -229,8 +230,14 @@ private void FixedUpdate()
                 {
                     Data.Add(toolbar.GetSelectedItem());
                 }
-                _InteractorBehavoir.TryInteract(Data);
-
+                EInteractionResult Result = _InteractorBehavoir.TryInteract(Data);
+                if (Result == EInteractionResult.Success_ConsumeItem)
+                {
+                    for (int i = Data.Count - 1; i >= 0; i--)
+                    {
+                        toolbar.UseSelectedItem();
+                    }
+                }
             }
             else
             {
@@ -244,6 +251,34 @@ private void FixedUpdate()
         if (_InteractorBehavoir != null)
         {
             _InteractorBehavoir.InteractReleased();
+        }
+    }
+
+    protected void OnSecondaryInteract(InputAction.CallbackContext context)
+    {
+        if (_InteractorBehavoir != null)
+        {
+            if (toolbar != null)
+            {
+                List<InventoryItemData> Data = new List<InventoryItemData>();
+                InventoryItemData ActionItem = toolbar.GetSelectedItem();
+                if (ActionItem != null)
+                {
+                    Data.Add(toolbar.GetSelectedItem());
+                }
+                EInteractionResult Result = _InteractorBehavoir.TrySecondaryInteract(Data);
+                if (Result == EInteractionResult.Success_ConsumeItem)
+                {
+                    for (int i = Data.Count - 1; i >= 0; i--)
+                    {
+                        toolbar.UseSelectedItem();
+                    }
+                }
+            }
+            else
+            {
+                _InteractorBehavoir.TryInteract();
+            }
         }
     }
 

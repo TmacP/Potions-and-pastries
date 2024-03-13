@@ -10,14 +10,14 @@ public class SceneChangeInteractable : MonoBehaviour, IInteractable
 //**************** IInteractable
     public string InteractionPrompt => Prompt;
 
-    public bool TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
+    public EInteractionResult TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
     {
         GameManager.Instance.ChangeGameScene(NewLocationScene);
         if (NewLocationScene == EGameScene.InnInterior) // if we are going to the alpha interior, we increment the day
         {
             GameManager.Instance.GameDay++;
         }
-        return true;
+        return EInteractionResult.Success;
     }
 //********* End of IInteractable
 }

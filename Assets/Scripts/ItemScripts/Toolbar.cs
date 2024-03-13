@@ -50,6 +50,7 @@ public class Toolbar : MonoBehaviour
 
     virtual public bool UseSelectedItem()
     {
+        Debug.Log("Item Used");
         return ToolbarManager.UseItem(ToolbarManager.selectedSlot);
     }
 

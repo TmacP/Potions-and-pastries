@@ -10,10 +10,10 @@ using UnityEngine.XR;
 public enum ECardActionType
 {
     None = 0,
-    GiveItem,
-    UseItem,
+    Use_Trash,
+    Use_Discard,
     Stir,
-    Flip
+    Mix
 }
 
 public class DeckManager : MonoBehaviour
@@ -34,8 +34,6 @@ public class DeckManager : MonoBehaviour
     {
         Deck = GameManager.Instance.PlayerState.Deck;
         Discard = GameManager.Instance.PlayerState.Discard;
-
-        
     }
 
     // Update is called once per frame
@@ -86,21 +84,27 @@ public class DeckManager : MonoBehaviour
     {
         int prelength = Deck.Count;
         if(Deck.Count <= 0) 
+            DiscardToDeck();
+        if (Deck.Count <= 0)
             return null;
-        InventoryItemData returnCard = Deck[0];
+            InventoryItemData returnCard = Deck[0];
         Deck.RemoveAt(0);
         return returnCard;
     }
 
     public void DiscardToDeck()
     {
+
         Deck.AddRange(Discard);
+        foreach(InventoryItemData item in Discard)
+        {
+
+        }
         Discard.Clear();
     }
 
     public void FlattenDeckInventory()
     {
-        
         List<InventoryItemData> NewDeck = new List<InventoryItemData>();
         for(int i = 0; i < Deck.Count; i++)
         {
@@ -108,6 +112,7 @@ public class DeckManager : MonoBehaviour
             for(int j = 0; j < Item.CurrentStackCount; j++)
             {
                 InventoryItemData NewCard = new InventoryItemData(Item.Data, -1, 1, true);
+                NewCard.CardActionType = Item.CardActionType;
                 NewDeck.Add(NewCard);
             }
         }
@@ -136,6 +141,7 @@ public class DeckManager : MonoBehaviour
             else
             {
                 InventoryItemData NewCard = new InventoryItemData(Item.Data, Item.InventoryIndex, 1, true);
+                NewCard.CardActionType = Item.CardActionType;
                 NewDeckMap.Add(NewCard.Data, NewCard);
             }
         }
@@ -145,6 +151,12 @@ public class DeckManager : MonoBehaviour
         {
             GameManager.Instance.PlayerState.Deck.Add(Pair.Value);
         }
+    }
+
+    public void DiscardCard(InventoryItemData Item, bool Clone = false)
+    {
+        InventoryItemData DiscardItem = Clone ? Item.CreateCopy() : Item;
+        Discard.Add(DiscardItem);
     }
 }
 

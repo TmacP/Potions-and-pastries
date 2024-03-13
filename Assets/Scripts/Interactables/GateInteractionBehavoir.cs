@@ -19,7 +19,7 @@ public class GateInteractionBehavoir : MonoBehaviour, IInteractable
 //************ Start of IINteractable Interface***********
     public string InteractionPrompt => "Unlock " + BlockedRegion.ToString();
 
-    public bool TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItems = null)
+    public EInteractionResult TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItems = null)
     {
         if(PurchasePrompt != null)
         {
@@ -29,9 +29,9 @@ public class GateInteractionBehavoir : MonoBehaviour, IInteractable
             {
                 Prompt.SetData(BlockedRegion, OpenCost, ID);
             }
-            return true;
+            return EInteractionResult.Success;
         }
-        return false;
+        return EInteractionResult.Failure;
     }
 
 //************* END of Interface****************
