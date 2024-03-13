@@ -377,15 +377,6 @@
             "id": "32721adb-5a82-4a7c-9b73-7bb1b02f5d89",
             "actions": [
                 {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "ba70af0e-2f73-40a1-bda9-9e929beab012",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "MenuOpenClose",
                     "type": "Button",
                     "id": "cbd4288b-1984-40b6-9895-67e8bb44d53a",
@@ -396,17 +387,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "096e47bb-c78c-4408-8517-e960c04aad22",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "New action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "ea25166e-4b09-4fda-8b98-56726db093ba",
