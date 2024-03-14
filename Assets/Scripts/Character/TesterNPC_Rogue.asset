@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TesterNPC_Rogue
   m_EditorClassIdentifier: 
   Name: Racheal
-  Friendship: 0
+  Friendship: 1
   Archetype: 0
   NPCLikes: 020000000a000000
   NPCDislikes: 0900000005000000
