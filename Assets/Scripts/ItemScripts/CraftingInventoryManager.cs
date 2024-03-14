@@ -127,8 +127,9 @@ public class CraftingInventoryManager : InventoryManager
         CraftingStation.TryCraft();
     }
 
-    public void OnDisable()
+    public override void OnDisable()
     {
+        base.OnDisable();
         InfoPanel infoPanel = FindObjectOfType<InfoPanel>();
         if (infoPanel != null)
         {

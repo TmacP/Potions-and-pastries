@@ -100,7 +100,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    public void OnEnable()
     {
         GameEventManager.instance.OnCloseMenu += CloseInventory;
         GameEventManager.instance.OnRefreshInventory += RefreshInventory;
@@ -111,7 +111,7 @@ public class InventoryManager : MonoBehaviour
         RefreshInventory();
     }
 
-    private void OnDisable()
+    public virtual void OnDisable()
     {
         InfoPanel infoPanel = FindObjectOfType<InfoPanel>();
         if (infoPanel != null)
