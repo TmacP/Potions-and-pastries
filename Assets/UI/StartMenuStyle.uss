@@ -1,0 +1,138 @@
+/* CSS HEX
+--celadon: #b0f2b4;
+--celeste: #baf2e9;
+--columbia-blue: #bad7f2;
+--orchid-pink: #f2bac9;
+--dutch-white: #f2e2ba; */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    -unity-font: url("project://database/Assets/Fonts/FUTURA75BOLD.TTF");
+    -unity-font-definition: initial;
+    
+    
+
+}
+
+.start {
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition-property: backgorund-color;
+    transition-duration: 400ms;
+    
+
+}
+
+.start.start-active {
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.sections {
+    flex:1;
+}
+
+.header, .footer {
+    height: 100px;
+    
+    
+}
+
+
+
+.header{
+
+
+    /* For pause menu */
+    translate: 0 -100% ;
+    transition-property: translate;
+    transition-duration: 400ms;
+
+}
+
+.start.start-active .header{
+    translate: 0 0 ;
+}
+
+.body{
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer{
+    background-color: rgba(186, 215, 242, 0.062);
+    background: rgba(255, 255, 255, 0.21);
+    border-radius: 50px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    margin: 5px 20px 5px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    justify-content: flex-end;
+    flex-direction: row;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.644);
+    font-size: 24px;
+    padding-right: 20px;
+
+    /* For pause menu */
+    translate: 0 100% ;
+    transition-property: translate;
+    transition-duration: 400ms;
+
+}
+
+.start.start-active .footer{
+    translate: 0 0 ;
+}
+/* 0000000000000000000000000 */
+
+.menu-items{
+    width: 400px;
+
+    /* For pause menu */
+    opacity: 0;
+    translate: 40px 0;
+    transition-property: all;
+    transition-duration: 400ms;
+}
+
+.start.start-active .menu-items{
+    opacity: 1;
+    translate: 0 0;
+}
+
+.menu-item{
+    width: 100%;
+}
+
+.menu-item-text {
+    background-color: #f2e2ba;
+    color: #6e6e6e;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+}
+
+.menu-item.menu-item-active .menu-item-text{
+    background-color: #baf2e9;
+    color:black;
+    scale: 1.1;
+    
+
+}
+
+.menu-item.space-top {
+    margin-top: 30px;
+}
+
+.menu-item Label {
+    font-size: 29px;
+}
+
