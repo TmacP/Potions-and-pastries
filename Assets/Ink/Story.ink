@@ -25,23 +25,23 @@ After a long trip from the city you finally arrive at your new inn. You see peop
 
 
 = tutorial
-They say, "Hello, you must be the new owner. Would you like an explanation about running thing?"
+"Hello, you must be the new owner. Would you like an explanation about running thing?"
 
- * "Yes, I'm new here[".] can you explain.", you say.
- * "No, I already know what to do[".]", you say. -> end_tutorial
+ * "Yes, I'm new here[".] can you explain."
+ * "No, I already know what to do"-> end_tutorial
 
-- "Of course, I was good friends with the previous owner and can tell you everything you need to know" he says. "As the new owner you are responsible for gathering ingredients for the inn's apothecary and bakery. You will find everything you need around outside. You'll have the whole day to gather since the inn doesn't start service till the evening."
+- "Of course, I was good friends with the previous owner and can tell you everything you need to know. As the new owner you are responsible for gathering ingredients for the inn's apothecary and bakery. You will find everything you need around outside. You'll have the whole day to gather since the inn doesn't start service till the evening."
 
 - (questions)
-    * "What sort of ingredients[".] do I need to gather?", you ask. -> ingredients
-    * "What will I be crafting[".] with the ingredients I gather?", you ask. -> crafts
+    * "What sort of ingredients[".] do I need to gather?" -> ingredients
+    * "What will I be crafting[".] with the ingredients I gather?"-> crafts
     * "Okay I think I understand[".] -> end_tutorial
-- (ingredients) They respond, "The ingredients you will need are: Apples, Cherries, Eggs, Cocoa beans, Milk, Salt, Sugar Canes, Tea Leaves, Vanilla Beans, and Wheat.". -> questions
-- (crafts) He responds, "with these ingredients you will be crafting potions and pastries to sell to the patrons of the inn." -> questions
+- (ingredients) "The ingredients you will need are: Apples, Cherries, Eggs, Cocoa beans, Milk, Salt, Sugar Canes, Tea Leaves, Vanilla Beans, and Wheat." -> questions
+- (crafts) "with these ingredients you will be crafting potions and pastries to sell to the patrons of the inn." -> questions
 -> end_tutorial
 
 = end_tutorial
-"Great, since you know what you're doing I'll leave you to it.", they reply.
+"Great, since you know what you're doing I'll leave you to it."
 + [Continue]
 ~ nextPathString = "first_day.post_tutorial" // will loop
 -> DONE
@@ -61,28 +61,24 @@ They say, "Hello, you must be the new owner. Would you like an explanation about
     }
     
 - (Rogue)
-{ &If your done looking around you should go inside and get ready for the night! | Are you lost? | hmm... }
+{ &"If your done looking around you should go inside and get ready for the night!" | "Are you lost?" | "hmm..." }
 + [Continue]
 -> DONE
 
 - (Magician)
-{ &How are you doing? | Nice weather we're having! | You're a chatty one! }
+{ &"How are you doing?" | "Nice weather we're having!" | "You're a chatty one!" }
 + [Continue]
 -> DONE
 
 - (Ranger)
-{ &I'm busy | Don't interrupt me | What is it? }
+{ &"I'm busy" | "Don't interrupt me" | "What is it?" }
 + [Continue]
 -> DONE
 
 - (Fighter)
-{ &Hey I'm training! | Can't stop to talk, getting sick gains!  }
+{ &"Hey I'm training!" | "Can't stop to talk, getting sick gains!"  }
 + [Continue]
 -> DONE
-
-
-// SECOND DAY *****************************************
-// Introduce caracters and cave
 
 === second_day
 // SECOND DAY *****************************************
@@ -102,7 +98,7 @@ They say, "Hello, you must be the new owner. Would you like an explanation about
 
 = Rogue_intro
 { second_day.Rogue_intro > 1 : -> post}
-They say, "Hello, I'm Rogue {name}. It is nice to have a chance to talk. You were so busy last night. How are you enjoying your inn so far?"
+"Hello, I'm Rogue {name}. It is nice to have a chance to talk. You were so busy last night. How are you enjoying your inn so far?"
 
     * "A lot[."], it has so much potential. With some work things will really go great."
     * "Not much[."], I didn't realize how much work it took to run things."
@@ -110,59 +106,54 @@ They say, "Hello, I'm Rogue {name}. It is nice to have a chance to talk. You wer
     
 - "Yea, it is a lot of work, but the potential is there. I can't wait to see what you do with the place."
 
-    * "So what are you doing[."] out here anyways?", you ask.
-    * "Thanks[."], and good luck with whatever you're doing out here"
+    * "So what are you doing[."] out here anyways?"
+    * "Thanks[."], and good luck with whatever you're doing out here!"
         -> fin
     
 
-- "Well aren't you the curious little inn keeper. I don't know if we're good enough friends for me to let you know that. Let's just say I'm looking for something".
+- "Well aren't you the curious little inn keeper. I don't know if we're good enough friends for me to let you know that. Let's just say I'm looking for something."
     
  - (fin)
-  "Okay best of luck.", you say.
+  "Okay best of luck."
   + [Continue]
  -> DONE
  
 
 = Magician_intro
 { second_day.Magician_intro > 1 : -> post}
-They say, "Hey, I'm Magician {name}. So you're the new owner of the inn."
+"Hey, I'm Magician {name}. So you're the new owner of the inn. I hope you stock up on tea leaves. I'm know for being thirsty, amongst other things, especially after spending all day out in the sunshine."
 
-"That's right."
-
-"Well I hope you stock up on tea leaves. I'm know for being thirsty, amongst other things, especially after spending all day out in the sunshine."
-
-    * "What are you doing[."] out here anyways?", you ask.
+    * "What are you doing[."] out here anyways?"
     
-    * "Sure...[."] I'll get right on that.", you say.
+    * "Sure...[."] I'll get right on that."
         -> fin
         
 - "Shh, that's my business. Plus if I told you I'd have to worry about you poisoning me and trying to steal my boots"
 
-"That wouldn't happen"
++ ["That wouldn't happen."]
 
-"Exactally what a theif would say! Maybe once we are better friends I'll let you know. As long as I don't see you eyeing my boots."
+- "Exactally what a theif would say! Maybe once we are better friends I'll let you know. As long as I don't see you eyeing my boots."
 
-"What ever you say. I'll leave you alone to keep being weird then"
++ ["What ever you say. I'll leave you alone to keep being weird then"]
 
 - (fin)
-
         + [Continue]
         -> DONE
 
 = Ranger_intro
 { second_day.Ranger_intro > 1 : -> post}
-They say, "I'm Ranger {name}. I guess you're probably wondering what all these people are doing out here anyways?"
+- "I'm Ranger {name}. I guess you're probably wondering what all these people are doing out here anyways?"
 
-* "Funny you should mention that[."], I was just about to ask.", you say. 
+* "Funny you should mention that[."], I was just about to ask." 
 
-- "They will play coy like they aren't but they are looking for the entrance to the cave which is rumored to be around here."
+- "They will play coy like they aren't, but they are looking for the entrance to the cave which is rumored to be around here."
 
 - (cave)
-    * "Why would they care about a cave" 
+    * "Why would they care about a cave?" 
     -> why
     * "What like for spelunking?"
     -> spelunking
-    * "Well I'm not going in any freaky cave[."], even if there is treasure, and glory." 
+    * "Well I'm not going in any freaky cave."
     -> end_cave_intro
     
     - (why) 
@@ -173,18 +164,13 @@ They say, "I'm Ranger {name}. I guess you're probably wondering what all these p
     -> cave
     
     - (end_cave_intro) 
-        "And I don't blame you. Who'd run the inn? Besides you don't look like the type to follow others."
-        "Thanks"
-        "I respect that, even if you do seem a little timid."
-        "Hey."
+        "And I don't blame you. Who'd run the inn? Besides you don't look like the type to follow others. I respect that, even if you do seem a little timid."
         + [Continue]
         -> DONE
 
 = Fighter_intro
 { second_day.Fighter_intro > 1 : -> post}
-They say, "I'm Fighter {name}. So you decided to try running an inn, very bold of you, you know most buisinesses fail. But I admire your courage."
-
-"Thanks... I think."
+"I'm Fighter {name}. So you decided to take over the inn, very bold of you, I admire your courage."
 
 - (cave)
     * "What are you up to[?"], out here anyways?" 
@@ -196,7 +182,6 @@ They say, "I'm Fighter {name}. So you decided to try running an inn, very bold o
     
 - (why)
 "You know I've been so busy chasing wealth I never even stopped to ask myself that. What even am I doing out here?"
-"?"
 -> cave
 
 - (what) 
@@ -223,22 +208,22 @@ They say, "I'm Fighter {name}. So you decided to try running an inn, very bold o
     }
     
 - (Rogue)
-{ &If your done looking around you should go inside and get ready for the night! | Are you lost? | hmm... }
+{ &"You should get some ingredients for the inn!" | "Cute, my own fan!" | "hmm..." }
 + [Continue]
 -> DONE
 
 - (Magician)
-{ &How are you doing? | Nice weather we're having! | You're a chatty one! }
+{ &"Eyeing my boots?" | "I've got my eyes on you!" | "Oh man am I thirsty!" }
 + [Continue]
 -> DONE
 
 - (Ranger)
-{ &I'm busy | Don't interrupt me | What is it? }
+{ &"If you find the cave entrance we could split the reward!" | "I'm not sneaking, just curious!" | "What about over here? hmm..." }
 + [Continue]
 -> DONE
 
 - (Fighter)
-{ &Hey I'm training! | Can't stop to talk, getting sick gains!  }
+{ &"Gosh what am I doing out here?" | "I bet that cave isn't even a thing!" | "If I gain any more muscle I will be absolutely swole!" }
 + [Continue]
 -> DONE
 
@@ -259,29 +244,36 @@ They say, "I'm Fighter {name}. So you decided to try running an inn, very bold o
 
 = Rogue_intro
 { third_day.Rogue_intro > 1 : -> post}
-  "Okay best of luck.", you say.
+"You will never believe this, but I think I figured out where the cave is."
+  + ["Where?"]
+  - "On the West face of the cliffs there is a spot where it opens up!"
+  + ["Crazy! Are you gonna go inside?]
+  - "Yes, but don't tell the others I want a head start!"
   + [Continue]
  -> DONE
  
 
 = Magician_intro
 { third_day.Magician_intro > 1 : -> post}
-They say, "Hey, I'm Magician
-
-        + [Continue]
-        -> DONE
+"Hey! I lost my boots"
++ ["This again? Why would I want your stinky old boots?"]
+- "It is fine consider them my gift to you"
++ ["Great..."]
+- "When I was looking for them I discovered an opening in the west face of the cliffs that I think is worth exploring. As soon as I find something to wear I'm going down!"
++ [Continue]
+-> DONE
 
 = Ranger_intro
 { third_day.Ranger_intro > 1 : -> post}
-They 
-        + [Continue]
-        -> DONE
+"
++ [Continue]
+-> DONE
 
 = Fighter_intro
 { third_day.Fighter_intro > 1 : -> post}
 They say
-        + [Continue]
-        -> DONE
++ [Continue]
+-> DONE
 
 // day 3 post story dialogue
 = post
@@ -298,26 +290,24 @@ They say
     }
     
 - (Rogue)
-{ &If your done looking around you should go inside and get ready for the night! | Are you lost? | hmm... }
+{ &"Hope I find some nice emeralds! Green is my colour!" | "Let's just pretend this never happened!" | "Shh..." }
 + [Continue]
 -> DONE
 
 - (Magician)
-{ &How are you doing? | Nice weather we're having! | You're a chatty one! }
+{ &"First I need a nap" | "I'm getting thirsty" | "What if I get lost inside?" }
 + [Continue]
 -> DONE
 
 - (Ranger)
-{ &I'm busy | Don't interrupt me | What is it? }
+{ &"" | "" |"" }
 + [Continue]
 -> DONE
 
 - (Fighter)
-{ &Hey I'm training! | Can't stop to talk, getting sick gains!  }
+{ &"" | "" | ""  }
 + [Continue]
 -> DONE
-
-
 
 === fourth_day
  // FOURTH DAY *****************************************
