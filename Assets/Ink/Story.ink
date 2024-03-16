@@ -394,7 +394,7 @@ After a long trip from the city you finally arrive at your new inn. You see peop
 { fifth_day.Ranger_intro > 1 : -> post}
 "Incredible there is a whole room filled with treasure!"
 + ["So about your tab..."]
-- "Even more incredible there is a humongus Cockatrice with it's own malitia of Cow gaurds"
+- "Even more incredible there is a humongus Cockatrice with it's own militia of Cow gaurds"
 + ["Explains why your tab is still open..."]
 - "Tomorrow we will go inside and challenge them to a contest for their treasure!"
         + [Continue]
