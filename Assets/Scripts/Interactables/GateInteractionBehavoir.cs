@@ -11,10 +11,23 @@ public class GateInteractionBehavoir : MonoBehaviour, IInteractable
     public EGameRegion BlockedRegion = EGameRegion.None;
     public int OpenCost = 10;
     public int ID = -1;
+    public bool fence_rotation;
 
 
     public bool bGateOpen;
     [SerializeField] private GameObject GateComponent; //This is the component we should rotate to open the gate
+
+    // Singleton instance of BasicInkExample
+    private static BasicInkExample _inkInstance;
+    public static BasicInkExample InkInstance
+    {
+        get
+        {
+            if (_inkInstance == null)
+                _inkInstance = FindObjectOfType<BasicInkExample>();
+            return _inkInstance;
+        }
+    }
 
 //************ Start of IINteractable Interface***********
     public string InteractionPrompt => "Unlock " + BlockedRegion.ToString();
@@ -48,6 +61,10 @@ public class GateInteractionBehavoir : MonoBehaviour, IInteractable
         if(ID == GateID)
         {
             SetGateState(true);
+            // set our inkle gate var to open
+            if (InkInstance != null){
+            InkInstance.OpenGate(ID);
+            }
         }
     }
 
@@ -59,17 +76,25 @@ public class GateInteractionBehavoir : MonoBehaviour, IInteractable
             
             int LayerIndex = LayerMask.NameToLayer("Interact");
             this.gameObject.layer &= (0x1 << LayerIndex);
-            if (GateComponent != null)
+            if (GateComponent != null && !fence_rotation)
             {
 
                 GateComponent.transform.rotation = Quaternion.Euler(0, 90, 0);
             }
+            else if (GateComponent != null && fence_rotation)
+            {
+                GateComponent.transform.localRotation = Quaternion.Euler(0, 180, 0);
+            }
         }
         else
         {
-            if (GateComponent != null)
+            if (GateComponent != null && !fence_rotation)
             {
-                GateComponent.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                GateComponent.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if (GateComponent != null && fence_rotation)
+            {
+                GateComponent.transform.localRotation = Quaternion.Euler(0, 90, 0);
 
             }
         }

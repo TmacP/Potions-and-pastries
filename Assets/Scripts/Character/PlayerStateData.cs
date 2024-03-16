@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerStateData : ScriptableObject
 {
     public float MoveSpeed;
+    public float Gravity;
 
     public long Gold = 100;
 
