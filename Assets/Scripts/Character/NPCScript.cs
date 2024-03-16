@@ -214,16 +214,18 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         }
         if (foundTable)
         {
-            agent.SetDestination(destination);
             //Debug.Log(Vector3.Distance(agent.transform.position, destination) < 0.5);
-
-            //not hitting here for some reason???????????????? Stays stuck at table
+            //not hitting here for some reason???? Stays stuck at table and this is only getting called twice
             if (Vector3.Distance(agent.transform.position, destination) < 0.5)
             {
                 Debug.Log("Made it here");
                 foundTable = false; ///TEMP
                 WaitSecChangeState(3, ENPCState.WaitForOrder);
 
+            }
+            else
+            {
+                agent.SetDestination(destination);
             }
         }
 
