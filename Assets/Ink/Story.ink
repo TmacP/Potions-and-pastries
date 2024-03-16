@@ -13,8 +13,6 @@ VAR chocolateGate = false
 
 -> first_day
 
-
-
 === first_day
 // FIRST DAY *****************************************
 // tutorial dialogue
@@ -265,13 +263,21 @@ After a long trip from the city you finally arrive at your new inn. You see peop
 
 = Ranger_intro
 { third_day.Ranger_intro > 1 : -> post}
-"
+"Wow I made the most incredible discovery"
++ ["What is it?"]
+- "I was down on the western field and I heard some strange sounds coming from the cliffs. I found what looks to be an entrance going inside to the caves everyone has been looking for"
++ ["So you going to go do in it?"]
+- "Tomorrow. First I'll have to gather up some potions and pastries. There is no telling how deep it goes.
 + [Continue]
 -> DONE
 
 = Fighter_intro
 { third_day.Fighter_intro > 1 : -> post}
-They say
+"I spent time reflecting and now I figured out my purpose for being out here"
++ ["So what are you doing out here?"]
+- "I realized I never wanted to be a fighter but I just fell into the role society pushed onto me!"
++ ["So what are you going to do now?"]
+- "Oh man, I never even though about that... What am I going to do now?"
 + [Continue]
 -> DONE
 
@@ -300,12 +306,12 @@ They say
 -> DONE
 
 - (Ranger)
-{ &"" | "" |"" }
+{ &"Need some saucy sweets for my journey underneath" | "What kind of potions are good for decending into the ground?" |"Okay this is it don't get scared now!" }
 + [Continue]
 -> DONE
 
 - (Fighter)
-{ &"" | "" | ""  }
+{ &"What do I do now?" | "Maybe if I get back to my roots?" | "Maybe I'll do some pushups?"  }
 + [Continue]
 -> DONE
 
@@ -386,7 +392,7 @@ They say
 
 === fifth_day
 // FIFTH DAY *****************************************
-// adventurers find a monster gaurding treasure
+// adventurers find a cockatrice and cows gaurding treasure
 ~ nextPathString = "fifth_day"
 {
     - class == "Rogue":
