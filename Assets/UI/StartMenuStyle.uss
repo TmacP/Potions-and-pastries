@@ -11,8 +11,6 @@
     padding: 0;
     -unity-font: url("project://database/Assets/Fonts/FUTURA75BOLD.TTF");
     -unity-font-definition: initial;
-    
-    
 
 }
 
@@ -52,7 +50,15 @@
     transition-duration: 400ms;
 
 }
-
+.header .heaer-text {
+    font-size: 150px;
+    color:white;
+    text-align:center;
+    justify-content:center;
+    /* flex-direction: row; */
+    align-items: center;
+    margin-top: 100px;
+}
 .start.start-active .header{
     translate: 0 0 ;
 }
