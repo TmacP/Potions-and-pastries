@@ -65,14 +65,32 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
     public EInteractionResult TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
     {
         //Open Crafting UI screen
-
         if(IsCrafting && CraftingProgress >= 1.0f)
         {
-            GameEventManager.instance.GivePlayerItems(OutgoingItems);
-            OutgoingItems.Clear();
-            IsCrafting = false;
-            CraftingProgress = 0.0f;
-            return EInteractionResult.Success;
+            Debug.Log("TryInteract - Crafting Done");
+            if(PlayerController.instance.toolbar.IsFull())
+            {
+                //return EInteractionResult.Failure;
+                Debug.Log("Crafting and full");
+                GameEventManager.instance.GivePlayerItems(OutgoingItems);
+                OutgoingItems.Clear();
+                IsCrafting = false;
+                CraftingProgress = 0.0f;
+                RecalculateValidRecipes();
+                return EInteractionResult.Success;
+            }
+            else
+            {
+                Debug.Log("Crafting finished");
+                GameEventManager.instance.GivePlayerItems(OutgoingItems);
+                OutgoingItems.Clear();
+                IsCrafting = false;
+                CraftingProgress = 0.0f;
+                RecalculateValidRecipes();
+                return EInteractionResult.Success;
+            }
+
+            
         }
         else if(IsCrafting && CraftingProgress < 1.0f)
         {
@@ -213,8 +231,6 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
         .Where(recipe => recipe.RequiredItems.All(requiredItem => AllItems.Any(currentItem => currentItem.Data == requiredItem)))
         .ToList();
         
-
-        
         if (OnRefreshedRecipe != null)
         {
             OnRefreshedRecipe();
@@ -230,6 +246,8 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
             foreach(ItemData item in RecipeToCraft.OutgoingItems)
             {
                 InventoryItemData InvItem = new InventoryItemData(item, -1, -1);
+                InvItem.bIsCard = GameManager.Instance.GetGameState() == EGameState.NightState;
+                InvItem.CardActionType = ECardActionType.Use_Trash;
                 OutgoingItems.Add(InvItem);
             }
 
@@ -259,12 +277,13 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
                     }
                 }
 
-                GameEventManager.instance.GivePlayerItems(OutgoingItems);
-                OutgoingItems.Clear();
-                IsCrafting = false;
-                CraftingProgress = 0.0f;
+                //GameEventManager.instance.GivePlayerItems(OutgoingItems);
+                //OutgoingItems.Clear();
+                IsCrafting = true;
+                CraftingProgress = 1.0f;
+                //RecalculateValidRecipes();
                 GameEventManager.instance.RefreshInventory();
-                RecalculateValidRecipes();
+                //RecalculateValidRecipes();
                 return true;
             }
             else

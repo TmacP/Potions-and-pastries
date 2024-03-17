@@ -321,9 +321,30 @@ private void FixedUpdate()
 
     public void OnGainItems(List<InventoryItemData> Items)
     {
-        foreach(InventoryItemData item in Items)
+        if(GameManager.Instance.GetGameState() == EGameState.NightState && toolbar != null)
         {
-            _InventoryManager.AddItem(item);
+            foreach(InventoryItemData item in Items)
+            {
+                if(toolbar.IsFull())
+                {
+                    DeckManager Deck = GetComponent<DeckManager>();
+                    if(Deck != null)
+                    {
+                        Deck.AddCardToDiscard(item);
+                    }
+                }
+                else
+                {
+                    toolbar.ToolbarManager.AddItem(item);
+                }
+            }
+        }
+        else
+        {
+            foreach (InventoryItemData item in Items)
+            {
+                _InventoryManager.AddItem(item);
+            }
         }
     }
 

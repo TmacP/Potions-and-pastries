@@ -35,13 +35,17 @@ public class CardHandManager : Toolbar
 
     public override bool UseSelectedItem()
     {
-        Deck.DiscardCard(GetSelectedItem());
-        bool Sucess = base.UseSelectedItem();
-        if (Sucess && Deck != null)
+        InventoryItemData Item = GetSelectedItem();
+        if(Item != null && Item.CardActionType == ECardActionType.Use_Discard)
+        { 
+            Deck.DiscardCard(GetSelectedItem());
+        }
+        bool Success = base.UseSelectedItem();
+        if (Success && Deck != null)
         {
             DrawCard();
         }
-        return Sucess;
+        return Success;
     }
 
     public void DrawCard()

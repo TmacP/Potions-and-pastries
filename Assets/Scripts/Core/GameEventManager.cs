@@ -234,6 +234,15 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
-    
+    public event Action OnDeckSizeChange;
+    public void DeckSizeChange()
+    {
+        if (OnDeckSizeChange != null)
+        {
+            OnDeckSizeChange();
+        }
+    }
+
+
 
 }

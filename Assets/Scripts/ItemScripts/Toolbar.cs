@@ -48,9 +48,21 @@ public class Toolbar : MonoBehaviour
         return ToolbarManager.GetSelectedItem(false);
     }
 
+    public bool IsFull()
+    {
+        Debug.Log(ToolbarManager.inventorySlots.Length);
+        foreach (InventorySlot slot in ToolbarManager.inventorySlots)
+        {
+            if(slot.IsEmpty())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     virtual public bool UseSelectedItem()
     {
-        Debug.Log("Item Used");
         return ToolbarManager.UseItem(ToolbarManager.selectedSlot);
     }
 

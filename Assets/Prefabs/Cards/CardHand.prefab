@@ -127,6 +127,7 @@ MonoBehaviour:
   maxStack: 1
   selectedSlot: -1
   CloseOnCloseMenuEvent: 1
+  bIsMainMenu: 1
 --- !u!114 &8126215670808450330
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -63,6 +63,8 @@ public class DeckManager : MonoBehaviour
         Deck.AddRange(Discard);
         Discard.Clear();
         Hand.Clear();
+        GameEventManager.instance.DeckSizeChange();
+
     }
 
 
@@ -89,6 +91,7 @@ public class DeckManager : MonoBehaviour
             return null;
             InventoryItemData returnCard = Deck[0];
         Deck.RemoveAt(0);
+        GameEventManager.instance.DeckSizeChange();
         return returnCard;
     }
 
@@ -101,6 +104,7 @@ public class DeckManager : MonoBehaviour
 
         }
         Discard.Clear();
+        GameEventManager.instance.DeckSizeChange();
     }
 
     public void FlattenDeckInventory()
@@ -157,6 +161,13 @@ public class DeckManager : MonoBehaviour
     {
         InventoryItemData DiscardItem = Clone ? Item.CreateCopy() : Item;
         Discard.Add(DiscardItem);
+        GameEventManager.instance.DeckSizeChange();
+    }
+
+    public void AddCardToDiscard(InventoryItemData Item)
+    {
+        Discard.Add(Item);
+        GameEventManager.instance.DeckSizeChange();
     }
 }
 
