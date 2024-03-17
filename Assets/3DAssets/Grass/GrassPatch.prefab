@@ -57,6 +57,12 @@ VisualEffect:
       - m_Value: 8000
         m_Name: Grass Spawn Amount
         m_Overridden: 1
+      - m_Value: 10
+        m_Name: Grass Spawn X
+        m_Overridden: 1
+      - m_Value: 10
+        m_Name: Grass Spawn Y
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
