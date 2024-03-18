@@ -3,11 +3,7 @@
     <ui:VisualElement class="start"> 
 
     <ui:VisualElement class="sections">
-        <ui:VisualElement class="header">
-            <ui:VisualElement class="heaer-text">
-                <ui:Label text="Cozy Cachet" />
-            </ui:VisualElement>
-
+    <ui:VisualElement class="header">
         </ui:VisualElement>
 
         <ui:VisualElement class="body">
