@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
 
-
     public PlayerActions _PlayerActions;
     private Rigidbody _Rigidbody;
     private InteractorBehavoir _InteractorBehavoir;
@@ -189,14 +188,30 @@ private void FixedUpdate()
 
         if (_PlayerMoveInput.x > 0 && faceLeft)
         {
-            transform.Find("F_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
-            transform.Find("B_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+            //transform.Find("F_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+            //transform.Find("B_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+
+            Vector3 scale = transform.Find("F_BaseCharacter").transform.localScale;
+            scale.x *= -1.0f;
+            transform.Find("F_BaseCharacter").transform.localScale = scale;
+            scale = transform.Find("B_BaseCharacter").transform.localScale ;
+            scale.x *= -1.0f;
+            transform.Find("B_BaseCharacter").transform.localScale = scale;
             faceLeft = false;
         }
         else if (_PlayerMoveInput.x < 0 && !faceLeft)
         {
-            transform.Find("F_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
-            transform.Find("B_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+            //transform.Find("F_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+            //transform.Find("B_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+
+            Vector3 scale = transform.Find("F_BaseCharacter").transform.localScale;
+            scale.x *= -1.0f;
+            transform.Find("F_BaseCharacter").transform.localScale = scale;
+            scale = transform.Find("B_BaseCharacter").transform.localScale;
+            scale.x *= -1.0f;
+            transform.Find("B_BaseCharacter").transform.localScale = scale;
+
+
             faceLeft = true;
         }
 

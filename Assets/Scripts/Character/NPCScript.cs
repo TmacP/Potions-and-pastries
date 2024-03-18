@@ -36,9 +36,15 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
 
     [SerializeField] OrderData NpcOrder;
 
+    private Rigidbody _Rigidbody;
+    public Animator frontAnimator;
+    public Animator backAnimator;
+    private bool faceBack = false;
+    private bool faceLeft = true;
 
 
-//*************IInteractable interface***********
+
+    //*************IInteractable interface***********
     public string InteractionPrompt => GetInteractionPrompt();
 
 
@@ -76,12 +82,18 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
     public void Awake()
     {
         _DialogueBehavoir = GetComponent<DialogueBehavoir>();
+
+        _Rigidbody ??= GetComponent<Rigidbody>();
+        frontAnimator = transform.Find("F_BaseCharacter").GetComponent<Animator>();
+        backAnimator = transform.Find("B_BaseCharacter").GetComponent<Animator>();
     }
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
     }
+
+
 
     // Update is called once per frame
     void Update()
@@ -173,7 +185,6 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         {
             pointSet = false;
         }
-
     }
 
                //need to change based on what scene is called
@@ -219,6 +230,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
             agent.SetDestination(destination);
             //change to order state 3 sec after table is reached
             if ((agent.transform.position - destination).magnitude < 0.5) WaitSecChangeState(3, ENPCState.Order);
+
         }
     }
 
