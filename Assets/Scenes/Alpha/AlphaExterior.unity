@@ -44039,6 +44039,7 @@ MonoBehaviour:
   canvas: {fileID: 1141494835}
   textPrefab: {fileID: 11456674, guid: 1aab6ef84d87c416f8f0b3e1ef3d77d2, type: 3}
   buttonPrefab: {fileID: 11455116, guid: 37c108a6c38964f79a6621eccb33ddc1, type: 3}
+  background: {fileID: 6603649219095007156, guid: 61d6cb28288e84810bdce4d3c6afcb8b, type: 3}
 --- !u!4 &924142301 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 299783257446688971, guid: cf458caa7d1f0ed4caa5a989832d0952, type: 3}
@@ -80443,6 +80444,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inkle
       objectReference: {fileID: 0}
+    - target: {fileID: 2857580816658017432, guid: d03f924e9203d45deb66b4c8213f1036, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857580816658017432, guid: d03f924e9203d45deb66b4c8213f1036, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857580816658017432, guid: d03f924e9203d45deb66b4c8213f1036, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3920014068774576071, guid: d03f924e9203d45deb66b4c8213f1036, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -80505,6 +80518,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5096247496245929197, guid: d03f924e9203d45deb66b4c8213f1036, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096247496245929197, guid: d03f924e9203d45deb66b4c8213f1036, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096247496245929197, guid: d03f924e9203d45deb66b4c8213f1036, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096247496245929197, guid: d03f924e9203d45deb66b4c8213f1036, type: 3}
+      propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5096247496245929197, guid: d03f924e9203d45deb66b4c8213f1036, type: 3}
