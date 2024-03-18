@@ -99,8 +99,11 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         //Debug.Log(pointSet);
         if (Vector3.Distance(agent.transform.position, destination) < 0.5 && foundTable)
         {
-            //    Debug.Log("HIT");
             WaitSecChangeState(3, ENPCState.WaitForOrder);
+        }
+        else if (Vector3.Distance(agent.transform.position, destination) < 0.5 && foundDoor)
+        {
+            Destroy(this.gameObject);
         }
         else if (Vector3.Distance(agent.transform.position, destination) < 10 && pointSet && !foundTable && !foundDoor)
         {
@@ -144,8 +147,8 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
                 GameEventManager.instance.DoneNPCOrder(NpcOrder);
                 break;
             case ENPCState.Leaving:
-                //WalkToDoor();
-                WaitSecChangeState(3, ENPCState.Wander); //temp
+                EatOrLeave();
+                //WaitSecChangeState(3, ENPCState.Wander); //temp
                 break;
             default:
                 //Debug.Log("NPCScript::UpdateNPCState unknown NPC state given");
@@ -178,7 +181,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
             WaitSecChangeState(3, ENPCState.Idle);
             //Debug.Log("Point Set");
             agent.SetDestination(destination);
-            
+            pointSet = false;
         }
     }
 
@@ -187,7 +190,6 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
             WaitSecChangeState(3, ENPCState.FindTable);
     }
 
-    
 
     void FindTablePosition()
     {
@@ -215,21 +217,17 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         }
         if (foundTable)
         {
-            //Debug.Log(Vector3.Distance(agent.transform.position, destination) < 0.5);
-            //not hitting here for some reason???? Stays stuck at table and this is only getting called twice
             if (Vector3.Distance(agent.transform.position, destination) < 0.5)
             {
                 Debug.Log("Made it here");
                 foundTable = false; ///TEMP
                 WaitSecChangeState(3, ENPCState.WaitForOrder);
-
             }
             else
             {
                 agent.SetDestination(destination);
             }
         }
-
     }
 
 
@@ -259,18 +257,47 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         }
         if (foundDoor)
         {
-            agent.SetDestination(destination);
-
-            if (Vector3.Distance(agent.transform.position, destination) < 20)
+            if (Vector3.Distance(agent.transform.position, destination) < 0.5)
             {
-                WaitSecChangeState(3, ENPCState.Leaving);
-                //         foundTable = false; ///TEMP
+                Debug.Log("Made it here");
+                foundDoor = false; ///TEMP
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                agent.SetDestination(destination);
             }
         }
 
     }
 
+    void EatOrLeave()
+    {
+        bool ChangeChance = RandomChance(0,200);
 
+        // stay and eat more, but do we move or stay at table?
+        if(ChangeChance)
+        {
+            bool ChangeChance2 = RandomChance(0,200);
+            // move from table and rerun from wandering state
+            if (ChangeChance2)
+            {
+                WaitSecChangeState(5, ENPCState.Wander);
+            }
+            //stay at table and feast more
+            // skipping FindTable and going straight to ordering 
+            else
+            {
+                WaitSecChangeState(3, ENPCState.WaitForOrder);
+            }
+            
+
+        }
+        else
+        {
+            WalkToDoor();
+        }
+    }
 
 
 
@@ -291,17 +318,18 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         //update state here
     }
 
-    private ENPCState RandomChance(ENPCState currentState, ENPCState changedToState)
+    // splits the chance 50/50
+    private bool RandomChance(float minNum, float maxNum)
     {
-        float RandNum = Random.Range(0, 100);
+        float RandNum = Random.Range(minNum, maxNum);
 
-        if(RandNum <= 50)
+        if(RandNum < (maxNum / 2) )
         {
-            return changedToState;
+            return true;
         }
         else 
         {
-            return currentState;
+            return false;
         }
         
     }
