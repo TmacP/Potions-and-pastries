@@ -118,7 +118,7 @@ public void ContinueStory(NPCData npcData)
 		// set background image
 		Image bg = Instantiate (background) as Image;
 		bg.transform.SetParent (canvas.transform, false);
-
+		Destroy(bg.gameObject, 0.1f); // LOL I CANT BELIEVE THIS WORKS
 		Text storyText = Instantiate (textPrefab) as Text;
 		storyText.text = text;
 		storyText.transform.SetParent (bg.transform, false);
@@ -158,4 +158,5 @@ public void ContinueStory(NPCData npcData)
 	[SerializeField] private Text textPrefab = null;
 	[SerializeField] private Button buttonPrefab = null;
 	[SerializeField] private Image background = null;
+
 }
