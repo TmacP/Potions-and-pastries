@@ -187,9 +187,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _InventoryPrefab: {fileID: 4702890175944418306, guid: f2116dd8256e0114e9fc68b830b73d72, type: 3}
-  _InventoryManager: {fileID: 4599764298279483909, guid: 33e367ad5d312e74cb7f4e3d9fce5e65, type: 3}
+  _InventoryManager: {fileID: 0}
   _DeckBuildingScreenPrefab: {fileID: 515715817225196495, guid: 1f84403d553e85f42a9274e7a057dc76, type: 3}
-  _HotBarPrefab: {fileID: 945699792175429718, guid: 526c1ac2ea9566947bc7d18db74f90a0, type: 3}
+  _HotBarPrefab: {fileID: 0}
   _CardHandPrefab: {fileID: 945699792175429718, guid: aae92159f071ce142b8cb9a2005eca40, type: 3}
   toolbar: {fileID: 0}
   frontAnimator: {fileID: 0}

@@ -301,7 +301,7 @@ private void FixedUpdate()
     {
         if (context.performed)
         {
-            if (!_InventoryManager.gameObject.activeSelf && GameManager.Instance.GetGameState() != EGameState.NightState)
+            if (_InventoryManager != null && !_InventoryManager.gameObject.activeSelf && GameManager.Instance.GetGameState() != EGameState.NightState)
             {
                 GameEventManager.instance.CloseMenu();
                 _InventoryManager.gameObject.SetActive(true);
@@ -425,8 +425,9 @@ private void FixedUpdate()
                 }
                 toolbar = Toolbar.GetComponent<Toolbar>();
             }
-            else
+            else if(_HotBarPrefab != null)
             {
+
                 GameObject Toolbar = Instantiate(_HotBarPrefab);
                 Toolbar.transform.SetParent(HUD.transform, false);
                 Toolbar.transform.SetAsFirstSibling();
