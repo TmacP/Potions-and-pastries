@@ -97,16 +97,17 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         //Debug.Log(Vector3.Distance(agent.transform.position, destination));
 
         //Debug.Log(pointSet);
-        if (Vector3.Distance(agent.transform.position, destination) < 10 && pointSet)
+        if (Vector3.Distance(agent.transform.position, destination) < 0.5 && foundTable)
+        {
+            //    Debug.Log("HIT");
+            WaitSecChangeState(3, ENPCState.WaitForOrder);
+        }
+        else if (Vector3.Distance(agent.transform.position, destination) < 10 && pointSet && !foundTable && !foundDoor)
         {
             pointSet = false;
             WaitSecChangeState(0, NPCState);
         }
-        if (Vector3.Distance(agent.transform.position, destination) < 0.5 && foundTable)
-        {
-        //    Debug.Log("HIT");
-            WaitSecChangeState(0, NPCState);
-        }
+
 
     }
 
@@ -276,7 +277,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
 
     void WaitSecChangeState(float seconds, ENPCState newStateChange)
     {
-        if (this.NextNPCState == ENPCState.None)
+        if (this.NextNPCState == ENPCState.None && newStateChange != this.NPCState)
         {
             this.NextNPCState = newStateChange;
             Invoke("OnUpdateNPCState", seconds);
