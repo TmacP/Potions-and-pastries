@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: Transform into your best self, too bad you're a chicken
   ItemType: 0
   ItemTags: 
-  image: {fileID: 21300000, guid: 13846ff305c4d4e80994aa45971e63e2, type: 3}
+  image: {fileID: 21300000, guid: 7681dbe5c831a466a891e857453ea2d9, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 

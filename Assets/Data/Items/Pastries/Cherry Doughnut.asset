@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: A Cherry Doughnut, the filling is dripping down the side.
   ItemType: 0
   ItemTags: 
-  image: {fileID: 21300000, guid: ba52f66a7557f4a87a6ae62d4c92f11a, type: 3}
+  image: {fileID: 21300000, guid: 14cf1507d3cac434e86273dec7e87aa4, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 

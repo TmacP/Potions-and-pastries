@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4865,13 +4865,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 46186100}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 91ab8370b48a645e9965fb7e057dffb5, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 91ab8370b48a645e9965fb7e057dffb5, type: 3}
       propertyPath: m_Name
       value: Egg
       objectReference: {fileID: 0}
     - target: {fileID: 5183856651498487821, guid: 91ab8370b48a645e9965fb7e057dffb5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.4
+      value: 12.48
       objectReference: {fileID: 0}
     - target: {fileID: 5183856651498487821, guid: 91ab8370b48a645e9965fb7e057dffb5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4879,7 +4883,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5183856651498487821, guid: 91ab8370b48a645e9965fb7e057dffb5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 39.5
+      value: 42.83
       objectReference: {fileID: 0}
     - target: {fileID: 5183856651498487821, guid: 91ab8370b48a645e9965fb7e057dffb5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4988,7 +4992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4714055777043972144, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.02
+      value: -51.9
       objectReference: {fileID: 0}
     - target: {fileID: 4714055777043972144, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4996,7 +5000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4714055777043972144, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 26.79
+      value: -15.1
       objectReference: {fileID: 0}
     - target: {fileID: 4714055777043972144, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5075,6 +5079,33 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3032731713078399104, guid: aae919ee10a984d2a992a1f002ca9bc8, type: 3}
+--- !u!1 &91355999 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7934593207919885190, guid: 5f48e8b3589286e4c9edfff6cea094db, type: 3}
+  m_PrefabInstance: {fileID: 623036859}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &91356003
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91355999}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4579454407841743219, guid: ddec3cd58be5ec74fa301509875d1262, type: 3}
 --- !u!4 &91764969 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5629997289885281849, guid: a4b3eb84aae2378498af4182d0ac2780, type: 3}
@@ -7659,6 +7690,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1224392719}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 90a6aa9c39bf94ad19fbbc432b074ea6, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 90a6aa9c39bf94ad19fbbc432b074ea6, type: 3}
       propertyPath: m_Name
       value: Tea Leaves (6)
@@ -10316,6 +10351,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1224392719}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 90a6aa9c39bf94ad19fbbc432b074ea6, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 90a6aa9c39bf94ad19fbbc432b074ea6, type: 3}
       propertyPath: m_Name
       value: Tea Leaves (2)
@@ -12168,6 +12207,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1752964333}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: fb1314e3cae6c412d983028a43502b97, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: fb1314e3cae6c412d983028a43502b97, type: 3}
       propertyPath: m_Name
       value: Salt (5)
@@ -17507,7 +17550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4714055777043972144, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.8
+      value: -47.3
       objectReference: {fileID: 0}
     - target: {fileID: 4714055777043972144, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17515,7 +17558,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4714055777043972144, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 38.1
+      value: 40.8
       objectReference: {fileID: 0}
     - target: {fileID: 4714055777043972144, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_LocalRotation.w
@@ -19490,6 +19533,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1752964333}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: fb1314e3cae6c412d983028a43502b97, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: fb1314e3cae6c412d983028a43502b97, type: 3}
       propertyPath: m_Name
       value: Salt (3)
@@ -20370,6 +20417,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1224392719}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 90a6aa9c39bf94ad19fbbc432b074ea6, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 90a6aa9c39bf94ad19fbbc432b074ea6, type: 3}
       propertyPath: m_Name
       value: Tea Leaves (1)
@@ -22625,6 +22676,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 525325603}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 47b195adeb5a84f9389af86b2290ab97, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 47b195adeb5a84f9389af86b2290ab97, type: 3}
       propertyPath: m_Name
       value: Wheat (2)
@@ -24347,6 +24402,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 33586161}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 9372c06b6d02a4554b93db4dbb36bf44, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 9372c06b6d02a4554b93db4dbb36bf44, type: 3}
       propertyPath: m_Name
       value: Cocoa Bean (1)
@@ -25205,6 +25264,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1673602378}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 3e2453bda798649a8bff885513fcf7f9, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 3e2453bda798649a8bff885513fcf7f9, type: 3}
       propertyPath: m_Name
       value: Sugar Cane (1)
@@ -30474,7 +30537,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3970355614802298347, guid: 5f48e8b3589286e4c9edfff6cea094db, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1718366761}
+    - targetCorrespondingSourceObject: {fileID: 7934593207919885190, guid: 5f48e8b3589286e4c9edfff6cea094db, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 91356003}
+    - targetCorrespondingSourceObject: {fileID: 3083779064121734709, guid: 5f48e8b3589286e4c9edfff6cea094db, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2131907127}
+    - targetCorrespondingSourceObject: {fileID: 6365747704878838477, guid: 5f48e8b3589286e4c9edfff6cea094db, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1250246519}
   m_SourcePrefab: {fileID: 100100000, guid: 5f48e8b3589286e4c9edfff6cea094db, type: 3}
 --- !u!1001 &628172389
 PrefabInstance:
@@ -31208,6 +31283,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1028457616}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 3bf22c423b11a4b08b4f85a63722a3d0, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 3bf22c423b11a4b08b4f85a63722a3d0, type: 3}
       propertyPath: m_Name
       value: Apple
@@ -31890,6 +31969,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1224392719}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 90a6aa9c39bf94ad19fbbc432b074ea6, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 90a6aa9c39bf94ad19fbbc432b074ea6, type: 3}
       propertyPath: m_Name
       value: Tea Leaves (8)
@@ -33419,6 +33502,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1224392719}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 90a6aa9c39bf94ad19fbbc432b074ea6, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 90a6aa9c39bf94ad19fbbc432b074ea6, type: 3}
       propertyPath: m_Name
       value: Tea Leaves (3)
@@ -35538,6 +35625,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1224392719}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 90a6aa9c39bf94ad19fbbc432b074ea6, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 90a6aa9c39bf94ad19fbbc432b074ea6, type: 3}
       propertyPath: m_Name
       value: Tea Leaves
@@ -42742,6 +42833,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 747761137}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 1ea0d12bd34694698ae1d8d2c964e077, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 1ea0d12bd34694698ae1d8d2c964e077, type: 3}
       propertyPath: m_Name
       value: Vanilla Bean (1)
@@ -42831,6 +42926,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1673602378}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 3e2453bda798649a8bff885513fcf7f9, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 3e2453bda798649a8bff885513fcf7f9, type: 3}
       propertyPath: m_Name
       value: Sugar Cane
@@ -43554,6 +43653,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1224392719}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 90a6aa9c39bf94ad19fbbc432b074ea6, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 90a6aa9c39bf94ad19fbbc432b074ea6, type: 3}
       propertyPath: m_Name
       value: Tea Leaves (4)
@@ -60788,6 +60891,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2081741776}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 20a185434b8ea4866b388a5b425b5b3d, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 20a185434b8ea4866b388a5b425b5b3d, type: 3}
       propertyPath: m_Name
       value: Cherry (2)
@@ -60973,6 +61080,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 13fad6e950e2a470fbbe1bc41382fd5e, type: 3}
   m_PrefabInstance: {fileID: 1249419355}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1250246515 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6365747704878838477, guid: 5f48e8b3589286e4c9edfff6cea094db, type: 3}
+  m_PrefabInstance: {fileID: 623036859}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1250246519
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250246515}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8302102485596996044, guid: ddec3cd58be5ec74fa301509875d1262, type: 3}
 --- !u!1001 &1250248468
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60981,6 +61115,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1752964333}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: fb1314e3cae6c412d983028a43502b97, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: fb1314e3cae6c412d983028a43502b97, type: 3}
       propertyPath: m_Name
       value: Salt (1)
@@ -65294,6 +65432,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1752964333}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: fb1314e3cae6c412d983028a43502b97, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: fb1314e3cae6c412d983028a43502b97, type: 3}
       propertyPath: m_Name
       value: Salt
@@ -66464,6 +66606,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 525325603}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 47b195adeb5a84f9389af86b2290ab97, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 47b195adeb5a84f9389af86b2290ab97, type: 3}
       propertyPath: m_Name
       value: Wheat
@@ -68229,6 +68375,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1028457616}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 3bf22c423b11a4b08b4f85a63722a3d0, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 3bf22c423b11a4b08b4f85a63722a3d0, type: 3}
       propertyPath: m_Name
       value: Apple (1)
@@ -69320,6 +69470,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1673602378}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 3e2453bda798649a8bff885513fcf7f9, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 3e2453bda798649a8bff885513fcf7f9, type: 3}
       propertyPath: m_Name
       value: Sugar Cane (3)
@@ -70160,6 +70314,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 33586161}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 9372c06b6d02a4554b93db4dbb36bf44, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 9372c06b6d02a4554b93db4dbb36bf44, type: 3}
       propertyPath: m_Name
       value: Cocoa Bean (2)
@@ -70217,6 +70375,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1224392719}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 90a6aa9c39bf94ad19fbbc432b074ea6, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 90a6aa9c39bf94ad19fbbc432b074ea6, type: 3}
       propertyPath: m_Name
       value: Tea Leaves (9)
@@ -73808,6 +73970,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1028457616}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 3bf22c423b11a4b08b4f85a63722a3d0, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 3bf22c423b11a4b08b4f85a63722a3d0, type: 3}
       propertyPath: m_Name
       value: Apple (2)
@@ -80959,6 +81125,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 33586161}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 9372c06b6d02a4554b93db4dbb36bf44, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 9372c06b6d02a4554b93db4dbb36bf44, type: 3}
       propertyPath: m_Name
       value: Cocoa Bean
@@ -82262,6 +82432,33 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8003374059435982130, guid: 49ce29b4e997a4ef882e84a61e27a54b, type: 3}
+--- !u!1 &1718366757 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3970355614802298347, guid: 5f48e8b3589286e4c9edfff6cea094db, type: 3}
+  m_PrefabInstance: {fileID: 623036859}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1718366761
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718366757}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -462981019419857548, guid: ddec3cd58be5ec74fa301509875d1262, type: 3}
 --- !u!1001 &1718709092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -83659,6 +83856,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 525325603}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 47b195adeb5a84f9389af86b2290ab97, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 47b195adeb5a84f9389af86b2290ab97, type: 3}
       propertyPath: m_Name
       value: Wheat (1)
@@ -85827,21 +86028,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 46186100}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 3421cf2bc42f141528ff81853dc4f2ef, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 3421cf2bc42f141528ff81853dc4f2ef, type: 3}
       propertyPath: m_Name
       value: Milk
       objectReference: {fileID: 0}
     - target: {fileID: 5183856651498487821, guid: 3421cf2bc42f141528ff81853dc4f2ef, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 33.5
+      propertyPath: m_LocalScale.x
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5183856651498487821, guid: 3421cf2bc42f141528ff81853dc4f2ef, type: 3}
-      propertyPath: m_LocalPosition.y
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5183856651498487821, guid: 3421cf2bc42f141528ff81853dc4f2ef, type: 3}
+      propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5183856651498487821, guid: 3421cf2bc42f141528ff81853dc4f2ef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 32.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5183856651498487821, guid: 3421cf2bc42f141528ff81853dc4f2ef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5183856651498487821, guid: 3421cf2bc42f141528ff81853dc4f2ef, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40.4
+      value: 44.08
       objectReference: {fileID: 0}
     - target: {fileID: 5183856651498487821, guid: 3421cf2bc42f141528ff81853dc4f2ef, type: 3}
       propertyPath: m_LocalRotation.w
@@ -85884,6 +86101,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1224392719}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 90a6aa9c39bf94ad19fbbc432b074ea6, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 90a6aa9c39bf94ad19fbbc432b074ea6, type: 3}
       propertyPath: m_Name
       value: Tea Leaves (5)
@@ -87362,7 +87583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4714055777043972144, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.4
+      value: 9.7
       objectReference: {fileID: 0}
     - target: {fileID: 4714055777043972144, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_LocalPosition.y
@@ -87370,7 +87591,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4714055777043972144, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 25.6
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 4714055777043972144, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_LocalRotation.w
@@ -91812,7 +92033,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4714055777043972144, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.2
+      value: -29.1
       objectReference: {fileID: 0}
     - target: {fileID: 4714055777043972144, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_LocalPosition.y
@@ -91820,7 +92041,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4714055777043972144, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 36.7
+      value: 39.9
       objectReference: {fileID: 0}
     - target: {fileID: 4714055777043972144, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
       propertyPath: m_LocalRotation.w
@@ -92259,6 +92480,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2081741776}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 20a185434b8ea4866b388a5b425b5b3d, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 20a185434b8ea4866b388a5b425b5b3d, type: 3}
       propertyPath: m_Name
       value: Cherry
@@ -93248,6 +93473,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1224392719}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 90a6aa9c39bf94ad19fbbc432b074ea6, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 90a6aa9c39bf94ad19fbbc432b074ea6, type: 3}
       propertyPath: m_Name
       value: Tea Leaves (7)
@@ -93626,6 +93855,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 525325603}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 47b195adeb5a84f9389af86b2290ab97, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 47b195adeb5a84f9389af86b2290ab97, type: 3}
       propertyPath: m_Name
       value: Wheat (3)
@@ -96105,6 +96338,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 747761137}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 1ea0d12bd34694698ae1d8d2c964e077, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 1ea0d12bd34694698ae1d8d2c964e077, type: 3}
       propertyPath: m_Name
       value: Vanilla Bean
@@ -97311,6 +97548,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2081741776}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 20a185434b8ea4866b388a5b425b5b3d, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 20a185434b8ea4866b388a5b425b5b3d, type: 3}
       propertyPath: m_Name
       value: Cherry (1)
@@ -97476,6 +97717,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 747761137}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 1ea0d12bd34694698ae1d8d2c964e077, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 1ea0d12bd34694698ae1d8d2c964e077, type: 3}
       propertyPath: m_Name
       value: Vanilla Bean (2)
@@ -98385,6 +98630,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1673602378}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: 3e2453bda798649a8bff885513fcf7f9, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: 3e2453bda798649a8bff885513fcf7f9, type: 3}
       propertyPath: m_Name
       value: Sugar Cane (4)
@@ -102384,6 +102633,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2127441174}
   m_Mesh: {fileID: -7058726671115324673, guid: ddec3cd58be5ec74fa301509875d1262, type: 3}
+--- !u!1 &2131907123 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3083779064121734709, guid: 5f48e8b3589286e4c9edfff6cea094db, type: 3}
+  m_PrefabInstance: {fileID: 623036859}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &2131907127
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131907123}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7196802604745430461, guid: ddec3cd58be5ec74fa301509875d1262, type: 3}
 --- !u!1001 &2134891791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -102933,6 +103209,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1752964333}
     m_Modifications:
+    - target: {fileID: 2707749339166467999, guid: fb1314e3cae6c412d983028a43502b97, type: 3}
+      propertyPath: DestroyOnEmpty
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856010567890718734, guid: fb1314e3cae6c412d983028a43502b97, type: 3}
       propertyPath: m_Name
       value: Salt (4)
