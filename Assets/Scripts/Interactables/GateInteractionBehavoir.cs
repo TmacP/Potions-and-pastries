@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class GateInteractionBehavoir : MonoBehaviour, IInteractable
 {
@@ -54,6 +55,9 @@ public class GateInteractionBehavoir : MonoBehaviour, IInteractable
     void Start()
     {
         GameEventManager.instance.OnDoorUnlocked += OnGateUnlocked;
+
+
+        SetGateState(GameManager.Instance.PersistantGameState.OpenedDoors.Contains(ID));
     }
 
     public void  OnGateUnlocked(int GateID)

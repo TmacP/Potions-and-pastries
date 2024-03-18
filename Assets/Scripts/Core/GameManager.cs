@@ -48,6 +48,8 @@ public class GameManager : MonoBehaviour
             PlayerState.CardHand.Clear();
             PlayerState.Deck.Clear();
             PlayerState.Discard.Clear();
+            PersistantGameState.UnlockedRegions.Clear();
+            PersistantGameState.OpenedDoors.Clear();
         }
     }
 
