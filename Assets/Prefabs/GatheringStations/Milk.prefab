@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: 566575ae569c948d5802c5f3ad549f3c, type: 2}
-  DestroyOnEmpty: 1
+  DestroyOnEmpty: 0
 --- !u!1001 &5326547713589326109
 PrefabInstance:
   m_ObjectHideFlags: 0

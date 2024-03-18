@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: 3e303fa6266144ef89b7578140816792, type: 2}
-  DestroyOnEmpty: 1
+  DestroyOnEmpty: 0
 --- !u!136 &4414605895185138732
 CapsuleCollider:
   m_ObjectHideFlags: 0
