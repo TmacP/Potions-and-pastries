@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 2420253865806060249}
   - component: {fileID: 472343680603872811}
   - component: {fileID: 4714955987664601339}
+  - component: {fileID: 1633514906039096179}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -187,7 +188,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _InventoryPrefab: {fileID: 4702890175944418306, guid: f2116dd8256e0114e9fc68b830b73d72, type: 3}
   _InventoryManager: {fileID: 4599764298279483909, guid: 33e367ad5d312e74cb7f4e3d9fce5e65, type: 3}
+  _DeckBuildingScreenPrefab: {fileID: 515715817225196495, guid: 1f84403d553e85f42a9274e7a057dc76, type: 3}
   _HotBarPrefab: {fileID: 945699792175429718, guid: 526c1ac2ea9566947bc7d18db74f90a0, type: 3}
+  _CardHandPrefab: {fileID: 945699792175429718, guid: aae92159f071ce142b8cb9a2005eca40, type: 3}
   toolbar: {fileID: 0}
   frontAnimator: {fileID: 0}
   backAnimator: {fileID: 0}
@@ -250,6 +253,20 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 1
+--- !u!114 &1633514906039096179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7993466284212888700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43a291c21f745824384e0a50f42267e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Deck: []
+  Discard: []
 --- !u!1001 &4774540174301631826
 PrefabInstance:
   m_ObjectHideFlags: 0
