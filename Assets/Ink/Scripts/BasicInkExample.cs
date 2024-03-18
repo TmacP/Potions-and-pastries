@@ -115,9 +115,15 @@ public void ContinueStory(NPCData npcData)
 
 	// Creates a textbox showing the the line of text
 	void CreateContentView (string text) {
+		// set background image
+		Image bg = Instantiate (background) as Image;
+		bg.transform.SetParent (canvas.transform, false);
+
 		Text storyText = Instantiate (textPrefab) as Text;
 		storyText.text = text;
-		storyText.transform.SetParent (canvas.transform, false);
+		storyText.transform.SetParent (bg.transform, false);
+
+
 	}
 
 	// Creates a button showing the choice text
@@ -151,4 +157,5 @@ public void ContinueStory(NPCData npcData)
 	// UI Prefabs
 	[SerializeField] private Text textPrefab = null;
 	[SerializeField] private Button buttonPrefab = null;
+	[SerializeField] private Image background = null;
 }
