@@ -49,12 +49,13 @@ public class BasicInkExample : MonoBehaviour {
 			CreateContentView(text);
 		}
 
-
-
 		// Display all the choices, if there are any!
 		if(story.currentChoices.Count > 0) {
+
 			// pause game
-			GameManager.Instance.ChangeGameState(EGameState.PauseState);
+			//GameManager.Instance.ChangeGameState(EGameState.MovementDisabledState);
+			Time.timeScale = 0.0f;
+
 			for (int i = 0; i < story.currentChoices.Count; i++) {
 				Choice choice = story.currentChoices [i];
 				Button button = CreateChoiceView (choice.text.Trim ());
@@ -101,10 +102,13 @@ public void ContinueStory(NPCData npcData)
 
 	// When we click the choice button, tell the story to choose that choice!
 	void OnClickChoiceButton (Choice choice) {
-		Debug.Log("Clicking choice: " + choice.text);
+		if (DebugMode) {Debug.Log("Clicking choice: " + choice.text);}
+		// if we click continue we change the game state to main state
 		if (choice.text == "Continue") {
-			Debug.Log("Continue");
-			GameManager.Instance.ChangeGameState(EGameState.MainState);}
+			if (DebugMode) {Debug.Log("Continue");}
+			//GameManager.Instance.ChangeGameState(EGameState.MainState);
+			Time.timeScale = 1.0f;
+			}
 		story.ChooseChoiceIndex (choice.index);
 		RefreshView();
 	}
