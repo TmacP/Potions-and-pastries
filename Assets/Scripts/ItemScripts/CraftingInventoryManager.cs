@@ -48,7 +48,9 @@ public class CraftingInventoryManager : InventoryManager
         bool result = base.AddItemAtIndex(InvItem, Index);
         if(CraftingStation != null)
         {
-            CraftingStation.OnItemAdd(InvItem);
+            bool bIsFull = !bHasAnyEmptySlot();
+            Debug.Log(bIsFull);
+            CraftingStation.OnItemAdd(InvItem, bIsFull);
         }
         return result;
     }
@@ -61,6 +63,12 @@ public class CraftingInventoryManager : InventoryManager
             CraftingStation.OnItemRemove(InvItem);
         }
         return ID;
+    }
+
+    public void EmptyInventory()
+    {
+        InventoryDataRef.Clear();
+        RefreshInventory();
     }
 
     public override void RefreshInventory()

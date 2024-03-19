@@ -436,6 +436,26 @@ public class InventoryManager : MonoBehaviour
         return null;
     }
 
+    public bool bHasAnyEmptySlot()
+    {
+        bool[] slotFlags= { };
+        Array.Resize(ref slotFlags, inventorySlots.Length);
+
+        foreach( InventoryItemData item in InventoryDataRef ) 
+        {
+            slotFlags[item.InventoryIndex] = true;
+        }
+        
+        for(int slotIndex = 0; slotIndex < inventorySlots.Length; slotIndex++ )
+        {
+            if(!slotFlags[slotIndex])
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public bool UseItem(int ItemIndex)
     {
         InventorySlot slot = inventorySlots[ItemIndex];
