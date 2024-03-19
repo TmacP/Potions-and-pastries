@@ -13,6 +13,7 @@ using UnityEngine.Timeline;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
+    public PauseScript pauseScript; // Reference to PauseScript
 
     public PlayerActions _PlayerActions;
     private Rigidbody _Rigidbody;
@@ -347,8 +348,11 @@ private void FixedUpdate()
         {
             if (!_PauseMenuPrefab.gameObject.activeSelf)
             {
-
+                
                 _PauseMenuPrefab.gameObject.SetActive(true);
+                
+                pauseScript.showMenu();
+                
                 OnGameStateChanged(EGameState.PauseState, EGameState.MainState);
                 
                 
@@ -357,6 +361,7 @@ private void FixedUpdate()
             }
             else
             {
+                
                 OnPauseMenuClose();
             }
         }
@@ -364,9 +369,13 @@ private void FixedUpdate()
 
     public void OnPauseMenuClose()
     {
+
+        
         OnGameStateChanged(EGameState.MainState, EGameState.PauseState);
+        
         GameEventManager.instance.ClosePauseMenu();
         _PauseMenuPrefab.gameObject.SetActive(false);
+        pauseScript.Close();
       
         //EventSystem.current.SetSelectedGameObject(null);
         /*
