@@ -17,8 +17,10 @@ public class InventoryManager : MonoBehaviour
     public int maxStack = 5;
 
     public int selectedSlot = -1;
+    private bool bIsCardInventory = false;
 
     public bool CloseOnCloseMenuEvent = true;
+    public bool bIsMainMenu = true;
     private int slotsPerRow = 4; // inventory layout
 
 
@@ -98,15 +100,18 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    public void OnEnable()
     {
         GameEventManager.instance.OnCloseMenu += CloseInventory;
         GameEventManager.instance.OnRefreshInventory += RefreshInventory;
-        GameEventManager.instance.PostInventoryOpen();
+        if(bIsMainMenu)
+        {
+            GameEventManager.instance.PostInventoryOpen();
+        }
         RefreshInventory();
     }
 
-    private void OnDisable()
+    public virtual void OnDisable()
     {
         InfoPanel infoPanel = FindObjectOfType<InfoPanel>();
         if (infoPanel != null)
@@ -252,6 +257,13 @@ public class InventoryManager : MonoBehaviour
                     //This is a bug since we can get stacks bigger than 5
                     InvData.CurrentStackCount+= item.CurrentStackCount;
 
+                    if(InvData.CurrentStackCount > maxStack)
+                    {
+                        int Excess = InvData.CurrentStackCount - maxStack;
+                        InventoryItemData ExcessItem = new InventoryItemData(item.Data, -1, Excess);
+                        AddItem(ExcessItem);
+                    }
+
                     DraggableItem itemInSlot = inventorySlots[InvData.InventoryIndex].GetComponent<DraggableItem>();
                     if(itemInSlot != null)
                     {
@@ -264,6 +276,11 @@ public class InventoryManager : MonoBehaviour
             {
                 smallestIndex++;
             }
+        }
+
+        if(smallestIndex >= inventorySlots.Length)
+        {
+            return false;
         }
 
         item.InventoryIndex = smallestIndex;
@@ -279,6 +296,7 @@ public class InventoryManager : MonoBehaviour
         {
             if (InvData.InventoryIndex == Index )
             {
+                InvItem.bIsCard = bIsCardInventory;
                 if (InventoryItemData.IsEquivalent(InvItem, InvData) && InvData.Data.stackable && InvData.CurrentStackCount < maxStack)
                 {
                     InvData.CurrentStackCount++; //InvItem.CurrentStackCount;
@@ -409,6 +427,15 @@ public class InventoryManager : MonoBehaviour
 
     }
 
+    public InventorySlot GetSlotByIndex(int SlotIndex)
+    {
+        if(SlotIndex >= 0 && SlotIndex < inventorySlots.Length)
+        {
+            return inventorySlots[SlotIndex];
+        }
+        return null;
+    }
+
     public bool UseItem(int ItemIndex)
     {
         InventorySlot slot = inventorySlots[ItemIndex];
@@ -423,6 +450,7 @@ public class InventoryManager : MonoBehaviour
             if (itemInSlot.count <= 0)
             {
                 RemoveItem(itemData);
+                RefreshInventory();
             }
             else
             {

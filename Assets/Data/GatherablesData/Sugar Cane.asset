@@ -16,7 +16,6 @@ MonoBehaviour:
   GatherableName: Sugar Cane
   CollectableItems:
   - {fileID: 11400000, guid: 975afa5ddf4fe4d7abf864581864bb25, type: 2}
-  - {fileID: 11400000, guid: 975afa5ddf4fe4d7abf864581864bb25, type: 2}
   ItemsPerInteraction: 0
   NumberOfInteractions: 0
   MiniGame:

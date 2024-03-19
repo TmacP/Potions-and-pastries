@@ -16,8 +16,13 @@ public class CraftingInventoryManager : InventoryManager
     public List<RecipePanel> RecipePanelRef = new List<RecipePanel>();
 
     public Image CraftImage;
+    public Image Arrow;
     public TextMeshProUGUI CraftName;
     public TextMeshProUGUI CraftDescription;
+    public GameObject HighLightPanel;
+    public float DisabledAlphaValue;
+    
+
 
     public void Start()
     {
@@ -31,7 +36,7 @@ public class CraftingInventoryManager : InventoryManager
         InitializeInventoryManager(InventoryRef);
 
         RecipePanel[] recipePanel = this.transform.parent.GetComponentsInChildren<RecipePanel>();
-        foreach(var recipe in recipePanel)
+        foreach (var recipe in recipePanel)
         {
             recipe.InitializeRecipes(InCraftingStation);
             RecipePanelRef.Add(recipe);
@@ -69,22 +74,65 @@ public class CraftingInventoryManager : InventoryManager
 
     protected override void CloseInventory()
     {
-        Destroy(this.gameObject);
-        Destroy(this.transform.parent.gameObject);
+        if(CloseOnCloseMenuEvent)
+        {
+            Destroy(this.gameObject);
+            Destroy(this.transform.parent.gameObject);
+        }
     }
 
     public void OnRefreshedRecipe()
     {
-        if(CraftingStation.CurrentValidRecipes.Count > 0)
+        if(CraftingStation.OutgoingItems.Count > 0 
+            && CraftingStation.OutgoingItems[0] != null
+            && CraftingStation.OutgoingItems[0].Data != null) 
+        {
+            
+            
+            InventoryItemData Item = CraftingStation.OutgoingItems[0];
+            Debug.Log(Item.Data.Name);
+            CraftImage.sprite = Item.Data.image;
+
+            Color NewColor = CraftImage.color;
+            NewColor.a = 255f;
+            CraftImage.color = NewColor;
+
+            if (CraftName != null)
+            {
+                CraftName.SetText(Item.Data.name);
+            }
+
+            if (CraftDescription != null)
+            {
+                CraftDescription.SetText(Item.Data.Description);
+            }
+
+            Assert.IsNotNull(Arrow);
+            if (Arrow != null)
+            {
+                Arrow.gameObject.SetActive(true);
+            }
+            CraftImage.gameObject.SetActive(true);
+
+            if(HighLightPanel != null)
+            {
+                HighLightPanel.gameObject.SetActive(true);
+            }
+
+        }
+        else if(CraftingStation.CurrentValidRecipes.Count > 0)
         {
             RecipeData Data = CraftingStation.CurrentValidRecipes[0];
 
             if(Data.OutgoingItems.Count > 0)
             {
                 CraftImage.sprite = Data.OutgoingItems[0]?.image;
+                Color NewColor = CraftImage.color;
+                NewColor.a = DisabledAlphaValue;
+                CraftImage.color = NewColor;
             }
 
-            if(CraftName != null)
+            if (CraftName != null)
             {
                 CraftName.SetText(Data.name);
             }
@@ -94,13 +142,40 @@ public class CraftingInventoryManager : InventoryManager
                 CraftDescription.SetText(Data.Description);
             }
 
+            Assert.IsNotNull(Arrow);
+            if(Arrow != null)
+            {
+                Arrow.gameObject.SetActive(true);
+            }
             CraftImage.gameObject.SetActive(true);
+
+            if (HighLightPanel != null)
+            {
+                HighLightPanel.gameObject.SetActive(false);
+            }
         }
         else
         {
-            CraftImage.gameObject.SetActive(false);
-            CraftName.SetText("");
-            CraftDescription.SetText("");
+            if (Arrow != null)
+            {
+                Arrow.gameObject.SetActive(false);
+            }
+            if (CraftImage != null)
+            {
+                CraftImage.gameObject.SetActive(false);
+            }
+            if (CraftName != null)
+            {
+                CraftName.SetText("");
+            }
+            if (CraftDescription != null)
+            {
+                CraftDescription.SetText("");
+            }
+            if (HighLightPanel != null)
+            {
+                HighLightPanel.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -109,8 +184,9 @@ public class CraftingInventoryManager : InventoryManager
         CraftingStation.TryCraft();
     }
 
-    public void OnDisable()
+    public override void OnDisable()
     {
+        base.OnDisable();
         InfoPanel infoPanel = FindObjectOfType<InfoPanel>();
         if (infoPanel != null)
         {
@@ -160,5 +236,10 @@ public class CraftingInventoryManager : InventoryManager
         }
 
         GameEventManager.instance.RefreshInventory();
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("Removed");
     }
 }

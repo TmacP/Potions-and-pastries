@@ -14,6 +14,11 @@ public class PlayerStateData : ScriptableObject
     public List<InventoryItemData> Inventory = new List<InventoryItemData>();
 
     public List<InventoryItemData> ToolBar = new List<InventoryItemData>();
+
+    public List<InventoryItemData> Deck = new List<InventoryItemData>();
+    public List<InventoryItemData> CardHand = new List<InventoryItemData>();
+    public List<InventoryItemData> Discard = new List<InventoryItemData>();
+
 }
 
 

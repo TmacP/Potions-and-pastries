@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: Fills one with artificial bravado. Makes standing upright difficult.
   ItemType: 0
   ItemTags: 
-  image: {fileID: 21300000, guid: d9454778a1239484491a06d4cf9eece3, type: 3}
+  image: {fileID: 21300000, guid: 7681dbe5c831a466a891e857453ea2d9, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 

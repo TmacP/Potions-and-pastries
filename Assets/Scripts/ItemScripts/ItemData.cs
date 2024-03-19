@@ -36,12 +36,17 @@ public class InventoryItemData
     public int CurrentStackCount;
     public HashSet<EItemTags> CurrentItemTags = new HashSet<EItemTags>();
 
-    public InventoryItemData(ItemData InData, int InInventoryIndex, int InCurrentStackCount = 1)
+    public bool bIsCard = false;
+    public ECardActionType CardActionType = ECardActionType.None;
+
+
+    public InventoryItemData(ItemData InData, int InInventoryIndex, int InCurrentStackCount = 1, bool InIsCard = false)
     {
         Data = InData;
         CurrentItemTags.AddRange(Data.ItemTags);
         InventoryIndex = InInventoryIndex;
         CurrentStackCount = InCurrentStackCount;
+        bIsCard = InIsCard;
     }
 
 
@@ -51,12 +56,26 @@ public class InventoryItemData
         {
             return false;
         }
+        if( lhs.CurrentItemTags == null || rhs.CurrentItemTags == null)
+        {
+            return false;
+        }
         if (!lhs.CurrentItemTags.SequenceEqual(rhs.CurrentItemTags))
         {
             return false;
         }
         return true;
 
+    }
+
+    public InventoryItemData CreateCopy()
+    {
+        InventoryItemData returnData = new InventoryItemData(this.Data, this.InventoryIndex);
+        returnData.CurrentStackCount = this.CurrentStackCount;
+        returnData.CurrentItemTags = new HashSet<EItemTags>(this.CurrentItemTags);
+        returnData.bIsCard = this.bIsCard;
+        returnData.CardActionType = this.CardActionType;
+        return returnData;
     }
 }
 

@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
 
-
     public PlayerActions _PlayerActions;
     private Rigidbody _Rigidbody;
     private InteractorBehavoir _InteractorBehavoir;
@@ -25,6 +24,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject _InventoryPrefab;
     [SerializeField, HideInInspector] public InventoryManager _InventoryManager;
     
+    [SerializeField] private GameObject _DeckBuildingScreenPrefab;
+
+    
     [SerializeField] private GameObject _PauseMenuPrefab;
    
 
@@ -32,7 +34,9 @@ public class PlayerController : MonoBehaviour
 
 
     [SerializeField] private GameObject _HotBarPrefab;
+    [SerializeField] private GameObject _CardHandPrefab;
     public Toolbar toolbar;
+
     public Animator frontAnimator;
     public Animator backAnimator;
     private bool faceBack = false;
@@ -77,8 +81,12 @@ public class PlayerController : MonoBehaviour
         //I didn't think we needed to remove them ondisable but apperently we do or the scene changes get weird
         _PlayerActions.PlayerActionMap.Interact.started += OnInteractStart;
         _PlayerActions.PlayerActionMap.Interact.canceled += OnInteractCancelled;
+        _PlayerActions.PlayerActionMap.SecondaryInteract.performed += OnSecondaryInteract;
         _PlayerActions.PlayerActionMap.OpenInventory.performed += OnOpenInventory;
         _PlayerActions.Inventory.CloseInventory.performed += OnCloseInventory;
+        _PlayerActions.PlayerActionMap.OpenDeckBuildingScreen.performed += OnOpenDeckBuildingScreen;
+        //_PlayerActions.PlayerActionMap.MenuOpenClose.performed += OnMenuOpen;
+        _menuOpenCloseACtion = _PlayerActions.PlayerActionMap.MenuOpenClose;
         //_menuOpenCloseAction = _PlayerActions.PlayerActionMap.MenuOpenClose;
         _PlayerActions.Menu.MenuOpenClose.performed += OnPauseMenuOpen;
         
@@ -92,6 +100,7 @@ public class PlayerController : MonoBehaviour
         GameEventManager.instance.OnPostInventoryOpen += PostInventoryOpen;
         GameEventManager.instance.OnCloseMenu += CloseInventory_Internal;
         GameEventManager.instance.OnPurchase += OnPurchase;
+        
 
         GameObject[] GOS = GameObject.FindGameObjectsWithTag("PlayerHUD");
         
@@ -99,16 +108,7 @@ public class PlayerController : MonoBehaviour
         {
             GameObject HUD = GOS[0];
 
-            GameObject Toolbar = Instantiate(_HotBarPrefab);
-            Toolbar.transform.SetParent(HUD.transform, false);
-            Toolbar.transform.SetAsFirstSibling();
-
-            InventoryManager TBManager = Toolbar.GetComponent<InventoryManager>();
-            if (TBManager != null)
-            {
-                TBManager.InitializeInventoryManager(GameManager.Instance.PlayerState.ToolBar);
-                TBManager.CloseOnCloseMenuEvent = false;
-            }
+            InstantiateToolbar();
 
             if (_InventoryPrefab != null)
             {
@@ -133,6 +133,7 @@ public class PlayerController : MonoBehaviour
         _PlayerActions.PlayerActionMap.Interact.canceled -= OnInteractStart;
         _PlayerActions.PlayerActionMap.OpenInventory.performed -= OnOpenInventory;
         _PlayerActions.Inventory.CloseInventory.performed -= OnCloseInventory;
+        _PlayerActions.PlayerActionMap.OpenDeckBuildingScreen.performed -= OnOpenDeckBuildingScreen;
         _PlayerActions.Menu.MenuOpenClose.performed -= OnPauseMenuOpen;
 
         GameEventManager.instance.OnChangeGameState -= OnGameStateChanged;
@@ -152,6 +153,11 @@ public class PlayerController : MonoBehaviour
                 _PlayerActions.PlayerActionMap.Enable();
                 _PlayerActions.PlayerMovementMap.Enable();
                 break;
+            case EGameState.NightState:
+                _PlayerActions.PlayerActionMap.Enable();
+                _PlayerActions.PlayerMovementMap.Enable();
+                InstantiateToolbar(true);
+                break;
             case EGameState.PauseState:
                 _PlayerActions.PlayerActionMap.Disable();
                 _PlayerActions.PlayerMovementMap.Disable();
@@ -163,6 +169,7 @@ public class PlayerController : MonoBehaviour
             case EGameState.QuitState:
                 Application.Quit();
                 break;
+            
             default:
                 Debug.Log("Gamemanager::ChangeGameState unknown game state given");
                 break;
@@ -201,14 +208,30 @@ private void FixedUpdate()
 
         if (_PlayerMoveInput.x > 0 && faceLeft)
         {
-            transform.Find("F_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
-            transform.Find("B_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+            //transform.Find("F_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+            //transform.Find("B_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+
+            Vector3 scale = transform.Find("F_BaseCharacter").transform.localScale;
+            scale.x *= -1.0f;
+            transform.Find("F_BaseCharacter").transform.localScale = scale;
+            scale = transform.Find("B_BaseCharacter").transform.localScale ;
+            scale.x *= -1.0f;
+            transform.Find("B_BaseCharacter").transform.localScale = scale;
             faceLeft = false;
         }
         else if (_PlayerMoveInput.x < 0 && !faceLeft)
         {
-            transform.Find("F_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
-            transform.Find("B_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+            //transform.Find("F_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+            //transform.Find("B_BaseCharacter").transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+
+            Vector3 scale = transform.Find("F_BaseCharacter").transform.localScale;
+            scale.x *= -1.0f;
+            transform.Find("F_BaseCharacter").transform.localScale = scale;
+            scale = transform.Find("B_BaseCharacter").transform.localScale;
+            scale.x *= -1.0f;
+            transform.Find("B_BaseCharacter").transform.localScale = scale;
+
+
             faceLeft = true;
         }
 
@@ -242,8 +265,14 @@ private void FixedUpdate()
                 {
                     Data.Add(toolbar.GetSelectedItem());
                 }
-                _InteractorBehavoir.TryInteract(Data);
-
+                EInteractionResult Result = _InteractorBehavoir.TryInteract(Data);
+                if (Result == EInteractionResult.Success_ConsumeItem)
+                {
+                    for (int i = Data.Count - 1; i >= 0; i--)
+                    {
+                        toolbar.UseSelectedItem();
+                    }
+                }
             }
             else
             {
@@ -260,11 +289,39 @@ private void FixedUpdate()
         }
     }
 
+    protected void OnSecondaryInteract(InputAction.CallbackContext context)
+    {
+        if (_InteractorBehavoir != null)
+        {
+            if (toolbar != null)
+            {
+                List<InventoryItemData> Data = new List<InventoryItemData>();
+                InventoryItemData ActionItem = toolbar.GetSelectedItem();
+                if (ActionItem != null)
+                {
+                    Data.Add(toolbar.GetSelectedItem());
+                }
+                EInteractionResult Result = _InteractorBehavoir.TrySecondaryInteract(Data);
+                if (Result == EInteractionResult.Success_ConsumeItem)
+                {
+                    for (int i = Data.Count - 1; i >= 0; i--)
+                    {
+                        toolbar.UseSelectedItem();
+                    }
+                }
+            }
+            else
+            {
+                _InteractorBehavoir.TryInteract();
+            }
+        }
+    }
+
     protected void OnOpenInventory(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            if (!_InventoryManager.gameObject.activeSelf)
+            if (_InventoryManager != null && !_InventoryManager.gameObject.activeSelf && GameManager.Instance.GetGameState() != EGameState.NightState)
             {
                 GameEventManager.instance.CloseMenu();
                 _InventoryManager.gameObject.SetActive(true);
@@ -347,9 +404,30 @@ private void FixedUpdate()
 
     public void OnGainItems(List<InventoryItemData> Items)
     {
-        foreach(InventoryItemData item in Items)
+        if(GameManager.Instance.GetGameState() == EGameState.NightState && toolbar != null)
         {
-            _InventoryManager.AddItem(item);
+            foreach(InventoryItemData item in Items)
+            {
+                if(toolbar.IsFull())
+                {
+                    DeckManager Deck = GetComponent<DeckManager>();
+                    if(Deck != null)
+                    {
+                        Deck.AddCardToDiscard(item);
+                    }
+                }
+                else
+                {
+                    toolbar.ToolbarManager.AddItem(item);
+                }
+            }
+        }
+        else
+        {
+            foreach (InventoryItemData item in Items)
+            {
+                _InventoryManager.AddItem(item);
+            }
         }
     }
 
@@ -375,5 +453,69 @@ private void FixedUpdate()
         long DeltaGold = GameManager.Instance.PlayerState.Gold - CurrentGold;
         GameManager.Instance.PlayerState.Gold = CurrentGold;
         GameEventManager.instance.PostPlayerGoldChanged(CurrentGold, DeltaGold);
+    }
+
+    public void OnOpenDeckBuildingScreen(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (_DeckBuildingScreenPrefab != null && GameManager.Instance.GetGameState() != EGameState.NightState)
+            {
+                GameEventManager.instance.CloseMenu();
+                Instantiate(_DeckBuildingScreenPrefab);
+            }
+            else
+            {
+                OnCloseInventory(context);
+            }
+        }
+    }
+
+    private void InstantiateToolbar(bool CardHand = false)
+    {
+        if(toolbar != null)
+        {
+            Destroy(toolbar.gameObject);
+        }
+
+        GameObject[] GOS = GameObject.FindGameObjectsWithTag("PlayerHUD");
+        if (GOS.Length > 0)
+        {
+            GameObject HUD = GOS[0];
+
+            if(CardHand)
+            {
+                GameObject Toolbar = Instantiate(_CardHandPrefab);
+                Toolbar.transform.SetParent(HUD.transform, false);
+                Toolbar.transform.SetAsFirstSibling();
+
+                InventoryManager TBManager = Toolbar.GetComponent<InventoryManager>();
+                if (TBManager != null)
+                {
+                    TBManager.InitializeInventoryManager(GameManager.Instance.PlayerState.CardHand);
+                    TBManager.CloseOnCloseMenuEvent = false;
+                }
+                toolbar = Toolbar.GetComponent<Toolbar>();
+            }
+            else if(_HotBarPrefab != null)
+            {
+
+                GameObject Toolbar = Instantiate(_HotBarPrefab);
+                Toolbar.transform.SetParent(HUD.transform, false);
+                Toolbar.transform.SetAsFirstSibling();
+
+                InventoryManager TBManager = Toolbar.GetComponent<InventoryManager>();
+                if (TBManager != null)
+                {
+                    TBManager.InitializeInventoryManager(GameManager.Instance.PlayerState.ToolBar);
+                    TBManager.CloseOnCloseMenuEvent = false;
+                }
+                toolbar = Toolbar.GetComponent<Toolbar>();
+            }
+            
+        }
+
+
+        
     }
 }

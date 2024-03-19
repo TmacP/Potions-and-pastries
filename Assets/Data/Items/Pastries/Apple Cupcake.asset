@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: An Apple Cupcake, good luck bobbing for these.
   ItemType: 0
   ItemTags: 
-  image: {fileID: 21300000, guid: 4215476d309ae406dafe2c9783f9ea02, type: 3}
+  image: {fileID: 21300000, guid: a5962d9ed90a34bf29c03afdc109469e, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 

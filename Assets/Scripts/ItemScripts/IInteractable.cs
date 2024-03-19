@@ -11,16 +11,23 @@ public enum EInteractionType
     Item
 }
 
+public enum EInteractionResult
+{
+    Failure,
+    Success,
+    Success_ConsumeItem
+}
+
 public interface IInteractable
 {
     //Prompt to show on screen when we can interact
     public string InteractionPrompt { get; }
-    public bool TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItems = null);
+    public EInteractionResult TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItems = null);
 }
 
 public interface IInteractableExtension : IInteractable
 {
-    public string SecondaryInteractionPrompt { get; }
+    public string GetSecondaryInteractionPrompt(InventoryItemData InteractionItem = null);
 
-    public bool TrySecondaryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItems = null);
+    public EInteractionResult TrySecondaryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItems = null);
 }

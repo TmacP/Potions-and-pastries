@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: Restore health
   ItemType: 0
   ItemTags: 
-  image: {fileID: 21300000, guid: b160ca3a6c0d5480d96ae2d3289efce9, type: 3}
+  image: {fileID: 21300000, guid: 7681dbe5c831a466a891e857453ea2d9, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 

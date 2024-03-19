@@ -17,7 +17,7 @@ MonoBehaviour:
     morning.
   ItemType: 0
   ItemTags: 
-  image: {fileID: 21300000, guid: 95ecea28ad09a481bb3567cf053c1016, type: 3}
+  image: {fileID: 21300000, guid: 7681dbe5c831a466a891e857453ea2d9, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 
