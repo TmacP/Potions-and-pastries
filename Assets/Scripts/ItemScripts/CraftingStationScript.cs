@@ -189,10 +189,18 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
         RecalculateValidRecipes();
     }
 
-    public void OnItemAdd(InventoryItemData Item)
+    public void OnItemAdd(InventoryItemData Item, bool IsFull = false)
     {
         //CurrentItems.Add(Item);
         RecalculateValidRecipes();
+
+        if (IsFull)
+        {
+            if (CurrentValidRecipes.Count <= 0)
+            {
+                CraftingInvManager?.EmptyInventory();
+            }
+        }
     }
 
     

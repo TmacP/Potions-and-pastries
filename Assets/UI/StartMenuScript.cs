@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class StartMenuScript : MonoBehaviour
@@ -80,6 +81,16 @@ public class StartMenuScript : MonoBehaviour
     {
         string selectedItem = menuItems[selectedIndex];
         Debug.Log($"{selectedItem} has been selected.");
+        if (selectedItem == "Quit")
+        {
+            Application.Quit();
+        }
+        if (selectedItem == "New Game")
+        {
+            //change scene
+            SceneManager.LoadScene("AlphaExterior");
+
+        }
     }
 
 
