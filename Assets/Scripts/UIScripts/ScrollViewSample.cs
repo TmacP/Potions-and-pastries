@@ -15,9 +15,6 @@ public class CraftingScrollView : MonoBehaviour
     [SerializeField] private RecipeButtonEvent _eventItemOnSelect;
     [SerializeField] private RecipeButtonEvent _eventItemOnSubmit;
 
-    [Space(10)]
-    [Header("Default Selected Index")]
-    [SerializeField] private int _defaultSelectedIndex = 0;
 
     [Space(10)]
     [Header("For testing")]

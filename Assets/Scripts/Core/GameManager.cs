@@ -5,15 +5,10 @@ using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
 
-
 public enum EGameScene
 {
     InnInterior,
     InnExterior,
-    ConorInnInterior,
-    ConorInnExterior,
-    AlphaInterior,
-    AlphaExterior
 }
 
 
@@ -33,12 +28,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private readonly Dictionary<EGameScene, string> GameScenes = new Dictionary<EGameScene, string>()
     {
-        {EGameScene.InnInterior, "ConorInnScene" },
-        {EGameScene.InnExterior, "ConorDemoScene" },
-        {EGameScene.ConorInnInterior, "ConorInnScene" },
-        {EGameScene.ConorInnExterior, "ConorDemoScene" },
-        {EGameScene.AlphaInterior, "Assets/Scenes/Alpha/AlphaInterior.unity" },
-        {EGameScene.AlphaExterior, "Assets/Scenes/Alpha/AlphaExterior.unity" },
+        {EGameScene.InnInterior, "AlphaInterior" },
+        {EGameScene.InnExterior, "AlphaExterior" }
     };
 
     private void Awake()
@@ -53,6 +44,11 @@ public class GameManager : MonoBehaviour
             Instance = this;
             PlayerState.Inventory.Clear();
             PlayerState.ToolBar.Clear();
+            PlayerState.CardHand.Clear();
+            PlayerState.Deck.Clear();
+            PlayerState.Discard.Clear();
+            PersistantGameState.UnlockedRegions.Clear();
+            PersistantGameState.OpenedDoors.Clear();
         }
     }
 
@@ -66,6 +62,16 @@ public class GameManager : MonoBehaviour
         GameEventManager.instance.OnDoorUnlocked += OnDoorUnlock;
 
         GameDay = 1; // we start on day 1 for the tutorial
+
+        string Name = SceneManager.GetActiveScene().name;
+        foreach (KeyValuePair<EGameScene, string> pair in GameScenes)
+        {
+            if(pair.Value == Name)
+            {
+                GameScene = pair.Key;
+                break;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -85,11 +91,15 @@ public class GameManager : MonoBehaviour
     {
         if(GameState == NewGameState) { return; }
 
-        GameEventManager.instance.ChangeGameState(NewGameState, GameState);
         switch (NewGameState) 
         {
             case EGameState.MainState:
                 Time.timeScale = 1.0f;
+                PlayerController.instance.GetComponent<DeckManager>().OnChangeGameScene(NewGameState);
+                break;
+            case EGameState.NightState:
+                Time.timeScale = 1.0f; 
+                PlayerController.instance.GetComponent<DeckManager>().FlattenDeckInventory();
                 break;
             case EGameState.PauseState:
                 Time.timeScale = 0.0f;
@@ -102,6 +112,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
         GameState = NewGameState;
+        GameEventManager.instance.ChangeGameState(NewGameState, GameState);
     }
 
     public EGameState GetGameState()
@@ -123,8 +134,10 @@ public class GameManager : MonoBehaviour
         switch (NewScene)
         {
             case EGameScene.InnInterior:
+                ChangeGameState(EGameState.MainState);
                 break;
             case EGameScene.InnExterior:
+                ChangeGameState(EGameState.MainState);
                 break;
             default:
                 Debug.Log("Gamemanager::ChangeGameScene unkown game scene given");

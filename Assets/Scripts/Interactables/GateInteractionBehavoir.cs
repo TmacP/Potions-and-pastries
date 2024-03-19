@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class GateInteractionBehavoir : MonoBehaviour, IInteractable
 {
@@ -32,7 +33,7 @@ public class GateInteractionBehavoir : MonoBehaviour, IInteractable
 //************ Start of IINteractable Interface***********
     public string InteractionPrompt => "Unlock " + BlockedRegion.ToString();
 
-    public bool TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItems = null)
+    public EInteractionResult TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItems = null)
     {
         if(PurchasePrompt != null)
         {
@@ -42,9 +43,9 @@ public class GateInteractionBehavoir : MonoBehaviour, IInteractable
             {
                 Prompt.SetData(BlockedRegion, OpenCost, ID);
             }
-            return true;
+            return EInteractionResult.Success;
         }
-        return false;
+        return EInteractionResult.Failure;
     }
 
 //************* END of Interface****************
@@ -54,6 +55,9 @@ public class GateInteractionBehavoir : MonoBehaviour, IInteractable
     void Start()
     {
         GameEventManager.instance.OnDoorUnlocked += OnGateUnlocked;
+
+
+        SetGateState(GameManager.Instance.PersistantGameState.OpenedDoors.Contains(ID));
     }
 
     public void  OnGateUnlocked(int GateID)
@@ -73,12 +77,10 @@ public class GateInteractionBehavoir : MonoBehaviour, IInteractable
         bGateOpen = Open;
         if (bGateOpen)
         {
-            
             int LayerIndex = LayerMask.NameToLayer("Interact");
             this.gameObject.layer &= (0x1 << LayerIndex);
             if (GateComponent != null && !fence_rotation)
             {
-
                 GateComponent.transform.rotation = Quaternion.Euler(0, 90, 0);
             }
             else if (GateComponent != null && fence_rotation)
@@ -95,12 +97,7 @@ public class GateInteractionBehavoir : MonoBehaviour, IInteractable
             else if (GateComponent != null && fence_rotation)
             {
                 GateComponent.transform.localRotation = Quaternion.Euler(0, 90, 0);
-
             }
         }
-        
-
     }
-
-   
 }

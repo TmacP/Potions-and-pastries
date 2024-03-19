@@ -17,7 +17,7 @@ MonoBehaviour:
     of another headache tomorrow.
   ItemType: 0
   ItemTags: 
-  image: {fileID: 21300000, guid: ad79e7863217b4356a32844f2808d610, type: 3}
+  image: {fileID: 21300000, guid: 7681dbe5c831a466a891e857453ea2d9, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 

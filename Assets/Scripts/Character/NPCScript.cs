@@ -40,13 +40,19 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
 
     bool foundTable;
     bool foundDoor;
+    private Rigidbody _Rigidbody;
+    public Animator frontAnimator;
+    public Animator backAnimator;
+    private bool faceBack = false;
+    private bool faceLeft = true;
 
 
-//*************IInteractable interface***********
+
+    //*************IInteractable interface***********
     public string InteractionPrompt => GetInteractionPrompt();
 
 
-    public bool TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
+    public EInteractionResult TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
     {
 
        if(NPCState == ENPCState.WaitForOrder && InteractionItem != null && InteractionItem.Count > 0)
@@ -58,9 +64,9 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
        else if(_DialogueBehavoir != null)
        {
             _DialogueBehavoir.TryDialogue();
-            return true;
+            return EInteractionResult.Success;
        }
-        return false;
+       return EInteractionResult.Failure;
     }
 
 //*******end of IInteractable
@@ -80,6 +86,10 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
     public void Awake()
     {
         _DialogueBehavoir = GetComponent<DialogueBehavoir>();
+
+        _Rigidbody ??= GetComponent<Rigidbody>();
+        frontAnimator = transform.Find("F_BaseCharacter").GetComponent<Animator>();
+        backAnimator = transform.Find("B_BaseCharacter").GetComponent<Animator>();
     }
 
     void Start()
@@ -89,6 +99,8 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         foundTable = false;
         foundDoor = false;
     }
+
+
 
     // Update is called once per frame
     void Update()

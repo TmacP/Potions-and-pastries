@@ -7,8 +7,10 @@ using UnityEngine;
 public enum EGameState
 {
     MainState,
+    NightState,
     PauseState,
-    MovementDisabledState
+    MovementDisabledState,
+    QuitState
 }
 
 public enum EGameRegion
@@ -29,5 +31,8 @@ public class GameStateData : ScriptableObject
     public List<EGameRegion> UnlockedRegions = new List<EGameRegion>();
 
     public List<int> OpenedDoors = new List<int>();
+
+
+    public List<ItemData> UnlockedActionCards = new List<ItemData>();
 
 }

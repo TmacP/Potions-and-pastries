@@ -17,7 +17,7 @@ MonoBehaviour:
   CollectableItems:
   - {fileID: 11400000, guid: a8dfaea7c391b4bcfa212caf5784b16d, type: 2}
   ItemsPerInteraction: 0
-  NumberOfInteractions: 1
+  NumberOfInteractions: 0
   MiniGame:
     m_AssetGUID: 595e291c9b957934f9a4a77cae243c9e
     m_SubObjectName: 

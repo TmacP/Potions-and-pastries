@@ -80,6 +80,15 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenDeckBuildingScreen"",
+                    ""type"": ""Button"",
+                    ""id"": ""0f0c13a8-81e0-474d-90eb-22bcb89e4643"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -234,6 +243,17 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""MenuOpenClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34087ba2-3587-49bf-a097-a634f0087ae9"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenDeckBuildingScreen"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -424,6 +444,45 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Menu"",
+            ""id"": ""32721adb-5a82-4a7c-9b73-7bb1b02f5d89"",
+            ""actions"": [
+                {
+                    ""name"": ""MenuOpenClose"",
+                    ""type"": ""Button"",
+                    ""id"": ""cbd4288b-1984-40b6-9895-67e8bb44d53a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ea25166e-4b09-4fda-8b98-56726db093ba"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""MenuOpenClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98576b12-197f-487d-8abd-ecef4035dd3e"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""MenuOpenClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -459,6 +518,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         m_PlayerActionMap_OpenInventory = m_PlayerActionMap.FindAction("OpenInventory", throwIfNotFound: true);
         m_PlayerActionMap_ToolbarScroll = m_PlayerActionMap.FindAction("ToolbarScroll", throwIfNotFound: true);
         m_PlayerActionMap_MenuOpenClose = m_PlayerActionMap.FindAction("MenuOpenClose", throwIfNotFound: true);
+        m_PlayerActionMap_OpenDeckBuildingScreen = m_PlayerActionMap.FindAction("OpenDeckBuildingScreen", throwIfNotFound: true);
         // PlayerMovementMap
         m_PlayerMovementMap = asset.FindActionMap("PlayerMovementMap", throwIfNotFound: true);
         m_PlayerMovementMap_Move = m_PlayerMovementMap.FindAction("Move", throwIfNotFound: true);
@@ -466,6 +526,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
         m_Inventory_CloseInventory = m_Inventory.FindAction("CloseInventory", throwIfNotFound: true);
         m_Inventory_ControllerMove = m_Inventory.FindAction("ControllerMove", throwIfNotFound: true);
+        // Menu
+        m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+        m_Menu_MenuOpenClose = m_Menu.FindAction("MenuOpenClose", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -533,6 +596,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActionMap_OpenInventory;
     private readonly InputAction m_PlayerActionMap_ToolbarScroll;
     private readonly InputAction m_PlayerActionMap_MenuOpenClose;
+    private readonly InputAction m_PlayerActionMap_OpenDeckBuildingScreen;
     public struct PlayerActionMapActions
     {
         private @PlayerActions m_Wrapper;
@@ -543,6 +607,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         public InputAction @OpenInventory => m_Wrapper.m_PlayerActionMap_OpenInventory;
         public InputAction @ToolbarScroll => m_Wrapper.m_PlayerActionMap_ToolbarScroll;
         public InputAction @MenuOpenClose => m_Wrapper.m_PlayerActionMap_MenuOpenClose;
+        public InputAction @OpenDeckBuildingScreen => m_Wrapper.m_PlayerActionMap_OpenDeckBuildingScreen;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -570,6 +635,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @MenuOpenClose.started += instance.OnMenuOpenClose;
             @MenuOpenClose.performed += instance.OnMenuOpenClose;
             @MenuOpenClose.canceled += instance.OnMenuOpenClose;
+            @OpenDeckBuildingScreen.started += instance.OnOpenDeckBuildingScreen;
+            @OpenDeckBuildingScreen.performed += instance.OnOpenDeckBuildingScreen;
+            @OpenDeckBuildingScreen.canceled += instance.OnOpenDeckBuildingScreen;
         }
 
         private void UnregisterCallbacks(IPlayerActionMapActions instance)
@@ -592,6 +660,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @MenuOpenClose.started -= instance.OnMenuOpenClose;
             @MenuOpenClose.performed -= instance.OnMenuOpenClose;
             @MenuOpenClose.canceled -= instance.OnMenuOpenClose;
+            @OpenDeckBuildingScreen.started -= instance.OnOpenDeckBuildingScreen;
+            @OpenDeckBuildingScreen.performed -= instance.OnOpenDeckBuildingScreen;
+            @OpenDeckBuildingScreen.canceled -= instance.OnOpenDeckBuildingScreen;
         }
 
         public void RemoveCallbacks(IPlayerActionMapActions instance)
@@ -709,6 +780,52 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         }
     }
     public InventoryActions @Inventory => new InventoryActions(this);
+
+    // Menu
+    private readonly InputActionMap m_Menu;
+    private List<IMenuActions> m_MenuActionsCallbackInterfaces = new List<IMenuActions>();
+    private readonly InputAction m_Menu_MenuOpenClose;
+    public struct MenuActions
+    {
+        private @PlayerActions m_Wrapper;
+        public MenuActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @MenuOpenClose => m_Wrapper.m_Menu_MenuOpenClose;
+        public InputActionMap Get() { return m_Wrapper.m_Menu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+        public void AddCallbacks(IMenuActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MenuActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MenuActionsCallbackInterfaces.Add(instance);
+            @MenuOpenClose.started += instance.OnMenuOpenClose;
+            @MenuOpenClose.performed += instance.OnMenuOpenClose;
+            @MenuOpenClose.canceled += instance.OnMenuOpenClose;
+        }
+
+        private void UnregisterCallbacks(IMenuActions instance)
+        {
+            @MenuOpenClose.started -= instance.OnMenuOpenClose;
+            @MenuOpenClose.performed -= instance.OnMenuOpenClose;
+            @MenuOpenClose.canceled -= instance.OnMenuOpenClose;
+        }
+
+        public void RemoveCallbacks(IMenuActions instance)
+        {
+            if (m_Wrapper.m_MenuActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMenuActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MenuActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MenuActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MenuActions @Menu => new MenuActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -735,6 +852,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         void OnOpenInventory(InputAction.CallbackContext context);
         void OnToolbarScroll(InputAction.CallbackContext context);
         void OnMenuOpenClose(InputAction.CallbackContext context);
+        void OnOpenDeckBuildingScreen(InputAction.CallbackContext context);
     }
     public interface IPlayerMovementMapActions
     {
@@ -744,5 +862,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     {
         void OnCloseInventory(InputAction.CallbackContext context);
         void OnControllerMove(InputAction.CallbackContext context);
+    }
+    public interface IMenuActions
+    {
+        void OnMenuOpenClose(InputAction.CallbackContext context);
     }
 }
