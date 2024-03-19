@@ -82,14 +82,13 @@ public class PlayerController : MonoBehaviour
         _PlayerActions.PlayerActionMap.Interact.started += OnInteractStart;
         _PlayerActions.PlayerActionMap.Interact.canceled += OnInteractCancelled;
         _PlayerActions.PlayerActionMap.SecondaryInteract.performed += OnSecondaryInteract;
-        _PlayerActions.PlayerActionMap.OpenInventory.performed += OnOpenInventory;
+        _PlayerActions.PlayerActionMap.OpenInventory.performed += OnOpenDeckBuildingScreen;
         _PlayerActions.Inventory.CloseInventory.performed += OnCloseInventory;
         _PlayerActions.PlayerActionMap.OpenDeckBuildingScreen.performed += OnOpenDeckBuildingScreen;
         //_PlayerActions.PlayerActionMap.MenuOpenClose.performed += OnMenuOpen;
         //_menuOpenCloseACtion = _PlayerActions.PlayerActionMap.MenuOpenClose;
         //_menuOpenCloseAction = _PlayerActions.PlayerActionMap.MenuOpenClose;
-        _PlayerActions.Menu.MenuOpenClose.performed += OnPauseMenuOpen;
-        
+        _PlayerActions.Menu.MenuOpenClose.performed += OnPauseMenuOpen;   
     }
 
     public void Start()
@@ -131,7 +130,7 @@ public class PlayerController : MonoBehaviour
     {
         _PlayerActions.PlayerActionMap.Interact.started -= OnInteractStart;
         _PlayerActions.PlayerActionMap.Interact.canceled -= OnInteractStart;
-        _PlayerActions.PlayerActionMap.OpenInventory.performed -= OnOpenInventory;
+        _PlayerActions.PlayerActionMap.OpenInventory.performed -= OnOpenDeckBuildingScreen;
         _PlayerActions.Inventory.CloseInventory.performed -= OnCloseInventory;
         _PlayerActions.PlayerActionMap.OpenDeckBuildingScreen.performed -= OnOpenDeckBuildingScreen;
         _PlayerActions.Menu.MenuOpenClose.performed -= OnPauseMenuOpen;
