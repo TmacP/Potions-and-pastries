@@ -106,10 +106,10 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
     void Update()
     {
         //  Debug.Log(foundTable);
-        //Debug.Log(Vector3.Distance(agent.transform.position, destination));
+        Debug.Log(Vector3.Distance(agent.transform.position, destination));
 
         //Debug.Log(pointSet);
-        if (Vector3.Distance(agent.transform.position, destination) < 0.5 && foundTable)
+        if (Vector3.Distance(agent.transform.position, destination) < 1.1 && foundTable)
         {
             WaitSecChangeState(3, ENPCState.WaitForOrder);
         }
@@ -229,7 +229,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         }
         if (foundTable)
         {
-            if (Vector3.Distance(agent.transform.position, destination) < 0.5)
+            if (Vector3.Distance(agent.transform.position, destination) < 1.1)
             {
                 Debug.Log("Made it here");
                 foundTable = false; ///TEMP
