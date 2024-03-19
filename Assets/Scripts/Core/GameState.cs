@@ -9,7 +9,8 @@ public enum EGameState
     MainState,
     NightState,
     PauseState,
-    MovementDisabledState
+    MovementDisabledState,
+    QuitState
 }
 
 public enum EGameRegion

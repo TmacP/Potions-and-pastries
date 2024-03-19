@@ -5,7 +5,6 @@ using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
 
-
 public enum EGameScene
 {
     InnInterior,

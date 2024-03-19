@@ -1,8 +1,11 @@
+//using Palmmedia.ReportGenerator.Core;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.HID;
 using UnityEngine.Timeline;
@@ -14,13 +17,22 @@ public class PlayerController : MonoBehaviour
     public PlayerActions _PlayerActions;
     private Rigidbody _Rigidbody;
     private InteractorBehavoir _InteractorBehavoir;
-    private InputAction _menuOpenCloseACtion;
-    public bool MenuOpenCloseInput { get; private set;}
+
+    //private InputAction _menuOpenCloseAction;
+    //public bool MenuOpenCloseInput { get; private set;}
 
     [SerializeField] private GameObject _InventoryPrefab;
     [SerializeField, HideInInspector] public InventoryManager _InventoryManager;
     
     [SerializeField] private GameObject _DeckBuildingScreenPrefab;
+
+    [SerializeField] private GameObject _RecipeMenuPrefab;
+    
+    [SerializeField] private GameObject _PauseMenuPrefab;
+   
+
+    [SerializeField] private GameObject _AllMenuFromPause;
+
 
     [SerializeField] private GameObject _HotBarPrefab;
     [SerializeField] private GameObject _CardHandPrefab;
@@ -30,6 +42,8 @@ public class PlayerController : MonoBehaviour
     public Animator backAnimator;
     private bool faceBack = false;
     private bool faceLeft = true;
+
+    private bool bIsMenuOpen = false;
 
     
 
@@ -58,6 +72,7 @@ public class PlayerController : MonoBehaviour
         _PlayerActions.PlayerActionMap.Enable();
         
         _PlayerActions.PlayerMovementMap.Enable();
+        _PlayerActions.Menu.Enable();
         _PlayerActions.Inventory.Disable();
         frontAnimator = transform.Find("F_BaseCharacter").GetComponent<Animator>();
         backAnimator = transform.Find("B_BaseCharacter").GetComponent<Animator>();
@@ -70,11 +85,13 @@ public class PlayerController : MonoBehaviour
         _PlayerActions.PlayerActionMap.Interact.started += OnInteractStart;
         _PlayerActions.PlayerActionMap.Interact.canceled += OnInteractCancelled;
         _PlayerActions.PlayerActionMap.SecondaryInteract.performed += OnSecondaryInteract;
-        _PlayerActions.PlayerActionMap.OpenInventory.performed += OnOpenInventory;
+        _PlayerActions.PlayerActionMap.OpenInventory.performed += OnOpenDeckBuildingScreen;
         _PlayerActions.Inventory.CloseInventory.performed += OnCloseInventory;
-        _PlayerActions.PlayerActionMap.OpenDeckBuildingScreen.performed += OnOpenDeckBuildingScreen;
+        _PlayerActions.PlayerActionMap.OpenRecipeBook.performed += OnOpenRecipeMenu;
         //_PlayerActions.PlayerActionMap.MenuOpenClose.performed += OnMenuOpen;
-        _menuOpenCloseACtion = _PlayerActions.PlayerActionMap.MenuOpenClose;
+        //_menuOpenCloseACtion = _PlayerActions.PlayerActionMap.MenuOpenClose;
+        //_menuOpenCloseAction = _PlayerActions.PlayerActionMap.MenuOpenClose;
+        _PlayerActions.Menu.MenuOpenClose.performed += OnPauseMenuOpen;   
     }
 
     public void Start()
@@ -98,8 +115,8 @@ public class PlayerController : MonoBehaviour
             if (_InventoryPrefab != null)
             {
                 _InventoryPrefab = Instantiate(_InventoryPrefab);
-                //_InventoryPrefab.transform.SetParent(HUD.transform, false);
-                //_InventoryPrefab.transform.SetAsFirstSibling();
+                _InventoryPrefab.transform.SetParent(HUD.transform, false);
+                _InventoryPrefab.transform.SetAsFirstSibling();
                 _InventoryManager = _InventoryPrefab.GetComponentInChildren<InventoryManager>();
                 Assert.IsNotNull(_InventoryManager);
                 _InventoryManager.InitializeInventoryManager(GameManager.Instance.PlayerState.Inventory);
@@ -109,22 +126,24 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        MenuOpenCloseInput = _menuOpenCloseACtion.WasPressedThisFrame();
+        //MenuOpenCloseInput = _menuOpenCloseAction.WasPressedThisFrame();
     }
 
     public void OnDisable()
     {
         _PlayerActions.PlayerActionMap.Interact.started -= OnInteractStart;
         _PlayerActions.PlayerActionMap.Interact.canceled -= OnInteractStart;
-        _PlayerActions.PlayerActionMap.OpenInventory.performed -= OnOpenInventory;
+        _PlayerActions.PlayerActionMap.OpenInventory.performed -= OnOpenDeckBuildingScreen;
         _PlayerActions.Inventory.CloseInventory.performed -= OnCloseInventory;
-        _PlayerActions.PlayerActionMap.OpenDeckBuildingScreen.performed -= OnOpenDeckBuildingScreen;
+        _PlayerActions.PlayerActionMap.OpenRecipeBook.performed -= OnOpenRecipeMenu;
+        _PlayerActions.Menu.MenuOpenClose.performed -= OnPauseMenuOpen;
 
         GameEventManager.instance.OnChangeGameState -= OnGameStateChanged;
         GameEventManager.instance.OnGivePlayerItems -= OnGainItems;
         GameEventManager.instance.OnRemovePlayerItems -= OnRemoveItems;
         GameEventManager.instance.OnPostInventoryOpen -= PostInventoryOpen;
         GameEventManager.instance.OnCloseMenu -= CloseInventory_Internal;
+        GameEventManager.instance.OnClosePauseMenu -= ClosePauseMenu;
         GameEventManager.instance.OnPurchase -= OnPurchase;
     }
 
@@ -148,6 +167,9 @@ public class PlayerController : MonoBehaviour
             case EGameState.MovementDisabledState:
                 _PlayerActions.PlayerActionMap.Enable();
                 _PlayerActions.PlayerMovementMap.Disable();
+                break;
+            case EGameState.QuitState:
+                Application.Quit();
                 break;
             
             default:
@@ -301,8 +323,9 @@ private void FixedUpdate()
     {
         if (context.performed)
         {
-            if (_InventoryManager != null && !_InventoryManager.gameObject.activeSelf && GameManager.Instance.GetGameState() != EGameState.NightState)
+            if (!bIsMenuOpen && _InventoryManager != null && !_InventoryManager.gameObject.activeSelf && GameManager.Instance.GetGameState() != EGameState.NightState)
             {
+                bIsMenuOpen = true;
                 GameEventManager.instance.CloseMenu();
                 _InventoryManager.gameObject.SetActive(true);
             }
@@ -320,19 +343,69 @@ private void FixedUpdate()
         _PlayerActions.Inventory.Enable();
     }
 
-    protected void OnCloseInventory(InputAction.CallbackContext context)
+
+    protected void OnPauseMenuOpen(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
+            if (!_PauseMenuPrefab.gameObject.activeSelf)
+            {
+
+                _PauseMenuPrefab.gameObject.SetActive(true);
+                OnGameStateChanged(EGameState.PauseState, EGameState.MainState);
+
+                
+            }
+            else
+            {
+                OnPauseMenuClose();
+            }
+        }
+    }
+
+    public void OnPauseMenuClose()
+    {
+        OnGameStateChanged(EGameState.MainState, EGameState.PauseState);
+        GameEventManager.instance.ClosePauseMenu();
+        _PauseMenuPrefab.gameObject.SetActive(false);
+        bIsMenuOpen = false;
+        //EventSystem.current.SetSelectedGameObject(null);
+        /*
+        foreach (Transform child in _PauseMenuPrefab.transform)
+        {
+            child.gameObject.SetActive(false);
+        }*/
+
+    }
+
+    protected void OnCloseInventory(InputAction.CallbackContext context)
+    {
+        
+        if (context.performed)
+        {
+            bIsMenuOpen = false;
             GameEventManager.instance.CloseMenu();
         }
     }
     private void CloseInventory_Internal()
     {
+        bIsMenuOpen = false;
         _PlayerActions.PlayerMovementMap.Enable();
         _PlayerActions.PlayerActionMap.Enable();
         _PlayerActions.Inventory.Disable();
     }
+
+    
+    private void ClosePauseMenu()
+    {
+        bIsMenuOpen = false;
+        _PlayerActions.PlayerMovementMap.Enable();
+        _PlayerActions.PlayerActionMap.Enable();
+        _PauseMenuPrefab.gameObject.SetActive(false);
+        // what to do here??
+    }
+
+
 
     public void OnGainItems(List<InventoryItemData> Items)
     {
@@ -371,6 +444,10 @@ private void FixedUpdate()
         }
     }
 
+    public void KillGame()
+    {
+        OnGameStateChanged(EGameState.QuitState, EGameState.MainState);
+    }
     public void OnPurchase(int Cost)
     {
         //Kinda convoluted but safe
@@ -398,6 +475,24 @@ private void FixedUpdate()
             }
         }
     }
+
+    public void OnOpenRecipeMenu(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (!bIsMenuOpen && _RecipeMenuPrefab != null && GameManager.Instance.GetGameState() != EGameState.NightState)
+            {
+                GameEventManager.instance.CloseMenu();
+                Instantiate(_RecipeMenuPrefab);
+                bIsMenuOpen = true;
+            }
+            else
+            {
+                OnCloseInventory(context);
+            }
+        }
+    }
+
 
     private void InstantiateToolbar(bool CardHand = false)
     {

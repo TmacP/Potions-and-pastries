@@ -67,6 +67,27 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+
+
+
+
+
+    public event Action OnClosePauseMenu;
+    public void ClosePauseMenu()
+    {
+        if (OnClosePauseMenu != null)
+        {
+            OnClosePauseMenu();
+        }
+    }
+
+
+
+
+
+
+
+
     public event Action OnCloseMenu;
     public void CloseMenu()
     {

@@ -189,6 +189,9 @@ MonoBehaviour:
   _InventoryPrefab: {fileID: 4702890175944418306, guid: f2116dd8256e0114e9fc68b830b73d72, type: 3}
   _InventoryManager: {fileID: 0}
   _DeckBuildingScreenPrefab: {fileID: 515715817225196495, guid: 1f84403d553e85f42a9274e7a057dc76, type: 3}
+  _RecipeMenuPrefab: {fileID: 7909582920867626320, guid: e336d0e6c860c32499829d92dfc19104, type: 3}
+  _PauseMenuPrefab: {fileID: 0}
+  _AllMenuFromPause: {fileID: 0}
   _HotBarPrefab: {fileID: 0}
   _CardHandPrefab: {fileID: 945699792175429718, guid: aae92159f071ce142b8cb9a2005eca40, type: 3}
   toolbar: {fileID: 0}
