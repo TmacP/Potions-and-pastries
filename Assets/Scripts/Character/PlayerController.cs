@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
         _PlayerActions.Inventory.CloseInventory.performed += OnCloseInventory;
         _PlayerActions.PlayerActionMap.OpenDeckBuildingScreen.performed += OnOpenDeckBuildingScreen;
         //_PlayerActions.PlayerActionMap.MenuOpenClose.performed += OnMenuOpen;
-        _menuOpenCloseACtion = _PlayerActions.PlayerActionMap.MenuOpenClose;
+        //_menuOpenCloseACtion = _PlayerActions.PlayerActionMap.MenuOpenClose;
         //_menuOpenCloseAction = _PlayerActions.PlayerActionMap.MenuOpenClose;
         _PlayerActions.Menu.MenuOpenClose.performed += OnPauseMenuOpen;
         
@@ -113,8 +113,8 @@ public class PlayerController : MonoBehaviour
             if (_InventoryPrefab != null)
             {
                 _InventoryPrefab = Instantiate(_InventoryPrefab);
-                //_InventoryPrefab.transform.SetParent(HUD.transform, false);
-                //_InventoryPrefab.transform.SetAsFirstSibling();
+                _InventoryPrefab.transform.SetParent(HUD.transform, false);
+                _InventoryPrefab.transform.SetAsFirstSibling();
                 _InventoryManager = _InventoryPrefab.GetComponentInChildren<InventoryManager>();
                 Assert.IsNotNull(_InventoryManager);
                 _InventoryManager.InitializeInventoryManager(GameManager.Instance.PlayerState.Inventory);
