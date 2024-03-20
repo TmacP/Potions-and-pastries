@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: An Apple Danish, it smells just like pie.
   ItemType: 0
   ItemTags: 
-  image: {fileID: 21300000, guid: 90ceab83c64d04a40b491cbd86033b31, type: 3}
+  image: {fileID: 21300000, guid: ddd3f33c12fdd90498044eff35f84e83, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 

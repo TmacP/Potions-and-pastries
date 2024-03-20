@@ -242,7 +242,7 @@ public class GameEventManager : MonoBehaviour
         if (OnNPCRecieveOrder != null)
         {
             OnNPCRecieveOrder();
-}
+        }
     }
 
 

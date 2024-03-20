@@ -182,54 +182,54 @@ public class InventoryManager : MonoBehaviour
 
     private void Update()
     {
-        if (IsInventoryOpen())
-        {
-            int currentRow = selectedSlot / slotsPerRow;
-            int currentColumn = selectedSlot % slotsPerRow;
+        //if (IsInventoryOpen())
+        //{
+        //    int currentRow = selectedSlot / slotsPerRow;
+        //    int currentColumn = selectedSlot % slotsPerRow;
 
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                if (currentColumn < slotsPerRow - 1)
-                {
-                    SetSelectedSlot(selectedSlot + 1);
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                if (currentColumn > 0)
-                {
-                    SetSelectedSlot(selectedSlot - 1);
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                if (selectedSlot >= 7) // Assuming main inventory starts from index 7
-                {
-                    SetSelectedSlot(selectedSlot - slotsPerRow);
-                }
-                else
-                {
-                    // Special case for navigating from toolbar to main inventory
-                    SetSelectedSlot(7 + currentColumn); // Adjusted based on layout
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                if (currentRow < (inventorySlots.Length / slotsPerRow) - 1)
-                {
-                    SetSelectedSlot(selectedSlot + slotsPerRow);
-                }
-                else
-                {
-                    // Loop back to the toolbar when at the bottom of the inventory
-                    SetSelectedSlot(currentColumn); // This will select the corresponding toolbar slot
-                }
-            }
-        }
-        if (Input.inputString != null)
+        //    if (Input.GetKeyDown(KeyCode.RightArrow))
+        //    {
+        //        if (currentColumn < slotsPerRow - 1)
+        //        {
+        //            SetSelectedSlot(selectedSlot + 1);
+        //        }
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //    {
+        //        if (currentColumn > 0)
+        //        {
+        //            SetSelectedSlot(selectedSlot - 1);
+        //        }
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.UpArrow))
+        //    {
+        //        if (selectedSlot >= 7) // Assuming main inventory starts from index 7
+        //        {
+        //            SetSelectedSlot(selectedSlot - slotsPerRow);
+        //        }
+        //        else
+        //        {
+        //            // Special case for navigating from toolbar to main inventory
+        //            SetSelectedSlot(7 + currentColumn); // Adjusted based on layout
+        //        }
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.DownArrow))
+        //    {
+        //        if (currentRow < (inventorySlots.Length / slotsPerRow) - 1)
+        //        {
+        //            SetSelectedSlot(selectedSlot + slotsPerRow);
+        //        }
+        //        else
+        //        {
+        //            // Loop back to the toolbar when at the bottom of the inventory
+        //            SetSelectedSlot(currentColumn); // This will select the corresponding toolbar slot
+        //        }
+        //    }
+        //}
+        if (Input.inputString != null && bIsMainMenu)
         {
             bool isNumber = int.TryParse(Input.inputString, out int number);
-            if (number > 0 && isNumber && number < 8)
+            if (number > 0 && isNumber && number <= inventorySlots.Length)
             {
                 SetSelectedSlot((int)number - 1);
             }

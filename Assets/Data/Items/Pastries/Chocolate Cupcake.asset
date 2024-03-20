@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: A Chocolate Cupcake, dark, and mysterious.
   ItemType: 0
   ItemTags: 
-  image: {fileID: 21300000, guid: a5962d9ed90a34bf29c03afdc109469e, type: 3}
+  image: {fileID: 21300000, guid: 77d6ef63a9b5f5041a5a5c7d917405b9, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 

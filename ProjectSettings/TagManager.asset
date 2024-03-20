@@ -8,6 +8,8 @@ TagManager:
   - Barrel
   - PlayerHUD
   - Table
+  - PlayerInventoryToolBar
+  - Door
   layers:
   - Default
   - TransparentFX

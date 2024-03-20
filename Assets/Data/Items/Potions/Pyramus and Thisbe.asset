@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: Become extra lucky at first, but be fated to have a tragic end.
   ItemType: 0
   ItemTags: 
-  image: {fileID: 21300000, guid: 7681dbe5c831a466a891e857453ea2d9, type: 3}
+  image: {fileID: 21300000, guid: e44de30f5a56ba4429a3c90ab7e93e06, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 
