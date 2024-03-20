@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.06784823, g: 0.27414465, b: 0.48477304, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2573,6 +2573,33 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f17b474aa21f4eafb9bcbeae0dd8457, type: 3}
+--- !u!1 &681981935 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7029948723529949830, guid: bdb9fbb6fbc724712862e3fe7182b805, type: 3}
+  m_PrefabInstance: {fileID: 1998828680}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &681981937
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681981935}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -462981019419857548, guid: bdb9fbb6fbc724712862e3fe7182b805, type: 3}
 --- !u!4 &709504881 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f05e37ab6b21c44aea0f4c855747aaf3, type: 3}
@@ -7939,7 +7966,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bdb9fbb6fbc724712862e3fe7182b805, type: 3}
       insertIndex: -1
       addedObject: {fileID: 262493420}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -7029948723529949830, guid: bdb9fbb6fbc724712862e3fe7182b805, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 681981937}
   m_SourcePrefab: {fileID: 100100000, guid: bdb9fbb6fbc724712862e3fe7182b805, type: 3}
 --- !u!4 &1998828681 stripped
 Transform:
