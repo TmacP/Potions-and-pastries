@@ -67,6 +67,27 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+
+
+
+
+
+    public event Action OnClosePauseMenu;
+    public void ClosePauseMenu()
+    {
+        if (OnClosePauseMenu != null)
+        {
+            OnClosePauseMenu();
+        }
+    }
+
+
+
+
+
+
+
+
     public event Action OnCloseMenu;
     public void CloseMenu()
     {
@@ -82,6 +103,24 @@ public class GameEventManager : MonoBehaviour
         if (OnPostInventoryOpen != null)
         {
             OnPostInventoryOpen();
+        }
+    }
+
+    public event Action<int> OnPurchase;
+    public void Purchase(int Cost)
+    {
+        if (OnPurchase != null)
+        {
+            OnPurchase(Cost);
+        }
+    }
+
+    public event Action<long, long > OnPostPlayerGoldChanged;
+    public void PostPlayerGoldChanged(long NewGoldValue, long DeltaGold)
+    {
+        if (OnPostPlayerGoldChanged != null)
+        {
+            OnPostPlayerGoldChanged(NewGoldValue, DeltaGold);
         }
     }
 
@@ -121,6 +160,32 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+    public event Action<QuestData> OnQuestGiven;
+    public void QuestGiven(QuestData newQuest)
+    {
+        if (OnQuestGiven != null)
+        {
+            OnQuestGiven(newQuest);
+        }
+    }
+
+    public event Action OnQuestStatusRefreshed;
+    public void QuestStatusRefreshed()
+    {
+        if (OnQuestStatusRefreshed != null)
+        {
+            OnQuestStatusRefreshed();
+        }
+    }
+
+    public event Action<QuestData> OnQuestComplete;
+    public void QuestComplete(QuestData Quest)
+    {
+        if (OnQuestComplete != null)
+        {
+            OnQuestComplete(Quest);
+        }
+    }
 
     public event Action<EMiniGameCompleteResult> OnMiniGameComplete;
     public void MiniGameComplete(EMiniGameCompleteResult CompletionResult)
@@ -130,6 +195,26 @@ public class GameEventManager : MonoBehaviour
             OnMiniGameComplete(CompletionResult);
         }
     }
+
+    public event Action<EGameRegion> OnUnlockRegion;
+    public void UnlockRegion(EGameRegion Region)
+    {
+        if (OnUnlockRegion != null)
+        {
+            OnUnlockRegion(Region);
+        }
+    }
+
+    public event Action<int> OnDoorUnlocked;
+    public void DoorUnlocked(int DoorID)
+    {
+        if (OnDoorUnlocked != null)
+        {
+            OnDoorUnlocked(DoorID);
+        }
+    }
+
+
 
     public event Action<OrderData> OnTakeNPCOrder;
     public void TakeNPCOrder(OrderData NPCOrderData)
@@ -170,6 +255,15 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
-    
+    public event Action OnDeckSizeChange;
+    public void DeckSizeChange()
+    {
+        if (OnDeckSizeChange != null)
+        {
+            OnDeckSizeChange();
+        }
+    }
+
+
 
 }

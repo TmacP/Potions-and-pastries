@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: A Chocolate Danish, how enticing.
   ItemType: 0
   ItemTags: 
-  image: {fileID: 21300000, guid: 7f310bfcfe13747aa8411b0e5154a5a8, type: 3}
+  image: {fileID: 21300000, guid: 90ceab83c64d04a40b491cbd86033b31, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 

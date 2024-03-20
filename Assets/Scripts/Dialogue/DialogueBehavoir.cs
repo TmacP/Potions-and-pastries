@@ -6,6 +6,7 @@ using UnityEngine.Assertions;
 
 public class DialogueBehavoir : MonoBehaviour
 {
+    bool DebugMode = false;
 
     [SerializeField] public NPCDialogueState State;
     [SerializeField] public GameObject DialogueUI;
@@ -13,8 +14,29 @@ public class DialogueBehavoir : MonoBehaviour
     [SerializeField] public float DialogueDisplayTime = 3.0f;
     [SerializeField] public int DialogueDisplayCounter = 0;
 
+    // Singleton instance of BasicInkExample
+    private static BasicInkExample _inkInstance;
+    public static BasicInkExample InkInstance
+    {
+        get
+        {
+            if (_inkInstance == null)
+                _inkInstance = FindObjectOfType<BasicInkExample>();
+            return _inkInstance;
+        }
+    }
+
+    // Reference to NPCData instance
+    public NPCData npcData;
+
     public void TryDialogue()
     {
+        if (npcData != null)
+        {
+            if (DebugMode) { Debug.Log("TryDialogue, npcData: " + npcData); }
+            InkInstance.ContinueStory(npcData); // Continue the story when talking to NPC
+        }
+        
         DialogueData Dialogue = DialogueManager.instance.GetDialogue(State);
         if(Dialogue != null)
         {
@@ -38,7 +60,6 @@ public class DialogueBehavoir : MonoBehaviour
         }
     }
 
-
     public void EndQuipDialogue()
     {
         DialogueDisplayCounter--;
@@ -47,5 +68,4 @@ public class DialogueBehavoir : MonoBehaviour
             DialogueUI.SetActive(false);
         }
     }
- 
 }

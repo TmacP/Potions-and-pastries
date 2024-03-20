@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: An apple Doughnut, spicy!
   ItemType: 0
   ItemTags: 
-  image: {fileID: 21300000, guid: a7a1fc91bcc584fa4aed45c3a3395cd2, type: 3}
+  image: {fileID: 21300000, guid: 14cf1507d3cac434e86273dec7e87aa4, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 

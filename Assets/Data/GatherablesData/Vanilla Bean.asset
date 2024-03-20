@@ -16,7 +16,6 @@ MonoBehaviour:
   GatherableName: Vanilla Bean
   CollectableItems:
   - {fileID: 11400000, guid: c823f7b7fb8b1408c82714ad90b32ede, type: 2}
-  - {fileID: 11400000, guid: c823f7b7fb8b1408c82714ad90b32ede, type: 2}
   ItemsPerInteraction: 0
   NumberOfInteractions: 0
   MiniGame:
