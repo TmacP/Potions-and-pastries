@@ -6,25 +6,29 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 public class PauseScript : MonoBehaviour
 {
+    
     [SerializeField] private UIDocument uiDoc;
-    [SerializeField] private List<string> menuItems ;
+    private List<string> menuItems = new List<string> { "Resume","Save", "Settings", "Help", "Quit" };
 
     private VisualElement rootEl;
     private VisualElement _startEl;
     private VisualElement menuItemEl;
+
+    private VisualElement leftPanel;
+    private VisualElement rightPanel;
+    private Label helpTextLabel;
     
      private string activeMenuItemClass = "menu-item-active";
      private string activeClass = "start-active";
 
     private int selectedIndex = 0;
-    
+    private void Awake()
+    {
+        // Wait a half a sec and then run Open()
+        Invoke("Open", 0.5f);
 
-    public void showMenu(){
-        Invoke("Open", 0.3f);
     }
-    
 
-    
      private void Update()
     {
 
@@ -78,32 +82,114 @@ public class PauseScript : MonoBehaviour
         rootEl.Query(className: "menu-item").AtIndex(selectedIndex).AddToClassList(activeMenuItemClass);
     }
 
-    private void HandleSelect()
+   private void HandleSelect()
+{
+    string selectedItem = menuItems[selectedIndex];
+    Debug.Log($"{selectedItem} has been selected.");
+    
+    if (selectedItem == "Quit")
     {
-        string selectedItem = menuItems[selectedIndex];
-        Debug.Log($"{selectedItem} has been selected.");
-        if (selectedItem == "Quit")
-        {
-            Application.Quit();
-        }
-        if (selectedItem == "New Game")
-        {
-            //change scene
-            SceneManager.LoadScene("AlphaExterior");
+        Application.Quit();
+    }
+    else if (selectedItem == "Resume")
+    {
+        // Just close the menu
+        PlayerController playerController = FindObjectOfType<PlayerController>();
+        ClosefromMenu(playerController);
+    }
+    else if (selectedItem == "Settings")
+    {
+        // Clear the current menu and build the settings menu
+        menuItems.Clear();
+        menuItems.Add("Volume");
+        menuItems.Add("Back");
+        selectedIndex = 0;
+        buildMenu();
+    }
+    else if (selectedItem == "Back")
+    {
+        // Clear the current menu and build the main menu
+        menuItems.Clear();
+        menuItems.AddRange(new List<string> { "Resume", "Save", "Settings", "Help", "Quit" });
+        selectedIndex = 3; // Set it to the index of "Help"
+        buildMenu();
+    }
+    else if (selectedItem == "Help")
+    {
+        // Clear the current menu and build the help menu
+        menuItems.Clear();
+        menuItems.AddRange(new List<string> { "Back" });
+        selectedIndex = 0; // Set it to the index of "Movement"
+        buildMenu();
 
+        // Create two panels for the help menu
+        CreateHelpPanels();
+    }
+}
+private void CreateHelpPanels()
+{
+    // Create left panel with buttons
+    leftPanel = new VisualElement();
+    leftPanel.AddToClassList("help-panel-left");
+    menuItemEl.Add(leftPanel);
+
+    List<string> helpMenu = new List<string> { "Movement", "Gathering", "Service Day", "Back" };
+    foreach (string item in helpMenu)
+    {
+        if (item != "Back")
+        {
+            Button button = new Button(() => UpdateHelpText(item));
+            button.text = item;
+            leftPanel.Add(button);
         }
     }
 
+    // Create right panel with text
+    rightPanel = new VisualElement();
+    rightPanel.AddToClassList("help-panel");
+    menuItemEl.Add(rightPanel);
 
-    private void buildMenu (){
-        int currentIdx = 0;
+    helpTextLabel = new Label();
+    helpTextLabel.AddToClassList("help-text");
+    rightPanel.Add(helpTextLabel);
 
-        foreach (string item in menuItems)
-        {
-            menuItemEl. Add(BuildMenuItem(item, currentIdx == 0, currentIdx != 0));
-            currentIdx++;
-        }
+    // Set initial help text
+    UpdateHelpText(menuItems[0]);
+}
+
+private void UpdateHelpText(string buttonText)
+{
+    switch (buttonText)
+    {
+        case "Movement":
+            helpTextLabel.text = "You can use WASD to move the character around.";
+            break;
+        case "Gathering":
+            helpTextLabel.text = "Gathering resources helps in crafting items later.";
+            break;
+        case "Service Day":
+            helpTextLabel.text = "Service days occur every Sunday for community service activities.";
+            break;
+        default:
+            helpTextLabel.text = "Select an option from the left panel to view help text.";
+            break;
     }
+}
+
+
+
+    private void buildMenu()
+{
+    menuItemEl.Clear();
+    int currentIdx = 0;
+
+    foreach (string item in menuItems)
+    {
+        menuItemEl.Add(BuildMenuItem(item, currentIdx == selectedIndex, currentIdx != 0));
+        currentIdx++;
+    }
+}
+
 
     private void OnEnable()
     {
@@ -123,9 +209,8 @@ public class PauseScript : MonoBehaviour
         }
     }
 
-    public void Open()
+    private void Open()
     {
-        Debug.Log("Opening the pause menu.");
         if (_startEl != null)
         {
             _startEl.AddToClassList(activeClass);
@@ -148,41 +233,48 @@ public class PauseScript : MonoBehaviour
         }
     }
 
+    public void ClosefromMenu( PlayerController playerController)
+    {
+        if (_startEl != null)
+        {
+            _startEl.RemoveFromClassList(activeClass);
+            playerController.OnPauseMenuClose();
+            //set menu to deactivate
+
+        }
+        else
+        {
+            Debug.LogError("_startEl is null! Check initialization.");
+        }
+    }
+
 
     private VisualElement BuildMenuItem(string text, bool active, bool spaceTop) {
-    VisualElement menuItem = new VisualElement();
-    menuItem.AddToClassList("menu-item");
+        VisualElement menuItem = new VisualElement();
+        menuItem.AddToClassList("menu-item");
 
-    if (active) menuItem.AddToClassList("menu-item-active");
-    if (spaceTop) menuItem.AddToClassList("space-top");
+        if (active) menuItem.AddToClassList("menu-item-active");
+        if (spaceTop) menuItem.AddToClassList("space-top");
 
-    // Create a button
-    Button button = new Button();
-    button.AddToClassList("menu-item-button");
-    button.clickable.clicked += () => HandleMenuItemClick(text); // Handle click event
+        
 
-    // Create label for button text
-    Label label = new Label(text);
-    label.AddToClassList("menu-item-label");
+        VisualElement textEl = new VisualElement();
+        textEl.AddToClassList("menu-item-text");
 
-    // Add label to button
-    button.Add(label);
+        Label TextElementlabel = new Label(text);
 
-    // Add button to menu item
-    menuItem.Add(button);
+       
+        menuItem.Add(textEl);
+        textEl.Add(TextElementlabel);
 
-    return menuItem;
-}
+        return menuItem;
 
-private void HandleMenuItemClick(string itemName) {
-    Debug.Log($"Clicked on menu item: {itemName}");
 
-    // Add your logic here based on the clicked menu item
-    if (itemName == "Quit") {
-        Application.Quit();
-    } else if (itemName == "New Game") {
-        SceneManager.LoadScene("AlphaExterior");
     }
-    // Add more conditions as needed
-}
+
+    public void showMenu(){
+        Invoke("Open", 0.3f);
+    }
+
+    
 }

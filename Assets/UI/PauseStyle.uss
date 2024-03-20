@@ -91,6 +91,7 @@
 
 }
 
+
 .start.start-active .footer{
     translate: 0 0 ;
 }
@@ -115,37 +116,22 @@
     width: 100%;
 }
 
-.menu-item-label {
+.menu-item-text {
+    background-color: #f2e2ba;
+    color: #6e6e6e;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+}
+
+.menu-item.menu-item-active .menu-item-text{
+    background-color: #baf2e9;
+    color:black;
+    scale: 1.1;
     
-    color: #6e6e6e;
-    height: 60px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 30px;
+
 }
-
-.menu-item-button {
-    background-color: #f2e2ba; /* Change color as needed */
-    color: #6e6e6e;
-    height: 60px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-    font-size: 29px;
-    padding: 10px 20px;
-    margin-bottom: 10px;
-}
-
-.menu-item-button:hover {
-    background-color: #baf2e9; /* Change color as needed */
-    color: black;
-    border-radius: 40px;
-    padding: 40px 20px;
-}
-
-
 
 .menu-item.space-top {
     margin-top: 30px;
@@ -154,3 +140,29 @@
 .menu-item Label {
     font-size: 29px;
 }
+
+/* Style for the left panel */
+.help-panel-left {
+    flex-direction: row; /* Display children horizontally */
+}
+
+/* Style for buttons in the left panel */
+.help-panel-left > Button {
+    width: 200px; /* Set button width */
+    height: 30px; /* Set button height */
+    margin-right: 10px; /* Add margin between buttons */
+    border: 30px;
+}
+
+/* Style for the right panel */
+.help-panel {
+    flex-direction: column; /* Display children vertically */
+    margin-left: 20px; /* Add margin between left and right panels */
+}
+
+/* Style for the help text label */
+.help-text {
+    font-size: 14px; /* Set font size */
+    margin-top: 10px; /* Add margin at the top */
+}
+
