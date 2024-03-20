@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: A Vanilla Danish, heavenly.
   ItemType: 0
   ItemTags: 
-  image: {fileID: 21300000, guid: 90ceab83c64d04a40b491cbd86033b31, type: 3}
+  image: {fileID: 21300000, guid: f624012aff8d97e41ae27a1de51a6128, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 

@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: Egg
   ItemType: 0
   ItemTags: 
-  image: {fileID: 21300000, guid: cd1451bc1b2ea41aaaafddd671161b0e, type: 3}
+  image: {fileID: 21300000, guid: 1b8d6fe03d85e864dbadc2eb13db6bcc, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 

@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: A Vanilla Cupcake, how brilliant.
   ItemType: 0
   ItemTags: 
-  image: {fileID: 21300000, guid: a5962d9ed90a34bf29c03afdc109469e, type: 3}
+  image: {fileID: 21300000, guid: 256d0baf6609d1f4d8253b6cf4316c38, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 
