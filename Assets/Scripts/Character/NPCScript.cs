@@ -7,7 +7,7 @@ using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
-public class NPCBehaviour : MonoBehaviour, IInteractable
+public class NPCBehaviour : MonoBehaviour, IInteractableExtension
 
 {
     public enum ENPCState
@@ -51,6 +51,26 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
     //*************IInteractable interface***********
     public string InteractionPrompt => GetInteractionPrompt();
 
+    public string GetSecondaryInteractionPrompt(InventoryItemData InteractionItem)
+    {
+        string ReturnPrompt = "Give Card";
+
+        if (InteractionItem == null)
+        {
+            return ReturnPrompt;
+        }
+
+        if (InteractionItem.bIsCard && InteractionItem.CardActionType == ECardActionType.Use_Trash)
+        {
+            ReturnPrompt = "Give " + InteractionItem.Data.Name;
+        }
+        else
+        {
+            ReturnPrompt = "Show " + InteractionItem.Data.Name;
+        }
+        return ReturnPrompt;
+    }
+
 
     public EInteractionResult TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
     {
@@ -69,7 +89,28 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
        return EInteractionResult.Failure;
     }
 
-//*******end of IInteractable
+
+    
+
+    public EInteractionResult TrySecondaryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItems = null)
+    {
+        if(InteractionItems == null || InteractionItems.Count <= 0)
+        {
+            return EInteractionResult.Failure;
+        }
+        InventoryItemData Item = InteractionItems[0];
+        if (NPCState == ENPCState.Order && Item != null && Item.CardActionType == ECardActionType.Use_Trash)
+        {
+            GameEventManager.instance.DoneNPCOrder(NpcOrder);
+
+            //GameEventManager.instance.RemovePlayerItems(InteractionItem);
+            WaitSecChangeState(0.5f, ENPCState.Wander);
+            return EInteractionResult.Success_ConsumeItem;
+        }
+        return EInteractionResult.Failure;
+    }
+
+    //*******end of IInteractable
 
     public string GetInteractionPrompt()
     {
