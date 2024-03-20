@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: Restore magic powers
   ItemType: 0
   ItemTags: 
-  image: {fileID: 21300000, guid: 7681dbe5c831a466a891e857453ea2d9, type: 3}
+  image: {fileID: 21300000, guid: 2edec6a0e017e6b4ea312e2eaa4f2bf9, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 

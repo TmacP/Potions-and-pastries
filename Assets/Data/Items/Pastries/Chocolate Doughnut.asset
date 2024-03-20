@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: A Chocolate Doughnut, the icing is melting.
   ItemType: 0
   ItemTags: 
-  image: {fileID: 21300000, guid: 14cf1507d3cac434e86273dec7e87aa4, type: 3}
+  image: {fileID: 21300000, guid: fd93ffcca8b21454b9d7b0b1cee179f6, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 

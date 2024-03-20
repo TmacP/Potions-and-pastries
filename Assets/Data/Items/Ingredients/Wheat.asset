@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: Wheat
   ItemType: 0
   ItemTags: 
-  image: {fileID: 21300000, guid: 28837dfecbfb840aa9174bab2a002182, type: 3}
+  image: {fileID: 21300000, guid: 1d6c98ee09275eb4b801100c8e840049, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 

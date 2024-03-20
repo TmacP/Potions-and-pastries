@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: Milk
   ItemType: 0
   ItemTags: 
-  image: {fileID: 21300000, guid: dc645f0866f434173a1208aebb85c1f3, type: 3}
+  image: {fileID: 21300000, guid: f6faf707e3eeff1499d8450ae83cb536, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 

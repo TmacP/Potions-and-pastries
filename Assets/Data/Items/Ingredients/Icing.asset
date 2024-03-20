@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: Some icing
   ItemType: 0
   ItemTags: 02000000
-  image: {fileID: 21300000, guid: 9005e6d32fe834187892f8195f823a19, type: 3}
+  image: {fileID: 21300000, guid: 4614f610375e8ab4b978844999526f99, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 

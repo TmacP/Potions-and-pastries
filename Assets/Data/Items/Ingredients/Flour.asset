@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: Flour
   ItemType: 0
   ItemTags: 
-  image: {fileID: 21300000, guid: 9c5c46837d270483c8b5df936f9e12d7, type: 3}
+  image: {fileID: 21300000, guid: 62d2b5068e7f6194a8534e9b5742439c, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 
