@@ -79,7 +79,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
        {
             GameEventManager.instance.DoneNPCOrder(NpcOrder);
             GameEventManager.instance.RemovePlayerItems(InteractionItem);
-            WaitSecChangeState(0.5f, ENPCState.Wander);
+            WaitSecChangeState(0.5f, ENPCState.Eating);
         }
        else if(_DialogueBehavoir != null)
        {
@@ -104,7 +104,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
             GameEventManager.instance.DoneNPCOrder(NpcOrder);
 
             //GameEventManager.instance.RemovePlayerItems(InteractionItem);
-            WaitSecChangeState(0.5f, ENPCState.Wander);
+            WaitSecChangeState(0.5f, ENPCState.Eating);
             return EInteractionResult.Success_ConsumeItem;
         }
         return EInteractionResult.Failure;
@@ -146,19 +146,32 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     // Update is called once per frame
     void Update()
     {
-        //  Debug.Log(foundTable);
-        Debug.Log(Vector3.Distance(agent.transform.position, destination));
+         //Debug.Log(foundDoor);
+         Debug.Log(Vector3.Distance(agent.transform.position, destination)); //to find out how far an NPC is from the point they are headed to (where the 1.1 came from)
 
-        //Debug.Log(pointSet);
-        if (Vector3.Distance(agent.transform.position, destination) < 1.1 && foundTable)
+        if(NPCState == ENPCState.Eating)
         {
+            WaitSecChangeState(3, ENPCState.Leaving);
+        }
+        //else if(NPCState == ENPCState.Idle)
+       // {
+       //     StartIdle();
+      //  }
+        //at table
+        else if (Vector3.Distance(agent.transform.position, destination) < 1.1 && foundTable)
+        {
+            foundTable = false;
             WaitSecChangeState(3, ENPCState.WaitForOrder);
         }
-        else if (Vector3.Distance(agent.transform.position, destination) < 0.5 && foundDoor)
+        //at door to leave
+        else if (Vector3.Distance(agent.transform.position, destination) < 1.1 && foundDoor)
         {
-            Destroy(this.gameObject);
+            //Debug.Log("I am dead");
+            
+            Destroy(gameObject);
+            foundDoor = false;
         }
-        else if (Vector3.Distance(agent.transform.position, destination) < 10 && pointSet && !foundTable && !foundDoor)
+        else if (Vector3.Distance(agent.transform.position, destination) < 2 && pointSet && !foundTable && !foundDoor)
         {
             pointSet = false;
             WaitSecChangeState(0, NPCState);
@@ -193,7 +206,6 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
                 WaitSecChangeState(3, ENPCState.WaitForOrder);
                 break;
             case ENPCState.WaitForOrder:
-                //Debug.Log("Order state entered");
                 GameEventManager.instance.TakeNPCOrder(NpcOrder);
                 break;
             case ENPCState.Eating:
@@ -231,16 +243,28 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
         }
         if (pointSet)
         {
-            WaitSecChangeState(3, ENPCState.Idle);
-            //Debug.Log("Point Set");
             agent.SetDestination(destination);
-            pointSet = false;
+            WaitSecChangeState(3, ENPCState.Idle);
         }
     }
 
     void StartIdle()
     {
+        //waits until the NPC gets close to the point set by the Wander state
+       // if(Vector3.Distance(agent.transform.position, destination) < 1) 
+        //{
+      //      pointSet = false;
             WaitSecChangeState(3, ENPCState.FindTable);
+     //   }
+       // else if (Physics.Raycast(destination, Vector3.down, groundLayer))
+      //  {
+      //      agent.SetDestination(destination);
+    //    }
+      //  else
+      //  {
+      //      WaitSecChangeState(3, ENPCState.FindTable);
+     //   }
+
     }
 
 
@@ -251,15 +275,11 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
         {
             destination = Table.transform.position;
             foundTable = true;
+            pointSet = false;
         }
         else
         {
             UpdateNPCState(ENPCState.Wander);
-        }
-        //returns true if ground is available for walking
-        if (Physics.Raycast(destination, Vector3.down, groundLayer) && destination != null) 
-        {
-            pointSet = true;
         }
     }
     void WalkToTable()
@@ -270,16 +290,16 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
         }
         if (foundTable)
         {
-            if (Vector3.Distance(agent.transform.position, destination) < 1.1)
-            {
-                Debug.Log("Made it here");
-                foundTable = false; ///TEMP
-                WaitSecChangeState(3, ENPCState.WaitForOrder);
-            }
-            else
-            {
+ //           if (Vector3.Distance(agent.transform.position, destination) < 1.1)
+ //           {
+ //               Debug.Log("Made it here");
+ //               foundTable = false; 
+ //               WaitSecChangeState(3, ENPCState.WaitForOrder);
+  //          }
+  //          else
+    //        {
                 agent.SetDestination(destination);
-            }
+    //        }
         }
     }
 
@@ -310,16 +330,16 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
         }
         if (foundDoor)
         {
-            if (Vector3.Distance(agent.transform.position, destination) < 0.5)
-            {
-                Debug.Log("Made it here");
-                foundDoor = false; ///TEMP
-                Destroy(this.gameObject);
-            }
-            else
-            {
+ //           if (Vector3.Distance(agent.transform.position, destination) < 0.5)
+ //           {
+ //               Debug.Log("Made it to door");
+  //              foundDoor = false;
+  //              Destroy(this.gameObject);
+ //           }
+ //           else
+ //           {
                 agent.SetDestination(destination);
-            }
+//            }
         }
 
     }
@@ -327,25 +347,26 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     void EatOrLeave()
     {
         bool ChangeChance = RandomChance(0,200);
+        Debug.Log("CHANCE 1" + ChangeChance);
 
         // stay and eat more, but do we move or stay at table?
         if(ChangeChance)
         {
             bool ChangeChance2 = RandomChance(0,200);
-            // move from table and rerun from wandering state
+            Debug.Log("CHANCE 2" + ChangeChance2);
+
+            // move from table and rerun from wandering state to go find another table
             if (ChangeChance2)
             {
                 WaitSecChangeState(5, ENPCState.Wander);
             }
-            //stay at table and feast more
-            // skipping FindTable and going straight to ordering 
+            // stay at table and feast more 
             else
             {
                 WaitSecChangeState(3, ENPCState.WaitForOrder);
             }
-            
-
         }
+        // done eating and leaving (deleting NPC)
         else
         {
             WalkToDoor();
