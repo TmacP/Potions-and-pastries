@@ -178,7 +178,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-private void FixedUpdate()
+    private void FixedUpdate()
 {
     if (_Rigidbody)
     {
@@ -480,7 +480,7 @@ private void FixedUpdate()
     {
         if (context.performed)
         {
-            if (!bIsMenuOpen && _RecipeMenuPrefab != null && GameManager.Instance.GetGameState() != EGameState.NightState)
+            if (!bIsMenuOpen && _RecipeMenuPrefab != null)
             {
                 GameEventManager.instance.CloseMenu();
                 Instantiate(_RecipeMenuPrefab);
