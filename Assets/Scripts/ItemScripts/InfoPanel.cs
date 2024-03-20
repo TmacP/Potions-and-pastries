@@ -22,10 +22,14 @@ public class InfoPanel : MonoBehaviour
 
         string TagString = "";
 
-        foreach(EItemTags tag in Tags)
+        if(Tags != null && Tags.Count > 0 )
         {
-            TagString += Enum.GetName(typeof(EItemTags), tag).ToString() + ", ";
+            foreach (EItemTags tag in Tags)
+            {
+                TagString += tag.ToString() + ", ";
+            }
         }
+        
 
         InfoBoxTags.text = TagString;
         InfoBoxImage.sprite = image;

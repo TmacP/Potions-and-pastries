@@ -13,6 +13,8 @@ public class CraftingStationData : ScriptableObject
 
     public List<RecipeData> CraftableRecipes;
 
+    public List<ECardActionType> CardActions;
+
     //Mini Game
     public AssetReference CraftingActionMiniGame;
     public int CraftMiniGameDifficulty;

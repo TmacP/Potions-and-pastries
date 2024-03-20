@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acbc4b1d07823a140a482df7049dfc8e, type: 3}
+  m_Name: Test
+  m_EditorClassIdentifier: 
+  InteractionPrompt: Test
+  GatherableName: Test
+  CollectableItems:
+  - {fileID: 11400000, guid: 5d2e6fe0ced5348df877ebc5e6a93765, type: 2}
+  - {fileID: 11400000, guid: a8dfaea7c391b4bcfa212caf5784b16d, type: 2}
+  - {fileID: 11400000, guid: 5b7a7155bda0d4be294995aef174f67e, type: 2}
+  - {fileID: 11400000, guid: a1afc0841d6614713a88a7a9246ebac3, type: 2}
+  - {fileID: 11400000, guid: c655e0734b494450cad243093d85c29e, type: 2}
+  - {fileID: 11400000, guid: 870c3d2dc5e9d4a1e98ab108ded47f3a, type: 2}
+  - {fileID: 11400000, guid: 975afa5ddf4fe4d7abf864581864bb25, type: 2}
+  - {fileID: 11400000, guid: ff55d8bb7e08849f1b79d9d6e67bcf4d, type: 2}
+  - {fileID: 11400000, guid: c823f7b7fb8b1408c82714ad90b32ede, type: 2}
+  ItemsPerInteraction: 0
+  NumberOfInteractions: 0
+  MiniGame:
+    m_AssetGUID: 595e291c9b957934f9a4a77cae243c9e
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  MiniGameDifficulty: 0

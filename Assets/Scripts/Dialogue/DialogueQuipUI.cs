@@ -29,10 +29,13 @@ public class DialogueQuipUI : MonoBehaviour
 
     public void OnShowDialogueQuip(DialogueData Data)
     {
-        QuipUIText.SetText(Data.Dialogue);
-        QuipUIPanel.SetActive(true);
-        LastUpdate = Time.time;
-        Invoke("CloseDialogue", PanelLifetime);
+        if(QuipUIPanel != null && QuipUIText != null)
+        {
+            QuipUIText.SetText(Data.Dialogue);
+            QuipUIPanel.SetActive(true);
+            LastUpdate = Time.time;
+            Invoke("CloseDialogue", PanelLifetime);
+        }
     }
 
     public void CloseDialogue()

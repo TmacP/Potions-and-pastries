@@ -21,9 +21,10 @@ public class InteractorBehavoir : MonoBehaviour
         CollidersCount = Physics.OverlapSphereNonAlloc(InteractionOffset + transform.position, InteractRadius, _Colliders, _InteractableMask);
         if(CollidersCount > 0)
         {
-            IInteractable NewInteractable = _Colliders[0].GetComponent<IInteractable>();
-            Interactable = NewInteractable;
-            GameEventManager.instance.ChangeInteractionTarget(NewInteractable, this);
+            GameObject NewInteractable = _Colliders[0].gameObject;
+            Interactable = NewInteractable.GetComponent<IInteractable>();
+
+            GameEventManager.instance.ChangeInteractionTarget(Interactable, this);
         }
         else
         {
@@ -44,13 +45,23 @@ public class InteractorBehavoir : MonoBehaviour
         }
     }
 
-    public bool TryInteract(List<InventoryItemData> InteractionItems = null)
+    public EInteractionResult TryInteract(List<InventoryItemData> InteractionItems = null)
     {
         if (Interactable != null)
         {
             return Interactable.TryInteract(this, InteractionItems);
         }
-        return false;
+        return EInteractionResult.Failure;
+    }
+
+    public EInteractionResult TrySecondaryInteract(List<InventoryItemData> InteractionItems = null)
+    {
+        IInteractableExtension Extension = Interactable as IInteractableExtension;
+        if (Extension != null)
+        {
+            return Extension.TrySecondaryInteract(this, InteractionItems);
+        }
+        return EInteractionResult.Failure;
     }
 
     public void InteractReleased()

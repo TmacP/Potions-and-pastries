@@ -22,16 +22,7 @@ public class Toolbar : MonoBehaviour
             if(PlayerController.instance._PlayerActions.PlayerActionMap.enabled)
             {
                 Vector2 Scroll = PlayerController.instance._PlayerActions.PlayerActionMap.ToolbarScroll.ReadValue<Vector2>();
-
-                if(Scroll.y > 0.1)
-                {
-                    ToolbarManager.ChangeSelectedSlot(1);
-                }
-                else if(Scroll.y < -0.1)
-                {
-                    ToolbarManager.ChangeSelectedSlot(-1);
-                }
-
+                UpdateScrollSlot(Scroll.y);
             }
         }
     }
@@ -43,8 +34,8 @@ public class Toolbar : MonoBehaviour
 
     public void OnRecieveOrder()
     {
-        ToolbarManager.ClearInventory();
-        ToolbarManager.InventoryDataRef.Clear();
+        //ToolbarManager.ClearInventory();
+        //ToolbarManager.InventoryDataRef.Clear();
     }
 
     public List<InventoryItemData> GetItems()
@@ -57,8 +48,34 @@ public class Toolbar : MonoBehaviour
         return ToolbarManager.GetSelectedItem(false);
     }
 
-    public bool UseSelectedItem()
+    public bool IsFull()
+    {
+        Debug.Log(ToolbarManager.inventorySlots.Length);
+        foreach (InventorySlot slot in ToolbarManager.inventorySlots)
+        {
+            if(slot.IsEmpty())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    virtual public bool UseSelectedItem()
     {
         return ToolbarManager.UseItem(ToolbarManager.selectedSlot);
+    }
+
+
+    virtual public void UpdateScrollSlot(float ScrollValue)
+    {
+        if (ScrollValue > 0.1)
+        {
+            ToolbarManager.ChangeSelectedSlot(1);
+        }
+        else if (ScrollValue < -0.1)
+        {
+            ToolbarManager.ChangeSelectedSlot(-1);
+        }
     }
 }
