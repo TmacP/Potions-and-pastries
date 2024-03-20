@@ -82,7 +82,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""OpenDeckBuildingScreen"",
+                    ""name"": ""OpenRecipeBook"",
                     ""type"": ""Button"",
                     ""id"": ""0f0c13a8-81e0-474d-90eb-22bcb89e4643"",
                     ""expectedControlType"": ""Button"",
@@ -253,7 +253,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""OpenDeckBuildingScreen"",
+                    ""action"": ""OpenRecipeBook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -518,7 +518,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         m_PlayerActionMap_OpenInventory = m_PlayerActionMap.FindAction("OpenInventory", throwIfNotFound: true);
         m_PlayerActionMap_ToolbarScroll = m_PlayerActionMap.FindAction("ToolbarScroll", throwIfNotFound: true);
         m_PlayerActionMap_MenuOpenClose = m_PlayerActionMap.FindAction("MenuOpenClose", throwIfNotFound: true);
-        m_PlayerActionMap_OpenDeckBuildingScreen = m_PlayerActionMap.FindAction("OpenDeckBuildingScreen", throwIfNotFound: true);
+        m_PlayerActionMap_OpenRecipeBook = m_PlayerActionMap.FindAction("OpenRecipeBook", throwIfNotFound: true);
         // PlayerMovementMap
         m_PlayerMovementMap = asset.FindActionMap("PlayerMovementMap", throwIfNotFound: true);
         m_PlayerMovementMap_Move = m_PlayerMovementMap.FindAction("Move", throwIfNotFound: true);
@@ -596,7 +596,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActionMap_OpenInventory;
     private readonly InputAction m_PlayerActionMap_ToolbarScroll;
     private readonly InputAction m_PlayerActionMap_MenuOpenClose;
-    private readonly InputAction m_PlayerActionMap_OpenDeckBuildingScreen;
+    private readonly InputAction m_PlayerActionMap_OpenRecipeBook;
     public struct PlayerActionMapActions
     {
         private @PlayerActions m_Wrapper;
@@ -607,7 +607,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         public InputAction @OpenInventory => m_Wrapper.m_PlayerActionMap_OpenInventory;
         public InputAction @ToolbarScroll => m_Wrapper.m_PlayerActionMap_ToolbarScroll;
         public InputAction @MenuOpenClose => m_Wrapper.m_PlayerActionMap_MenuOpenClose;
-        public InputAction @OpenDeckBuildingScreen => m_Wrapper.m_PlayerActionMap_OpenDeckBuildingScreen;
+        public InputAction @OpenRecipeBook => m_Wrapper.m_PlayerActionMap_OpenRecipeBook;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -635,9 +635,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @MenuOpenClose.started += instance.OnMenuOpenClose;
             @MenuOpenClose.performed += instance.OnMenuOpenClose;
             @MenuOpenClose.canceled += instance.OnMenuOpenClose;
-            @OpenDeckBuildingScreen.started += instance.OnOpenDeckBuildingScreen;
-            @OpenDeckBuildingScreen.performed += instance.OnOpenDeckBuildingScreen;
-            @OpenDeckBuildingScreen.canceled += instance.OnOpenDeckBuildingScreen;
+            @OpenRecipeBook.started += instance.OnOpenRecipeBook;
+            @OpenRecipeBook.performed += instance.OnOpenRecipeBook;
+            @OpenRecipeBook.canceled += instance.OnOpenRecipeBook;
         }
 
         private void UnregisterCallbacks(IPlayerActionMapActions instance)
@@ -660,9 +660,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @MenuOpenClose.started -= instance.OnMenuOpenClose;
             @MenuOpenClose.performed -= instance.OnMenuOpenClose;
             @MenuOpenClose.canceled -= instance.OnMenuOpenClose;
-            @OpenDeckBuildingScreen.started -= instance.OnOpenDeckBuildingScreen;
-            @OpenDeckBuildingScreen.performed -= instance.OnOpenDeckBuildingScreen;
-            @OpenDeckBuildingScreen.canceled -= instance.OnOpenDeckBuildingScreen;
+            @OpenRecipeBook.started -= instance.OnOpenRecipeBook;
+            @OpenRecipeBook.performed -= instance.OnOpenRecipeBook;
+            @OpenRecipeBook.canceled -= instance.OnOpenRecipeBook;
         }
 
         public void RemoveCallbacks(IPlayerActionMapActions instance)
@@ -852,7 +852,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         void OnOpenInventory(InputAction.CallbackContext context);
         void OnToolbarScroll(InputAction.CallbackContext context);
         void OnMenuOpenClose(InputAction.CallbackContext context);
-        void OnOpenDeckBuildingScreen(InputAction.CallbackContext context);
+        void OnOpenRecipeBook(InputAction.CallbackContext context);
     }
     public interface IPlayerMovementMapActions
     {

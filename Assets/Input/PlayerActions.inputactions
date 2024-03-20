@@ -60,7 +60,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "OpenDeckBuildingScreen",
+                    "name": "OpenRecipeBook",
                     "type": "Button",
                     "id": "0f0c13a8-81e0-474d-90eb-22bcb89e4643",
                     "expectedControlType": "Button",
@@ -231,7 +231,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "OpenDeckBuildingScreen",
+                    "action": "OpenRecipeBook",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
