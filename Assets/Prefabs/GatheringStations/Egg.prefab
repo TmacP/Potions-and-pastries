@@ -139,15 +139,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 1efdf2267aa394c47b7c49a15d790a0f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.22
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 1efdf2267aa394c47b7c49a15d790a0f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.22
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 1efdf2267aa394c47b7c49a15d790a0f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.22
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 1efdf2267aa394c47b7c49a15d790a0f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -155,7 +155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 1efdf2267aa394c47b7c49a15d790a0f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.02
+      value: -2.81
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 1efdf2267aa394c47b7c49a15d790a0f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -236,6 +236,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 1efdf2267aa394c47b7c49a15d790a0f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5104017404057807471}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 1efdf2267aa394c47b7c49a15d790a0f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1014668732267058503}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 1efdf2267aa394c47b7c49a15d790a0f, type: 3}
 --- !u!1 &2780470458759635176 stripped
 GameObject:
@@ -263,6 +266,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!210 &1014668732267058503
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2780470458759635176}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!4 &3917620343956486283 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 1efdf2267aa394c47b7c49a15d790a0f, type: 3}
