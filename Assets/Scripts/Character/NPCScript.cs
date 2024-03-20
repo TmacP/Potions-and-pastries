@@ -147,7 +147,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     void Update()
     {
          //Debug.Log(foundDoor);
-         Debug.Log(Vector3.Distance(agent.transform.position, destination)); //to find out how far an NPC is from the point they are headed to (where the 1.1 came from)
+         //Debug.Log(Vector3.Distance(agent.transform.position, destination)); //to find out how far an NPC is from the point they are headed to (where the 1.1 came from)
 
         if(NPCState == ENPCState.Eating)
         {

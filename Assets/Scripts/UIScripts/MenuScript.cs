@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 public class MenuScript : MonoBehaviour
 {
     FMOD.Studio.Bus bus;
