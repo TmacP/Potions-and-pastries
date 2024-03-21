@@ -42,18 +42,20 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
-            PlayerState.Inventory.Clear();
-            PlayerState.ToolBar.Clear();
-            PlayerState.CardHand.Clear();
-            PlayerState.Deck.Clear();
-            PlayerState.Discard.Clear();
-            PersistantGameState.UnlockedRegions.Clear();
-            PersistantGameState.OpenedDoors.Clear();
         }
     }
 
+    public void clearSave(){
+        PlayerState.Inventory.Clear();
+        PlayerState.ToolBar.Clear();
+        PlayerState.CardHand.Clear();
+        PlayerState.Deck.Clear();
+        PlayerState.Discard.Clear();
+        PersistantGameState.UnlockedRegions.Clear();
+        PersistantGameState.OpenedDoors.Clear();
+    }
 
-    
+
 
     // Start is called before the first frame update
     void Start()

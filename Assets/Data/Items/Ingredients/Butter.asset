@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: Some Butter
   ItemType: 0
   ItemTags: 08000000
-  image: {fileID: 21300000, guid: 4ce86513fddea419dba63b912443c61a, type: 3}
+  image: {fileID: 21300000, guid: 5c1fd4ceac1f629408eef85af75b2310, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 

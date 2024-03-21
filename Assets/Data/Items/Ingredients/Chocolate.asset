@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: Some chocolate
   ItemType: 0
   ItemTags: 09000000
-  image: {fileID: 21300000, guid: 9e91c71ce5a7c4d3884bac2e9e597eb9, type: 3}
+  image: {fileID: 21300000, guid: fd93ffcca8b21454b9d7b0b1cee179f6, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 

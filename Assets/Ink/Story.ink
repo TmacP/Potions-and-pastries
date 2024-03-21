@@ -16,8 +16,8 @@ VAR chocolateGate = false
 === first_day
 // FIRST DAY *****************************************
 // tutorial dialogue
-After a long trip from the city you finally arrive at your new inn. You see people outside. Maybe you should try talking to them and introduce yourself. This feels like the start of something wonderful.
-+ [Continue]
+//After a long trip from the city you finally arrive at your new inn. You see people outside. Maybe you should try talking to them and introduce yourself. This feels like the start of something wonderful.
+//+ [Continue]
 ~ nextPathString = "first_day.tutorial"
 -> DONE
 

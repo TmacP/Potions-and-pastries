@@ -7,7 +7,7 @@ using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
-public class NPCBehaviour : MonoBehaviour, IInteractable
+public class NPCBehaviour : MonoBehaviour, IInteractableExtension
 
 {
     public enum ENPCState
@@ -16,8 +16,10 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         Wander,
         Idle,
         FindTable,
-        Order,
-        AcceptFood
+        DecideOnOrder,
+        WaitForOrder,
+        Eating,
+        Leaving // foundTable = false;
     }
 
     public ENPCState NPCState;
@@ -36,6 +38,8 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
 
     [SerializeField] OrderData NpcOrder;
 
+    bool foundTable;
+    bool foundDoor;
     private Rigidbody _Rigidbody;
     public Animator frontAnimator;
     public Animator backAnimator;
@@ -47,15 +51,35 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
     //*************IInteractable interface***********
     public string InteractionPrompt => GetInteractionPrompt();
 
+    public string GetSecondaryInteractionPrompt(InventoryItemData InteractionItem)
+    {
+        string ReturnPrompt = "Give Card";
+
+        if (InteractionItem == null)
+        {
+            return ReturnPrompt;
+        }
+
+        if (InteractionItem.bIsCard && InteractionItem.CardActionType == ECardActionType.Use_Trash)
+        {
+            ReturnPrompt = "Give " + InteractionItem.Data.Name;
+        }
+        else
+        {
+            ReturnPrompt = "Show " + InteractionItem.Data.Name;
+        }
+        return ReturnPrompt;
+    }
+
 
     public EInteractionResult TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
     {
 
-       if(NPCState == ENPCState.Order && InteractionItem != null && InteractionItem.Count > 0)
+       if(NPCState == ENPCState.WaitForOrder && InteractionItem != null && InteractionItem.Count > 0)
        {
             GameEventManager.instance.DoneNPCOrder(NpcOrder);
             GameEventManager.instance.RemovePlayerItems(InteractionItem);
-            WaitSecChangeState(0.5f, ENPCState.Wander);
+            WaitSecChangeState(0.5f, ENPCState.Eating);
         }
        else if(_DialogueBehavoir != null)
        {
@@ -65,11 +89,32 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
        return EInteractionResult.Failure;
     }
 
-//*******end of IInteractable
+
+    
+
+    public EInteractionResult TrySecondaryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItems = null)
+    {
+        if(InteractionItems == null || InteractionItems.Count <= 0)
+        {
+            return EInteractionResult.Failure;
+        }
+        InventoryItemData Item = InteractionItems[0];
+        if (NPCState == ENPCState.WaitForOrder && Item != null && Item.CardActionType == ECardActionType.Use_Trash)
+        {
+            GameEventManager.instance.DoneNPCOrder(NpcOrder);
+
+            //GameEventManager.instance.RemovePlayerItems(InteractionItem);
+            WaitSecChangeState(0.5f, ENPCState.Eating);
+            return EInteractionResult.Success_ConsumeItem;
+        }
+        return EInteractionResult.Failure;
+    }
+
+    //*******end of IInteractable
 
     public string GetInteractionPrompt()
     {
-        if (NPCState == ENPCState.Order)
+        if (NPCState == ENPCState.WaitForOrder)
         {
             return "Give Order";
         }
@@ -91,6 +136,9 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        UpdateNPCState(NPCState);
+        foundTable = false;
+        foundDoor = false;
     }
 
 
@@ -98,12 +146,43 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
     // Update is called once per frame
     void Update()
     {
-        UpdateNPCState(NPCState);
-        //Debug.Log(NPCState);
+         //Debug.Log(foundDoor);
+         //Debug.Log(Vector3.Distance(agent.transform.position, destination)); //to find out how far an NPC is from the point they are headed to (where the 1.1 came from)
+
+        if(NPCState == ENPCState.Eating)
+        {
+            WaitSecChangeState(3, ENPCState.Leaving);
+        }
+        //else if(NPCState == ENPCState.Idle)
+       // {
+       //     StartIdle();
+      //  }
+        //at table
+        else if (Vector3.Distance(agent.transform.position, destination) < 1.1 && foundTable)
+        {
+            foundTable = false;
+            WaitSecChangeState(3, ENPCState.WaitForOrder);
+        }
+        //at door to leave
+        else if (Vector3.Distance(agent.transform.position, destination) < 1.1 && foundDoor)
+        {
+            //Debug.Log("I am dead");
+            
+            Destroy(gameObject);
+            foundDoor = false;
+        }
+        else if (Vector3.Distance(agent.transform.position, destination) < 2 && pointSet && !foundTable && !foundDoor)
+        {
+            pointSet = false;
+            WaitSecChangeState(0, NPCState);
+        }
+
+
     }
 
     private void UpdateNPCState(ENPCState newState)
     {
+
         if (NPCState != newState)
         {
             //Debug.Log("Changing State");
@@ -123,12 +202,18 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
             case ENPCState.FindTable:
                 WalkToTable();
                 break;
-            case ENPCState.Order:
-                //Debug.Log("Order state entered");
+            case ENPCState.DecideOnOrder:
+                WaitSecChangeState(3, ENPCState.WaitForOrder);
+                break;
+            case ENPCState.WaitForOrder:
                 GameEventManager.instance.TakeNPCOrder(NpcOrder);
                 break;
-            case ENPCState.AcceptFood:
+            case ENPCState.Eating:
                 GameEventManager.instance.DoneNPCOrder(NpcOrder);
+                break;
+            case ENPCState.Leaving:
+                EatOrLeave();
+                //WaitSecChangeState(3, ENPCState.Wander); //temp
                 break;
             default:
                 //Debug.Log("NPCScript::UpdateNPCState unknown NPC state given");
@@ -158,95 +243,168 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         }
         if (pointSet)
         {
-            WaitSecChangeState(3, ENPCState.Idle);
-            //Debug.Log("Point Set");
             agent.SetDestination(destination);
-            
-        }
-        if (Vector3.Distance(transform.position, destination) < 10)
-        {
-            pointSet = false;
+            WaitSecChangeState(3, ENPCState.Idle);
         }
     }
 
     void StartIdle()
     {
-        if (pointSet)
-        {
-            agent.SetDestination(destination);
-        }
-        if (!pointSet)
-        {
-            destination = new Vector3(agent.transform.position.x, agent.transform.position.y, agent.transform.position.z);
-            agent.SetDestination(destination);
+        //waits until the NPC gets close to the point set by the Wander state
+       // if(Vector3.Distance(agent.transform.position, destination) < 1) 
+        //{
+      //      pointSet = false;
             WaitSecChangeState(3, ENPCState.FindTable);
-        }
-        if (Vector3.Distance(transform.position, destination) < 10)
-        {
-            pointSet = false;
-        }
+     //   }
+       // else if (Physics.Raycast(destination, Vector3.down, groundLayer))
+      //  {
+      //      agent.SetDestination(destination);
+    //    }
+      //  else
+      //  {
+      //      WaitSecChangeState(3, ENPCState.FindTable);
+     //   }
+
     }
 
-               //need to change based on what scene is called
-//        if (SceneManager.GetActiveScene().name == "LindseyNPCScene")
-//        {
-//            Debug.Log(NPCState);
-//            UpdateNPCState(ENPCState.Wander);
-//        }
-//        else if (SceneManager.GetActiveScene().name != "LindseyNPCScene")
-//        {
-//            UpdateNPCState(ENPCState.FindTable);
-//        }
-    
 
     void FindTablePosition()
     {
-        //destination = new Vector3(GameObject.FindGameObjectWithTag("Table").transform.position.x, transform.position.y, GameObject.FindGameObjectWithTag("Table").transform.position.z);
-        
-        
-        if (GameObject.FindGameObjectWithTag("Table") != null)
+        GameObject Table = GameObject.FindGameObjectWithTag("Table");
+        if (Table != null)
         {
-            destination = new Vector3(GameObject.FindGameObjectWithTag("Table").transform.position.x, transform.position.y, GameObject.FindGameObjectWithTag("Table").transform.position.z);
-            
+            destination = Table.transform.position;
+            foundTable = true;
+            pointSet = false;
+        }
+        else
+        {
+            UpdateNPCState(ENPCState.Wander);
+        }
+    }
+    void WalkToTable()
+    {
+        if (!foundTable)
+        {
+            FindTablePosition();
+        }
+        if (foundTable)
+        {
+ //           if (Vector3.Distance(agent.transform.position, destination) < 1.1)
+ //           {
+ //               Debug.Log("Made it here");
+ //               foundTable = false; 
+ //               WaitSecChangeState(3, ENPCState.WaitForOrder);
+  //          }
+  //          else
+    //        {
+                agent.SetDestination(destination);
+    //        }
+        }
+    }
+
+
+    void FindDoorPosition()
+    {
+        GameObject Door = GameObject.FindGameObjectWithTag("Door");
+        if (Door!= null)
+        {
+            destination = Door.transform.position;
+            foundDoor = true;
         }
         else
         {
             UpdateNPCState(ENPCState.Wander);
         }
         //returns true if ground is available for walking
-        if (Physics.Raycast(destination, Vector3.down, groundLayer) && destination != null) 
+        if (Physics.Raycast(destination, Vector3.down, groundLayer) && destination != null)
         {
             pointSet = true;
         }
     }
-    void WalkToTable()
+    void WalkToDoor()
     {
-        if (!pointSet)
+        if (!foundDoor)
         {
-            FindTablePosition();
+            FindDoorPosition();
         }
-        if (pointSet)
+        if (foundDoor)
         {
-            agent.SetDestination(destination);
-            //change to order state 3 sec after table is reached
-            if ((agent.transform.position - destination).magnitude < 0.5) WaitSecChangeState(3, ENPCState.Order);
+ //           if (Vector3.Distance(agent.transform.position, destination) < 0.5)
+ //           {
+ //               Debug.Log("Made it to door");
+  //              foundDoor = false;
+  //              Destroy(this.gameObject);
+ //           }
+ //           else
+ //           {
+                agent.SetDestination(destination);
+//            }
+        }
 
+    }
+
+    void EatOrLeave()
+    {
+        bool ChangeChance = RandomChance(0,200);
+        Debug.Log("CHANCE 1" + ChangeChance);
+
+        // stay and eat more, but do we move or stay at table?
+        if(ChangeChance)
+        {
+            bool ChangeChance2 = RandomChance(0,200);
+            Debug.Log("CHANCE 2" + ChangeChance2);
+
+            // move from table and rerun from wandering state to go find another table
+            if (ChangeChance2)
+            {
+                WaitSecChangeState(5, ENPCState.Wander);
+            }
+            // stay at table and feast more 
+            else
+            {
+                WaitSecChangeState(3, ENPCState.WaitForOrder);
+            }
+        }
+        // done eating and leaving (deleting NPC)
+        else
+        {
+            WalkToDoor();
         }
     }
 
+
+
+
     void WaitSecChangeState(float seconds, ENPCState newStateChange)
     {
-        if(this.NextNPCState == ENPCState.None)
+        if (this.NextNPCState == ENPCState.None && newStateChange != this.NPCState)
         {
             this.NextNPCState = newStateChange;
             Invoke("OnUpdateNPCState", seconds);
+            //set state here
         }
     }
 
     void OnUpdateNPCState()
     {
         UpdateNPCState(NextNPCState);
+        //update state here
     }
 
-    
+    // splits the chance 50/50
+    private bool RandomChance(float minNum, float maxNum)
+    {
+        float RandNum = Random.Range(minNum, maxNum);
+
+        if(RandNum < (maxNum / 2) )
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+        
+    }
 }
