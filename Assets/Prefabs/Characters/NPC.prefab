@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 360527388035086225}
   - component: {fileID: 4396183003958145319}
   - component: {fileID: 4141028354691216603}
+  - component: {fileID: 4351941560986109932}
   m_Layer: 6
   m_Name: NPC
   m_TagString: Untagged
@@ -166,6 +167,18 @@ MonoBehaviour:
   colorBottom: {r: 0, g: 0, b: 0, a: 0}
   nameShoes: 
   colorShoe: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &4351941560986109932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5514274119858432202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42d464648b3edb478dcbbe4cd47ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2498467281905215386
 PrefabInstance:
   m_ObjectHideFlags: 0

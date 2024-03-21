@@ -114,8 +114,9 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Gamemanager::ChangeGameState unknown game state given");
                 break;
         }
+        EGameState OldState = GameState;
         GameState = NewGameState;
-        GameEventManager.instance.ChangeGameState(NewGameState, GameState);
+        GameEventManager.instance.ChangeGameState(GameState, OldState);
     }
 
     public EGameState GetGameState()
