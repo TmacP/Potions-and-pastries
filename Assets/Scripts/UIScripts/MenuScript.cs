@@ -19,7 +19,7 @@ public class MenuScript : MonoBehaviour
     public TMP_Text helpTextPanel;
     public Transform buttonsPanel;
     public GameObject buttonPrefab;
-    List<string> buttonTexts = new List<string> { "Movement", "Gathering", "Service" }; // List of buttons texts or FAQ Related
+    List<string> buttonTexts = new List<string> { "Movement", "Gathering", "Service", "Crafting" }; // List of buttons texts or FAQ Related
 
     public Slider volumeSlider;
     public Toggle muteToggle;
@@ -139,12 +139,14 @@ public class MenuScript : MonoBehaviour
             case "Movement":
                 helpTextPanel.text = "You can move your player with WASD on your keyboard.";
                 break;
-
             case "Gathering":
                 helpTextPanel.text = "You can gather by holding E on resources.";
                 break;
             case "Service":
-                helpTextPanel.text = "During service your Deck of Cards is locked. Make sure you have everything you need before service. ";
+                helpTextPanel.text = "Press `TAB` to open inventory. During service your Deck of Cards is locked. Make sure you have everything you need before service. Drag cards from your inventory to your deck to use them. Click start service to begin.";
+                break;
+            case "Crafting":
+                helpTextPanel.text = "You can see recipies to craft by pressing `G`. Use `Q` to play the selected card at the crafting station. Use `E` to craft items.";
                 break;
 
             // add more...
