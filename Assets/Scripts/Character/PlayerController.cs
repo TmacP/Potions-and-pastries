@@ -136,6 +136,7 @@ public class PlayerController : MonoBehaviour
     {
         _PlayerActions.PlayerActionMap.Interact.started -= OnInteractStart;
         _PlayerActions.PlayerActionMap.Interact.canceled -= OnInteractStart;
+        _PlayerActions.PlayerActionMap.SecondaryInteract.performed -= OnSecondaryInteract;
         _PlayerActions.PlayerActionMap.OpenInventory.performed -= OnOpenDeckBuildingScreen;
         _PlayerActions.Inventory.CloseInventory.performed -= OnCloseInventory;
         _PlayerActions.PlayerActionMap.OpenRecipeBook.performed -= OnOpenRecipeMenu;
@@ -315,10 +316,10 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
-            else
-            {
-                _InteractorBehavoir.TryInteract();
-            }
+            //else
+            //{
+            //    _InteractorBehavoir.TryInteract();
+            //}
         }
     }
 
