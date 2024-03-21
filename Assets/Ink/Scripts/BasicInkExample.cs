@@ -21,12 +21,17 @@ public class BasicInkExample : MonoBehaviour {
             instance = this;
 			// Remove the default message
 			RemoveChildren();
-			StartStory();
+			
         }
 
     }
-	// Creates a new Story object with the compiled story which we can then play!
-	void StartStory () {
+
+    public void Start()
+    {
+        StartStory();
+    }
+    // Creates a new Story object with the compiled story which we can then play!
+    void StartStory () {
 		story = new Story (inkJSONAsset.text);
         if(OnCreateStory != null) OnCreateStory(story);
 		RefreshView();
