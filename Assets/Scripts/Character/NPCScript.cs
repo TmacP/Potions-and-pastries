@@ -27,7 +27,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     public ENPCState NextNPCState = ENPCState.None;
     public DialogueBehavoir _DialogueBehavoir;
 
-    [SerializeField] private NPCData Data;
+    [SerializeField] public NPCData Data;
     NavMeshAgent agent;
     [SerializeField] LayerMask groundLayer;
 
@@ -75,13 +75,14 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     public EInteractionResult TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
     {
 
-       if(NPCState == ENPCState.WaitForOrder && InteractionItem != null && InteractionItem.Count > 0)
-       {
-            GameEventManager.instance.DoneNPCOrder(NpcOrder);
-            GameEventManager.instance.RemovePlayerItems(InteractionItem);
-            WaitSecChangeState(0.5f, ENPCState.Eating);
-        }
-       else if(_DialogueBehavoir != null)
+       //if(NPCState == ENPCState.WaitForOrder && InteractionItem != null && InteractionItem.Count > 0)
+       //{
+       //     GameEventManager.instance.DoneNPCOrder(NpcOrder);
+       //     GameEventManager.instance.RemovePlayerItems(InteractionItem);
+       //     WaitSecChangeState(0.5f, ENPCState.Eating);
+       // }
+       //else
+       if(_DialogueBehavoir != null)
        {
             _DialogueBehavoir.TryDialogue();
             return EInteractionResult.Success;
@@ -206,6 +207,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
                 WaitSecChangeState(3, ENPCState.WaitForOrder);
                 break;
             case ENPCState.WaitForOrder:
+                GenerateOrder();
                 GameEventManager.instance.TakeNPCOrder(NpcOrder);
                 break;
             case ENPCState.Eating:
@@ -406,5 +408,13 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
             return false;
         }
         
+    }
+
+    private void GenerateOrder()
+    {
+        NpcOrder = new OrderData();
+        NpcOrder.NPCTarget = this.gameObject;
+        NpcOrder.NPCLikes = Data.NPCLikes;
+        NpcOrder.NPCDislikes = Data.NPCDislikes;
     }
 }
