@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89a248d38a4080f4f8ed4b8823e2e9aa, type: 3}
   m_Name: DefaultGameState
   m_EditorClassIdentifier: 
+  UnlockedRegions: 
+  OpenedDoors: 
+  RoomsUnlocked: 0
+  UnlockedActionCards: []

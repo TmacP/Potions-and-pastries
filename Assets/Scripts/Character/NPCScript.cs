@@ -105,6 +105,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
             GameEventManager.instance.DoneNPCOrder(NpcOrder);
 
             //GameEventManager.instance.RemovePlayerItems(InteractionItem);
+            GameEventManager.instance.Purchase(-EvaluateOrder(InteractionItems));
             WaitSecChangeState(0.5f, ENPCState.Eating);
             return EInteractionResult.Success_ConsumeItem;
         }
@@ -416,5 +417,10 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
         NpcOrder.NPCTarget = this.gameObject;
         NpcOrder.NPCLikes = Data.NPCLikes;
         NpcOrder.NPCDislikes = Data.NPCDislikes;
+    }
+
+    private int EvaluateOrder(List<InventoryItemData> Items)
+    {
+        return 20;
     }
 }
