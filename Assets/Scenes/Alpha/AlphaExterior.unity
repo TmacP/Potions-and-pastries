@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.56184906, g: 0.72206545, b: 0.81800187, a: 1}
+  m_IndirectSpecularColor: {r: 0.5618946, g: 0.7220881, b: 0.8180075, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -45582,7 +45582,8 @@ Transform:
   m_LocalPosition: {x: 24.881157, y: -5.727894, z: 64.409805}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1613342268}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &967763624
@@ -77791,6 +77792,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8471907527853434544, guid: 45dcd90dd1dd74ef09aee0f53c387974, type: 3}
+--- !u!224 &1613342268 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5096247496245929197, guid: d03f924e9203d45deb66b4c8213f1036, type: 3}
+  m_PrefabInstance: {fileID: 1681756846}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1615904034
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80504,7 +80510,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 967033835}
     m_Modifications:
     - target: {fileID: 2846967590237626825, guid: d03f924e9203d45deb66b4c8213f1036, type: 3}
       propertyPath: m_Name
@@ -103932,5 +103938,4 @@ SceneRoots:
   - {fileID: 1053300383}
   - {fileID: 358709152}
   - {fileID: 1502694344}
-  - {fileID: 1681756846}
   - {fileID: 967033835}

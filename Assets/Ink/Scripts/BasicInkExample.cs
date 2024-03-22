@@ -9,7 +9,7 @@ public class BasicInkExample : MonoBehaviour {
 	bool DebugMode = true;
     public static event Action<Story> OnCreateStory;
 
-	private void Awake()
+	private void Start()
     {
         DontDestroyOnLoad(this.gameObject);
         if(instance != null)
@@ -21,15 +21,13 @@ public class BasicInkExample : MonoBehaviour {
             instance = this;
 			// Remove the default message
 			RemoveChildren();
+			StartStory();
 			
         }
 
     }
 
-    public void Start()
-    {
-        StartStory();
-    }
+
     // Creates a new Story object with the compiled story which we can then play!
     void StartStory () {
 		story = new Story (inkJSONAsset.text);
