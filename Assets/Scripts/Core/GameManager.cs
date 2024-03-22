@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void clearSave(){
+        PlayerState.Gold = 0;
         PlayerState.Inventory.Clear();
         PlayerState.ToolBar.Clear();
         PlayerState.CardHand.Clear();
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
         PlayerState.Discard.Clear();
         PersistantGameState.UnlockedRegions.Clear();
         PersistantGameState.OpenedDoors.Clear();
+        PersistantGameState.RoomsUnlocked = 0;
     }
 
 
