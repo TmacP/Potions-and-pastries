@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     private EGameState GameState;
     public GameStateData PersistantGameState;
-    private EGameScene GameScene;
+    private EGameScene GameScene = EGameScene.InnExterior;
 
     [SerializeField]
     private readonly Dictionary<EGameScene, string> GameScenes = new Dictionary<EGameScene, string>()
