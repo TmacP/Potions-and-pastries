@@ -13,6 +13,7 @@ using UnityEngine.Timeline;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
+    
 
     public PlayerActions _PlayerActions;
     private Rigidbody _Rigidbody;
@@ -29,9 +30,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject _RecipeMenuPrefab;
     
     [SerializeField] private GameObject _PauseMenuPrefab;
+    [SerializeField] private GameObject _PauseMenuHelp;
+    [SerializeField] private GameObject _PauseMenuSettings;
    
 
-    [SerializeField] private GameObject _AllMenuFromPause;
+    
 
 
     [SerializeField] private GameObject _HotBarPrefab;
@@ -133,6 +136,7 @@ public class PlayerController : MonoBehaviour
     {
         _PlayerActions.PlayerActionMap.Interact.started -= OnInteractStart;
         _PlayerActions.PlayerActionMap.Interact.canceled -= OnInteractStart;
+        _PlayerActions.PlayerActionMap.SecondaryInteract.performed -= OnSecondaryInteract;
         _PlayerActions.PlayerActionMap.OpenInventory.performed -= OnOpenDeckBuildingScreen;
         _PlayerActions.Inventory.CloseInventory.performed -= OnCloseInventory;
         _PlayerActions.PlayerActionMap.OpenRecipeBook.performed -= OnOpenRecipeMenu;
@@ -178,7 +182,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-private void FixedUpdate()
+    private void FixedUpdate()
 {
     if (_Rigidbody)
     {
@@ -312,10 +316,10 @@ private void FixedUpdate()
                     }
                 }
             }
-            else
-            {
-                _InteractorBehavoir.TryInteract();
-            }
+            //else
+            //{
+            //    _InteractorBehavoir.TryInteract();
+            //}
         }
     }
 
@@ -345,38 +349,45 @@ private void FixedUpdate()
 
 
     protected void OnPauseMenuOpen(InputAction.CallbackContext context)
+{
+    if (context.performed)
     {
-        if (context.performed)
+        if (!_PauseMenuPrefab.gameObject.activeSelf)
         {
-            if (!_PauseMenuPrefab.gameObject.activeSelf)
+            
+            if (_PauseMenuSettings.gameObject.activeSelf)
             {
+                _PauseMenuSettings.gameObject.SetActive(false);
+              
+            }
 
-                _PauseMenuPrefab.gameObject.SetActive(true);
-                OnGameStateChanged(EGameState.PauseState, EGameState.MainState);
-
+            if (_PauseMenuHelp.gameObject.activeSelf)
+            {
+                _PauseMenuHelp.gameObject.SetActive(false);
                 
             }
-            else
-            {
-                OnPauseMenuClose();
-            }
+
+            // Open the pause menu
+            _PauseMenuPrefab.gameObject.SetActive(true);
+            OnGameStateChanged(EGameState.PauseState, EGameState.MainState);
+        }
+        else
+        {
+            // Close the pause menu
+            OnPauseMenuClose();
         }
     }
+}
 
-    public void OnPauseMenuClose()
-    {
-        OnGameStateChanged(EGameState.MainState, EGameState.PauseState);
-        GameEventManager.instance.ClosePauseMenu();
-        _PauseMenuPrefab.gameObject.SetActive(false);
-        bIsMenuOpen = false;
-        //EventSystem.current.SetSelectedGameObject(null);
-        /*
-        foreach (Transform child in _PauseMenuPrefab.transform)
-        {
-            child.gameObject.SetActive(false);
-        }*/
+public void OnPauseMenuClose()
+{
+    // Close the pause menu and perform any necessary cleanup
+    OnGameStateChanged(EGameState.MainState, EGameState.PauseState);
+    GameEventManager.instance.ClosePauseMenu();
+    _PauseMenuPrefab.gameObject.SetActive(false);
+    // Additional logic for closing other elements if needed
+}
 
-    }
 
     protected void OnCloseInventory(InputAction.CallbackContext context)
     {
@@ -480,7 +491,7 @@ private void FixedUpdate()
     {
         if (context.performed)
         {
-            if (!bIsMenuOpen && _RecipeMenuPrefab != null && GameManager.Instance.GetGameState() != EGameState.NightState)
+            if (!bIsMenuOpen && _RecipeMenuPrefab != null)
             {
                 GameEventManager.instance.CloseMenu();
                 Instantiate(_RecipeMenuPrefab);

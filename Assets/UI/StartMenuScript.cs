@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 public class StartMenuScript : MonoBehaviour
 {
     [SerializeField] private UIDocument uiDoc;
-    [SerializeField] private List<string> menuItems ;
+    private List<string> menuItems  = new List<string> { "New Game", "Continue", "Quit" };
 
     private VisualElement rootEl;
     private VisualElement _startEl;
@@ -85,13 +85,19 @@ public class StartMenuScript : MonoBehaviour
         {
             Application.Quit();
         }
-        if (selectedItem == "New Game")
+        if (selectedItem == "Continue")
         {
             //change scene
             SceneManager.LoadScene("AlphaExterior");
-
+        }
+        if (selectedItem == "New Game")
+        {
+            //change scene
+            GameManager.Instance.clearSave();
+            SceneManager.LoadScene("AlphaExterior");
         }
     }
+
 
 
     private void buildMenu (){

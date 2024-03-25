@@ -60,6 +60,11 @@ public class GateInteractionBehavoir : MonoBehaviour, IInteractable
         SetGateState(GameManager.Instance.PersistantGameState.OpenedDoors.Contains(ID));
     }
 
+    public void OnDisable()
+    {
+        GameEventManager.instance.OnDoorUnlocked -= OnGateUnlocked;
+    }
+
     public void  OnGateUnlocked(int GateID)
     {
         if(ID == GateID)
@@ -77,8 +82,11 @@ public class GateInteractionBehavoir : MonoBehaviour, IInteractable
         bGateOpen = Open;
         if (bGateOpen)
         {
-            int LayerIndex = LayerMask.NameToLayer("Interact");
-            this.gameObject.layer &= (0x1 << LayerIndex);
+            if(gameObject != null)
+            {
+                int LayerIndex = LayerMask.NameToLayer("Interact");
+                this.transform.gameObject.layer &= (0x1 << LayerIndex);
+            }
             if (GateComponent != null && !fence_rotation)
             {
                 GateComponent.transform.rotation = Quaternion.Euler(0, 90, 0);

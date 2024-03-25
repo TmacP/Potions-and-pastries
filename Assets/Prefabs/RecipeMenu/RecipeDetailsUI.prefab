@@ -266,7 +266,6 @@ GameObject:
   - component: {fileID: 2689827250082065666}
   - component: {fileID: 182113852673370934}
   - component: {fileID: 1002953171813576346}
-  - component: {fileID: 7425898492022847615}
   - component: {fileID: 421015951507448344}
   m_Layer: 5
   m_Name: RecipeDetailsUI
@@ -378,7 +377,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7425898492022847615}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: RecipeButton, Assembly-CSharp
         m_MethodName: OnButtonClicked
         m_Mode: 1
@@ -390,22 +389,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7425898492022847615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6433959930467806532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b6b19c8553df2d4bb68c6e58e278ea0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _recipeName: {fileID: 8291908815439282551}
-  _recipeDescription: {fileID: 0}
-  _recipeImage: {fileID: 0}
-  _recipeData: {fileID: 0}
 --- !u!114 &421015951507448344
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -118,7 +118,7 @@
                     "name": "",
                     "id": "9dde9a46-a70c-4be0-a6a8-c617e2b4fcda",
                     "path": "<Keyboard>/q",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "SecondaryInteract",

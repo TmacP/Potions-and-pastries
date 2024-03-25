@@ -1,46 +1,56 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Assertions;
+using UnityEngine.UI;
 using static NPCBehaviour;
 
 public class OrderUI : MonoBehaviour
 {
 
-    //[SerializeField] public GameObject OrderTextUI;
-    [SerializeField] public TextMeshProUGUI OrderText;
-    [SerializeField] public NPCBehaviour NPC;
+    OrderData Order;
+
+    [SerializeField] TextMeshProUGUI PreferenceText;
+    [SerializeField] Image Image;
+    [SerializeField] TextMeshProUGUI NPCName;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        GameEventManager.instance.OnTakeNPCOrder += OnTakeNPCOrder;
-        GameEventManager.instance.OnDoneNPCOrder += OnDoneNPCOrder;
-        GameEventManager.instance.OnNPCRecieveOrder += OnReceivedNPCOrder;
-
     }
-    public void OnTakeNPCOrder(OrderData order)
+
+    public void InitializeOrderDetails(OrderData InOrder)
     {
-        OrderText.SetText("Can I get something " + Enum.GetName(typeof(EItemTags), order.NPCLikes[0]) + "?");
+        Order = InOrder;
+
+        Assert.IsNotNull(PreferenceText);
+        Assert.IsNotNull(Image);
+        Assert.IsNotNull(NPCName);
+
+        if(InOrder.Item != null)
+        {
+            PreferenceText.text = Order.Item.Name;
+        }
+        else if(InOrder.NPCLikes != null && InOrder.NPCLikes.Count > 0)
+        {
+            string preference = "wants something: ";
+
+            foreach(EItemTags Tag in InOrder.NPCLikes)
+            {
+                preference += (Tag.ToString());
+                preference += " ";
+            }
+            PreferenceText.text = preference;
+        }
+
+        NPCBehaviour NPC = Order.NPCTarget?.GetComponent<NPCBehaviour>();
+        if (NPC != null)
+        {
+            NPCName.text = NPC.Data.Name;
+        }
     }
-
-    public void OnDoneNPCOrder(OrderData order)
-    {
-        OrderText.SetText("");
-    }
-
-    public void OnReceivedNPCOrder()
-    {
-        OrderText.SetText("Order done");
-    }
-
-    public void OnDisable()
-    {
-        GameEventManager.instance.OnTakeNPCOrder -= OnTakeNPCOrder;
-        GameEventManager.instance.OnDoneNPCOrder -= OnTakeNPCOrder;
-        GameEventManager.instance.OnNPCRecieveOrder -= OnReceivedNPCOrder;
-    }
-
-
 }

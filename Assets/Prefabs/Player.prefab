@@ -393,7 +393,7 @@ PrefabInstance:
     - target: {fileID: -2528306912490393941, guid: 60a542632f46ece4aa81ae12fc53e532, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -6330268137398668739, guid: 972c5f4d07d1bad4c8cd9861f32d0338, type: 3}
+      objectReference: {fileID: 5211892421448477025, guid: 60a542632f46ece4aa81ae12fc53e532, type: 3}
     - target: {fileID: -2528306912490393941, guid: 60a542632f46ece4aa81ae12fc53e532, type: 3}
       propertyPath: m_CastShadows
       value: 1
@@ -784,7 +784,7 @@ MonoBehaviour:
   m_CategoryHash: 8.530453e-23
   m_labelHash: 0.15128042
   m_SpriteKey: 0
-  m_SpriteHash: 766756503
+  m_SpriteHash: 752245984
 --- !u!1 &3966527922665232525 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -771977161380360737, guid: 60a542632f46ece4aa81ae12fc53e532, type: 3}

@@ -48,6 +48,10 @@ public class DeckManager : MonoBehaviour
 
         if (NewState == EGameState.MainState)
         {
+            List<InventoryItemData> Hand = GameManager.Instance.PlayerState.CardHand;
+            Deck.Clear();
+            Discard.Clear();
+            Hand.Clear();
             RecombineDeck();
         }
         else if(NewState == EGameState.NightState)

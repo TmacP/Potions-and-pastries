@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: Some Dough
   ItemType: 0
   ItemTags: 0b000000
-  image: {fileID: 21300000, guid: 99b93b6cbf1694351b25eb707079abd1, type: 3}
+  image: {fileID: 21300000, guid: 96dcbe7df56009144841d2a000de7037, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 
