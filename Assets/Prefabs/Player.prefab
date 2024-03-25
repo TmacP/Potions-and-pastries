@@ -782,7 +782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 8.530453e-23
-  m_labelHash: 8.066659e-33
+  m_labelHash: 0.15128042
   m_SpriteKey: 0
   m_SpriteHash: 766756503
 --- !u!1 &3966527922665232525 stripped
@@ -911,6 +911,9 @@ MonoBehaviour:
     - m_Name: None
       m_Hash: 0
       m_Sprite: {fileID: 0}
+    - m_Name: WizardHat
+      m_Hash: 0
+      m_Sprite: {fileID: -4052928352183532335, guid: 0b6fa185a1ff83840ae2253fc22f6e7f, type: 3}
   - m_Name: BackHair
     m_Hash: 0
     m_CategoryList:
@@ -923,6 +926,9 @@ MonoBehaviour:
     - m_Name: None
       m_Hash: 0
       m_Sprite: {fileID: 0}
+    - m_Name: LongBangsHair
+      m_Hash: 0
+      m_Sprite: {fileID: -5326854763981742304, guid: 0b6fa185a1ff83840ae2253fc22f6e7f, type: 3}
   - m_Name: BackTorso
     m_Hash: 0
     m_CategoryList:
@@ -932,6 +938,9 @@ MonoBehaviour:
     - m_Name: GambesonTorso
       m_Hash: 0
       m_Sprite: {fileID: -3331109388211918598, guid: 972c5f4d07d1bad4c8cd9861f32d0338, type: 3}
+    - m_Name: PuffyTorso
+      m_Hash: 0
+      m_Sprite: {fileID: -2141366353112981650, guid: 0b6fa185a1ff83840ae2253fc22f6e7f, type: 3}
   - m_Name: BackLeftUpperArm
     m_Hash: 0
     m_CategoryList:
@@ -941,6 +950,9 @@ MonoBehaviour:
     - m_Name: PaddedArm
       m_Hash: 0
       m_Sprite: {fileID: 5875781323831728955, guid: 972c5f4d07d1bad4c8cd9861f32d0338, type: 3}
+    - m_Name: PuffyArm
+      m_Hash: 0
+      m_Sprite: {fileID: 9147600042058364818, guid: 0b6fa185a1ff83840ae2253fc22f6e7f, type: 3}
   - m_Name: BackLeftLowerArm
     m_Hash: 0
     m_CategoryList:
@@ -950,6 +962,9 @@ MonoBehaviour:
     - m_Name: PaddedArm
       m_Hash: 0
       m_Sprite: {fileID: 7398305376328199610, guid: 972c5f4d07d1bad4c8cd9861f32d0338, type: 3}
+    - m_Name: PuffyArm
+      m_Hash: 0
+      m_Sprite: {fileID: 659537563251482543, guid: 0b6fa185a1ff83840ae2253fc22f6e7f, type: 3}
   - m_Name: BackRightUpperArm
     m_Hash: 0
     m_CategoryList:
@@ -959,6 +974,9 @@ MonoBehaviour:
     - m_Name: PaddedArm
       m_Hash: 0
       m_Sprite: {fileID: 8857015437612783524, guid: 972c5f4d07d1bad4c8cd9861f32d0338, type: 3}
+    - m_Name: PuffyArm
+      m_Hash: 0
+      m_Sprite: {fileID: -2615499143659831873, guid: 0b6fa185a1ff83840ae2253fc22f6e7f, type: 3}
   - m_Name: BackRightLowerArm
     m_Hash: 0
     m_CategoryList:
@@ -968,6 +986,9 @@ MonoBehaviour:
     - m_Name: PaddedArm
       m_Hash: 0
       m_Sprite: {fileID: -5045169990435671388, guid: 972c5f4d07d1bad4c8cd9861f32d0338, type: 3}
+    - m_Name: PuffyArm
+      m_Hash: 0
+      m_Sprite: {fileID: 4237721016015757837, guid: 0b6fa185a1ff83840ae2253fc22f6e7f, type: 3}
   - m_Name: BackPelvis
     m_Hash: 0
     m_CategoryList:
@@ -977,6 +998,9 @@ MonoBehaviour:
     - m_Name: TrouserPants
       m_Hash: 0
       m_Sprite: {fileID: 1370656754103236316, guid: 972c5f4d07d1bad4c8cd9861f32d0338, type: 3}
+    - m_Name: JesterPants
+      m_Hash: 0
+      m_Sprite: {fileID: 8679428744302344580, guid: 0b6fa185a1ff83840ae2253fc22f6e7f, type: 3}
   - m_Name: BackLeftUpperLeg
     m_Hash: 0
     m_CategoryList:
@@ -986,6 +1010,9 @@ MonoBehaviour:
     - m_Name: TrouserPants
       m_Hash: 0
       m_Sprite: {fileID: -6330268137398668739, guid: 972c5f4d07d1bad4c8cd9861f32d0338, type: 3}
+    - m_Name: JesterPants
+      m_Hash: 0
+      m_Sprite: {fileID: 8692512648937841769, guid: 0b6fa185a1ff83840ae2253fc22f6e7f, type: 3}
   - m_Name: BackRightUpperLeg
     m_Hash: 0
     m_CategoryList:
@@ -995,6 +1022,9 @@ MonoBehaviour:
     - m_Name: TrouserPants
       m_Hash: 0
       m_Sprite: {fileID: -4788829420843163201, guid: 972c5f4d07d1bad4c8cd9861f32d0338, type: 3}
+    - m_Name: JesterPants
+      m_Hash: 0
+      m_Sprite: {fileID: 7876861818343513671, guid: 0b6fa185a1ff83840ae2253fc22f6e7f, type: 3}
   - m_Name: BackLeftLowerLeg
     m_Hash: 0
     m_CategoryList:
@@ -1004,6 +1034,9 @@ MonoBehaviour:
     - m_Name: Boots
       m_Hash: 0
       m_Sprite: {fileID: 8349676157822120871, guid: 972c5f4d07d1bad4c8cd9861f32d0338, type: 3}
+    - m_Name: Slippers
+      m_Hash: 0
+      m_Sprite: {fileID: -8658162138775102391, guid: 0b6fa185a1ff83840ae2253fc22f6e7f, type: 3}
   - m_Name: BackRightLowerLeg
     m_Hash: 0
     m_CategoryList:
@@ -1013,6 +1046,9 @@ MonoBehaviour:
     - m_Name: Boots
       m_Hash: 0
       m_Sprite: {fileID: -5568018566970363246, guid: 972c5f4d07d1bad4c8cd9861f32d0338, type: 3}
+    - m_Name: Slippers
+      m_Hash: 0
+      m_Sprite: {fileID: 8468353484004833401, guid: 0b6fa185a1ff83840ae2253fc22f6e7f, type: 3}
   m_SpriteLibraryAsset: {fileID: 0}
 --- !u!114 &232967783803602412
 MonoBehaviour:
@@ -2264,6 +2300,9 @@ MonoBehaviour:
     - m_Name: None
       m_Hash: 0
       m_Sprite: {fileID: 0}
+    - m_Name: WizardHat
+      m_Hash: 0
+      m_Sprite: {fileID: -3574586806312273859, guid: 98eb3f6a048ce934897af78edf2b4421, type: 3}
   - m_Name: FrontHair
     m_Hash: 0
     m_CategoryList:
@@ -2276,6 +2315,9 @@ MonoBehaviour:
     - m_Name: None
       m_Hash: 0
       m_Sprite: {fileID: 0}
+    - m_Name: LongBangsHair
+      m_Hash: 0
+      m_Sprite: {fileID: -6323143492994089197, guid: 98eb3f6a048ce934897af78edf2b4421, type: 3}
   - m_Name: LeftEye
     m_Hash: 0
     m_CategoryList:
@@ -2285,6 +2327,9 @@ MonoBehaviour:
     - m_Name: LashesEye
       m_Hash: 0
       m_Sprite: {fileID: 1412274606519729647, guid: 2eacd006090202f42b577e0b83a83843, type: 3}
+    - m_Name: SleepyEye
+      m_Hash: 0
+      m_Sprite: {fileID: 1102198925293739841, guid: 98eb3f6a048ce934897af78edf2b4421, type: 3}
   - m_Name: RightEye
     m_Hash: 0
     m_CategoryList:
@@ -2294,6 +2339,9 @@ MonoBehaviour:
     - m_Name: LashesEye
       m_Hash: 0
       m_Sprite: {fileID: -3272274556481751234, guid: 2eacd006090202f42b577e0b83a83843, type: 3}
+    - m_Name: SleepyEye
+      m_Hash: 0
+      m_Sprite: {fileID: -255707136626529749, guid: 98eb3f6a048ce934897af78edf2b4421, type: 3}
   - m_Name: Nose
     m_Hash: 0
     m_CategoryList:
@@ -2303,6 +2351,9 @@ MonoBehaviour:
     - m_Name: BigNose
       m_Hash: 0
       m_Sprite: {fileID: -238926157093319026, guid: 2eacd006090202f42b577e0b83a83843, type: 3}
+    - m_Name: LongTriangleNose
+      m_Hash: 0
+      m_Sprite: {fileID: 3140316075018534193, guid: 98eb3f6a048ce934897af78edf2b4421, type: 3}
   - m_Name: Mouth
     m_Hash: 0
     m_CategoryList:
@@ -2312,6 +2363,9 @@ MonoBehaviour:
     - m_Name: OpenSmileMouth
       m_Hash: 0
       m_Sprite: {fileID: -5005397300442508754, guid: 2eacd006090202f42b577e0b83a83843, type: 3}
+    - m_Name: FlatMouth
+      m_Hash: 0
+      m_Sprite: {fileID: 8620349998789147681, guid: 98eb3f6a048ce934897af78edf2b4421, type: 3}
   - m_Name: FrontTorso
     m_Hash: 0
     m_CategoryList:
@@ -2321,6 +2375,9 @@ MonoBehaviour:
     - m_Name: GambesonTorso
       m_Hash: 0
       m_Sprite: {fileID: 3371736957172325892, guid: 2eacd006090202f42b577e0b83a83843, type: 3}
+    - m_Name: PuffyTorso
+      m_Hash: 0
+      m_Sprite: {fileID: 2223522771875161675, guid: 98eb3f6a048ce934897af78edf2b4421, type: 3}
   - m_Name: FrontLeftUpperArm
     m_Hash: 0
     m_CategoryList:
@@ -2330,6 +2387,9 @@ MonoBehaviour:
     - m_Name: PaddedArm
       m_Hash: 0
       m_Sprite: {fileID: -1199218047948842612, guid: 2eacd006090202f42b577e0b83a83843, type: 3}
+    - m_Name: PuffyArm
+      m_Hash: 0
+      m_Sprite: {fileID: 303722034787237948, guid: 98eb3f6a048ce934897af78edf2b4421, type: 3}
   - m_Name: FrontLeftLowerArm
     m_Hash: 0
     m_CategoryList:
@@ -2339,6 +2399,9 @@ MonoBehaviour:
     - m_Name: PaddedArm
       m_Hash: 0
       m_Sprite: {fileID: 7434666579648088936, guid: 2eacd006090202f42b577e0b83a83843, type: 3}
+    - m_Name: PuffyArm
+      m_Hash: 0
+      m_Sprite: {fileID: 4188346860218516701, guid: 98eb3f6a048ce934897af78edf2b4421, type: 3}
   - m_Name: FrontRightUpperArm
     m_Hash: 0
     m_CategoryList:
@@ -2348,6 +2411,9 @@ MonoBehaviour:
     - m_Name: PaddedArm
       m_Hash: 0
       m_Sprite: {fileID: -3590342286392816991, guid: 2eacd006090202f42b577e0b83a83843, type: 3}
+    - m_Name: PuffyArm
+      m_Hash: 0
+      m_Sprite: {fileID: -129943399348476042, guid: 98eb3f6a048ce934897af78edf2b4421, type: 3}
   - m_Name: FrontRightLowerArm
     m_Hash: 0
     m_CategoryList:
@@ -2357,6 +2423,9 @@ MonoBehaviour:
     - m_Name: PaddedArm
       m_Hash: 0
       m_Sprite: {fileID: -4148568946209116483, guid: 2eacd006090202f42b577e0b83a83843, type: 3}
+    - m_Name: PuffyArm
+      m_Hash: 0
+      m_Sprite: {fileID: -3928726159162841180, guid: 98eb3f6a048ce934897af78edf2b4421, type: 3}
   - m_Name: FrontPelvis
     m_Hash: 0
     m_CategoryList:
@@ -2366,6 +2435,9 @@ MonoBehaviour:
     - m_Name: TrouserPants
       m_Hash: 0
       m_Sprite: {fileID: 7887018424748287737, guid: 2eacd006090202f42b577e0b83a83843, type: 3}
+    - m_Name: JesterPants
+      m_Hash: 0
+      m_Sprite: {fileID: -205823993993217079, guid: 98eb3f6a048ce934897af78edf2b4421, type: 3}
   - m_Name: FrontLeftUpperLeg
     m_Hash: 0
     m_CategoryList:
@@ -2375,6 +2447,9 @@ MonoBehaviour:
     - m_Name: TrouserPants
       m_Hash: 0
       m_Sprite: {fileID: 7710724331696181185, guid: 2eacd006090202f42b577e0b83a83843, type: 3}
+    - m_Name: JesterPants
+      m_Hash: 0
+      m_Sprite: {fileID: 6065640254710729332, guid: 98eb3f6a048ce934897af78edf2b4421, type: 3}
   - m_Name: FrontRightUpperLeg
     m_Hash: 0
     m_CategoryList:
@@ -2384,6 +2459,9 @@ MonoBehaviour:
     - m_Name: TrouserPants
       m_Hash: 0
       m_Sprite: {fileID: 3105195060309693442, guid: 2eacd006090202f42b577e0b83a83843, type: 3}
+    - m_Name: JesterPants
+      m_Hash: 0
+      m_Sprite: {fileID: 1808215994812175381, guid: 98eb3f6a048ce934897af78edf2b4421, type: 3}
   - m_Name: FrontLeftLowerLeg
     m_Hash: 0
     m_CategoryList:
@@ -2393,6 +2471,9 @@ MonoBehaviour:
     - m_Name: Boots
       m_Hash: 0
       m_Sprite: {fileID: 5055670112711614624, guid: 2eacd006090202f42b577e0b83a83843, type: 3}
+    - m_Name: Slippers
+      m_Hash: 0
+      m_Sprite: {fileID: 4709825594196220540, guid: 98eb3f6a048ce934897af78edf2b4421, type: 3}
   - m_Name: FrontRightLowerLeg
     m_Hash: 0
     m_CategoryList:
@@ -2402,6 +2483,9 @@ MonoBehaviour:
     - m_Name: Boots
       m_Hash: 0
       m_Sprite: {fileID: -2102482105970794407, guid: 2eacd006090202f42b577e0b83a83843, type: 3}
+    - m_Name: Slippers
+      m_Hash: 0
+      m_Sprite: {fileID: 5913364752001737542, guid: 98eb3f6a048ce934897af78edf2b4421, type: 3}
   m_SpriteLibraryAsset: {fileID: 0}
 --- !u!114 &3456233771541371283
 MonoBehaviour:
