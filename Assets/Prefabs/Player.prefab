@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 141333183340248409}
   m_Layer: 0
   m_Name: PlayerCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,10 +117,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4752217483165265861}
   - component: {fileID: 9114673454407723328}
+  - component: {fileID: 4714955987664601339}
   - component: {fileID: 5632807791140439952}
   - component: {fileID: 2420253865806060249}
   - component: {fileID: 472343680603872811}
-  - component: {fileID: 4714955987664601339}
   - component: {fileID: 1633514906039096179}
   m_Layer: 0
   m_Name: Player
@@ -174,6 +174,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!210 &4714955987664601339
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7993466284212888700}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 1
 --- !u!114 &5632807791140439952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +203,8 @@ MonoBehaviour:
   _DeckBuildingScreenPrefab: {fileID: 515715817225196495, guid: 1f84403d553e85f42a9274e7a057dc76, type: 3}
   _RecipeMenuPrefab: {fileID: 7909582920867626320, guid: e336d0e6c860c32499829d92dfc19104, type: 3}
   _PauseMenuPrefab: {fileID: 0}
-  _AllMenuFromPause: {fileID: 0}
+  _PauseMenuHelp: {fileID: 0}
+  _PauseMenuSettings: {fileID: 0}
   _HotBarPrefab: {fileID: 0}
   _CardHandPrefab: {fileID: 945699792175429718, guid: aae92159f071ce142b8cb9a2005eca40, type: 3}
   toolbar: {fileID: 0}
@@ -244,18 +257,6 @@ MonoBehaviour:
     m_Bits: 64
   bDrawDebug: 1
   CollidersCount: 0
---- !u!210 &4714955987664601339
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7993466284212888700}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_SortAtRoot: 1
 --- !u!114 &1633514906039096179
 MonoBehaviour:
   m_ObjectHideFlags: 0
