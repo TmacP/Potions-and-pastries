@@ -10,7 +10,7 @@ public class BirdController : MonoBehaviour
 
     public Vector3 startPosition;
     public Vector3 endPosition;
-    public float duration = 10f;
+    public float duration = 100f;
     public float elapsed;
 
 
@@ -67,6 +67,7 @@ public class BirdController : MonoBehaviour
             if (this.elapsed >= 1)
             {
                 bird.gameObject.SetActive(false);
+                birdAnimator.enabled = false;
                 Destroy(bird.gameObject);
             }
         }
