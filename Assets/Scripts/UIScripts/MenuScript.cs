@@ -9,9 +9,8 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 public class MenuScript : MonoBehaviour
 {
-    FMOD.Studio.Bus bus;
-    FMOD.Studio.Bus sfxBus;
-    FMOD.Studio.Bus musicBus;
+    FMOD.Studio.VCA sfxvca;
+    FMOD.Studio.VCA musicvca;
     [SerializeField] private GameObject _mainMenuCanvasGObject;
     [SerializeField] private GameObject _settingsMenuCanvasGObject;
     // Default Menu Selection Assets
@@ -23,10 +22,8 @@ public class MenuScript : MonoBehaviour
     public GameObject buttonPrefab;
     List<string> buttonTexts = new List<string> { "Movement", "Gathering", "Service", "Crafting" }; // List of buttons texts or FAQ Related
 
-    public Slider volumeSlider;
     public Slider sfxSlider;
     public Slider musicSlider;
-    public Toggle muteToggle;
 
     public TMP_Dropdown resolutionDropdown;
     public Toggle fullscreenToggle;
@@ -45,9 +42,8 @@ public class MenuScript : MonoBehaviour
         GenerateButtons(); // FOR hELP MENU BUTTONS
 
         // --------------- Audio Settings ----------------
-        bus = FMODUnity.RuntimeManager.GetBus("bus:/");
-        //sfxBus = FMODUnity.RuntimeManager.GetBus("bank:/SFX");
-        //musicBus = FMODUnity.RuntimeManager.GetBus("bank:/BGM");
+        sfxvca = FMODUnity.RuntimeManager.GetVCA("vca:/SFX");
+        musicvca = FMODUnity.RuntimeManager.GetVCA("vca:/BGM");
 
         // --------------- Display Resolution ----------------
 
@@ -96,17 +92,10 @@ public class MenuScript : MonoBehaviour
         Screen.fullScreen = isFullscreen;
     }
 
-    public void SetVolume()
-    {
-        bus.setVolume(DecibleToLinear(volumeSlider.value));
-
-        // Save volume to PlayerPrefs (idk if this will be useful)
-        PlayerPrefs.SetFloat("Volume", volumeSlider.value); // Save volume to PlayerPrefs
-    }
 
     public void SetSfx()
     {
-        bus.setVolume(DecibleToLinear(sfxSlider.value));
+        sfxvca.setVolume(DecibleToLinear(sfxSlider.value));
 
         // Save volume to PlayerPrefs (idk if this will be useful)
         PlayerPrefs.SetFloat("Sfx", sfxSlider.value); // Save volume to PlayerPrefs
@@ -114,28 +103,12 @@ public class MenuScript : MonoBehaviour
 
     public void SetMusic()
     {
-        bus.setVolume(DecibleToLinear(musicSlider.value));
+        musicvca.setVolume(DecibleToLinear(musicSlider.value));
 
         // Save volume to PlayerPrefs (idk if this will be useful)
-        PlayerPrefs.SetFloat("Sfx", musicSlider.value); // Save volume to PlayerPrefs
+        PlayerPrefs.SetFloat("Bgm", musicSlider.value); // Save volume to PlayerPrefs
     }
 
-    public void SetMute(bool isMuted)
-    {
-        if (isMuted)
-        {
-            bus.setVolume(0);
-            AudioListener.volume = 0; // Mute audio
-        }
-        else
-        {
-            bus.setVolume(DecibleToLinear(volumeSlider.value));
-            AudioListener.volume = volumeSlider.value; // Unmute audio
-        }
-
-        //save mute state
-        PlayerPrefs.SetInt("Mute", Convert.ToInt32(isMuted));
-    }
 
     private void GenerateButtons()
     {
