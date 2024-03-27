@@ -20,10 +20,11 @@ public class BasicInkExample : MonoBehaviour {
         {
             instance = this;
 			// Remove the default message
+			image = GetComponent<Image>();
+			image.enabled = false;
 			RemoveChildren();
 			StartStory();		
         }
-
 
     }
 
@@ -59,7 +60,7 @@ public class BasicInkExample : MonoBehaviour {
 			// pause game
 			//GameManager.Instance.ChangeGameState(EGameState.MovementDisabledState);
 			Time.timeScale = 0.0f;
-			talk.SetActive(true);
+			image.enabled = true;
 
 			for (int i = 0; i < story.currentChoices.Count; i++) {
 				Choice choice = story.currentChoices [i];
@@ -113,7 +114,7 @@ public void ContinueStory(NPCData npcData)
 			if (DebugMode) {Debug.Log("Continue");}
 			//GameManager.Instance.ChangeGameState(EGameState.MainState);
 			Time.timeScale = 1.0f;
-			talk.SetActive(false);
+			image.enabled = false;
 			}
 		story.ChooseChoiceIndex (choice.index);
 		RefreshView();
@@ -163,5 +164,6 @@ public void ContinueStory(NPCData npcData)
 	[SerializeField] private Button buttonPrefab = null;
 
 	[SerializeField] private GameObject talk = null;
+	public Image image;
 
 }
