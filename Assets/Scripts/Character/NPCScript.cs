@@ -40,12 +40,14 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
 
     bool foundTable;
     bool foundDoor;
+
+    // Animation variables
     private Rigidbody _Rigidbody;
     public Animator frontAnimator;
     public Animator backAnimator;
     private bool faceBack = false;
     private bool faceLeft = true;
-
+    private Vector3 direction;
 
 
     //*************IInteractable interface***********
@@ -130,7 +132,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     {
         _DialogueBehavoir = GetComponent<DialogueBehavoir>();
 
-        _Rigidbody ??= GetComponent<Rigidbody>();
+        _Rigidbody = GetComponent<Rigidbody>();
         frontAnimator = transform.Find("F_BaseCharacter").GetComponent<Animator>();
         backAnimator = transform.Find("B_BaseCharacter").GetComponent<Animator>();
     }
@@ -148,10 +150,10 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     // Update is called once per frame
     void Update()
     {
-         //Debug.Log(foundDoor);
-         //Debug.Log(Vector3.Distance(agent.transform.position, destination)); //to find out how far an NPC is from the point they are headed to (where the 1.1 came from)
+        //Debug.Log(foundDoor);
+        //Debug.Log(Vector3.Distance(agent.transform.position, destination)); //to find out how far an NPC is from the point they are headed to (where the 1.1 came from)
 
-        if(NPCState == ENPCState.Eating)
+        if (NPCState == ENPCState.Eating)
         {
             WaitSecChangeState(3, ENPCState.Leaving);
         }
@@ -179,7 +181,54 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
             WaitSecChangeState(0, NPCState);
         }
 
+        if (frontAnimator.gameObject.activeSelf == true)
+        {
+            frontAnimator.SetFloat("MoveSpeed", agent.velocity.magnitude);
+            direction = (destination - agent.transform.position) / Time.deltaTime;
+        }
+        if (backAnimator.gameObject.activeSelf == true)
+        {
+            backAnimator.SetFloat("MoveSpeed", agent.velocity.magnitude);
+            direction = (destination - agent.transform.position) / Time.deltaTime;
+        }
 
+        if (direction.x > 0 && faceLeft)
+        {
+            Vector3 scale = transform.Find("F_BaseCharacter").transform.localScale;
+            scale.x *= -1.0f;
+            transform.Find("F_BaseCharacter").transform.localScale = scale;
+            scale = transform.Find("B_BaseCharacter").transform.localScale;
+            scale.x *= -1.0f;
+            transform.Find("B_BaseCharacter").transform.localScale = scale; 
+
+            faceLeft = false;
+        }
+        else if (direction.x < 0 && !faceLeft)
+        {
+            Vector3 scale = transform.Find("F_BaseCharacter").transform.localScale;
+            scale.x *= -1.0f;
+            transform.Find("F_BaseCharacter").transform.localScale = scale;
+            scale = transform.Find("B_BaseCharacter").transform.localScale;
+            scale.x *= -1.0f;
+            transform.Find("B_BaseCharacter").transform.localScale = scale;
+
+            faceLeft = true;
+        }
+
+        if (direction.y > 0 && !faceBack)
+        {
+            frontAnimator.Rebind();
+            transform.Find("F_BaseCharacter").gameObject.SetActive(false);
+            faceBack = true;
+            transform.Find("B_BaseCharacter").gameObject.SetActive(true);
+        }
+        else if (direction.y < 0 && faceBack)
+        {
+            backAnimator.Rebind();
+            transform.Find("F_BaseCharacter").gameObject.SetActive(true);
+            faceBack = false;
+            transform.Find("B_BaseCharacter").gameObject.SetActive(false);
+        }
     }
 
     private void UpdateNPCState(ENPCState newState)
