@@ -17,5 +17,4 @@
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:TreeView view-data-key="unity-tree-view" focusable="true" />
 </ui:UXML>
