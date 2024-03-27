@@ -21,15 +21,16 @@ public class BasicInkExample : MonoBehaviour {
             instance = this;
 			// Remove the default message
 			RemoveChildren();
-			StartStory();
-			
+			StartStory();		
         }
+
 
     }
 
 
     // Creates a new Story object with the compiled story which we can then play!
     void StartStory () {
+
 		story = new Story (inkJSONAsset.text);
         if(OnCreateStory != null) OnCreateStory(story);
 		RefreshView();
@@ -58,6 +59,7 @@ public class BasicInkExample : MonoBehaviour {
 			// pause game
 			//GameManager.Instance.ChangeGameState(EGameState.MovementDisabledState);
 			Time.timeScale = 0.0f;
+			talk.SetActive(true);
 
 			for (int i = 0; i < story.currentChoices.Count; i++) {
 				Choice choice = story.currentChoices [i];
@@ -111,6 +113,7 @@ public void ContinueStory(NPCData npcData)
 			if (DebugMode) {Debug.Log("Continue");}
 			//GameManager.Instance.ChangeGameState(EGameState.MainState);
 			Time.timeScale = 1.0f;
+			talk.SetActive(false);
 			}
 		story.ChooseChoiceIndex (choice.index);
 		RefreshView();
@@ -119,12 +122,10 @@ public void ContinueStory(NPCData npcData)
 	// Creates a textbox showing the the line of text
 	void CreateContentView (string text) {
 		// set background image
-		Image bg = Instantiate (background) as Image;
-		bg.transform.SetParent (canvas.transform, false);
-		Destroy(bg.gameObject, 0.1f); // LOL I CANT BELIEVE THIS WORKS
+
 		Text storyText = Instantiate (textPrefab) as Text;
 		storyText.text = text;
-		storyText.transform.SetParent (bg.transform, false);
+		storyText.transform.SetParent (canvas.transform, false);
 
 
 	}
@@ -160,6 +161,7 @@ public void ContinueStory(NPCData npcData)
 	// UI Prefabs
 	[SerializeField] private Text textPrefab = null;
 	[SerializeField] private Button buttonPrefab = null;
-	[SerializeField] private Image background = null;
+
+	[SerializeField] private GameObject talk = null;
 
 }
