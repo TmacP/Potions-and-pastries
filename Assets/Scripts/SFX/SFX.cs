@@ -18,4 +18,11 @@ public class SFX : MonoBehaviour
         sfx.start();
         sfx.release();
     }
+
+    public static void PlayGateOpen()
+    {
+        sfx = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/creak1");
+        sfx.start();
+        sfx.release();
+    }
 }

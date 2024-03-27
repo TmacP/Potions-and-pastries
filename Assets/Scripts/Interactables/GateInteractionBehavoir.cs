@@ -70,6 +70,7 @@ public class GateInteractionBehavoir : MonoBehaviour, IInteractable
         if(ID == GateID)
         {
             SetGateState(true);
+            SFX.PlayGateOpen(); // FMOD sound effect
             // set our inkle gate var to open
             if (InkInstance != null){
             InkInstance.OpenGate(ID);
