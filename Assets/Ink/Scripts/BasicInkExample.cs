@@ -61,6 +61,9 @@ public class BasicInkExample : MonoBehaviour {
 			//GameManager.Instance.ChangeGameState(EGameState.MovementDisabledState);
 			Time.timeScale = 0.0f;
 			image.enabled = true;
+			HUD.SetActive(false);
+			cardFront.SetActive(false);
+			cardBack.SetActive(false);
 
 			for (int i = 0; i < story.currentChoices.Count; i++) {
 				Choice choice = story.currentChoices [i];
@@ -115,6 +118,9 @@ public void ContinueStory(NPCData npcData)
 			//GameManager.Instance.ChangeGameState(EGameState.MainState);
 			Time.timeScale = 1.0f;
 			image.enabled = false;
+			HUD.SetActive(true);
+			cardFront.SetActive(true);
+			cardBack.SetActive(true);
 			}
 		story.ChooseChoiceIndex (choice.index);
 		RefreshView();
@@ -164,6 +170,9 @@ public void ContinueStory(NPCData npcData)
 	[SerializeField] private Button buttonPrefab = null;
 
 	[SerializeField] private GameObject talk = null;
+	[SerializeField] private GameObject HUD = null;
+	[SerializeField] private GameObject cardFront = null;
+	[SerializeField] private GameObject cardBack = null;
 	public Image image;
 
 }
