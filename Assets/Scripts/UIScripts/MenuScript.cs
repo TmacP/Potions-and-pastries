@@ -9,7 +9,8 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 public class MenuScript : MonoBehaviour
 {
-    FMOD.Studio.Bus bus;
+    FMOD.Studio.VCA sfxvca;
+    FMOD.Studio.VCA musicvca;
     [SerializeField] private GameObject _mainMenuCanvasGObject;
     [SerializeField] private GameObject _settingsMenuCanvasGObject;
     // Default Menu Selection Assets
@@ -21,8 +22,8 @@ public class MenuScript : MonoBehaviour
     public GameObject buttonPrefab;
     List<string> buttonTexts = new List<string> { "Movement", "Gathering", "Service", "Crafting" }; // List of buttons texts or FAQ Related
 
-    public Slider volumeSlider;
-    public Toggle muteToggle;
+    public Slider sfxSlider;
+    public Slider musicSlider;
 
     public TMP_Dropdown resolutionDropdown;
     public Toggle fullscreenToggle;
@@ -41,7 +42,8 @@ public class MenuScript : MonoBehaviour
         GenerateButtons(); // FOR hELP MENU BUTTONS
 
         // --------------- Audio Settings ----------------
-        bus = FMODUnity.RuntimeManager.GetBus("bus:/");
+        sfxvca = FMODUnity.RuntimeManager.GetVCA("vca:/SFX");
+        musicvca = FMODUnity.RuntimeManager.GetVCA("vca:/BGM");
 
         // --------------- Display Resolution ----------------
 
@@ -90,30 +92,23 @@ public class MenuScript : MonoBehaviour
         Screen.fullScreen = isFullscreen;
     }
 
-    public void SetVolume()
+
+    public void SetSfx()
     {
-        bus.setVolume(DecibleToLinear(volumeSlider.value));
+        sfxvca.setVolume(DecibleToLinear(sfxSlider.value));
 
         // Save volume to PlayerPrefs (idk if this will be useful)
-        PlayerPrefs.SetFloat("Volume", volumeSlider.value); // Save volume to PlayerPrefs
+        PlayerPrefs.SetFloat("Sfx", sfxSlider.value); // Save volume to PlayerPrefs
     }
 
-    public void SetMute(bool isMuted)
+    public void SetMusic()
     {
-        if (isMuted)
-        {
-            bus.setVolume(0);
-            AudioListener.volume = 0; // Mute audio
-        }
-        else
-        {
-            bus.setVolume(DecibleToLinear(volumeSlider.value));
-            AudioListener.volume = volumeSlider.value; // Unmute audio
-        }
+        musicvca.setVolume(DecibleToLinear(musicSlider.value));
 
-        //save mute state
-        PlayerPrefs.SetInt("Mute", Convert.ToInt32(isMuted));
+        // Save volume to PlayerPrefs (idk if this will be useful)
+        PlayerPrefs.SetFloat("Bgm", musicSlider.value); // Save volume to PlayerPrefs
     }
+
 
     private void GenerateButtons()
     {

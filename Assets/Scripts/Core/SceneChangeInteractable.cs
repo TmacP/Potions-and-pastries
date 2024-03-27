@@ -12,6 +12,7 @@ public class SceneChangeInteractable : MonoBehaviour, IInteractable
 
     public EInteractionResult TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
     {
+        SFX.PlayDoorOpen();
         GameManager.Instance.ChangeGameScene(NewLocationScene);
         if (NewLocationScene == EGameScene.InnInterior) // if we are going to the alpha interior, we increment the day
         {
