@@ -32,7 +32,7 @@
 			<destination>{f3924520-f086-4c27-b2e7-aec79f7abc76}</destination>
 		</relationship>
 		<relationship name="banks">
-			<destination>{81479d1d-2464-4e13-9414-3df188f157b2}</destination>
+			<destination>{adcdf47b-816c-4671-8587-67e3239347bf}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixer" id="{b930b7c2-3b56-458a-9e6d-7d5a9c2b277f}">
@@ -49,6 +49,9 @@
 		</relationship>
 	</object>
 	<object class="MixerInput" id="{6ac4501a-f464-4eee-bfc3-e1316d9419c5}">
+		<relationship name="masters">
+			<destination>{86e0eddc-1e78-4123-8468-a0c895bfd607}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{8d6478b0-cf56-431b-a110-5c7f61af9b66}</destination>
 		</relationship>
@@ -56,7 +59,7 @@
 			<destination>{d45149ce-3a51-4a6c-a900-03886553a8c8}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{ab4c5cfc-c456-4db6-9329-b224fac4ad24}</destination>
+			<destination>{61c5ec79-1d50-40b2-ab3c-e016e13b24a4}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{de885fde-4342-440e-b4b3-e5506ed93321}" />
@@ -103,6 +106,9 @@
 	</object>
 	<object class="MixerBusPanner" id="{4a777e4e-2097-460f-8d4a-bad6fefe6e3c}" />
 	<object class="SingleSound" id="{9cf3cf91-8fd3-47a7-8b66-e38ec8758122}">
+		<property name="volume">
+			<value>-6</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{e971f324-b9ef-4635-aa1b-6a6cc2b3eefd}</destination>
 		</relationship>
