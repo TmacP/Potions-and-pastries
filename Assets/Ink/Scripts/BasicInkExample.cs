@@ -9,7 +9,7 @@ public class BasicInkExample : MonoBehaviour {
 	bool DebugMode = true;
     public static event Action<Story> OnCreateStory;
 
-	private void Awake()
+	private void Start()
     {
         DontDestroyOnLoad(this.gameObject);
         if(instance != null)
@@ -20,18 +20,18 @@ public class BasicInkExample : MonoBehaviour {
         {
             instance = this;
 			// Remove the default message
+			image = GetComponent<Image>();
+			image.enabled = false;
 			RemoveChildren();
-			
+			StartStory();		
         }
 
     }
 
-    public void Start()
-    {
-        StartStory();
-    }
+
     // Creates a new Story object with the compiled story which we can then play!
     void StartStory () {
+
 		story = new Story (inkJSONAsset.text);
         if(OnCreateStory != null) OnCreateStory(story);
 		RefreshView();
@@ -60,6 +60,10 @@ public class BasicInkExample : MonoBehaviour {
 			// pause game
 			//GameManager.Instance.ChangeGameState(EGameState.MovementDisabledState);
 			Time.timeScale = 0.0f;
+			image.enabled = true;
+			HUD.SetActive(false);
+			cardFront.SetActive(false);
+			cardBack.SetActive(false);
 
 			for (int i = 0; i < story.currentChoices.Count; i++) {
 				Choice choice = story.currentChoices [i];
@@ -113,6 +117,10 @@ public void ContinueStory(NPCData npcData)
 			if (DebugMode) {Debug.Log("Continue");}
 			//GameManager.Instance.ChangeGameState(EGameState.MainState);
 			Time.timeScale = 1.0f;
+			image.enabled = false;
+			HUD.SetActive(true);
+			cardFront.SetActive(true);
+			cardBack.SetActive(true);
 			}
 		story.ChooseChoiceIndex (choice.index);
 		RefreshView();
@@ -121,12 +129,10 @@ public void ContinueStory(NPCData npcData)
 	// Creates a textbox showing the the line of text
 	void CreateContentView (string text) {
 		// set background image
-		Image bg = Instantiate (background) as Image;
-		bg.transform.SetParent (canvas.transform, false);
-		Destroy(bg.gameObject, 0.1f); // LOL I CANT BELIEVE THIS WORKS
+
 		Text storyText = Instantiate (textPrefab) as Text;
 		storyText.text = text;
-		storyText.transform.SetParent (bg.transform, false);
+		storyText.transform.SetParent (canvas.transform, false);
 
 
 	}
@@ -162,6 +168,11 @@ public void ContinueStory(NPCData npcData)
 	// UI Prefabs
 	[SerializeField] private Text textPrefab = null;
 	[SerializeField] private Button buttonPrefab = null;
-	[SerializeField] private Image background = null;
+
+	[SerializeField] private GameObject talk = null;
+	[SerializeField] private GameObject HUD = null;
+	[SerializeField] private GameObject cardFront = null;
+	[SerializeField] private GameObject cardBack = null;
+	public Image image;
 
 }

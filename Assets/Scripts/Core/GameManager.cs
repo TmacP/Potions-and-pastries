@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     private EGameState GameState;
     public GameStateData PersistantGameState;
-    private EGameScene GameScene;
+    private EGameScene GameScene = EGameScene.InnExterior;
 
     [SerializeField]
     private readonly Dictionary<EGameScene, string> GameScenes = new Dictionary<EGameScene, string>()
@@ -42,10 +42,12 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
+            clearSave();
         }
     }
 
     public void clearSave(){
+        PlayerState.Gold = 0;
         PlayerState.Inventory.Clear();
         PlayerState.ToolBar.Clear();
         PlayerState.CardHand.Clear();
@@ -53,6 +55,7 @@ public class GameManager : MonoBehaviour
         PlayerState.Discard.Clear();
         PersistantGameState.UnlockedRegions.Clear();
         PersistantGameState.OpenedDoors.Clear();
+        PersistantGameState.RoomsUnlocked = 0;
     }
 
 
@@ -113,8 +116,9 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Gamemanager::ChangeGameState unknown game state given");
                 break;
         }
+        EGameState OldState = GameState;
         GameState = NewGameState;
-        GameEventManager.instance.ChangeGameState(NewGameState, GameState);
+        GameEventManager.instance.ChangeGameState(GameState, OldState);
     }
 
     public EGameState GetGameState()

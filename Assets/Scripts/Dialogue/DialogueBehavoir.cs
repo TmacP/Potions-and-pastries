@@ -31,10 +31,10 @@ public class DialogueBehavoir : MonoBehaviour
 
     public void TryDialogue()
     {
-        if (npcData != null)
+        if (npcData != null && GameManager.Instance.GetGameScene() == EGameScene.InnExterior)
         {
             if (DebugMode) { Debug.Log("TryDialogue, npcData: " + npcData); }
-           // InkInstance.ContinueStory(npcData); // Continue the story when talking to NPC
+            InkInstance.ContinueStory(npcData); // Continue the story when talking to NPC
         }
         
         DialogueData Dialogue = DialogueManager.instance.GetDialogue(State);

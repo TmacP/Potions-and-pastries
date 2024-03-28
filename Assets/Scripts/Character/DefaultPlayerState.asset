@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 13
   Gravity: 1000
-  Gold: 990
+  Gold: 0
   Inventory:
-  - Data: {fileID: 11400000, guid: a1afc0841d6614713a88a7a9246ebac3, type: 2}
+  - Data: {fileID: 11400000, guid: c655e0734b494450cad243093d85c29e, type: 2}
     InventoryIndex: 0
-    CurrentStackCount: 2
+    CurrentStackCount: 1
     bIsCard: 0
-    CardActionType: 0
+    CardActionType: 2
   ToolBar: []
   Deck: []
   CardHand: []
