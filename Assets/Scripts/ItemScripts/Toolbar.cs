@@ -22,7 +22,7 @@ public class Toolbar : MonoBehaviour
             if(PlayerController.instance._PlayerActions.PlayerActionMap.enabled)
             {
                 Vector2 Scroll = PlayerController.instance._PlayerActions.PlayerActionMap.ToolbarScroll.ReadValue<Vector2>();
-                UpdateScrollSlot(Scroll.y);
+                UpdateScrollSlot(-Scroll.y);
             }
         }
     }
