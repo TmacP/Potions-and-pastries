@@ -20,6 +20,14 @@ public class InteractbleTargetUI : MonoBehaviour
         SecondaryPromptUI.SetActive(false);
     }
 
+    private void OnEnable()
+    {
+        if(GameEventManager.instance)
+        {
+            GameEventManager.instance.OnChangeInteractionTarget += OnChangeInteractionTarget;
+        }
+    }
+
     private void OnDisable()
     {
         GameEventManager.instance.OnChangeInteractionTarget -= OnChangeInteractionTarget;
@@ -32,12 +40,12 @@ public class InteractbleTargetUI : MonoBehaviour
             if(Interactable != null)
             {
                 PromptUI.SetActive(true);
-                PromptText.text = Interactable.InteractionPrompt;
+                PromptText.text = "E: " + Interactable.InteractionPrompt;
 
                 IInteractableExtension Extension = Interactable as IInteractableExtension;
                 if(Extension != null)
                 {
-                    SecondaryPromptText.text = Extension.GetSecondaryInteractionPrompt();
+                    SecondaryPromptText.text = "Q: " + Extension.GetSecondaryInteractionPrompt();
                     SecondaryPromptUI.SetActive(true);
                 }
                 else
