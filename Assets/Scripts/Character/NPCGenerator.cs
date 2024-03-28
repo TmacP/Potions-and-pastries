@@ -50,7 +50,8 @@ public class NPCGenerator : MonoBehaviour
 
         int index = Random.Range(0, NPCDatas.Count);
         NPC.Data = NPCDatas[index];
-
+        NPC.WaitSecChangeState(.1f, NPCBehaviour.ENPCState.Idle);
+        
         NPCS.Add(Tracker);
     }
 

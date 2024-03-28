@@ -433,7 +433,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
 
 
 
-    void WaitSecChangeState(float seconds, ENPCState newStateChange)
+    public void WaitSecChangeState(float seconds, ENPCState newStateChange)
     {
         if (this.NextNPCState == ENPCState.None && newStateChange != this.NPCState)
         {
