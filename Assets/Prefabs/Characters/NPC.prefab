@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4396183003958145319}
   - component: {fileID: 8297631887254451872}
   - component: {fileID: 4141028354691216603}
+  - component: {fileID: 2292423084861152726}
   m_Layer: 6
   m_Name: NPC
   m_TagString: Untagged
@@ -128,7 +129,7 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 0
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -244,6 +245,18 @@ MonoBehaviour:
   colorBottom: {r: 0, g: 0, b: 0, a: 0}
   nameShoes: 
   colorShoe: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &2292423084861152726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5514274119858432202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42d464648b3edb478dcbbe4cd47ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1706491974602699399
 PrefabInstance:
   m_ObjectHideFlags: 0
