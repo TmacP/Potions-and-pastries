@@ -10,6 +10,8 @@ TagManager:
   - Table
   - PlayerInventoryToolBar
   - Door
+  - FxTemporaire
+  - GatherableVFX
   layers:
   - Default
   - TransparentFX

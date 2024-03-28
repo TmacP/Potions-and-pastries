@@ -13,6 +13,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     public enum ENPCState
     {
         None = 0,
+        ForeverIdle,
         Wander,
         Idle,
         FindTable,
@@ -27,7 +28,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     public ENPCState NextNPCState = ENPCState.None;
     public DialogueBehavoir _DialogueBehavoir;
 
-    [SerializeField] private NPCData Data;
+    [SerializeField] public NPCData Data;
     NavMeshAgent agent;
     [SerializeField] LayerMask groundLayer;
 
@@ -40,12 +41,14 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
 
     bool foundTable;
     bool foundDoor;
+
+    // Animation variables
     private Rigidbody _Rigidbody;
     public Animator frontAnimator;
     public Animator backAnimator;
     private bool faceBack = false;
     private bool faceLeft = true;
-
+    private Vector3 direction;
 
 
     //*************IInteractable interface***********
@@ -75,13 +78,14 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     public EInteractionResult TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
     {
 
-       if(NPCState == ENPCState.WaitForOrder && InteractionItem != null && InteractionItem.Count > 0)
-       {
-            GameEventManager.instance.DoneNPCOrder(NpcOrder);
-            GameEventManager.instance.RemovePlayerItems(InteractionItem);
-            WaitSecChangeState(0.5f, ENPCState.Eating);
-        }
-       else if(_DialogueBehavoir != null)
+       //if(NPCState == ENPCState.WaitForOrder && InteractionItem != null && InteractionItem.Count > 0)
+       //{
+       //     GameEventManager.instance.DoneNPCOrder(NpcOrder);
+       //     GameEventManager.instance.RemovePlayerItems(InteractionItem);
+       //     WaitSecChangeState(0.5f, ENPCState.Eating);
+       // }
+       //else
+       if(_DialogueBehavoir != null)
        {
             _DialogueBehavoir.TryDialogue();
             return EInteractionResult.Success;
@@ -104,6 +108,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
             GameEventManager.instance.DoneNPCOrder(NpcOrder);
 
             //GameEventManager.instance.RemovePlayerItems(InteractionItem);
+            GameEventManager.instance.Purchase(-EvaluateOrder(InteractionItems));
             WaitSecChangeState(0.5f, ENPCState.Eating);
             return EInteractionResult.Success_ConsumeItem;
         }
@@ -128,7 +133,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     {
         _DialogueBehavoir = GetComponent<DialogueBehavoir>();
 
-        _Rigidbody ??= GetComponent<Rigidbody>();
+        _Rigidbody = GetComponent<Rigidbody>();
         frontAnimator = transform.Find("F_BaseCharacter").GetComponent<Animator>();
         backAnimator = transform.Find("B_BaseCharacter").GetComponent<Animator>();
     }
@@ -146,10 +151,10 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     // Update is called once per frame
     void Update()
     {
-         //Debug.Log(foundDoor);
-         //Debug.Log(Vector3.Distance(agent.transform.position, destination)); //to find out how far an NPC is from the point they are headed to (where the 1.1 came from)
+        //Debug.Log(foundDoor);
+        //Debug.Log(Vector3.Distance(agent.transform.position, destination)); //to find out how far an NPC is from the point they are headed to (where the 1.1 came from)
 
-        if(NPCState == ENPCState.Eating)
+        if (NPCState == ENPCState.Eating)
         {
             WaitSecChangeState(3, ENPCState.Leaving);
         }
@@ -177,7 +182,54 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
             WaitSecChangeState(0, NPCState);
         }
 
+        if (frontAnimator.gameObject.activeSelf == true)
+        {
+            frontAnimator.SetFloat("MoveSpeed", agent.velocity.magnitude);
+            direction = (destination - agent.transform.position) / Time.deltaTime;
+        }
+        if (backAnimator.gameObject.activeSelf == true)
+        {
+            backAnimator.SetFloat("MoveSpeed", agent.velocity.magnitude);
+            direction = (destination - agent.transform.position) / Time.deltaTime;
+        }
 
+        if (direction.x > 0 && faceLeft)
+        {
+            Vector3 scale = transform.Find("F_BaseCharacter").transform.localScale;
+            scale.x *= -1.0f;
+            transform.Find("F_BaseCharacter").transform.localScale = scale;
+            scale = transform.Find("B_BaseCharacter").transform.localScale;
+            scale.x *= -1.0f;
+            transform.Find("B_BaseCharacter").transform.localScale = scale; 
+
+            faceLeft = false;
+        }
+        else if (direction.x < 0 && !faceLeft)
+        {
+            Vector3 scale = transform.Find("F_BaseCharacter").transform.localScale;
+            scale.x *= -1.0f;
+            transform.Find("F_BaseCharacter").transform.localScale = scale;
+            scale = transform.Find("B_BaseCharacter").transform.localScale;
+            scale.x *= -1.0f;
+            transform.Find("B_BaseCharacter").transform.localScale = scale;
+
+            faceLeft = true;
+        }
+
+        if (direction.y > 0 && !faceBack)
+        {
+            frontAnimator.Rebind();
+            transform.Find("F_BaseCharacter").gameObject.SetActive(false);
+            faceBack = true;
+            transform.Find("B_BaseCharacter").gameObject.SetActive(true);
+        }
+        else if (direction.y < 0 && faceBack)
+        {
+            backAnimator.Rebind();
+            transform.Find("F_BaseCharacter").gameObject.SetActive(true);
+            faceBack = false;
+            transform.Find("B_BaseCharacter").gameObject.SetActive(false);
+        }
     }
 
     private void UpdateNPCState(ENPCState newState)
@@ -193,6 +245,10 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
         
         switch (newState)
         {
+
+            case ENPCState.ForeverIdle:
+                //doing nothin
+                break;
             case ENPCState.Wander:
                 StartWander();
                 break;
@@ -206,6 +262,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
                 WaitSecChangeState(3, ENPCState.WaitForOrder);
                 break;
             case ENPCState.WaitForOrder:
+                GenerateOrder();
                 GameEventManager.instance.TakeNPCOrder(NpcOrder);
                 break;
             case ENPCState.Eating:
@@ -347,13 +404,13 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     void EatOrLeave()
     {
         bool ChangeChance = RandomChance(0,200);
-        Debug.Log("CHANCE 1" + ChangeChance);
+        //Debug.Log("CHANCE 1" + ChangeChance);
 
         // stay and eat more, but do we move or stay at table?
         if(ChangeChance)
         {
             bool ChangeChance2 = RandomChance(0,200);
-            Debug.Log("CHANCE 2" + ChangeChance2);
+            //Debug.Log("CHANCE 2" + ChangeChance2);
 
             // move from table and rerun from wandering state to go find another table
             if (ChangeChance2)
@@ -376,7 +433,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
 
 
 
-    void WaitSecChangeState(float seconds, ENPCState newStateChange)
+    public void WaitSecChangeState(float seconds, ENPCState newStateChange)
     {
         if (this.NextNPCState == ENPCState.None && newStateChange != this.NPCState)
         {
@@ -406,5 +463,18 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
             return false;
         }
         
+    }
+
+    private void GenerateOrder()
+    {
+        NpcOrder = new OrderData();
+        NpcOrder.NPCTarget = this.gameObject;
+        NpcOrder.NPCLikes = Data.NPCLikes;
+        NpcOrder.NPCDislikes = Data.NPCDislikes;
+    }
+
+    private int EvaluateOrder(List<InventoryItemData> Items)
+    {
+        return 20;
     }
 }

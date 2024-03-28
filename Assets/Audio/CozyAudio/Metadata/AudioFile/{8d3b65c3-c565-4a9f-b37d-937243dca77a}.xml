@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{8d3b65c3-c565-4a9f-b37d-937243dca77a}">
+		<property name="assetPath">
+			<value>birds-in-spring-north-carolina-61396.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>24</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>381.72000000000003</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{3b679085-fda8-4b6b-8793-477bea2b6d1f}</destination>
+		</relationship>
+	</object>
+</objects>

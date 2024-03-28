@@ -8,51 +8,52 @@ using UnityEngine.UIElements;
 public class StartMenuScript : MonoBehaviour
 {
     [SerializeField] private UIDocument uiDoc;
-    private List<string> menuItems  = new List<string> { "New Game", "Continue", "Quit" };
+    private List<string> menuItems = new List<string> { "New Game", "Continue", "Quit" };
 
     private VisualElement rootEl;
     private VisualElement _startEl;
     private VisualElement menuItemEl;
-    
-     private string activeMenuItemClass = "menu-item-active";
-     private string activeClass = "start-active";
+
+    private string activeMenuItemClass = "menu-item-active";
+    private string activeClass = "start-active";
 
     private int selectedIndex = 0;
+    private bool mouseOverMenuItem = false; 
+    private bool keyboardMode = true; 
+
     private void Awake()
     {
-        // Wait a half a sec and then run Open()
-        Invoke("Open", 0.5f);
+        Invoke("Open", 0.3f);
     }
 
-     private void Update()
+    private void Update()
     {
-
-
         if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
             HandleDown();
         }
-
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+        else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
             HandleUp();
         }
-
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+        else if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
         {
-            HandleSelect();
+            if (keyboardMode)
+            {
+                HandleSelect();
+            }
         }
     }
 
     private void HandleUp()
     {
-        if (selectedIndex == 0)
+        if (selectedIndex == -1)
         {
             selectedIndex = menuItems.Count - 1;
         }
         else
         {
-            selectedIndex--;
+            selectedIndex = (selectedIndex + menuItems.Count - 1) % menuItems.Count;
         }
 
         SelectSelected();
@@ -60,52 +61,86 @@ public class StartMenuScript : MonoBehaviour
 
     private void HandleDown()
     {
-        if (selectedIndex == menuItems.Count - 1)
+        if (selectedIndex == -1)
         {
             selectedIndex = 0;
         }
         else
         {
-            selectedIndex++;
+            selectedIndex = (selectedIndex + 1) % menuItems.Count;
         }
 
         SelectSelected();
     }
-     private void SelectSelected()
+
+    private void SelectSelected()
     {
-        rootEl.Q(className: activeMenuItemClass).RemoveFromClassList(activeMenuItemClass);
-        rootEl.Query(className: "menu-item").AtIndex(selectedIndex).AddToClassList(activeMenuItemClass);
+        rootEl.Q(className: activeMenuItemClass)?.RemoveFromClassList(activeMenuItemClass);
+        if (selectedIndex >= 0)
+        {
+            rootEl.Query(className: "menu-item").AtIndex(selectedIndex)?.AddToClassList(activeMenuItemClass);
+        }
     }
 
     private void HandleSelect()
     {
-        string selectedItem = menuItems[selectedIndex];
-        Debug.Log($"{selectedItem} has been selected.");
-        if (selectedItem == "Quit")
+        if (selectedIndex >= 0 && selectedIndex < menuItems.Count)
         {
-            Application.Quit();
-        }
-        if (selectedItem == "Continue")
-        {
-            //change scene
-            SceneManager.LoadScene("AlphaExterior");
-        }
-        if (selectedItem == "New Game")
-        {
-            //change scene
-            GameManager.Instance.clearSave();
-            SceneManager.LoadScene("AlphaExterior");
+            string selectedItem = menuItems[selectedIndex];
+            Debug.Log($"{selectedItem} has been selected.");
+            if (selectedItem == "Quit")
+            {
+                Application.Quit();
+            }
+            else if (selectedItem == "Continue")
+            {
+                SceneManager.LoadScene("AlphaExterior");
+            }
+            else if (selectedItem == "New Game")
+            {
+                GameManager.Instance.clearSave();
+                SceneManager.LoadScene("AlphaExterior");
+            }
         }
     }
 
+    private void OnMouseEnterMenuItem()
+    {
+        mouseOverMenuItem = true;
+        if (!keyboardMode) // Only select if in mouse mode
+        {
+            VisualElement menuItem = rootEl.Query(className: "menu-item").AtIndex(menuItems.IndexOf(menuItems[selectedIndex]));
+            if (menuItem != null)
+            {
+                menuItem.AddToClassList(activeMenuItemClass);
+            }
+        }
+    }
 
+    private void OnMouseLeaveMenuItem()
+    {
+        mouseOverMenuItem = false;
 
-    private void buildMenu (){
+        rootEl.Q(className: activeMenuItemClass)?.RemoveFromClassList(activeMenuItemClass);
+        if (keyboardMode)
+        {
+            selectedIndex = -1; // Deselect items 
+        }
+    }
+
+    private void HandleMenuItemClick(string selectedItem)
+    {
+        selectedIndex = menuItems.IndexOf(selectedItem);
+        HandleSelect();
+    }
+
+    private void buildMenu()
+    {
         int currentIdx = 0;
 
         foreach (string item in menuItems)
         {
-            menuItemEl. Add(BuildMenuItem(item, currentIdx == 0, currentIdx != 0));
+            menuItemEl.Add(BuildMenuItem(item, currentIdx == 0, currentIdx != 0));
             currentIdx++;
         }
     }
@@ -152,27 +187,44 @@ public class StartMenuScript : MonoBehaviour
         }
     }
 
-
-    private VisualElement BuildMenuItem(string text, bool active, bool spaceTop) {
+    private VisualElement BuildMenuItem(string text, bool active, bool spaceTop)
+    {
         VisualElement menuItem = new VisualElement();
         menuItem.AddToClassList("menu-item");
 
         if (active) menuItem.AddToClassList("menu-item-active");
         if (spaceTop) menuItem.AddToClassList("space-top");
 
-        
-
         VisualElement textEl = new VisualElement();
         textEl.AddToClassList("menu-item-text");
 
         Label TextElementlabel = new Label(text);
-
-       
-        menuItem.Add(textEl);
         textEl.Add(TextElementlabel);
+        textEl.RegisterCallback<MouseEnterEvent>(evt => {
+            if (keyboardMode)
+            {
+                mouseOverMenuItem = true;
+                selectedIndex = menuItems.IndexOf(text);
+                SelectSelected();
+                keyboardMode = false; // Mousable mode
+            }
+        });
+
+        textEl.RegisterCallback<MouseLeaveEvent>(evt => {
+            if (mouseOverMenuItem && selectedIndex == menuItems.IndexOf(text))
+            {
+                selectedIndex = -1;
+                SelectSelected();
+                keyboardMode = true; 
+            }
+        });
+
+        
+        textEl.RegisterCallback<ClickEvent>(evt => HandleMenuItemClick(text));
+
+        menuItem.Add(textEl);
 
         return menuItem;
-
-
     }
 }
+

@@ -99,6 +99,15 @@ public class GatherableBehavoir : MonoBehaviour, IInteractable
             {
                 int LayerIndex = LayerMask.NameToLayer("Interact");
                 this.gameObject.layer &= (0x1 << LayerIndex);
+
+                for(int i = 0; i < transform.childCount; i++)
+                {
+                    Transform child = transform.GetChild(i);
+                    if (child != null && child.CompareTag("GatherableVFX"))
+                    {
+                        child.gameObject.SetActive(false);
+                    }
+                }
             }
         }
     }

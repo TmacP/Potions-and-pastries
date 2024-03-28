@@ -32,6 +32,7 @@ public class GameStateData : ScriptableObject
 
     public List<int> OpenedDoors = new List<int>();
 
+    public int RoomsUnlocked = 0;
 
     public List<ItemData> UnlockedActionCards = new List<ItemData>();
 
