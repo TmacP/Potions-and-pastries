@@ -13,6 +13,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     public enum ENPCState
     {
         None = 0,
+        ForeverIdle,
         Wander,
         Idle,
         FindTable,
@@ -195,6 +196,10 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
         
         switch (newState)
         {
+
+            case ENPCState.ForeverIdle:
+                //doing nothin
+                break;
             case ENPCState.Wander:
                 StartWander();
                 break;
@@ -350,13 +355,13 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     void EatOrLeave()
     {
         bool ChangeChance = RandomChance(0,200);
-        Debug.Log("CHANCE 1" + ChangeChance);
+        //Debug.Log("CHANCE 1" + ChangeChance);
 
         // stay and eat more, but do we move or stay at table?
         if(ChangeChance)
         {
             bool ChangeChance2 = RandomChance(0,200);
-            Debug.Log("CHANCE 2" + ChangeChance2);
+            //Debug.Log("CHANCE 2" + ChangeChance2);
 
             // move from table and rerun from wandering state to go find another table
             if (ChangeChance2)
