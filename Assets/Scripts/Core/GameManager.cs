@@ -9,6 +9,7 @@ public enum EGameScene
 {
     InnInterior,
     InnExterior,
+    Tutorial,
 }
 
 
@@ -29,7 +30,8 @@ public class GameManager : MonoBehaviour
     private readonly Dictionary<EGameScene, string> GameScenes = new Dictionary<EGameScene, string>()
     {
         {EGameScene.InnInterior, "AlphaInterior" },
-        {EGameScene.InnExterior, "AlphaExterior" }
+        {EGameScene.InnExterior, "AlphaExterior" },
+        {EGameScene.Tutorial, "Tutorial" }
     };
 
     private void Awake()
@@ -143,6 +145,9 @@ public class GameManager : MonoBehaviour
                 ChangeGameState(EGameState.MainState);
                 break;
             case EGameScene.InnExterior:
+                ChangeGameState(EGameState.MainState);
+                break;
+            case EGameScene.Tutorial:
                 ChangeGameState(EGameState.MainState);
                 break;
             default:

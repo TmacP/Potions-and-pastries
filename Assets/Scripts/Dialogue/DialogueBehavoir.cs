@@ -31,7 +31,7 @@ public class DialogueBehavoir : MonoBehaviour
 
     public void TryDialogue()
     {
-        if (npcData != null && GameManager.Instance.GetGameScene() == EGameScene.InnExterior)
+        if (npcData != null && ((GameManager.Instance.GetGameScene() == EGameScene.InnExterior) || (GameManager.Instance.GetGameScene() == EGameScene.Tutorial)))
         {
             if (DebugMode) { Debug.Log("TryDialogue, npcData: " + npcData); }
             InkInstance.ContinueStory(npcData); // Continue the story when talking to NPC

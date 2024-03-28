@@ -25,14 +25,16 @@ VAR chocolateGate = false
 = tutorial
 "Hello, you must be the new owner. Would you like an explanation about running thing?"
 * "Yes, I'm new here[".] can you explain."
-* "No, I already know what to do"-> end_tutorial
+* "No, I already know what to do"
+-> end_tutorial
 - "Of course, as the new owner you are responsible for gathering ingredients for the inn's apothecary and bakery. You will find everything you need around outside. You'll have the whole day to gather since the inn doesn't start service till the evening."
 - (questions)
 * "What sort of ingredients[".] do I need to gather?" 
 "The ingredients you will need are: Apples, Cherries, Eggs, Cocoa beans, Milk, Salt, Sugar Canes, Tea Leaves, Vanilla Beans, and Wheat." -> questions
 * "What will I be crafting[".] with the ingredients I gather?"
 "with these ingredients you will be crafting potions and pastries to sell to the patrons of the inn." -> questions
-* "Okay I think I understand[".] -> end_tutorial
+* "Okay I think I understand[".] 
+    -> end_tutorial
 
 = end_tutorial
 "Great, since you know what you're doing I'll leave you to it."
