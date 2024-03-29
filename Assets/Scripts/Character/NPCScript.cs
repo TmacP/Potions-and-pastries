@@ -120,14 +120,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
 
     public string GetInteractionPrompt()
     {
-        if (NPCState == ENPCState.WaitForOrder)
-        {
-            return "Give Order";
-        }
-        else
-        {
-            return "Speak";
-        }
+        return "Speak";
     }
 
     public void Awake()
