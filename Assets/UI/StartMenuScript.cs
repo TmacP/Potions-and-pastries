@@ -99,7 +99,7 @@ public class StartMenuScript : MonoBehaviour
             else if (selectedItem == "New Game")
             {
                 GameManager.Instance.clearSave();
-                SceneManager.LoadScene("AlphaExterior");
+                SceneManager.LoadScene("Tutorial");
             }
         }
     }
