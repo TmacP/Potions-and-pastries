@@ -14,6 +14,9 @@ public class DialogueBehavoir : MonoBehaviour
     [SerializeField] public float DialogueDisplayTime = 3.0f;
     [SerializeField] public int DialogueDisplayCounter = 0;
 
+    // Reference to NPCData instance
+    public NPCCharacterData npcData;
+
     // Singleton instance of BasicInkExample
     private static BasicInkExample _inkInstance;
     public static BasicInkExample InkInstance
@@ -26,12 +29,11 @@ public class DialogueBehavoir : MonoBehaviour
         }
     }
 
-    // Reference to NPCData instance
-    public NPCData npcData;
+    
 
     public void TryDialogue()
     {
-        if (npcData != null && GameManager.Instance.GetGameScene() == EGameScene.InnExterior)
+        if (npcData != null && ((GameManager.Instance.GetGameScene() == EGameScene.InnExterior) || (GameManager.Instance.GetGameScene() == EGameScene.Tutorial)))
         {
             if (DebugMode) { Debug.Log("TryDialogue, npcData: " + npcData); }
             InkInstance.ContinueStory(npcData); // Continue the story when talking to NPC

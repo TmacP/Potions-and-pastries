@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b026da796b5369459cd657b61515ddc, type: 3}
+  m_Name: RangerTones
+  m_EditorClassIdentifier: 
+  colors:
+  - {r: 0.3647059, g: 0.40784317, b: 0.24705884, a: 0}
+  - {r: 0.6431373, g: 0.5058824, b: 0.26666668, a: 0}
+  - {r: 0.4901961, g: 0.34117648, b: 0.16470589, a: 0}
+  - {r: 0.18039216, g: 0.27058825, b: 0.18823531, a: 0}
+  - {r: 0.5882353, g: 0.63529414, b: 0.46274513, a: 0}
+  - {r: 0.43137258, g: 0.40000004, b: 0.21176472, a: 0}

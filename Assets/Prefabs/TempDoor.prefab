@@ -120,9 +120,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NPCCount: 0
   NPCPrefab: {fileID: 5514274119858432202, guid: cd424223aafe59440a7a0b7bd7719f43, type: 3}
-  NPCDatas:
-  - {fileID: 11400000, guid: ff1d3a6cdcdda4754b5673c163179121, type: 2}
-  - {fileID: 11400000, guid: 9675dfc42984e4036b066800fd8d2b7b, type: 2}
-  - {fileID: 11400000, guid: aaae139b696e84738b07b49d82b87624, type: 2}
-  - {fileID: 11400000, guid: dfd0317fe920edc4aab6c742772dc0b9, type: 2}
+  MaxLikes: 0
+  MinLikes: 0
+  MaxDislikes: 0
+  MinDislikes: 0
+  CharacterColourPalettes:
+  - {fileID: 11400000, guid: f739394b712293d47b137934517d98df, type: 2}
   NPCS: []
