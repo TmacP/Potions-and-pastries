@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/StartMenuStyle.uss?fileID=7433441132597879392&amp;guid=9a1f3638169af7448ba4367fab41f911&amp;type=3#StartMenuStyle" />
-    <ui:VisualElement class="start">
+    <ui:VisualElement class="start" style="background-color: rgba(0, 0, 0, 0); -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0;">
         <ui:VisualElement class="sections">
             <ui:VisualElement class="header">
                 <ui:VisualElement class="heaer-text">

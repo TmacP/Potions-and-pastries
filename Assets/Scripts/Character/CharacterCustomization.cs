@@ -283,29 +283,29 @@ public class CharacterCustomization : MonoBehaviour
     void Start()
     {
         // Testing purposes only, please delete "Start()" once ready to use 
-        setHat("WizardHat");
-        setHatColor(new Color(0.576f, 0.373f, 0.639f));
+        //setHat("WizardHat");
+        //setHatColor(new Color(0.576f, 0.373f, 0.639f));
 
-        setHair("LongBangsHair");
-        setHairColor(new Color(0.604f, 0.761f, 0.498f));
+        //setHair("LongBangsHair");
+        //setHairColor(new Color(0.604f, 0.761f, 0.498f));
 
-        setEyes("SleepyEye");
+        //setEyes("SleepyEye");
 
-        setNose("LongTriangleNose");
-        setNoseColor(new Color(1f, 0.91f, 0.765f));
+        //setNose("LongTriangleNose");
+        //setNoseColor(new Color(1f, 0.91f, 0.765f));
 
-        setMouth("FlatMouth"); 
+        //setMouth("FlatMouth"); 
 
-        setSkinColor(new Color(1f, 0.91f, 0.765f));
+        //setSkinColor(new Color(1f, 0.91f, 0.765f));
 
-        setTorso("PuffyTorso");
-        setArm("PuffyArm");
-        setTopColor(new Color(0.651f, 0.584f, 0.671f));
+        //setTorso("PuffyTorso");
+        //setArm("PuffyArm");
+        //setTopColor(new Color(0.651f, 0.584f, 0.671f));
 
-        setBottom("JesterPants");
-        setBottomColor(new Color(0.576f, 0.373f, 0.639f));
+        //setBottom("JesterPants");
+        //setBottomColor(new Color(0.576f, 0.373f, 0.639f));
 
-        setShoe("Slippers");
-        setShoeColor(new Color(1f, 0.91f, 0.765f));
+        //setShoe("Slippers");
+        //setShoeColor(new Color(1f, 0.91f, 0.765f));
     }
 }

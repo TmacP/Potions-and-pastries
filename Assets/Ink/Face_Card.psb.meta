@@ -94,7 +94,7 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: Border
+  - name: Border Copy 3
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -170,8 +170,8 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: Border
-    spriteName: Border
+  - name: Border Copy 3
+    spriteName: Border Copy 3
     isGroup: 0
     parentIndex: -1
     spriteID: 90e1e85a09007477f909f6db2466898b

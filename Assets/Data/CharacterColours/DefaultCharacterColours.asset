@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce155b1b03ee76f48ba59fa659125a60, type: 3}
+  m_Name: DefaultCharacterColours
+  m_EditorClassIdentifier: 
+  Hat:
+  - {fileID: 11400000, guid: 635ae4433b4ff63408b8360a8b1afc9a, type: 2}
+  Hair:
+  - {fileID: 11400000, guid: 71fd19ccaf4c2614a9d14c28bf7c7999, type: 2}
+  Eye:
+  - {fileID: 11400000, guid: d3089c167cac8ea4cb35d3cbb9d940e1, type: 2}
+  Nose:
+  - {fileID: 11400000, guid: f1a5e30fd3064d841884d4cf1d72a602, type: 2}
+  Torso:
+  - {fileID: 11400000, guid: 635ae4433b4ff63408b8360a8b1afc9a, type: 2}
+  Arm:
+  - {fileID: 11400000, guid: 635ae4433b4ff63408b8360a8b1afc9a, type: 2}
+  Bottom:
+  - {fileID: 11400000, guid: 635ae4433b4ff63408b8360a8b1afc9a, type: 2}
+  Shoe:
+  - {fileID: 11400000, guid: 635ae4433b4ff63408b8360a8b1afc9a, type: 2}
