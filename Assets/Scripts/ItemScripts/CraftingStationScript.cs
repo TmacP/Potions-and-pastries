@@ -256,6 +256,7 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
                 InventoryItemData InvItem = new InventoryItemData(item, -1, -1);
                 InvItem.bIsCard = GameManager.Instance.GetGameState() == EGameState.NightState;
                 InvItem.CardActionType = ECardActionType.Use_Trash;
+                InvItem.bIsFinalRecipe = Data.bCreatesFinalRecipes;
                 OutgoingItems.Add(InvItem);
             }
 

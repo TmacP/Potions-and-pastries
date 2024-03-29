@@ -105,7 +105,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
             return EInteractionResult.Failure;
         }
         InventoryItemData Item = InteractionItems[0];
-        if (NPCState == ENPCState.WaitForOrder && Item != null && Item.CardActionType == ECardActionType.Use_Trash)
+        if (NPCState == ENPCState.WaitForOrder && Item != null && Item.bIsFinalRecipe)
         {
             GameEventManager.instance.DoneNPCOrder(NpcOrder);
 
