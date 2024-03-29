@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
         PlayerState.Discard.Clear();
         PersistantGameState.UnlockedRegions.Clear();
         PersistantGameState.OpenedDoors.Clear();
-        PersistantGameState.RoomsUnlocked = 0;
+        PersistantGameState.RoomsUnlocked = 2;
     }
 
 

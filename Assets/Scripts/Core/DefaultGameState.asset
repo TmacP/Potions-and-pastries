@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnlockedRegions: 
   OpenedDoors: 
-  RoomsUnlocked: 0
+  RoomsUnlocked: 2
   UnlockedActionCards: []

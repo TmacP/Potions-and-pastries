@@ -13532,8 +13532,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2898082963403173838, guid: b0824c52f0a02a241ab8eda8554c6a6a, type: 3}
+      propertyPath: MaxLikes
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898082963403173838, guid: b0824c52f0a02a241ab8eda8554c6a6a, type: 3}
+      propertyPath: MinLikes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898082963403173838, guid: b0824c52f0a02a241ab8eda8554c6a6a, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898082963403173838, guid: b0824c52f0a02a241ab8eda8554c6a6a, type: 3}
+      propertyPath: MaxDislikes
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898082963403173838, guid: b0824c52f0a02a241ab8eda8554c6a6a, type: 3}
+      propertyPath: MinDislikes
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3190208345053549214, guid: b0824c52f0a02a241ab8eda8554c6a6a, type: 3}
       propertyPath: m_LocalPosition.x
