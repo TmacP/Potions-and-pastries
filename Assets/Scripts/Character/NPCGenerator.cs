@@ -7,7 +7,7 @@ public class NPCGenerator : MonoBehaviour
 {
     public int NPCCount = 0;
     public GameObject NPCPrefab;
-    public List<NPCData> NPCDatas = new List<NPCData>();
+    public List<NPCCharacterData> NPCDatas = new List<NPCCharacterData>();
 
     [HideInInspector]
     public List<NPCTracker> NPCS;
@@ -49,7 +49,7 @@ public class NPCGenerator : MonoBehaviour
         Assert.IsNotNull(Tracker);
 
         int index = Random.Range(0, NPCDatas.Count);
-        NPC.Data = NPCDatas[index];
+        NPC.CharacterData = NPCDatas[index];
         NPC.WaitSecChangeState(.1f, NPCBehaviour.ENPCState.Idle);
         
         NPCS.Add(Tracker);

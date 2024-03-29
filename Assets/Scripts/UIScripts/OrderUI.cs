@@ -50,7 +50,7 @@ public class OrderUI : MonoBehaviour
         NPCBehaviour NPC = Order.NPCTarget?.GetComponent<NPCBehaviour>();
         if (NPC != null)
         {
-            NPCName.text = NPC.Data.Name;
+            NPCName.text = NPC.CharacterData.Name;
         }
     }
 }

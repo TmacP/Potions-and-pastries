@@ -86,7 +86,7 @@ public void OpenGate(int GateID)
 }
 
 // WE CONTINUE THE STORY WHEN TALK TO NPC *****************
-public void ContinueStory(NPCData npcData)
+public void ContinueStory(NPCCharacterData npcData)
 {
 	// here we set the variables in inkle for npc class friendship and name
 	if (DebugMode) {
