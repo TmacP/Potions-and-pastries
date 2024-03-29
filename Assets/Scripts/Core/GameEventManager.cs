@@ -245,6 +245,15 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+    public event Action<GameObject> OnNPCLeavingChair;
+    public void NPCLeavingChair(GameObject NPC)
+    {
+        if (OnNPCLeavingChair != null)
+        {
+            OnNPCLeavingChair(NPC);
+        }
+    }
+
 
     public event Action<DialogueData> OnShowDialogueQuip;
     public void ShowDialogueQuip(DialogueData DialogueQuip)

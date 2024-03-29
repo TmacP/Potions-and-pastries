@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
@@ -321,7 +322,25 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
 
     void FindTablePosition()
     {
-        GameObject Table = GameObject.FindGameObjectWithTag("Table");
+        GameObject[] Tables = GameObject.FindGameObjectsWithTag("Table");
+        GameObject Table = null;
+
+        foreach(GameObject t in Tables)
+        {
+            if(t != null)
+            {
+                TableChair tableChair = t.GetComponent<TableChair>();
+                Assert.IsNotNull(tableChair);
+                if(tableChair.isEmpty())
+                {
+                    
+                    tableChair.FillSeat(this.gameObject);
+                    Table = t;
+                    break;
+                }
+            }
+        }
+
         if (Table != null)
         {
             destination = Table.transform.position;
@@ -375,6 +394,8 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     }
     void WalkToDoor()
     {
+
+        GameEventManager.instance.NPCLeavingChair(this.gameObject);
         if (!foundDoor)
         {
             FindDoorPosition();
