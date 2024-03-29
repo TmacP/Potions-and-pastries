@@ -28,7 +28,8 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     public ENPCState NextNPCState = ENPCState.None;
     public DialogueBehavoir _DialogueBehavoir;
 
-    [SerializeField] public NPCData Data;
+    //[SerializeField] public NPCData Data;
+    public NPCCharacterData CharacterData;
     NavMeshAgent agent;
     [SerializeField] LayerMask groundLayer;
 
@@ -469,8 +470,8 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     {
         NpcOrder = new OrderData();
         NpcOrder.NPCTarget = this.gameObject;
-        NpcOrder.NPCLikes = Data.NPCLikes;
-        NpcOrder.NPCDislikes = Data.NPCDislikes;
+        NpcOrder.NPCLikes = CharacterData.NPCLikes;
+        NpcOrder.NPCDislikes = CharacterData.NPCDislikes;
     }
 
     private int EvaluateOrder(List<InventoryItemData> Items)

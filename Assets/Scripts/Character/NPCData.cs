@@ -17,18 +17,24 @@ public enum ENPCArchetype
 
 public class NPCData : ScriptableObject
 {
-    public string Name;
-    public int Friendship;
-    public ENPCArchetype Archetype;
-    public List<EItemTags> NPCLikes;
-    public List<EItemTags> NPCDislikes;
-    public Sprite image;
+    public string DefaultName;
+    public int DefaultFriendship;
+    public ENPCArchetype DefaultArchetype;
+    public List<EItemTags> DefaultNPCLikes;
+    public List<EItemTags> DefaultNPCDislikes;
+    //public Sprite image;
 }
 
 [Serializable]
 public class NPCCharacterData
 {
     public NPCData Data;
+    public string Name;
+    public int Friendship = 0;
+    public ENPCArchetype Archetype;
+    public List<EItemTags> NPCLikes;
+    public List<EItemTags> NPCDislikes;
+
     public NPCCharacterData(NPCData inData)
     {
         Data = inData;

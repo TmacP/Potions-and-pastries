@@ -14,6 +14,9 @@ public class DialogueBehavoir : MonoBehaviour
     [SerializeField] public float DialogueDisplayTime = 3.0f;
     [SerializeField] public int DialogueDisplayCounter = 0;
 
+    // Reference to NPCData instance
+    public NPCCharacterData npcData;
+
     // Singleton instance of BasicInkExample
     private static BasicInkExample _inkInstance;
     public static BasicInkExample InkInstance
@@ -26,8 +29,7 @@ public class DialogueBehavoir : MonoBehaviour
         }
     }
 
-    // Reference to NPCData instance
-    public NPCData npcData;
+    
 
     public void TryDialogue()
     {
