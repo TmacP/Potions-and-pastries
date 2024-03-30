@@ -38,6 +38,7 @@ public class InventoryItemData
 
     public bool bIsCard = false;
     public ECardActionType CardActionType = ECardActionType.None;
+    public bool bIsFinalRecipe = false; 
 
 
     public InventoryItemData(ItemData InData, int InInventoryIndex, int InCurrentStackCount = 1, bool InIsCard = false)
