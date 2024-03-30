@@ -133,6 +133,15 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+    public event Action OnCraftComplete;
+    public void CraftComplete()
+    {
+        if (OnCraftComplete != null)
+        {
+            OnCraftComplete();
+        }
+    }
+
     public event Action<List<InventoryItemData>> OnRemovePlayerItems;
     public void RemovePlayerItems(List<InventoryItemData> ItemData)
     {

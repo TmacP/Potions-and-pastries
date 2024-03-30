@@ -276,7 +276,7 @@ public class PlayerController : MonoBehaviour
                 {
                     for (int i = Data.Count - 1; i >= 0; i--)
                     {
-                        toolbar.UseSelectedItem();
+                        toolbar.UseSelectedItem(ECardActionType.Use_Trash);
                     }
                 }
             }
@@ -312,7 +312,7 @@ public class PlayerController : MonoBehaviour
                 {
                     for (int i = Data.Count - 1; i >= 0; i--)
                     {
-                        toolbar.UseSelectedItem();
+                        toolbar.UseSelectedItem(ECardActionType.Use_Trash);
                     }
                 }
             }

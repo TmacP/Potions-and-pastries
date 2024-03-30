@@ -17,6 +17,8 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
     public List<RecipeData> CurrentValidRecipes = new List<RecipeData>(); //this is based off of what is in Current Items
     public List<RecipeData> PossibleValidRecipes = new List<RecipeData>(); //this is based off of the player inventory
     public List<InventoryItemData> OutgoingItems = new List<InventoryItemData>();
+    public List<InventoryItemData> TempCurrentItems = new List<InventoryItemData>();
+
     private bool IsCrafting = false;
     public float CraftingProgress = 0.0f;
     public AssetReference CraftingStationUI;
@@ -77,6 +79,15 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
                 IsCrafting = false;
                 CraftingProgress = 0.0f;
                 RecalculateValidRecipes();
+
+                DeckManager Deck = PlayerController.instance.GetComponent<DeckManager>();
+                Assert.IsNotNull(Deck);
+                foreach(InventoryItemData item in TempCurrentItems)
+                {
+                    Deck.DiscardCard(item);
+                }
+                TempCurrentItems.Clear();
+                GameEventManager.instance.CraftComplete();
                 return EInteractionResult.Success;
             }
             else
@@ -87,6 +98,16 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
                 IsCrafting = false;
                 CraftingProgress = 0.0f;
                 RecalculateValidRecipes();
+
+                DeckManager Deck = PlayerController.instance.GetComponent<DeckManager>();
+                Assert.IsNotNull(Deck);
+                foreach (InventoryItemData item in TempCurrentItems)
+                {
+                    Deck.DiscardCard(item);
+                }
+                TempCurrentItems.Clear();
+
+                GameEventManager.instance.CraftComplete();
                 return EInteractionResult.Success;
             }
 
@@ -282,6 +303,7 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
                     InvItem.CurrentStackCount--;
                     if (InvItem.CurrentStackCount <= 0)
                     {
+                        TempCurrentItems.Add(InvItem);
                         CurrentItems.RemoveAt(i);
                     }
                 }
@@ -307,11 +329,13 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
                     InvItem.CurrentStackCount--;
                     if (InvItem.CurrentStackCount <= 0)
                     {
+                        TempCurrentItems.Add(InvItem);
                         CurrentItems.RemoveAt(i);
                     }
                 }
 
                 Invoke("FinishCraft", RecipeToCraft.CreationTime);
+                GameEventManager.instance.RefreshInventory();
                 GameEventManager.instance.CloseMenu();
                 return true;
             }
@@ -329,6 +353,7 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
     {
         IsCrafting = true;
         CraftingProgress = 1.0f;
+        GameEventManager.instance.RefreshInventory();
         return true;
     }
 

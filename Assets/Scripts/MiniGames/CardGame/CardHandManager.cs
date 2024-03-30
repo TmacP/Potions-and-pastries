@@ -12,6 +12,17 @@ public class CardHandManager : Toolbar
         DrawToFull();
     }
 
+    public void OnEnable()
+    {
+        GameEventManager.instance.OnCraftComplete += DrawToFull;
+    }
+
+    public override void OnDisable() 
+    {
+        base.OnDisable();
+        GameEventManager.instance.OnCraftComplete -= DrawToFull;
+    }
+
     public int GetHandSize()
     {
         return ToolbarManager.inventorySlots.Length;
@@ -33,18 +44,18 @@ public class CardHandManager : Toolbar
         }
     }
 
-    public override bool UseSelectedItem()
+    public override bool UseSelectedItem(ECardActionType Action)
     {
         InventoryItemData Item = GetSelectedItem();
-        if(Item != null && Item.CardActionType == ECardActionType.Use_Discard)
+        if(Item != null && Item.CardActionType == ECardActionType.Use_Discard && Action != ECardActionType.Use_Trash)
         { 
             Deck.DiscardCard(GetSelectedItem());
         }
-        bool Success = base.UseSelectedItem();
-        if (Success && Deck != null)
-        {
-            DrawCard();
-        }
+        bool Success = base.UseSelectedItem(Action);
+        //if (Success && Deck != null)
+        //{
+        //    DrawCard();
+        //}
         return Success;
     }
 

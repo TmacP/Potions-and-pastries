@@ -27,7 +27,7 @@ public class Toolbar : MonoBehaviour
         }
     }
 
-    public void OnDisable()
+    public virtual void OnDisable()
     {
         GameEventManager.instance.OnNPCRecieveOrder -= OnRecieveOrder;
     }
@@ -61,7 +61,7 @@ public class Toolbar : MonoBehaviour
         return true;
     }
 
-    virtual public bool UseSelectedItem()
+    virtual public bool UseSelectedItem(ECardActionType Action)
     {
         return ToolbarManager.UseItem(ToolbarManager.selectedSlot);
     }
