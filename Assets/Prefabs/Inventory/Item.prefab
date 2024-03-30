@@ -95,6 +95,8 @@ MonoBehaviour:
     Data: {fileID: 0}
     InventoryIndex: 0
     CurrentStackCount: 0
+    bIsCard: 0
+    CardActionType: 0
   count: 1
   parentAfterDrag: {fileID: 0}
   inventoryManager: {fileID: 0}
@@ -165,8 +167,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2d92ad8fa12eb4c478bcb18547a5d477, type: 2}
+  m_sharedMaterial: {fileID: -2714145334855759564, guid: 2d92ad8fa12eb4c478bcb18547a5d477, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
