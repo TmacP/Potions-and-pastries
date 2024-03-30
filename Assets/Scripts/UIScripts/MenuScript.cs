@@ -20,7 +20,9 @@ public class MenuScript : MonoBehaviour
     public TMP_Text helpTextPanel;
     public Transform buttonsPanel;
     public GameObject buttonPrefab;
-    List<string> buttonTexts = new List<string> { "Movement", "Gathering", "Service", "Crafting" }; // List of buttons texts or FAQ Related
+
+    // List of buttons texts or FAQ Related
+    List<string> buttonTexts = new List<string> { "Movement", "Gathering", "Service", "Crafting" }; 
 
     public Slider sfxSlider;
     public Slider musicSlider;
@@ -31,6 +33,29 @@ public class MenuScript : MonoBehaviour
     private bool isPaused;
     private void Awake()
     {
+        // Set Sliders to PlayerPrefs values if they exist
+        if (PlayerPrefs.HasKey("Sfx"))
+        {
+            sfxSlider.value = PlayerPrefs.GetFloat("Sfx");
+            sfxvca.setVolume(DecibleToLinear(PlayerPrefs.GetFloat("Sfx")));
+        }
+        if (PlayerPrefs.HasKey("Bgm"))
+        {
+            musicSlider.value = PlayerPrefs.GetFloat("Bgm");
+            musicvca.setVolume(DecibleToLinear(PlayerPrefs.GetFloat("Bgm")));
+        }
+        // if playerrpefs have sfx or bgm set, set it to 0.5f
+        if (!PlayerPrefs.HasKey("Sfx") || !PlayerPrefs.HasKey("Bgm"))
+        {
+            sfxSlider.value = 0.5f;
+            musicSlider.value = 0.5f;
+            sfxvca.setVolume(DecibleToLinear(0.5f));
+            musicvca.setVolume(DecibleToLinear(0.5f));
+            PlayerPrefs.SetFloat("Sfx", 0.5f);
+            PlayerPrefs.SetFloat("Bgm", 0.5f);
+
+        }
+
         EventSystem.current.SetSelectedGameObject(_PauseMenuFirstSelection);
     }
     private void Start()
@@ -49,10 +74,30 @@ public class MenuScript : MonoBehaviour
 
         // Create a list of resolution options
         InitializeResolutionOptions();
+        if (PlayerPrefs.HasKey("Resolution"))
+        {
+            if (PlayerPrefs.GetInt("Resolution") == 0)
+            {
+                Screen.SetResolution(1920, 1080, Screen.fullScreen);
+                resolutionDropdown.captionText.text = "1080p";
+            }
+            else if (PlayerPrefs.GetInt("Resolution") == 1)
+            {
+                Screen.SetResolution(1280, 720, Screen.fullScreen);
+                resolutionDropdown.captionText.text = "720p";
+            }
+        }
+    
 
-        // Set the initial fullscreen mode based on the current state
-        fullscreenToggle.isOn = Screen.fullScreen;
-
+        // Set the initial fullscreen mode based on the current state unless playerprefs has a value
+        if (!PlayerPrefs.HasKey("Fullscreen"))
+        {
+            fullscreenToggle.isOn = Screen.fullScreen;
+        }
+        else
+        {
+            fullscreenToggle.isOn = Convert.ToBoolean(PlayerPrefs.GetInt("Fullscreen"));
+        }
         // Add listeners for value changes in the dropdown and toggle
         resolutionDropdown.onValueChanged.AddListener(delegate { SetResolution(resolutionDropdown.value); });
         fullscreenToggle.onValueChanged.AddListener(delegate { SetFullscreen(fullscreenToggle.isOn); });
@@ -77,18 +122,26 @@ public class MenuScript : MonoBehaviour
         {
             case 0: // 1920x1080
                 Screen.SetResolution(1920, 1080, Screen.fullScreen);
+                PlayerPrefs.SetInt("Resolution", 0);
+                resolutionDropdown.captionText.text = "1080p";
                 break;
             case 1: // 1280x720
                 Screen.SetResolution(1280, 720, Screen.fullScreen);
+                PlayerPrefs.SetInt("Resolution", 1);
+                resolutionDropdown.captionText.text = "720p";
                 break;
             default:
                 Debug.LogError("Invalid resolution index!");
                 break;
         }
+        PlayerPrefs.Save(); // Save the resolution to playerprefs
     }
 
     public void SetFullscreen(bool isFullscreen)
     {
+        // save this choice to playerprefs
+        PlayerPrefs.SetInt("Fullscreen", Convert.ToInt32(isFullscreen));
+        PlayerPrefs.Save();
         Screen.fullScreen = isFullscreen;
     }
 
@@ -99,14 +152,16 @@ public class MenuScript : MonoBehaviour
 
         // Save volume to PlayerPrefs (idk if this will be useful)
         PlayerPrefs.SetFloat("Sfx", sfxSlider.value); // Save volume to PlayerPrefs
+        PlayerPrefs.Save();
     }
 
     public void SetMusic()
     {
         musicvca.setVolume(DecibleToLinear(musicSlider.value));
 
-        // Save volume to PlayerPrefs (idk if this will be useful)
+        // Save volume to PlayerPrefs (idk if this will be useful) 
         PlayerPrefs.SetFloat("Bgm", musicSlider.value); // Save volume to PlayerPrefs
+        PlayerPrefs.Save();
     }
 
 
@@ -141,7 +196,7 @@ public class MenuScript : MonoBehaviour
                 helpTextPanel.text = "Press `TAB` to open inventory. During service your Deck of Cards is locked. Make sure you have everything you need before service. Drag cards from your inventory to your deck to use them. Click start service to begin.";
                 break;
             case "Crafting":
-                helpTextPanel.text = "You can see recipies to craft by pressing `G`. Use `Q` to play the selected card at the crafting station. Use `E` to craft items.";
+                helpTextPanel.text = "You can see recipies to craft by pressing `G`. \n\nUse `Q` to play the selected card at the crafting station. \n\nUse `E` to craft items.";
                 break;
 
             // add more...
