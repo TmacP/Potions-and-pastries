@@ -133,12 +133,12 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
-    public event Action OnCraftComplete;
-    public void CraftComplete()
+    public event Action<int> OnCraftComplete;
+    public void CraftComplete(int CardsToDraw)
     {
         if (OnCraftComplete != null)
         {
-            OnCraftComplete();
+            OnCraftComplete(CardsToDraw);
         }
     }
 

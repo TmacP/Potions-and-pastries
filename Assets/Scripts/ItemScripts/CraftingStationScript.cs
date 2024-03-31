@@ -74,11 +74,10 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
             {
                 //return EInteractionResult.Failure;
                 Debug.Log("Crafting and full");
-                GameEventManager.instance.GivePlayerItems(OutgoingItems);
-                OutgoingItems.Clear();
+                
                 IsCrafting = false;
                 CraftingProgress = 0.0f;
-                RecalculateValidRecipes();
+                
 
                 DeckManager Deck = PlayerController.instance.GetComponent<DeckManager>();
                 Assert.IsNotNull(Deck);
@@ -86,18 +85,23 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
                 {
                     Deck.DiscardCard(item);
                 }
+                int CardsToDraw = TempCurrentItems.Count;
                 TempCurrentItems.Clear();
-                GameEventManager.instance.CraftComplete();
+                GameEventManager.instance.CraftComplete(CardsToDraw);
+
+
+                GameEventManager.instance.GivePlayerItems(OutgoingItems);
+                GameEventManager.instance.DeckSizeChange();
+                OutgoingItems.Clear();
+                RecalculateValidRecipes();
                 return EInteractionResult.Success;
             }
             else
             {
                 Debug.Log("Crafting finished");
-                GameEventManager.instance.GivePlayerItems(OutgoingItems);
-                OutgoingItems.Clear();
+                
                 IsCrafting = false;
                 CraftingProgress = 0.0f;
-                RecalculateValidRecipes();
 
                 DeckManager Deck = PlayerController.instance.GetComponent<DeckManager>();
                 Assert.IsNotNull(Deck);
@@ -105,9 +109,14 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
                 {
                     Deck.DiscardCard(item);
                 }
+                int CardsToDraw = TempCurrentItems.Count;
                 TempCurrentItems.Clear();
+                GameEventManager.instance.CraftComplete(CardsToDraw);
+                GameEventManager.instance.GivePlayerItems(OutgoingItems);
+                GameEventManager.instance.DeckSizeChange();
+                OutgoingItems.Clear();
+                RecalculateValidRecipes();
 
-                GameEventManager.instance.CraftComplete();
                 return EInteractionResult.Success;
             }
 

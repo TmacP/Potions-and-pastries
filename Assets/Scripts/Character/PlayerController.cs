@@ -434,7 +434,10 @@ public void OnPauseMenuClose()
                 }
                 else
                 {
-                    toolbar.ToolbarManager.AddItem(item);
+                    CardHandManager CardHand = toolbar as CardHandManager;
+                    Assert.IsNotNull(CardHand);
+                    CardHand.AddCardToHand(item);
+                    //toolbar.ToolbarManager.AddItem(item);
                 }
             }
         }
