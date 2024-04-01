@@ -23,18 +23,18 @@ VAR chocolateGate = false
 
 
 = tutorial
-"Hello, you must be the new owner. Would you like an explanation about running thing?"
-* "Yes, I'm new here[".] can you explain."
+"Hello, you must be the new owner. Would you like an explanation about running things?"
+* "Yes, I'm new here[".] can you explain?"
 * "No, I already know what to do"
 -> end_tutorial
 - "Of course, as the new owner you are responsible for gathering ingredients for the inn's apothecary and bakery. You will find everything you need around outside. You'll have the whole day to gather since the inn doesn't start service till the evening."
 - (questions)
-* "What sort of ingredients[".] do I need to gather?" 
+* "What sort of ingredients[".] do I need to gather?"
 "The ingredients you will need are: Apples, Cherries, Eggs, Cocoa beans, Milk, Salt, Sugar Canes, Tea Leaves, Vanilla Beans, and Wheat." -> questions
 * "What will I be crafting[".] with the ingredients I gather?"
 "with these ingredients you will be crafting potions and pastries to sell to the patrons of the inn." -> questions
-* "Okay I think I understand[".] 
-    -> end_tutorial
+* "Okay I think I understand[".]
+	-> end_tutorial
 
 = end_tutorial
 "Great, since you know what you're doing I'll leave you to it."
@@ -46,18 +46,18 @@ VAR chocolateGate = false
 = post_tutorial
 { day >= 2 : -> second_day } // break out of loop if it is 2nd day
 {
-        - class == "Rogue":
-            -> Rogue
-        - class == "Magician":
-            -> Magician
-        - class == "Ranger":
-            -> Ranger
-        - class == "Fighter":
-            -> Fighter
-    }
+    	- class == "Rogue":
+        	-> Rogue
+    	- class == "Magician":
+        	-> Magician
+    	- class == "Ranger":
+        	-> Ranger
+    	- class == "Fighter":
+        	-> Fighter
+	}
     
 - (Rogue)
-{ &"If your done looking around you should go inside and get ready for the night!" | "Are you lost?" | "hmm..." }
+{ &"If you're done looking around you should go inside and get ready for the night!" | "Are you lost?" | "hmm..." }
 + [Continue]
 -> DONE
 
@@ -82,25 +82,25 @@ VAR chocolateGate = false
 ~ nextPathString = "second_day" // will loop in second day
 
 {
-    - class == "Rogue":
-        -> Rogue_intro
-    - class == "Magician":
-        -> Magician_intro
-    - class == "Ranger":
-        -> Ranger_intro
-    - class == "Fighter":
-        -> Fighter_intro
+	- class == "Rogue":
+    	-> Rogue_intro
+	- class == "Magician":
+    	-> Magician_intro
+	- class == "Ranger":
+    	-> Ranger_intro
+	- class == "Fighter":
+    	-> Fighter_intro
 }
 
 = Rogue_intro
 { second_day.Rogue_intro > 1 : -> post}
 "Hello, I'm Rogue {name}. It is nice to have a chance to talk. You were so busy last night. How are you enjoying your inn so far?"
-* "A lot[."], it has so much potential. With some work things will really go great."
+* "A lot"[."], it has so much potential. With some work things will really go great."
 * "Not much[."], I didn't realize how much work it took to run things."
 - "Yea, it is a lot of work, but the potential is there. I can't wait to see what you do with the place."
 * "So what are you doing[."] out here anyways?"
 * "Thanks[."], and good luck with whatever you're doing out here!"
-    -> fin
+	-> fin
 - "Well aren't you the curious little inn keeper. I don't know if we're good enough friends for me to let you know that. Let's just say I'm looking for something."
 - (fin)
 + [Continue]
@@ -109,13 +109,13 @@ VAR chocolateGate = false
 
 = Magician_intro
 { second_day.Magician_intro > 1 : -> post}
-"Hey, I'm Magician {name}. So you're the new owner of the inn. I hope you stock up on tea leaves. I'm know for being thirsty, amongst other things, especially after spending all day out in the sunshine."
+"Hey, I'm Magician {name}. So you're the new owner of the inn. I hope you stock up on tea leaves. I'm known for being thirsty, amongst other things, especially after spending all day out in the sunshine."
 * "What are you doing[."] out here anyways?"
 * "Sure...[."] I'll get right on that."
-    -> fin
+	-> fin
 - "Shh, that's my business. Plus if I told you I'd have to worry about you poisoning me and trying to steal my boots"
 + ["That wouldn't happen."]
-- "Exactally what a theif would say! Maybe once we are better friends I'll let you know. As long as I don't see you eyeing my boots."
+- "Exactly what a thief would say! Maybe once we are better friends I'll let you know. As long as I don't see you eyeing my boots."
 - (fin)
 + [Continue]
 -> DONE
@@ -123,44 +123,44 @@ VAR chocolateGate = false
 = Ranger_intro
 { second_day.Ranger_intro > 1 : -> post}
 - "I'm Ranger {name}. I guess you're probably wondering what all these people are doing out here anyways?"
-* "Funny you should mention that[."], I was just about to ask." 
+* "Funny you should mention that[."], I was just about to ask."
 - "They will play coy like they aren't, but they are looking for the entrance to the cave which is rumored to be around here."
 - (cave)
-* "Why would they care about a cave?" 
+* "Why would they care about a cave?"
 "Supposedly inside there are all sorts of monsters inside which one could fight to prove their bravery." -> cave
-* "What like for spelunking?"
-"That and the rumors of a wealth of gold and precious gems hidden inside its depths."     -> cave
-* "Well I'm not going in any freaky cave."
-- "And I don't blame you. Who'd run the inn? Besides you don't look like the type to follow others. I respect that, even if you do seem a little timid."
-    + [Continue]
-    -> DONE
+* "What like for spelunking like?"
+"That and the rumors of a wealth of gold and precious gems hidden inside its depths." 	-> cave
+* "Well I'm not going into any freaky cave."
+- "And I don't blame you. Who'd run the inn? Besides, you don't look like the type to follow others. I respect that, even if you do seem a little timid."
+	+ [Continue]
+	-> DONE
 
 = Fighter_intro
 { second_day.Fighter_intro > 1 : -> post}
 "I'm Fighter {name}. So you decided to take over the inn, very bold of you, I admire your courage."
 - (cave)
-    * "What are you up to[?"], out here anyways?" 
+	* "What are you up to[?"], out here anyways?"
 "You know I've been so busy chasing wealth I never even stopped to ask myself that. What even am I doing out here?"-> cave
-    * "You aren't another one[."] of those cave explorors are you?" 
-"Amazing, how could you tell? And who told you about the cave it is supposed to be a secret." -> cave
-    * "Well I hope you figure out all that[."], even if you seem a little confused I'm sure it will all work out." 
+	* "You aren't another one[."] of those cave explorers are you?"
+"Amazing, how could you tell? And who told you about the cave? It is supposed to be a secret." -> cave
+	* "Well I hope you figure out all that[."], even if you seem a little confused I'm sure it will all work out."
 - "You know, even when things look bleak they have a way of working themselves out."
-        + [Continue]
-        -> DONE
+    	+ [Continue]
+    	-> DONE
 
 // day 2 post story dialogue
 = post
 { day >= 3 : -> third_day } // break out of loop if it is 3nd day
 {
-        - class == "Rogue":
-            -> Rogue
-        - class == "Magician":
-            -> Magician
-        - class == "Ranger":
-            -> Ranger
-        - class == "Fighter":
-            -> Fighter
-    }
+    	- class == "Rogue":
+        	-> Rogue
+    	- class == "Magician":
+        	-> Magician
+    	- class == "Ranger":
+        	-> Ranger
+    	- class == "Fighter":
+        	-> Fighter
+	}
     
 - (Rogue)
 { &"You should get some ingredients for the inn!" | "Cute, my own fan!" | "hmm..." }
@@ -187,14 +187,14 @@ VAR chocolateGate = false
 // adventurers found the cave entrance
 ~ nextPathString = "third_day"
 {
-    - class == "Rogue":
-        -> Rogue_intro
-    - class == "Magician":
-        -> Magician_intro
-    - class == "Ranger":
-        -> Ranger_intro
-    - class == "Fighter":
-        -> Fighter_intro
+	- class == "Rogue":
+    	-> Rogue_intro
+	- class == "Magician":
+    	-> Magician_intro
+	- class == "Ranger":
+    	-> Ranger_intro
+	- class == "Fighter":
+    	-> Fighter_intro
 }
 
 = Rogue_intro
@@ -234,7 +234,7 @@ VAR chocolateGate = false
 + ["So what are you doing out here?"]
 - "I realized I never wanted to be a fighter but I just fell into the role society pushed onto me!"
 + ["So what are you going to do now?"]
-- "Oh man, I never even though about that... What am I going to do now?"
+- "Oh man, I never even thought about that... What am I going to do now?"
 + [Continue]
 -> DONE
 
@@ -242,18 +242,18 @@ VAR chocolateGate = false
 = post
 { day >= 4 : -> fourth_day } // break out of loop if it is 4th day
 {
-        - class == "Rogue":
-            -> Rogue
-        - class == "Magician":
-            -> Magician
-        - class == "Ranger":
-            -> Ranger
-        - class == "Fighter":
-            -> Fighter
-    }
+    	- class == "Rogue":
+        	-> Rogue
+    	- class == "Magician":
+        	-> Magician
+    	- class == "Ranger":
+        	-> Ranger
+    	- class == "Fighter":
+        	-> Fighter
+	}
     
 - (Rogue)
-{ &"Hope I find some nice emeralds! Green is my colour!" | "Let's just pretend this never happened!" | "Shh..." }
+{ &"Hope I find some nice emeralds! Green is my color!" | "Let's just pretend this never happened!" | "Shh..." }
 + [Continue]
 -> DONE
 
@@ -263,7 +263,7 @@ VAR chocolateGate = false
 -> DONE
 
 - (Ranger)
-{ &"Need some saucy sweets for my journey underneath" | "What kind of potions are good for decending into the ground?" |"Okay this is it don't get scared now!" }
+{ &"Need some saucy sweets for my journey underneath" | "What kind of potions are good for descending into the ground?" |"Okay this is it don't get scared now!" }
 + [Continue]
 -> DONE
 
@@ -277,14 +277,14 @@ VAR chocolateGate = false
 // adventurers go inside cave
 ~ nextPathString = "fourth_day"
 {
-    - class == "Rogue":
-        -> Rogue_intro
-    - class == "Magician":
-        -> Magician_intro
-    - class == "Ranger":
-        -> Ranger_intro
-    - class == "Fighter":
-        -> Fighter_intro
+	- class == "Rogue":
+    	-> Rogue_intro
+	- class == "Magician":
+    	-> Magician_intro
+	- class == "Ranger":
+    	-> Ranger_intro
+	- class == "Fighter":
+    	-> Fighter_intro
 }
 
 = Rogue_intro
@@ -319,22 +319,22 @@ VAR chocolateGate = false
 - "Last night in the inn everyone was talking about exploring the caves so I'm gonna follow them down so they have a strong fighter to help!"
 + ["Follow them..."]
 - "Oh no. I'm doing it again just following the crowd."
-        + [Continue]
-        -> DONE
+    	+ [Continue]
+    	-> DONE
 
 // day 3 post story dialogue
 = post
 { day >= 5 : -> fifth_day } // break out of loop if it is 5th day
 {
-        - class == "Rogue":
-            -> Rogue
-        - class == "Magician":
-            -> Magician
-        - class == "Ranger":
-            -> Ranger
-        - class == "Fighter":
-            -> Fighter
-    }
+    	- class == "Rogue":
+        	-> Rogue
+    	- class == "Magician":
+        	-> Magician
+    	- class == "Ranger":
+        	-> Ranger
+    	- class == "Fighter":
+        	-> Fighter
+	}
     
 - (Rogue)
 { &"What will I buy first? | "Satin or silk you think?" | "That fighter looks like he could carry lots of treasure!" }
@@ -352,28 +352,28 @@ VAR chocolateGate = false
 -> DONE
 
 - (Fighter)
-{  &"How can I become independant!" | "I need you to tell me!" | "Tell me what to do!" }
+{  &"How can I become independent!" | "I need you to tell me!" | "Tell me what to do!" }
 + [Continue]
 -> DONE
 
 === fifth_day
 // FIFTH DAY *****************************************
-// adventurers find a cockatrice and cows gaurding treasure
+// adventurers find a cockatrice and cows guarding treasure
 ~ nextPathString = "fifth_day"
 {
-    - class == "Rogue":
-        -> Rogue_intro
-    - class == "Magician":
-        -> Magician_intro
-    - class == "Ranger":
-        -> Ranger_intro
-    - class == "Fighter":
-        -> Fighter_intro
+	- class == "Rogue":
+    	-> Rogue_intro
+	- class == "Magician":
+    	-> Magician_intro
+	- class == "Ranger":
+    	-> Ranger_intro
+	- class == "Fighter":
+    	-> Fighter_intro
 }
 
 = Rogue_intro
 { fifth_day.Rogue_intro > 1 : -> post}
-"Yesterday inside the caves there was a room in the back which was full of gold and gems. 
+"Yesterday inside the caves there was a room in the back which was full of gold and gems.
 + ["So are you rich now!"]
 - "I wish, inside was a Giant Cockatrice and several armed Cows protecting it! "
 + ["Uh what?"]
@@ -389,42 +389,42 @@ VAR chocolateGate = false
 - "There was some huge bird snake thing and several Cow standing upright armed with weapons"
 + ["Bet they had shoes too..."]
 - "If I could find a way to sneak in there I could buy an entire wardrobe"
-        + [Continue]
-        -> DONE
+    	+ [Continue]
+    	-> DONE
 
 = Ranger_intro
 { fifth_day.Ranger_intro > 1 : -> post}
-"Incredible there is a whole room filled with treasure!"
+"Incredibly there is a whole room filled with treasure!"
 + ["So about your tab..."]
-- "Even more incredible there is a humongus Cockatrice with it's own militia of Cow gaurds"
+- "Even more incredible there is a humongus Cockatrice with its own militia of Cow guards"
 + ["Explains why your tab is still open..."]
 - "Tomorrow we will go inside and challenge them to a contest for their treasure!"
-        + [Continue]
-        -> DONE
+    	+ [Continue]
+    	-> DONE
 
 = Fighter_intro
 { fifth_day.Fighter_intro > 1 : -> post}
 "I Followed the other into this room in the back of the caves and almost got turned to stone by a Cockatrice's gaze!"
 + ["I thought you were going to do your own thing"]
-- "The Rogue said I would be a conformest if I didn't follow the crowd into the caves!"
+- "The Rogue said I would be a conformist if I didn't follow the crowd into the caves!"
 + ["You believed them?"]
-- "Wait am I suppost to follow them and do, or follow the ones who don't? Now I'm confused"
-        + [Continue]
-        -> DONE
+- "Wait, am I supposed to follow them and do, or follow the ones who don't? Now I'm confused"
+    	+ [Continue]
+    	-> DONE
 
 // day 5 post story dialogue
 = post
 { day >= 6 : -> sixth_day } // break out of loop if it is 6th day
 {
-        - class == "Rogue":
-            -> Rogue
-        - class == "Magician":
-            -> Magician
-        - class == "Ranger":
-            -> Ranger
-        - class == "Fighter":
-            -> Fighter
-    }
+    	- class == "Rogue":
+        	-> Rogue
+    	- class == "Magician":
+        	-> Magician
+    	- class == "Ranger":
+        	-> Ranger
+    	- class == "Fighter":
+        	-> Fighter
+	}
     
 - (Rogue)
 {  &"So much money!" | "Maybe I can convince the Magician to be a distraction!" | "Too much to carry myself anyways!" }
@@ -432,17 +432,17 @@ VAR chocolateGate = false
 -> DONE
 
 - (Magician)
-{  &"Such majectic creatures!" | "I bet they are thirst too!" | "I wounder if I can convince them to trade me for pastries!" }
+{  &"Such majestic creatures!" | "I bet they are thirst too!" | "I wonder if I can convince them to trade me for pastries!" }
 + [Continue]
 -> DONE
 
 - (Ranger)
-{  &"Hey can you front me some potions?" | "Better throw in some pastries!" | "I'm good for it!" }
+{  &"Hey, can you front me some potions?" | "Better throw in some pastries!" | "I'm good for it!" }
 + [Continue]
 -> DONE
 
 - (Fighter)
-{  &"Could you just tell me what to do?" | "It's hard making desicions" | "I think I'll just go along with whatever they are doing!"  }
+{  &"Could you just tell me what to do?" | "It's hard making decisions" | "I think I'll just go along with whatever they are doing!"  }
 + [Continue]
 -> DONE
 
@@ -451,70 +451,70 @@ VAR chocolateGate = false
 // adventurers defeat monster and get treasure END OF STORY
 ~ nextPathString = "sixth_day"
 {
-    - class == "Rogue":
-        -> Rogue_intro
-    - class == "Magician":
-        -> Magician_intro
-    - class == "Ranger":
-        -> Ranger_intro
-    - class == "Fighter":
-        -> Fighter_intro
+	- class == "Rogue":
+    	-> Rogue_intro
+	- class == "Magician":
+    	-> Magician_intro
+	- class == "Ranger":
+    	-> Ranger_intro
+	- class == "Fighter":
+    	-> Fighter_intro
 }
 
 = Rogue_intro
 { sixth_day.Rogue_intro > 1 : -> post}
 "We went back to get the treasure out of the Cave!"
 + ["Combat?"]
-- "No it turns out the Cockatrice and cows are a theater troup and they just wanted an audience to perform for!"
+- "No it turns out the Cockatrice and cows are a theater troupe and they just wanted an audience to perform for!"
 + ["So how did they end up with a room of treasure then?"]
-- "It turns out it is just an elaborate set for the play their rehersing!"
+- "It turns out it is just an elaborate set for the play they're rehearsing!"
   + [Continue]
  -> DONE
  
 
 = Magician_intro
 { sixth_day.Magician_intro > 1 : -> post}
-"That is it no more potions for me!"
+"That is it, no more potions for me!"
 + ["Why not?"]
 - "I just sat through a play with talking cows and a giant cockatrice! I'm thinking of getting myself checked out."
 + ["Well I'm not convinced you're not insane!"]
 - "Thanks! Wait, what do you mean..."
-        + [Continue]
-        -> DONE
+    	+ [Continue]
+    	-> DONE
 
 = Ranger_intro
 { sixth_day.Ranger_intro > 1 : -> post}
-"I thought I was in for a fight but instead I had to sit throught the most boring play!"
+"I thought I was in for a fight but instead I had to sit through the most boring play!"
 + ["So about the money you owe me?"]
 - "And the worst part is they passed around a hat after and I was obliged to donate the rest of my money!"
 + ["I guess you can clean dishes or something at the inn..."]
 - "I've got a new plan to make a fortune selling self help books!"
-        + [Continue]
-        -> DONE
+    	+ [Continue]
+    	-> DONE
 
 = Fighter_intro
 { sixth_day.Fighter_intro > 1 : -> post}
-"I'm no longer confused about my lives meaning!"
+"I'm no longer confused about the meaning of my life!"
 + ["Did you stop following the crowd?"]
 - "I found my true calling as a thespian!"
 + ["What?"]
-- "I joined the theater troup. Now I'll have a director to tell me what to do and say..."
-        + [Continue]
-        -> DONE
+- "I joined the theater troupe. Now I'll have a director to tell me what to do and say..."
+    	+ [Continue]
+    	-> DONE
 
 // day 6 post story dialogue
 = post
 // { day >= 6 : -> sixth_day } // never break out of loop since story ends
 {
-        - class == "Rogue":
-            -> Rogue
-        - class == "Magician":
-            -> Magician
-        - class == "Ranger":
-            -> Ranger
-        - class == "Fighter":
-            -> Fighter
-    }
+    	- class == "Rogue":
+        	-> Rogue
+    	- class == "Magician":
+        	-> Magician
+    	- class == "Ranger":
+        	-> Ranger
+    	- class == "Fighter":
+        	-> Fighter
+	}
     
 - (Rogue)
 {  &"Guess it is back to making a dishonest living as a Rogue!" | "That one bovine sure can act!" | "I'm not sure a cave is a great place to stage a play!" }
@@ -527,7 +527,7 @@ VAR chocolateGate = false
 -> DONE
 
 - (Ranger)
-{  &"How to make 1 million dollars." | "I'm qualified to write this book!" | "I'd be a millionare if circumstances were different." }
+{  &"How to make 1 million dollars." | "I'm qualified to write this book!" | "I'd be a millionaire if circumstances were different." }
 + [Continue]
 -> DONE
 
