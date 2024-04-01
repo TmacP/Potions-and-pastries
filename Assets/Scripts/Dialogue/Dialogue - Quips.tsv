@@ -1,56 +1,64 @@
-ID	Dialogue	Trigger (barrel tagged "barrel" and voiceline activated if in NPC view)	Audio Asset Ref		
-	Rogue			Criteria: objects name and times seen	
-		Food		Response: some dialog	
-1	I could eat an entire elephant, you don't have any? do you...	NPCState.Class=Rogue, NPCState.Favourite=Doughy, NPCState.Hungry, GameState=Night, NPCState.ProvidingOrder < 1		Remember: increment seen times	
-	I'm berry hungry, so feed me cherrys.	NPCState.Class=Rogue, NPCState.Favourite=[Doughy,Berry] NPCState.Hungry, GameState=Night, NPCState.ProvidingOrder < 1			
-2	I'm on a diet but today ends with Y so I get to have what I like!	NPCState.Class=Rogue, NPCState.Favourite=Doughy, NPCState.Hungry, GameState=Night, NPCState.LastRecivedOrder < 1		Context (Facts)	
-					
-		Drink		Query (list of facts) {fact1, fact2, etc}	26 mins
-3	After last night the only thing that will help is another night like last. Bring me a drink will ya!	NPCState.Class=Rogue, NPCState.Favourite=Bitter, NPCState.Thirsty, GameState=Night, NPCState.ProvidingOrder < 1		function that tests the facts (pick rule with most matches, search for response after first dialogue is done)	
-					
-4	That will do the trick!	NPCState.Class=Rogue, NPCState.Favourite=Bitter, NPCState.Thirsty, GameState=Night, NPCState.LastRecivedOrder < 1		Concept	
-					
-		Conversation		Criteria	
-5	I'm not always sneaking around like this, I swear!	NPCState.Class=Rogue, GameState=Day, PlayerState=Converse		Response	
-					
-	Magician			39 min C++ specific slide	
-		Food		46:23 stopping point	
-6	Whats a person gotta do around here to get their gullet filled?	NPCState.Class=Magician, NPCState.Favourite=Doughy, NPCState.Hungry, GameState=Night, NPCState.ProvidingOrder < 1			
-					
-7	Lucky I didn't turn you into a toad!	NPCState.Class=Magician, NPCState.Favourite=Doughy, NPCState.Hungry, GameState=Night, NPCState.LastRecivedOrder < 1			
-					
-		Drink			
-8	I need some brew to dip my nose into!	NPCState.Class=Magician, NPCState.Favourite=Bitter, NPCState.Thirsty, GameState=Night, NPCState.ProvidingOrder < 1			
-					
-9	Fantastic I can tell you know-se your way around a cauldron!	NPCState.Class=Magician, NPCState.Favourite=Bitter, NPCState.Thirsty, GameState=Night, NPCState.LastRecivedOrder < 1			
-					
-		Conversation			
-10	Once I was just a simple labourer until I got in with a bad covenant; now I'm simply laboured	NPCState.Class=Magician, GameState=Day, PlayerState=Converse			
-					
-	Ranger				
-		Food			
-11	Well I'm not here to kick spiders, Get me some grub!	NPCState.Class=Ranger, NPCState.Favourite=Doughy, NPCState.Hungry, GameState=Night, NPCState.ProvidingOrder < 1			
-					
-12	Well, since you're the only kitchen, I'd say you're the best kitchen around	NPCState.Class=Ranger, NPCState.Favourite=Doughy, NPCState.Hungry, GameState=Night, NPCState.LastRecivedOrder < 1			
-					
-		Drink			
-13	If you don't have something to make me handsome bring me something to make me handy!	NPCState.Class=Ranger, NPCState.Favourite=Bitter, NPCState.Thirsty, GameState=Night, NPCState.ProvidingOrder < 1			
-					
-14	Keep em coming, I like my bum warm and my potions cold!	NPCState.Class=Ranger, NPCState.Favourite=Bitter, NPCState.Thirsty, GameState=Night, NPCState.LastRecivedOrder < 1			
-					
-		Conversation			
-15	I think I'm lost... no wait... yep, I'm lost!	NPCState.Class=Ranger, GameState=Day, PlayerState=Converse			
-					
-	Fighter				
-		Food			
-16	I'm not getting any younger but I'm getting hungry!	NPCState.Class=Fighter, NPCState.Favourite=Doughy, NPCState.Hungry, GameState=Night, NPCState.ProvidingOrder < 1			
-					
-17	That smells delicious!	NPCState.Class=Fighter, NPCState.Favourite=Doughy, NPCState.Hungry, GameState=Night, NPCState.LastRecivedOrder < 1			
-					
-		Drink			
-18	I'll have what their having!	NPCState.Class=Fighter, NPCState.Favourite=Bitter, NPCState.Thirsty, GameState=Night, NPCState.ProvidingOrder < 1			
-					
-19	I didn't order this!	NPCState.Class=Fighter, NPCState.Favourite=Bitter, NPCState.Thirsty, GameState=Night, NPCState.LastRecivedOrder < 1			
-					
-		Conversation			
-20	In the morning I'm doing stomach crunches. I can do 1000 now.	NPCState.Class=Fighter, GameState=Day, PlayerState=Converse			
+ID	Dialogue	Trigger (barrel tagged "barrel" and voiceline activated if in NPC view)
+		Food Order
+1	I could eat an entire elephant, you don't have any? do you...	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Fruity, Buttery], NPCState.Hungry, NPCState.ProvidingOrder < 1
+2	Get me something sweet and fruity!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Fruity, Sweet], NPCState.Hungry, NPCState.ProvidingOrder < 1
+3	I'm berry hungry, so feed me cherrys!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Berry, Buttery], NPCState.Hungry, NPCState.ProvidingOrder < 1
+4	Could I have some berry flavored cake?	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Berry, Sweet], NPCState.Hungry, NPCState.ProvidingOrder < 1
+5	I've got a fever, and the only cure is more Chocolate Danish!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Chocolatey, Buttery], NPCState.Hungry, NPCState.ProvidingOrder < 1
+6	Hurry I need some Chocolate cake to tide me over!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Chocolatey, Sweet], NPCState.Hungry, NPCState.ProvidingOrder < 1
+7	I'm gonna make you an offer you can't refuse.	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Vanilley, Buttery], NPCState.Hungry, NPCState.ProvidingOrder < 1
+8	The flavor... the flavor...	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Vanilley, Sweet], NPCState.Hungry, NPCState.ProvidingOrder < 1
+9	Whats a person gotta do around here to get their gullet filled?	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Fruity, Buttery], NPCState.Hungry, NPCState.ProvidingOrder < 1
+10	Show me the cherry!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Berry, Buttery], NPCState.Hungry, NPCState.ProvidingOrder < 1
+11	I'm not getting any younger but I'm getting hungry!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Fruity, Buttery], NPCState.Hungry, NPCState.ProvidingOrder < 1
+12	Well I'm not here to kick spiders, Get me some grub!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Fruity, Buttery], NPCState.Hungry, NPCState.ProvidingOrder < 1
+		Food Received
+13	I'm on a diet but today ends with Y so I get to have what I like!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Fruity, Buttery], NPCState.Hungry, NPCState.LastRecivedOrder < 1
+14	Oh that looks like the apple of my eye!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Fruity, Sweet], NPCState.Hungry, NPCState.LastRecivedOrder < 1
+15	Thank you cherry much!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Berry, Buttery], NPCState.Hungry, NPCState.LastRecivedOrder < 1
+16	Oh that looks berry sweet?	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Berry, Sweet], NPCState.Hungry, NPCState.LastRecivedOrder < 1
+17	Don't fear the flavor!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Chocolatey, Buttery], NPCState.Hungry, NPCState.LastRecivedOrder < 1
+18	The only thing better than Chocolate is Chocolate cake.	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Chocolatey, Sweet], NPCState.Hungry, NPCState.LastRecivedOrder < 1
+19	Here's looking at you, kid.	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Vanilley, Buttery], NPCState.Hungry, NPCState.LastRecivedOrder < 1
+20	I love the smell of vanilla in the morning.	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Vanilley, Sweet], NPCState.Hungry, NPCState.LastRecivedOrder < 1
+21	Lucky I didn't turn you into a toad!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Fruity, Buttery], NPCState.Hungry, NPCState.LastRecivedOrder < 1
+22	That smells delicious!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Fruity, Buttery], NPCState.Hungry, NPCState.LastRecivedOrder < 1
+23	I will not rest until I have eaten this entire danish	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Berry, Buttery], NPCState.Hungry, NPCState.LastRecivedOrder < 1
+24	Well, since you're the only kitchen, I'd say you're the best kitchen around	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Fruity, Buttery], NPCState.Hungry, NPCState.LastRecivedOrder < 1
+25	That smells delicious!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Doughy, Fruity, Buttery], NPCState.Hungry, NPCState.LastRecivedOrder < 1
+		Drink Order
+26	I just heard the most terrifying thing, bring a potion to make me brave!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Berry], NPCState.Thirsty, NPCState.ProvidingOrder < 1
+27	I'm feeling down, bring me something pleasant which will pick me up.	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Chocolatey], NPCState.Thirsty, NPCState.ProvidingOrder < 1
+28	I'm tired as a dwarf bring me something to help me sleep	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Fruity], NPCState.Thirsty, NPCState.ProvidingOrder < 1
+29	After last night the only thing that will help is another night like last. Bring me a drink will ya!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Vanilley], NPCState.Thirsty, NPCState.ProvidingOrder < 1
+30	I'm a wimp, I need to become brave!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Berry], NPCState.Thirsty, NPCState.ProvidingOrder < 1
+31	It is a season for some change!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Sweet, Fruity], NPCState.Thirsty, NPCState.ProvidingOrder < 1
+32	I'm having a bad streak bring me something to make me lucky	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Sweet, Chocolatey], NPCState.Thirsty, NPCState.ProvidingOrder < 1
+33	I need a potion to infatuate someone.	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Sweet, Vanilley], NPCState.Thirsty, NPCState.ProvidingOrder < 1
+34	I need some brew to dip my nose into!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Berry], NPCState.Thirsty, NPCState.ProvidingOrder < 1
+35	there's a difference between knowing the path and walking the path.	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Chocolatey], NPCState.Thirsty, NPCState.ProvidingOrder < 1
+36	Have you ever had a dream, that you were so sure was real?	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Fruity], NPCState.Thirsty, NPCState.ProvidingOrder < 1
+37	There's an old saying in this inn —I know it's in here, probably in this inn.	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Vanilley], NPCState.Thirsty, NPCState.ProvidingOrder < 1
+38	I made my family disappear.	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Berry], NPCState.Thirsty, NPCState.ProvidingOrder < 1
+39	Why the hell are you dressed like a chicken	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Sweet, Fruity], NPCState.Thirsty, NPCState.ProvidingOrder < 1
+40	Never send a human to do a machine's job.	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Sweet, Chocolatey], NPCState.Thirsty, NPCState.ProvidingOrder < 1
+41	If you don't have something to make me handsome bring me something to make me handy!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Berry], NPCState.Thirsty, NPCState.ProvidingOrder < 1
+42	I'll have what their having!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Berry], NPCState.Thirsty, NPCState.ProvidingOrder < 1
+		Drink Received
+43	I feel more courageous already!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Berry], NPCState.Thirsty, NPCState.LastRecivedOrder < 1
+44	That looks perfect, but am I a lover or a tyrant?	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Chocolatey], NPCState.Thirsty, NPCState.LastRecivedOrder < 1
+45	Perfect, did you whistle while you worked?	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Fruity], NPCState.Thirsty, NPCState.LastRecivedOrder < 1
+46	That will do the trick!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Vanilley], NPCState.Thirsty, NPCState.LastRecivedOrder < 1
+47	Wow I could fight a bear now, but why can't I feel my lips?	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Berry], NPCState.Thirsty, NPCState.LastRecivedOrder < 1
+48	I'm feeling peckish.	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Sweet, Fruity], NPCState.Thirsty, NPCState.LastRecivedOrder < 1
+49	Tell me punk, do you feel lucky?	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Sweet, Chocolatey], NPCState.Thirsty, NPCState.LastRecivedOrder < 1
+50	Everyone needs love!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Sweet, Vanilley], NPCState.Thirsty,NPCState.LastRecivedOrder < 1
+51	Fantastic I can tell you know-se your way around a cauldron!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Berry], NPCState.Thirsty, NPCState.LastRecivedOrder < 1
+52	Once I was just a simple labourer until I got in with a bad covenant; now I'm simply laboured	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Chocolatey], NPCState.Thirsty, NPCState.LastRecivedOrder < 1
+53	You have to let it all go. Fear, doubt, and disbelief. Free your mind.	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Fruity], NPCState.Thirsty, NPCState.LastRecivedOrder < 1
+54	Fool me once, shame on... shame on you. Fool me—you can't get fooled again.	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Vanilley], NPCState.Thirsty, NPCState.LastRecivedOrder < 1
+55	Keep the change, ya filthy animal!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Berry], NPCState.Thirsty, NPCState.LastRecivedOrder < 1
+56	Keep em coming, I like my bum warm and my potions cold!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Berry], NPCState.Thirsty, NPCState.LastRecivedOrder < 1
+57	I think I'm lost... no wait... yep, I'm lost!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Fruity], NPCState.Thirsty, NPCState.LastRecivedOrder < 1
+58	I didn't order this!	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Berry], NPCState.Thirsty, NPCState.LastRecivedOrder < 1
+59	In the morning I'm doing stomach crunches. I can do 1000 now.	NPCState.Class=[Rogue, Magician, Ranger, Fighter], NPCState.Favourite=[Bitter, Salty, Chocolatey], NPCState.Thirsty, NPCState.LastRecivedOrder < 1
