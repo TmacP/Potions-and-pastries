@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2d92ad8fa12eb4c478bcb18547a5d477, type: 2}
+  m_sharedMaterial: {fileID: -2714145334855759564, guid: 2d92ad8fa12eb4c478bcb18547a5d477, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 182113852673370934}
   - component: {fileID: 1002953171813576346}
   - component: {fileID: 7425898492022847615}
+  - component: {fileID: 7264567347370970695}
   m_Layer: 5
   m_Name: RecipeButton
   m_TagString: Untagged
@@ -272,14 +273,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.85098046, g: 0.7568628, b: 0.62352943, a: 0.62352943}
+  m_Color: {r: 0.9490197, g: 0.8862746, b: 0.7294118, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -360,6 +361,21 @@ MonoBehaviour:
   _recipeName: {fileID: 8291908815439282551}
   _recipeDescription: {fileID: 1159202550067576840}
   _recipeImage: {fileID: 0}
+  _recipeData: {fileID: 0}
+--- !u!114 &7264567347370970695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6433959930467806532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb30198aa32dd140b5750692dd48104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 5.6
+  image: {fileID: 182113852673370934}
 --- !u!1 &8849227996890547050
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,8 +443,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Name of item goes here
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2d92ad8fa12eb4c478bcb18547a5d477, type: 2}
+  m_sharedMaterial: {fileID: -2714145334855759564, guid: 2d92ad8fa12eb4c478bcb18547a5d477, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -452,13 +468,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
+  m_fontSize: 10
   m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 8
   m_fontSizeMax: 12
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535

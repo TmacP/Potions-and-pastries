@@ -133,6 +133,15 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+    public event Action<int> OnCraftComplete;
+    public void CraftComplete(int CardsToDraw)
+    {
+        if (OnCraftComplete != null)
+        {
+            OnCraftComplete(CardsToDraw);
+        }
+    }
+
     public event Action<List<InventoryItemData>> OnRemovePlayerItems;
     public void RemovePlayerItems(List<InventoryItemData> ItemData)
     {
@@ -242,6 +251,15 @@ public class GameEventManager : MonoBehaviour
         if (OnNPCRecieveOrder != null)
         {
             OnNPCRecieveOrder();
+        }
+    }
+
+    public event Action<GameObject> OnNPCLeavingChair;
+    public void NPCLeavingChair(GameObject NPC)
+    {
+        if (OnNPCLeavingChair != null)
+        {
+            OnNPCLeavingChair(NPC);
         }
     }
 

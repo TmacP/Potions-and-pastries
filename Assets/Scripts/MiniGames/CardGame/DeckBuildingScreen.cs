@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
+using UnityEngine.UI;
 
 public class DeckBuildingScreen : MonoBehaviour
 {
     public InventoryManager PlayerInventoryManager;
     public InventoryManager DeckInventoryManager;
     public InventoryManager ActionInventoryManager;
-
+    public GameObject StartServiceButton;
     public List<InventoryItemData> ActionInventory;
 
     // Start is called before the first frame update
@@ -21,6 +23,18 @@ public class DeckBuildingScreen : MonoBehaviour
         PlayerInventoryManager.gameObject.SetActive(true);
         DeckInventoryManager.gameObject.SetActive(true);
         ActionInventoryManager.gameObject.SetActive(true);
+
+        if(GameManager.Instance.GetGameScene() == EGameScene.InnInterior)
+        {
+            Assert.IsNotNull(StartServiceButton);
+            StartServiceButton.SetActive(true);
+        }
+        else
+        {
+            Assert.IsNotNull(StartServiceButton);
+            StartServiceButton.SetActive(false);
+        }
+
     }
 
     private void OnDisable()
@@ -45,6 +59,10 @@ public class DeckBuildingScreen : MonoBehaviour
         {
             GameManager.Instance.ChangeGameState(EGameState.NightState);
             GameEventManager.instance.CloseMenu();
+        }
+        else
+        {
+
         }
     }
 }

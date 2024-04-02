@@ -11,6 +11,9 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerClickHandler, 
     public Image image;
     public Color selectedColor, notSelectedColor;
     public InventoryManager inventoryManager;
+
+    Vector3 InitialScale = Vector3.one;
+    public float SelectionScaleFactor = 1.2f;
     
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -61,16 +64,19 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerClickHandler, 
 
     private void Awake()
     {
+        InitialScale = transform.localScale;
         Deselect();
     }
     public void Select()
     {
+        this.transform.localScale = this.transform.localScale * SelectionScaleFactor;
         image.color = selectedColor;
 
     }
 
     public void Deselect()
     {
+        this.transform.localScale = InitialScale;
         image.color = notSelectedColor;
     }
 
@@ -113,12 +119,12 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerClickHandler, 
             if (draggableItem.inventoryManager == this.inventoryManager)
             {
                 draggableItem.parentAfterDrag = transform;
-                draggableItem.ItemData.InventoryIndex = Array.IndexOf(inventoryManager.inventorySlots, this);
+                draggableItem.ItemData.InventoryIndex = inventoryManager.inventorySlots.IndexOf(this);//Array.IndexOf(inventoryManager.inventorySlots, this);
             }
             else
             {
                 draggableItem.inventoryManager.RemoveItem(draggableItem.ItemData, true);
-                this.inventoryManager.AddItemAtIndex(draggableItem.ItemData, Array.IndexOf(inventoryManager.inventorySlots, this));
+                this.inventoryManager.AddItemAtIndex(draggableItem.ItemData, inventoryManager.inventorySlots.IndexOf(this), this);
                 Destroy(draggableItem.gameObject);
             }
         }

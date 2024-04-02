@@ -15,6 +15,8 @@ public class CraftingStationData : ScriptableObject
 
     public List<ECardActionType> CardActions;
 
+    public bool bCreatesFinalRecipes = true;
+
     //Mini Game
     public AssetReference CraftingActionMiniGame;
     public int CraftMiniGameDifficulty;

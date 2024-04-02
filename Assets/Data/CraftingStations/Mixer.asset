@@ -23,6 +23,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7780537adde64401b829c37472df0c94, type: 2}
   - {fileID: 11400000, guid: ebb749372e3e44c3fb3af08d8ccd781c, type: 2}
   - {fileID: 11400000, guid: 72460f0cf90964ed591d090560b2ee5c, type: 2}
+  CardActions: 
+  bCreatesFinalRecipes: 0
   CraftingActionMiniGame:
     m_AssetGUID: 
     m_SubObjectName: 

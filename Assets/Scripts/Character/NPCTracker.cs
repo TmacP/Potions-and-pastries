@@ -43,13 +43,17 @@ public class NPCTracker : MonoBehaviour
                     Customization.setHat(assetData.AssetName);
                     Customization.setHatColor(assetData.AssetColour);
                     break;
+                case ECharacterSpriteAssetSlots.Mouth:
+                    Customization.setMouth(assetData.AssetName);
+                    break;
                 case ECharacterSpriteAssetSlots.Eye:
                     Customization.setEyes(assetData.AssetName);
                     Customization.setSkinColor(assetData.AssetColour);
+                    Customization.setNoseColor(assetData.AssetColour);
                     break;
                 case ECharacterSpriteAssetSlots.Nose:
                     Customization.setNose(assetData.AssetName);
-                    Customization.setNoseColor(assetData.AssetColour);
+                    //Customization.setNoseColor(assetData.AssetColour);
                     break;
                 case ECharacterSpriteAssetSlots.Torso:
                     Customization.setTorso(assetData.AssetName);

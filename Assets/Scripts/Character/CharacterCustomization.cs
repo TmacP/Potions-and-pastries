@@ -283,29 +283,29 @@ public class CharacterCustomization : MonoBehaviour
     void Start()
     {
         // Testing purposes only, please delete "Start()" once ready to use 
-        //setHat("WizardHat");
+        //setHat("HornedHat");
         //setHatColor(new Color(0.576f, 0.373f, 0.639f));
 
-        //setHair("LongBangsHair");
+        //setHair("SlickedHair");
         //setHairColor(new Color(0.604f, 0.761f, 0.498f));
 
-        //setEyes("SleepyEye");
+        //setEyes("XDEye");
 
-        //setNose("LongTriangleNose");
+        //setNose("ButtonNose");
         //setNoseColor(new Color(1f, 0.91f, 0.765f));
 
-        //setMouth("FlatMouth"); 
+        //setMouth("OMouth"); 
 
         //setSkinColor(new Color(1f, 0.91f, 0.765f));
 
-        //setTorso("PuffyTorso");
-        //setArm("PuffyArm");
+        //setTorso("ArmoredTorso");
+        //setArm("ArmoredArm");
         //setTopColor(new Color(0.651f, 0.584f, 0.671f));
 
-        //setBottom("JesterPants");
+        //setBottom("ArmoredPants");
         //setBottomColor(new Color(0.576f, 0.373f, 0.639f));
 
-        //setShoe("Slippers");
+        //setShoe("ArmoredBoots");
         //setShoeColor(new Color(1f, 0.91f, 0.765f));
     }
 }

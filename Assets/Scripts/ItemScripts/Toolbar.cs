@@ -27,7 +27,7 @@ public class Toolbar : MonoBehaviour
         }
     }
 
-    public void OnDisable()
+    public virtual void OnDisable()
     {
         GameEventManager.instance.OnNPCRecieveOrder -= OnRecieveOrder;
     }
@@ -48,12 +48,12 @@ public class Toolbar : MonoBehaviour
         return ToolbarManager.GetSelectedItem(false);
     }
 
-    public bool IsFull()
+    public virtual bool IsFull()
     {
-        Debug.Log(ToolbarManager.inventorySlots.Length);
+        Debug.Log(ToolbarManager.inventorySlots.Count);
         foreach (InventorySlot slot in ToolbarManager.inventorySlots)
         {
-            if(slot.IsEmpty())
+            if (slot.IsEmpty())
             {
                 return false;
             }
@@ -61,7 +61,7 @@ public class Toolbar : MonoBehaviour
         return true;
     }
 
-    virtual public bool UseSelectedItem()
+    virtual public bool UseSelectedItem(ECardActionType Action)
     {
         return ToolbarManager.UseItem(ToolbarManager.selectedSlot);
     }
