@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: A puffy ball
   ItemType: 0
   ItemTags: 
-  image: {fileID: -499060949914064211, guid: c7c40c94c94498b4f859cf9ab5d6695d, type: 3}
+  image: {fileID: 21300000, guid: a17500cd9706fbc46b1634648d8fad8d, type: 3}
   SceneAsset:
     m_AssetGUID: 
     m_SubObjectName: 
