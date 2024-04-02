@@ -276,7 +276,7 @@ public class PlayerController : MonoBehaviour
                 {
                     for (int i = Data.Count - 1; i >= 0; i--)
                     {
-                        toolbar.UseSelectedItem();
+                        toolbar.UseSelectedItem(ECardActionType.Use_Trash);
                     }
                 }
             }
@@ -312,7 +312,7 @@ public class PlayerController : MonoBehaviour
                 {
                     for (int i = Data.Count - 1; i >= 0; i--)
                     {
-                        toolbar.UseSelectedItem();
+                        toolbar.UseSelectedItem(ECardActionType.Use_Trash);
                     }
                 }
             }
@@ -434,7 +434,10 @@ public void OnPauseMenuClose()
                 }
                 else
                 {
-                    toolbar.ToolbarManager.AddItem(item);
+                    CardHandManager CardHand = toolbar as CardHandManager;
+                    Assert.IsNotNull(CardHand);
+                    CardHand.AddCardToHand(item);
+                    //toolbar.ToolbarManager.AddItem(item);
                 }
             }
         }

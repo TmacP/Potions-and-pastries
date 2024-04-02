@@ -699,6 +699,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3486694105449631632}
     m_Modifications:
+    - target: {fileID: 182113852673370934, guid: 82b6d8880ee192744afac2b4e9cc057f, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1002953171813576346, guid: 82b6d8880ee192744afac2b4e9cc057f, type: 3}
       propertyPath: m_Colors.m_PressedColor.b
       value: 0.8313726
@@ -745,7 +749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4191042473452433404, guid: 82b6d8880ee192744afac2b4e9cc057f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4191042473452433404, guid: 82b6d8880ee192744afac2b4e9cc057f, type: 3}
       propertyPath: m_AnchorMin.x
@@ -753,7 +757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4191042473452433404, guid: 82b6d8880ee192744afac2b4e9cc057f, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4191042473452433404, guid: 82b6d8880ee192744afac2b4e9cc057f, type: 3}
       propertyPath: m_SizeDelta.x
@@ -793,11 +797,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4191042473452433404, guid: 82b6d8880ee192744afac2b4e9cc057f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 250
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4191042473452433404, guid: 82b6d8880ee192744afac2b4e9cc057f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -37.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4191042473452433404, guid: 82b6d8880ee192744afac2b4e9cc057f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -845,6 +849,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8291908815439282551, guid: 82b6d8880ee192744afac2b4e9cc057f, type: 3}
       propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291908815439282551, guid: 82b6d8880ee192744afac2b4e9cc057f, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8420949532899071968, guid: 82b6d8880ee192744afac2b4e9cc057f, type: 3}

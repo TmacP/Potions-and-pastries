@@ -19,429 +19,1596 @@ MonoBehaviour:
     - Source: 1
       Property: 1
       Comparison: 1
-      ConditionValue: Rogue
-    - Source: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
       Property: 2
       Comparison: 1
-      ConditionValue: Doughy
+      ConditionValue: '[Doughy, Fruity, Buttery]'
     - Source: 1
       Property: 3
       Comparison: 1
       ConditionValue: True
-    - Source: 2
-      Property: 0
-      Comparison: 1
-      ConditionValue: Night
     - Source: 1
       Property: 5
       Comparison: 2
       ConditionValue: 1
   - ID: 2
-    Dialogue: I'm on a diet but today ends with Y so I get to have what I like!
+    Dialogue: Get me something sweet and fruity!
     Conditions:
     - Source: 1
       Property: 1
       Comparison: 1
-      ConditionValue: Rogue
-    - Source: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
       Property: 2
       Comparison: 1
-      ConditionValue: Doughy
+      ConditionValue: '[Doughy, Fruity, Sweet]'
     - Source: 1
       Property: 3
       Comparison: 1
       ConditionValue: True
-    - Source: 2
-      Property: 0
-      Comparison: 1
-      ConditionValue: Night
     - Source: 1
-      Property: 6
+      Property: 5
       Comparison: 2
       ConditionValue: 1
   - ID: 3
-    Dialogue: After last night the only thing that will help is another night like
-      last. Bring me a drink will ya!
+    Dialogue: I'm berry hungry, so feed me cherrys!
     Conditions:
     - Source: 1
       Property: 1
       Comparison: 1
-      ConditionValue: Rogue
-    - Source: 1
-      Property: 2
-      Comparison: 1
-      ConditionValue: Bitter
-    - Source: 1
-      Property: 4
-      Comparison: 1
-      ConditionValue: True
-    - Source: 2
+      ConditionValue: '[Rogue'
+    - Source: 0
       Property: 0
       Comparison: 1
-      ConditionValue: Night
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Doughy, Berry, Buttery]'
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
     - Source: 1
       Property: 5
       Comparison: 2
       ConditionValue: 1
   - ID: 4
-    Dialogue: That will do the trick!
+    Dialogue: Could I have some berry flavored cake?
     Conditions:
     - Source: 1
       Property: 1
       Comparison: 1
-      ConditionValue: Rogue
-    - Source: 1
-      Property: 2
-      Comparison: 1
-      ConditionValue: Bitter
-    - Source: 1
-      Property: 4
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
       Comparison: 1
       ConditionValue: True
-    - Source: 2
+    - Source: 0
       Property: 0
       Comparison: 1
-      ConditionValue: Night
-    - Source: 1
-      Property: 6
-      Comparison: 2
-      ConditionValue: 1
-  - ID: 5
-    Dialogue: I'm not always sneaking around like this, I swear!
-    Conditions:
-    - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: Rogue
-    - Source: 2
-      Property: 0
-      Comparison: 1
-      ConditionValue: Day
-    - Source: 3
-      Property: 0
-      Comparison: 1
-      ConditionValue: Converse
-  - ID: 6
-    Dialogue: Whats a person gotta do around here to get their gullet filled?
-    Conditions:
-    - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: Magician
-    - Source: 1
+      ConditionValue: True
+    - Source: 0
       Property: 2
       Comparison: 1
-      ConditionValue: Doughy
+      ConditionValue: '[Doughy, Berry, Sweet]'
     - Source: 1
       Property: 3
       Comparison: 1
       ConditionValue: True
-    - Source: 2
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 5
+    Dialogue: I've got a fever, and the only cure is more Chocolate Danish!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
       Property: 0
       Comparison: 1
-      ConditionValue: Night
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Doughy, Chocolatey, Buttery]'
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 6
+    Dialogue: Hurry I need some Chocolate cake to tide me over!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Doughy, Chocolatey, Sweet]'
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
     - Source: 1
       Property: 5
       Comparison: 2
       ConditionValue: 1
   - ID: 7
-    Dialogue: Lucky I didn't turn you into a toad!
+    Dialogue: I'm gonna make you an offer you can't refuse.
     Conditions:
     - Source: 1
       Property: 1
       Comparison: 1
-      ConditionValue: Magician
-    - Source: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
       Property: 2
       Comparison: 1
-      ConditionValue: Doughy
+      ConditionValue: '[Doughy, Vanilley, Buttery]'
     - Source: 1
       Property: 3
       Comparison: 1
       ConditionValue: True
-    - Source: 2
-      Property: 0
-      Comparison: 1
-      ConditionValue: Night
     - Source: 1
-      Property: 6
+      Property: 5
       Comparison: 2
       ConditionValue: 1
   - ID: 8
-    Dialogue: I need some brew to dip my nose into!
+    Dialogue: The flavor... the flavor...
     Conditions:
     - Source: 1
       Property: 1
       Comparison: 1
-      ConditionValue: Magician
-    - Source: 1
-      Property: 2
-      Comparison: 1
-      ConditionValue: Bitter
-    - Source: 1
-      Property: 4
-      Comparison: 1
-      ConditionValue: True
-    - Source: 2
+      ConditionValue: '[Rogue'
+    - Source: 0
       Property: 0
       Comparison: 1
-      ConditionValue: Night
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Doughy, Vanilley, Sweet]'
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
     - Source: 1
       Property: 5
       Comparison: 2
       ConditionValue: 1
   - ID: 9
-    Dialogue: Fantastic I can tell you know-se your way around a cauldron!
+    Dialogue: Whats a person gotta do around here to get their gullet filled?
     Conditions:
     - Source: 1
       Property: 1
       Comparison: 1
-      ConditionValue: Magician
-    - Source: 1
-      Property: 2
-      Comparison: 1
-      ConditionValue: Bitter
-    - Source: 1
-      Property: 4
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
       Comparison: 1
       ConditionValue: True
-    - Source: 2
+    - Source: 0
       Property: 0
       Comparison: 1
-      ConditionValue: Night
-    - Source: 1
-      Property: 6
-      Comparison: 2
-      ConditionValue: 1
-  - ID: 10
-    Dialogue: Once I was just a simple labourer until I got in with a bad covenant;
-      now I'm simply laboured
-    Conditions:
-    - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: Magician
-    - Source: 2
-      Property: 0
-      Comparison: 1
-      ConditionValue: Day
-    - Source: 3
-      Property: 0
-      Comparison: 1
-      ConditionValue: Converse
-  - ID: 11
-    Dialogue: Well I'm not here to kick spiders, Get me some grub!
-    Conditions:
-    - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: Ranger
-    - Source: 1
+      ConditionValue: True
+    - Source: 0
       Property: 2
       Comparison: 1
-      ConditionValue: Doughy
+      ConditionValue: '[Doughy, Fruity, Buttery]'
     - Source: 1
       Property: 3
       Comparison: 1
       ConditionValue: True
-    - Source: 2
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 10
+    Dialogue: Show me the cherry!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
       Property: 0
       Comparison: 1
-      ConditionValue: Night
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Doughy, Berry, Buttery]'
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 11
+    Dialogue: I'm not getting any younger but I'm getting hungry!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Doughy, Fruity, Buttery]'
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
     - Source: 1
       Property: 5
       Comparison: 2
       ConditionValue: 1
   - ID: 12
+    Dialogue: Well I'm not here to kick spiders, Get me some grub!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Doughy, Fruity, Buttery]'
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 13
+    Dialogue: I'm on a diet but today ends with Y so I get to have what I like!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Doughy, Fruity, Buttery]'
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 14
+    Dialogue: Oh that looks like the apple of my eye!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Doughy, Fruity, Sweet]'
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 15
+    Dialogue: Thank you cherry much!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Doughy, Berry, Buttery]'
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 16
+    Dialogue: Oh that looks berry sweet?
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Doughy, Berry, Sweet]'
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 17
+    Dialogue: Don't fear the flavor!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Doughy, Chocolatey, Buttery]'
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 18
+    Dialogue: The only thing better than Chocolate is Chocolate cake.
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Doughy, Chocolatey, Sweet]'
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 19
+    Dialogue: Here's looking at you, kid.
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Doughy, Vanilley, Buttery]'
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 20
+    Dialogue: I love the smell of vanilla in the morning.
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Doughy, Vanilley, Sweet]'
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 21
+    Dialogue: Lucky I didn't turn you into a toad!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Doughy, Fruity, Buttery]'
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 22
+    Dialogue: That smells delicious!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Doughy, Fruity, Buttery]'
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 23
+    Dialogue: I will not rest until I have eaten this entire danish
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Doughy, Berry, Buttery]'
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 24
     Dialogue: Well, since you're the only kitchen, I'd say you're the best kitchen
       around
     Conditions:
     - Source: 1
       Property: 1
       Comparison: 1
-      ConditionValue: Ranger
-    - Source: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
       Property: 2
       Comparison: 1
-      ConditionValue: Doughy
+      ConditionValue: '[Doughy, Fruity, Buttery]'
     - Source: 1
       Property: 3
       Comparison: 1
       ConditionValue: True
-    - Source: 2
-      Property: 0
-      Comparison: 1
-      ConditionValue: Night
     - Source: 1
       Property: 6
       Comparison: 2
       ConditionValue: 1
-  - ID: 13
+  - ID: 25
+    Dialogue: That smells delicious!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Doughy, Fruity, Buttery]'
+    - Source: 1
+      Property: 3
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 26
+    Dialogue: I just heard the most terrifying thing, bring a potion to make me brave!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Berry]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 27
+    Dialogue: I'm feeling down, bring me something pleasant which will pick me up.
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Chocolatey]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 28
+    Dialogue: I'm tired as a dwarf bring me something to help me sleep
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Fruity]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 29
+    Dialogue: After last night the only thing that will help is another night like
+      last. Bring me a drink will ya!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Vanilley]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 30
+    Dialogue: I'm a wimp, I need to become brave!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Berry]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 31
+    Dialogue: It is a season for some change!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Sweet, Fruity]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 32
+    Dialogue: I'm having a bad streak bring me something to make me lucky
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Sweet, Chocolatey]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 33
+    Dialogue: I need a potion to infatuate someone.
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Sweet, Vanilley]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 34
+    Dialogue: I need some brew to dip my nose into!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Berry]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 35
+    Dialogue: there's a difference between knowing the path and walking the path.
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Chocolatey]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 36
+    Dialogue: Have you ever had a dream, that you were so sure was real?
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Fruity]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 37
+    Dialogue: "There's an old saying in this inn \u2014I know it's in here, probably
+      in this inn."
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Vanilley]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 38
+    Dialogue: I made my family disappear.
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Berry]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 39
+    Dialogue: Why the hell are you dressed like a chicken
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Sweet, Fruity]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 40
+    Dialogue: Never send a human to do a machine's job.
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Sweet, Chocolatey]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 5
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 41
     Dialogue: If you don't have something to make me handsome bring me something
       to make me handy!
     Conditions:
     - Source: 1
       Property: 1
       Comparison: 1
-      ConditionValue: Ranger
-    - Source: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
       Property: 2
       Comparison: 1
-      ConditionValue: Bitter
+      ConditionValue: '[Bitter, Salty, Berry]'
     - Source: 1
       Property: 4
       Comparison: 1
       ConditionValue: True
-    - Source: 2
-      Property: 0
-      Comparison: 1
-      ConditionValue: Night
     - Source: 1
       Property: 5
       Comparison: 2
       ConditionValue: 1
-  - ID: 14
-    Dialogue: Keep em coming, I like my bum warm and my potions cold!
-    Conditions:
-    - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: Ranger
-    - Source: 1
-      Property: 2
-      Comparison: 1
-      ConditionValue: Bitter
-    - Source: 1
-      Property: 4
-      Comparison: 1
-      ConditionValue: True
-    - Source: 2
-      Property: 0
-      Comparison: 1
-      ConditionValue: Night
-    - Source: 1
-      Property: 6
-      Comparison: 2
-      ConditionValue: 1
-  - ID: 15
-    Dialogue: I think I'm lost... no wait... yep, I'm lost!
-    Conditions:
-    - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: Ranger
-    - Source: 2
-      Property: 0
-      Comparison: 1
-      ConditionValue: Day
-    - Source: 3
-      Property: 0
-      Comparison: 1
-      ConditionValue: Converse
-  - ID: 16
-    Dialogue: I'm not getting any younger but I'm getting hungry!
-    Conditions:
-    - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: Fighter
-    - Source: 1
-      Property: 2
-      Comparison: 1
-      ConditionValue: Doughy
-    - Source: 1
-      Property: 3
-      Comparison: 1
-      ConditionValue: True
-    - Source: 2
-      Property: 0
-      Comparison: 1
-      ConditionValue: Night
-    - Source: 1
-      Property: 5
-      Comparison: 2
-      ConditionValue: 1
-  - ID: 17
-    Dialogue: That smells delicious!
-    Conditions:
-    - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: Fighter
-    - Source: 1
-      Property: 2
-      Comparison: 1
-      ConditionValue: Doughy
-    - Source: 1
-      Property: 3
-      Comparison: 1
-      ConditionValue: True
-    - Source: 2
-      Property: 0
-      Comparison: 1
-      ConditionValue: Night
-    - Source: 1
-      Property: 6
-      Comparison: 2
-      ConditionValue: 1
-  - ID: 18
+  - ID: 42
     Dialogue: I'll have what their having!
     Conditions:
     - Source: 1
       Property: 1
       Comparison: 1
-      ConditionValue: Fighter
-    - Source: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
       Property: 2
       Comparison: 1
-      ConditionValue: Bitter
+      ConditionValue: '[Bitter, Salty, Berry]'
     - Source: 1
       Property: 4
       Comparison: 1
       ConditionValue: True
-    - Source: 2
-      Property: 0
-      Comparison: 1
-      ConditionValue: Night
     - Source: 1
       Property: 5
       Comparison: 2
       ConditionValue: 1
-  - ID: 19
+  - ID: 43
+    Dialogue: I feel more courageous already!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Berry]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 44
+    Dialogue: That looks perfect, but am I a lover or a tyrant?
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Chocolatey]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 45
+    Dialogue: Perfect, did you whistle while you worked?
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Fruity]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 46
+    Dialogue: That will do the trick!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Vanilley]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 47
+    Dialogue: Wow I could fight a bear now, but why can't I feel my lips?
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Berry]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 48
+    Dialogue: I'm feeling peckish.
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Sweet, Fruity]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 49
+    Dialogue: Tell me punk, do you feel lucky?
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Sweet, Chocolatey]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 50
+    Dialogue: Everyone needs love!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Sweet, Vanilley]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 51
+    Dialogue: Fantastic I can tell you know-se your way around a cauldron!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Berry]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 52
+    Dialogue: Once I was just a simple labourer until I got in with a bad covenant;
+      now I'm simply laboured
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Chocolatey]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 53
+    Dialogue: You have to let it all go. Fear, doubt, and disbelief. Free your mind.
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Fruity]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 54
+    Dialogue: "Fool me once, shame on... shame on you. Fool me\u2014you can't get
+      fooled again."
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Vanilley]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 55
+    Dialogue: Keep the change, ya filthy animal!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Berry]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 56
+    Dialogue: Keep em coming, I like my bum warm and my potions cold!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Berry]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 57
+    Dialogue: I think I'm lost... no wait... yep, I'm lost!
+    Conditions:
+    - Source: 1
+      Property: 1
+      Comparison: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Fruity]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
+  - ID: 58
     Dialogue: I didn't order this!
     Conditions:
     - Source: 1
       Property: 1
       Comparison: 1
-      ConditionValue: Fighter
-    - Source: 1
+      ConditionValue: '[Rogue'
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
+      Property: 0
+      Comparison: 1
+      ConditionValue: True
+    - Source: 0
       Property: 2
       Comparison: 1
-      ConditionValue: Bitter
+      ConditionValue: '[Bitter, Salty, Berry]'
     - Source: 1
       Property: 4
       Comparison: 1
       ConditionValue: True
-    - Source: 2
-      Property: 0
-      Comparison: 1
-      ConditionValue: Night
     - Source: 1
       Property: 6
       Comparison: 2
       ConditionValue: 1
-  - ID: 20
+  - ID: 59
     Dialogue: In the morning I'm doing stomach crunches. I can do 1000 now.
     Conditions:
     - Source: 1
       Property: 1
       Comparison: 1
-      ConditionValue: Fighter
-    - Source: 2
+      ConditionValue: '[Rogue'
+    - Source: 0
       Property: 0
       Comparison: 1
-      ConditionValue: Day
-    - Source: 3
+      ConditionValue: True
+    - Source: 0
       Property: 0
       Comparison: 1
-      ConditionValue: Converse
+      ConditionValue: True
+    - Source: 0
+      Property: 2
+      Comparison: 1
+      ConditionValue: '[Bitter, Salty, Chocolatey]'
+    - Source: 1
+      Property: 4
+      Comparison: 1
+      ConditionValue: True
+    - Source: 1
+      Property: 6
+      Comparison: 2
+      ConditionValue: 1
