@@ -24,7 +24,7 @@ public class DeckBuildingScreen : MonoBehaviour
         DeckInventoryManager.gameObject.SetActive(true);
         ActionInventoryManager.gameObject.SetActive(true);
 
-        if(GameManager.Instance.GetGameScene() == EGameScene.InnInterior)
+        if (GameManager.Instance.GetGameScene() == EGameScene.InnInterior || GameManager.Instance.GetGameScene() == EGameScene.Tutorial)
         {
             Assert.IsNotNull(StartServiceButton);
             StartServiceButton.SetActive(true);
