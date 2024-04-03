@@ -10,6 +10,7 @@ public enum EGameScene
     InnInterior,
     InnExterior,
     Tutorial,
+    ChangingRoom,
 }
 
 
@@ -31,7 +32,8 @@ public class GameManager : MonoBehaviour
     {
         {EGameScene.InnInterior, "AlphaInterior" },
         {EGameScene.InnExterior, "AlphaExterior" },
-        {EGameScene.Tutorial, "Tutorial" }
+        {EGameScene.Tutorial, "Tutorial" },
+        {EGameScene.ChangingRoom, "ChangingRoom" }
     };
 
     private void Awake()
@@ -102,7 +104,8 @@ public class GameManager : MonoBehaviour
         {
             case EGameState.MainState:
                 Time.timeScale = 1.0f;
-                PlayerController.instance.GetComponent<DeckManager>().OnChangeGameScene(NewGameState);
+                if(PlayerController.instance)
+                    PlayerController.instance.GetComponent<DeckManager>().OnChangeGameScene(NewGameState);
                 break;
             case EGameState.NightState:
                 Time.timeScale = 1.0f; 
@@ -149,6 +152,9 @@ public class GameManager : MonoBehaviour
                 break;
             case EGameScene.Tutorial:
                 ChangeGameState(EGameState.MainState);
+                break;
+            case EGameScene.ChangingRoom:
+                ChangeGameState(EGameState.PlayerCustomizationState);
                 break;
             default:
                 Debug.Log("Gamemanager::ChangeGameScene unkown game scene given");

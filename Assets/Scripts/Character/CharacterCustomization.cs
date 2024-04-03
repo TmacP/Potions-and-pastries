@@ -280,7 +280,7 @@ public class CharacterCustomization : MonoBehaviour
         backCharacter.transform.Find("L_LowerLeg").GetComponent<SpriteResolver>().SetCategoryAndLabel("BackRightLowerLeg", this.nameShoes);
     }
 
-    void Start()
+    public void Start()
     {
         // Testing purposes only, please delete "Start()" once ready to use 
         //setHat("HornedHat");

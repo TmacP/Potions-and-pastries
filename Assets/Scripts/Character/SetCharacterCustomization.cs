@@ -36,12 +36,21 @@ public class SetCharacterCustomization : MonoBehaviour
 
     // Shoe variables
     public string nameShoes = "Slippers";
-    public Color colorShoe = new Color(1f, 0.91f, 0.765f); 
+    public Color colorShoe = new Color(1f, 0.91f, 0.765f);
 
 
     // Start is called before the first frame update
     void Start()
     {
+        if(GetComponent<PlayerCustomization>() == null)
+        {
+            SetData();
+        }
+    }
+
+    public void SetData()
+    {
+
         CharacterCustomization customization = GetComponent<CharacterCustomization>();
         Assert.IsNotNull(customization);
         // Testing purposes only, please delete "Start()" once ready to use 

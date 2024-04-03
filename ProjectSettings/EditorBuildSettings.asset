@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Alpha/Tutorial.unity
     guid: 341b981075dd94445a80050a13976d10
+  - enabled: 1
+    path: Assets/Scenes/Alpha/ChangingRoom.unity
+    guid: e118124840aeef941b6d86ad0e0b0594
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 8aae6982887e2914f8cf4bedabeaf58a, type: 2}
