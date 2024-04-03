@@ -10,6 +10,7 @@ public enum EGameScene
     InnInterior,
     InnExterior,
     Tutorial,
+    ChangingRoom,
 }
 
 
@@ -31,7 +32,8 @@ public class GameManager : MonoBehaviour
     {
         {EGameScene.InnInterior, "AlphaInterior" },
         {EGameScene.InnExterior, "AlphaExterior" },
-        {EGameScene.Tutorial, "Tutorial" }
+        {EGameScene.Tutorial, "Tutorial" },
+        {EGameScene.ChangingRoom, "ChangingRoom" }
     };
 
     private void Awake()
@@ -58,6 +60,7 @@ public class GameManager : MonoBehaviour
         PersistantGameState.UnlockedRegions.Clear();
         PersistantGameState.OpenedDoors.Clear();
         PersistantGameState.RoomsUnlocked = 2;
+        PersistantGameState.PinnedRecipes.Clear();
     }
 
 
@@ -67,6 +70,7 @@ public class GameManager : MonoBehaviour
     {
         GameEventManager.instance.OnUnlockRegion += OnUnlockRegion;
         GameEventManager.instance.OnDoorUnlocked += OnDoorUnlock;
+        GameEventManager.instance.OnPinRecipe += OnRecipePinned;
 
         GameDay = 1; // we start on day 1 for the tutorial
 
@@ -91,6 +95,7 @@ public class GameManager : MonoBehaviour
     {
         GameEventManager.instance.OnUnlockRegion -= OnUnlockRegion;
         GameEventManager.instance.OnDoorUnlocked -= OnDoorUnlock;
+        GameEventManager.instance.OnPinRecipe -= OnRecipePinned;
 
     }
 
@@ -102,7 +107,8 @@ public class GameManager : MonoBehaviour
         {
             case EGameState.MainState:
                 Time.timeScale = 1.0f;
-                PlayerController.instance.GetComponent<DeckManager>().OnChangeGameScene(NewGameState);
+                if(PlayerController.instance)
+                    PlayerController.instance.GetComponent<DeckManager>().OnChangeGameScene(NewGameState);
                 break;
             case EGameState.NightState:
                 Time.timeScale = 1.0f; 
@@ -150,6 +156,9 @@ public class GameManager : MonoBehaviour
             case EGameScene.Tutorial:
                 ChangeGameState(EGameState.MainState);
                 break;
+            case EGameScene.ChangingRoom:
+                ChangeGameState(EGameState.PlayerCustomizationState);
+                break;
             default:
                 Debug.Log("Gamemanager::ChangeGameScene unkown game scene given");
                 break;
@@ -175,5 +184,22 @@ public class GameManager : MonoBehaviour
         {
             PersistantGameState.OpenedDoors.Add(DoorID);
         }
+    }
+
+    public void OnRecipePinned(RecipeData Recipe)
+    { 
+        if(Recipe != null)
+        {
+            int index = PersistantGameState.PinnedRecipes.IndexOf(Recipe);
+            if (index >= 0)
+            {
+                PersistantGameState.PinnedRecipes.RemoveAt(index);
+            }
+            else
+            {
+                PersistantGameState.PinnedRecipes.Add(Recipe);
+            }
+        }
+        GameEventManager.instance.UpdatePostedRecipesUI();
     }
 }

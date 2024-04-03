@@ -30,4 +30,9 @@ public interface IInteractableExtension : IInteractable
     public string GetSecondaryInteractionPrompt(InventoryItemData InteractionItem = null);
 
     public EInteractionResult TrySecondaryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItems = null);
+
+    public string GetThirdInteractionPrompt();
+    public EInteractionResult TryThirdInteract(InteractorBehavoir InInteractor);
+
+
 }

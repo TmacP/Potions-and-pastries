@@ -89,6 +89,15 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThirdInteract"",
+                    ""type"": ""Button"",
+                    ""id"": ""6400d5dd-c962-4657-8fc9-7154cbe90be1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -254,6 +263,17 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""OpenRecipeBook"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68ae40ab-da8c-4982-abbc-50f0e96937b2"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ThirdInteract"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -519,6 +539,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         m_PlayerActionMap_ToolbarScroll = m_PlayerActionMap.FindAction("ToolbarScroll", throwIfNotFound: true);
         m_PlayerActionMap_MenuOpenClose = m_PlayerActionMap.FindAction("MenuOpenClose", throwIfNotFound: true);
         m_PlayerActionMap_OpenRecipeBook = m_PlayerActionMap.FindAction("OpenRecipeBook", throwIfNotFound: true);
+        m_PlayerActionMap_ThirdInteract = m_PlayerActionMap.FindAction("ThirdInteract", throwIfNotFound: true);
         // PlayerMovementMap
         m_PlayerMovementMap = asset.FindActionMap("PlayerMovementMap", throwIfNotFound: true);
         m_PlayerMovementMap_Move = m_PlayerMovementMap.FindAction("Move", throwIfNotFound: true);
@@ -597,6 +618,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActionMap_ToolbarScroll;
     private readonly InputAction m_PlayerActionMap_MenuOpenClose;
     private readonly InputAction m_PlayerActionMap_OpenRecipeBook;
+    private readonly InputAction m_PlayerActionMap_ThirdInteract;
     public struct PlayerActionMapActions
     {
         private @PlayerActions m_Wrapper;
@@ -608,6 +630,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         public InputAction @ToolbarScroll => m_Wrapper.m_PlayerActionMap_ToolbarScroll;
         public InputAction @MenuOpenClose => m_Wrapper.m_PlayerActionMap_MenuOpenClose;
         public InputAction @OpenRecipeBook => m_Wrapper.m_PlayerActionMap_OpenRecipeBook;
+        public InputAction @ThirdInteract => m_Wrapper.m_PlayerActionMap_ThirdInteract;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -638,6 +661,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @OpenRecipeBook.started += instance.OnOpenRecipeBook;
             @OpenRecipeBook.performed += instance.OnOpenRecipeBook;
             @OpenRecipeBook.canceled += instance.OnOpenRecipeBook;
+            @ThirdInteract.started += instance.OnThirdInteract;
+            @ThirdInteract.performed += instance.OnThirdInteract;
+            @ThirdInteract.canceled += instance.OnThirdInteract;
         }
 
         private void UnregisterCallbacks(IPlayerActionMapActions instance)
@@ -663,6 +689,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @OpenRecipeBook.started -= instance.OnOpenRecipeBook;
             @OpenRecipeBook.performed -= instance.OnOpenRecipeBook;
             @OpenRecipeBook.canceled -= instance.OnOpenRecipeBook;
+            @ThirdInteract.started -= instance.OnThirdInteract;
+            @ThirdInteract.performed -= instance.OnThirdInteract;
+            @ThirdInteract.canceled -= instance.OnThirdInteract;
         }
 
         public void RemoveCallbacks(IPlayerActionMapActions instance)
@@ -853,6 +882,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         void OnToolbarScroll(InputAction.CallbackContext context);
         void OnMenuOpenClose(InputAction.CallbackContext context);
         void OnOpenRecipeBook(InputAction.CallbackContext context);
+        void OnThirdInteract(InputAction.CallbackContext context);
     }
     public interface IPlayerMovementMapActions
     {

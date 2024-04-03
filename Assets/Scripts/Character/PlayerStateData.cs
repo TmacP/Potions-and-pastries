@@ -19,6 +19,9 @@ public class PlayerStateData : ScriptableObject
     public List<InventoryItemData> CardHand = new List<InventoryItemData>();
     public List<InventoryItemData> Discard = new List<InventoryItemData>();
 
+
+    public List<fCharacterSpriteAssetData> SpriteAssetData = new List<fCharacterSpriteAssetData>();
+
 }
 
 

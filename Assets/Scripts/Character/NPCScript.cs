@@ -76,6 +76,10 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
         return ReturnPrompt;
     }
 
+    public string GetThirdInteractionPrompt()
+    {
+        return "";
+    }
 
     public EInteractionResult TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
     {
@@ -89,14 +93,12 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
        //else
        if(_DialogueBehavoir != null)
        {
+            CreateDialogueState();
             _DialogueBehavoir.TryDialogue();
             return EInteractionResult.Success;
        }
        return EInteractionResult.Failure;
     }
-
-
-    
 
     public EInteractionResult TrySecondaryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItems = null)
     {
@@ -114,6 +116,11 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
             WaitSecChangeState(0.5f, ENPCState.Eating);
             return EInteractionResult.Success_ConsumeItem;
         }
+        return EInteractionResult.Failure;
+    }
+
+    public EInteractionResult TryThirdInteract(InteractorBehavoir InInteractor)
+    {
         return EInteractionResult.Failure;
     }
 
@@ -139,6 +146,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
         UpdateNPCState(NPCState);
         foundTable = false;
         foundDoor = false;
+
     }
 
 
@@ -258,6 +266,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
                 break;
             case ENPCState.WaitForOrder:
                 GenerateOrder();
+                _DialogueBehavoir.State.ProvidingOrder = Time.time.ToString();
                 GameEventManager.instance.TakeNPCOrder(NpcOrder);
                 break;
             case ENPCState.Eating:
@@ -490,6 +499,22 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
 
     private int EvaluateOrder(List<InventoryItemData> Items)
     {
+        _DialogueBehavoir.State.LastRecivedOrder = Time.time.ToString();
         return 20;
+    }
+
+    public void CreateDialogueState()
+    {
+        _DialogueBehavoir.State.Class = CharacterData.Archetype.ToString();
+        _DialogueBehavoir.State.Favourite.Clear();
+
+        _DialogueBehavoir.State.Hungry = "True";
+        _DialogueBehavoir.State.Thirsty = "True";
+        _DialogueBehavoir.State.ProvidingOrder = "0";
+        _DialogueBehavoir.State.LastRecivedOrder = "0";
+        foreach (EItemTags tag in CharacterData.NPCLikes)
+        {
+            _DialogueBehavoir.State.Favourite.Add(tag.ToString());
+        }
     }
 }

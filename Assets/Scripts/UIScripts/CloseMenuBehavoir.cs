@@ -16,6 +16,11 @@ public class CloseMenuBehavoir : MonoBehaviour
         GameEventManager.instance.OnCloseMenu -= OnCloseMenu;
     }
 
+    public void CloseMenu()
+    {
+        GameEventManager.instance.CloseMenu();
+    }
+
     void OnCloseMenu()
     {
         Destroy(this.gameObject);

@@ -96,7 +96,7 @@ public class EventLogUI : MonoBehaviour
 
     public void OnPlayerGoldChanged(long NewGold, long DeltaGold)
     {
-        string log = DeltaGold.ToString();
+        string log = (-DeltaGold).ToString() + "$";
         AddLogToQueue(log);
     }
     

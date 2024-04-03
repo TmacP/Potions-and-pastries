@@ -25,6 +25,11 @@ public class NewRecipePanel_UI : MonoBehaviour
         RefreshItems();
     }
 
+    public void ClosePanel()
+    {
+        Destroy(this.gameObject);
+    }
+
     void RefreshItems()
     {
         foreach (Transform child in _content)

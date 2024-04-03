@@ -37,8 +37,10 @@ public class DialogueBehavoir : MonoBehaviour
         {
             if (DebugMode) { Debug.Log("TryDialogue, npcData: " + npcData); }
             InkInstance.ContinueStory(npcData); // Continue the story when talking to NPC
+            return;
         }
-        
+
+
         DialogueData Dialogue = DialogueManager.instance.GetDialogue(State);
         if(Dialogue != null)
         {

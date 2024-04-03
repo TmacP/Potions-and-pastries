@@ -64,6 +64,16 @@ public class InteractorBehavoir : MonoBehaviour
         return EInteractionResult.Failure;
     }
 
+    public EInteractionResult TryThirdInteraction()
+    {
+        IInteractableExtension Extension = Interactable as IInteractableExtension;
+        if (Extension != null)
+        {
+            return Extension.TryThirdInteract(this);
+        }
+        return EInteractionResult.Failure;
+    }
+
     public void InteractReleased()
     {
         GameEventManager.instance.InteractionReleased();

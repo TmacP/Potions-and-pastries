@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
         _PlayerActions.PlayerActionMap.Interact.started += OnInteractStart;
         _PlayerActions.PlayerActionMap.Interact.canceled += OnInteractCancelled;
         _PlayerActions.PlayerActionMap.SecondaryInteract.performed += OnSecondaryInteract;
+        _PlayerActions.PlayerActionMap.ThirdInteract.performed += OnThirdInteract;
         _PlayerActions.PlayerActionMap.OpenInventory.performed += OnOpenDeckBuildingScreen;
         _PlayerActions.Inventory.CloseInventory.performed += OnCloseInventory;
         _PlayerActions.PlayerActionMap.OpenRecipeBook.performed += OnOpenRecipeMenu;
@@ -137,6 +138,7 @@ public class PlayerController : MonoBehaviour
         _PlayerActions.PlayerActionMap.Interact.started -= OnInteractStart;
         _PlayerActions.PlayerActionMap.Interact.canceled -= OnInteractStart;
         _PlayerActions.PlayerActionMap.SecondaryInteract.performed -= OnSecondaryInteract;
+        _PlayerActions.PlayerActionMap.ThirdInteract.performed -= OnThirdInteract;
         _PlayerActions.PlayerActionMap.OpenInventory.performed -= OnOpenDeckBuildingScreen;
         _PlayerActions.Inventory.CloseInventory.performed -= OnCloseInventory;
         _PlayerActions.PlayerActionMap.OpenRecipeBook.performed -= OnOpenRecipeMenu;
@@ -169,6 +171,10 @@ public class PlayerController : MonoBehaviour
                 _PlayerActions.PlayerMovementMap.Disable();
                 break;
             case EGameState.MovementDisabledState:
+                _PlayerActions.PlayerActionMap.Enable();
+                _PlayerActions.PlayerMovementMap.Disable();
+                break;
+            case EGameState.PlayerCustomizationState:
                 _PlayerActions.PlayerActionMap.Enable();
                 _PlayerActions.PlayerMovementMap.Disable();
                 break;
@@ -323,6 +329,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    protected void OnThirdInteract(InputAction.CallbackContext context)
+    {
+        if(_InteractorBehavoir != null)
+        {
+            _InteractorBehavoir.TryThirdInteraction();
+        }
+    }
     protected void OnOpenInventory(InputAction.CallbackContext context)
     {
         if (context.performed)
