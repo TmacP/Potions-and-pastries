@@ -17,18 +17,6 @@ MonoBehaviour:
     Dialogue: I could eat an entire elephant, you don't have any? do you...
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Fruity, Buttery]'
@@ -44,18 +32,6 @@ MonoBehaviour:
     Dialogue: Get me something sweet and fruity!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Fruity, Sweet]'
@@ -71,18 +47,6 @@ MonoBehaviour:
     Dialogue: I'm berry hungry, so feed me cherrys!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Berry, Buttery]'
@@ -98,18 +62,6 @@ MonoBehaviour:
     Dialogue: Could I have some berry flavored cake?
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Berry, Sweet]'
@@ -125,18 +77,6 @@ MonoBehaviour:
     Dialogue: I've got a fever, and the only cure is more Chocolate Danish!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Chocolatey, Buttery]'
@@ -152,18 +92,6 @@ MonoBehaviour:
     Dialogue: Hurry I need some Chocolate cake to tide me over!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Chocolatey, Sweet]'
@@ -179,18 +107,6 @@ MonoBehaviour:
     Dialogue: I'm gonna make you an offer you can't refuse.
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Vanilley, Buttery]'
@@ -206,18 +122,6 @@ MonoBehaviour:
     Dialogue: The flavor... the flavor...
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Vanilley, Sweet]'
@@ -233,18 +137,6 @@ MonoBehaviour:
     Dialogue: Whats a person gotta do around here to get their gullet filled?
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Fruity, Buttery]'
@@ -260,18 +152,6 @@ MonoBehaviour:
     Dialogue: Show me the cherry!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Berry, Buttery]'
@@ -287,18 +167,6 @@ MonoBehaviour:
     Dialogue: I'm not getting any younger but I'm getting hungry!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Fruity, Buttery]'
@@ -314,18 +182,6 @@ MonoBehaviour:
     Dialogue: Well I'm not here to kick spiders, Get me some grub!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Fruity, Buttery]'
@@ -341,18 +197,6 @@ MonoBehaviour:
     Dialogue: I'm on a diet but today ends with Y so I get to have what I like!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Fruity, Buttery]'
@@ -368,18 +212,6 @@ MonoBehaviour:
     Dialogue: Oh that looks like the apple of my eye!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Fruity, Sweet]'
@@ -395,18 +227,6 @@ MonoBehaviour:
     Dialogue: Thank you cherry much!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Berry, Buttery]'
@@ -422,18 +242,6 @@ MonoBehaviour:
     Dialogue: Oh that looks berry sweet?
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Berry, Sweet]'
@@ -449,18 +257,6 @@ MonoBehaviour:
     Dialogue: Don't fear the flavor!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Chocolatey, Buttery]'
@@ -476,18 +272,6 @@ MonoBehaviour:
     Dialogue: The only thing better than Chocolate is Chocolate cake.
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Chocolatey, Sweet]'
@@ -503,18 +287,6 @@ MonoBehaviour:
     Dialogue: Here's looking at you, kid.
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Vanilley, Buttery]'
@@ -530,18 +302,6 @@ MonoBehaviour:
     Dialogue: I love the smell of vanilla in the morning.
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Vanilley, Sweet]'
@@ -557,18 +317,6 @@ MonoBehaviour:
     Dialogue: Lucky I didn't turn you into a toad!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Fruity, Buttery]'
@@ -584,18 +332,6 @@ MonoBehaviour:
     Dialogue: That smells delicious!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Fruity, Buttery]'
@@ -611,18 +347,6 @@ MonoBehaviour:
     Dialogue: I will not rest until I have eaten this entire danish
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Berry, Buttery]'
@@ -639,18 +363,6 @@ MonoBehaviour:
       around
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Fruity, Buttery]'
@@ -666,18 +378,6 @@ MonoBehaviour:
     Dialogue: That smells delicious!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Doughy, Fruity, Buttery]'
@@ -693,18 +393,6 @@ MonoBehaviour:
     Dialogue: I just heard the most terrifying thing, bring a potion to make me brave!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Berry]'
@@ -720,18 +408,6 @@ MonoBehaviour:
     Dialogue: I'm feeling down, bring me something pleasant which will pick me up.
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Chocolatey]'
@@ -747,18 +423,6 @@ MonoBehaviour:
     Dialogue: I'm tired as a dwarf bring me something to help me sleep
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Fruity]'
@@ -775,18 +439,6 @@ MonoBehaviour:
       last. Bring me a drink will ya!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Vanilley]'
@@ -802,18 +454,6 @@ MonoBehaviour:
     Dialogue: I'm a wimp, I need to become brave!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Berry]'
@@ -829,18 +469,6 @@ MonoBehaviour:
     Dialogue: It is a season for some change!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Sweet, Fruity]'
@@ -856,18 +484,6 @@ MonoBehaviour:
     Dialogue: I'm having a bad streak bring me something to make me lucky
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Sweet, Chocolatey]'
@@ -883,18 +499,6 @@ MonoBehaviour:
     Dialogue: I need a potion to infatuate someone.
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Sweet, Vanilley]'
@@ -910,18 +514,6 @@ MonoBehaviour:
     Dialogue: I need some brew to dip my nose into!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Berry]'
@@ -937,18 +529,6 @@ MonoBehaviour:
     Dialogue: there's a difference between knowing the path and walking the path.
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Chocolatey]'
@@ -964,18 +544,6 @@ MonoBehaviour:
     Dialogue: Have you ever had a dream, that you were so sure was real?
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Fruity]'
@@ -992,18 +560,6 @@ MonoBehaviour:
       in this inn."
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Vanilley]'
@@ -1019,18 +575,6 @@ MonoBehaviour:
     Dialogue: I made my family disappear.
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Berry]'
@@ -1046,18 +590,6 @@ MonoBehaviour:
     Dialogue: Why the hell are you dressed like a chicken
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Sweet, Fruity]'
@@ -1073,18 +605,6 @@ MonoBehaviour:
     Dialogue: Never send a human to do a machine's job.
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Sweet, Chocolatey]'
@@ -1101,18 +621,6 @@ MonoBehaviour:
       to make me handy!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Berry]'
@@ -1128,18 +636,6 @@ MonoBehaviour:
     Dialogue: I'll have what their having!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Berry]'
@@ -1155,18 +651,6 @@ MonoBehaviour:
     Dialogue: I feel more courageous already!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Berry]'
@@ -1182,18 +666,6 @@ MonoBehaviour:
     Dialogue: That looks perfect, but am I a lover or a tyrant?
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Chocolatey]'
@@ -1209,18 +681,6 @@ MonoBehaviour:
     Dialogue: Perfect, did you whistle while you worked?
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Fruity]'
@@ -1236,18 +696,6 @@ MonoBehaviour:
     Dialogue: That will do the trick!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Vanilley]'
@@ -1263,18 +711,6 @@ MonoBehaviour:
     Dialogue: Wow I could fight a bear now, but why can't I feel my lips?
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Berry]'
@@ -1290,18 +726,6 @@ MonoBehaviour:
     Dialogue: I'm feeling peckish.
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Sweet, Fruity]'
@@ -1317,18 +741,6 @@ MonoBehaviour:
     Dialogue: Tell me punk, do you feel lucky?
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Sweet, Chocolatey]'
@@ -1344,18 +756,6 @@ MonoBehaviour:
     Dialogue: Everyone needs love!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Sweet, Vanilley]'
@@ -1371,18 +771,6 @@ MonoBehaviour:
     Dialogue: Fantastic I can tell you know-se your way around a cauldron!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Berry]'
@@ -1399,18 +787,6 @@ MonoBehaviour:
       now I'm simply laboured
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Chocolatey]'
@@ -1426,18 +802,6 @@ MonoBehaviour:
     Dialogue: You have to let it all go. Fear, doubt, and disbelief. Free your mind.
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Fruity]'
@@ -1454,18 +818,6 @@ MonoBehaviour:
       fooled again."
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Vanilley]'
@@ -1481,18 +833,6 @@ MonoBehaviour:
     Dialogue: Keep the change, ya filthy animal!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Berry]'
@@ -1508,18 +848,6 @@ MonoBehaviour:
     Dialogue: Keep em coming, I like my bum warm and my potions cold!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Berry]'
@@ -1535,18 +863,6 @@ MonoBehaviour:
     Dialogue: I think I'm lost... no wait... yep, I'm lost!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Fruity]'
@@ -1562,18 +878,6 @@ MonoBehaviour:
     Dialogue: I didn't order this!
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Berry]'
@@ -1589,18 +893,6 @@ MonoBehaviour:
     Dialogue: In the morning I'm doing stomach crunches. I can do 1000 now.
     Conditions:
     - Source: 1
-      Property: 1
-      Comparison: 1
-      ConditionValue: '[Rogue'
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
-      Property: 0
-      Comparison: 1
-      ConditionValue: True
-    - Source: 0
       Property: 2
       Comparison: 1
       ConditionValue: '[Bitter, Salty, Chocolatey]'

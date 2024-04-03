@@ -2742,7 +2742,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_SortAtRoot: 1
 --- !u!114 &3127203056232002745 stripped
 MonoBehaviour:

@@ -78,7 +78,7 @@ public class NPCCharacterData
 public class NPCDialogueState
 {
     public string Class;
-    public string[] Favourite;
+    public List<string> Favourite;
     public string Hungry;
     public string Thirsty;
     public string ProvidingOrder;
