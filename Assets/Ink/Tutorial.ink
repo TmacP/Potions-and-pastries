@@ -97,8 +97,7 @@ VAR nextPathString = ""
 
 
 === already_know
-"I delivered the puff."
--"Nicely done. You now know the basics of gathering, crafting, and service. It looks like you got some money too. If you want some additional ingredients for more recipes you could use the money to unlock the gates outside."
+-"Perfect. You know the basics of gathering, crafting, and service. If you want some additional ingredients for more recipes you can unlock the gates outside with the money you get serving potions and pastries."
 + "Thanks for helping me figure things out."
 -"No problem now, why don't you try gathering some ingredients for yourself outside."
 + [Continue]
