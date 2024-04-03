@@ -56,6 +56,7 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
         if(InteractionItem.CardActionType == ECardActionType.Use_Trash || InteractionItem.CardActionType == ECardActionType.Use_Discard)
         {
             result = "Add " + InteractionItem.Data.Name;
+
         }
         else
         {
@@ -64,12 +65,22 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
         return result;
     }
 
+    public string GetThirdInteractionPrompt()
+    {
+        if(!IsCrafting && CraftingProgress < 1f)
+        {
+            return "Retrieve Cards";
+        }
+        return "";
+    }
+
     public EInteractionResult TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
     {
         //Open Crafting UI screen
         if(IsCrafting && CraftingProgress >= 1.0f)
         {
             Debug.Log("TryInteract - Crafting Done");
+
             if(PlayerController.instance.toolbar.IsFull())
             {
                 //return EInteractionResult.Failure;
@@ -99,6 +110,7 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
             else
             {
                 Debug.Log("Crafting finished");
+
                 
                 IsCrafting = false;
                 CraftingProgress = 0.0f;
@@ -131,6 +143,16 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
             if(CurrentValidRecipes.Count > 0)
             {
                 TryCraft();
+                                // play crafting station sfx
+                if (this.Data.Name == "Mixer"){
+                    SFX.PlayMixer();
+                }
+                else if (this.Data.Name == "Oven"){
+                    SFX.PlayFireplace();
+                }
+                else if (this.Data.Name == "Cauldron"){
+                    SFX.PlayCauldron();
+                }
             }
         }
         
@@ -200,6 +222,18 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
         return EInteractionResult.Failure;
     }
 
+    public EInteractionResult TryThirdInteract(InteractorBehavoir InInteractor)
+    {
+        if(!IsCrafting)
+        {
+            GameEventManager.instance.GivePlayerItems(CurrentItems);
+            CurrentItems.Clear();
+            GameEventManager.instance.RefreshInventory();
+            return EInteractionResult.Success;
+        }
+        return EInteractionResult.Failure;
+    }
+
     //********* End of IInteractable
 
     private void Awake()
@@ -223,14 +257,15 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
     {
         //CurrentItems.Add(Item);
         RecalculateValidRecipes();
+        SFX.PlayCard();
 
-        if (IsFull)
-        {
-            if (CurrentValidRecipes.Count <= 0)
-            {
-                CraftingInvManager?.EmptyInventory();
-            }
-        }
+        //if (IsFull)
+        //{
+        //    if (CurrentValidRecipes.Count <= 0)
+        //    {
+        //        CraftingInvManager?.EmptyInventory();
+        //    }
+        //}
     }
 
     

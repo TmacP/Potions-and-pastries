@@ -33,6 +33,7 @@ public class DialogueManager : MonoBehaviour
         foreach(DialogueData Data in DataContainer.Data)
         {
             bool ConditionPassed = true;
+            int LikesPassed = 3;
             foreach (DialogueCondition Condition in Data.Conditions)
             {
                 switch(Condition.Source)
@@ -56,13 +57,26 @@ public class DialogueManager : MonoBehaviour
                         }
                         break;
                 }
-                if(!ConditionPassed)
+
+                if(Condition.Property == EDialogueConditionProperty.Favourite)
+                {
+                    if(ConditionPassed)
+                    {
+                        LikesPassed++;
+                    }
+                    else
+                    {
+                        LikesPassed--;
+                    }
+                    ConditionPassed = true;
+                }
+                else if(!ConditionPassed)
                 {
                     break;
                 }
             }
 
-            if(ConditionPassed)
+            if(ConditionPassed && LikesPassed > 0)
             {
                 PassedDialogues.Add(Data);
             }

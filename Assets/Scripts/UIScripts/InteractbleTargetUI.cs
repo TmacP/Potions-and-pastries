@@ -7,8 +7,10 @@ public class InteractbleTargetUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text PromptText;
     [SerializeField] private TMP_Text SecondaryPromptText;
+    [SerializeField] private TMP_Text ThirdPromptText;
     [SerializeField] private GameObject PromptUI;
     [SerializeField] private GameObject SecondaryPromptUI;
+    [SerializeField] private GameObject ThirdPromptUI;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,8 @@ public class InteractbleTargetUI : MonoBehaviour
         SecondaryPromptText.text = "";
         PromptUI.SetActive(false);
         SecondaryPromptUI.SetActive(false);
+        ThirdPromptText.text = "";
+        ThirdPromptUI.SetActive(false);
     }
 
     private void OnEnable()
@@ -47,11 +51,26 @@ public class InteractbleTargetUI : MonoBehaviour
                 {
                     SecondaryPromptText.text = "Q: " + Extension.GetSecondaryInteractionPrompt();
                     SecondaryPromptUI.SetActive(true);
+
+                    string s = Extension.GetThirdInteractionPrompt();
+                    if(s != null && s != "")
+                    {
+                        ThirdPromptText.text = "R: " + s;
+                        ThirdPromptUI.SetActive(true);
+                    }
+                    else
+                    {
+                        ThirdPromptText.text = "";
+                        ThirdPromptUI.SetActive(false);
+                    }
                 }
                 else
                 {
                     SecondaryPromptText.text = "";
                     SecondaryPromptUI.SetActive(false);
+
+                    ThirdPromptText.text = "";
+                    ThirdPromptUI.SetActive(false);
                 }
 
             }
@@ -61,6 +80,8 @@ public class InteractbleTargetUI : MonoBehaviour
                 PromptText.text = "";
                 SecondaryPromptText.text = "";
                 SecondaryPromptUI.SetActive(false);
+                ThirdPromptText.text = "";
+                ThirdPromptUI.SetActive(false);
             }
         }
     }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{0c88d507-7b05-45f4-85fa-7ac168c2f0eb}">
+		<property name="assetPath">
+			<value>mixer.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.5680000000000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{3b679085-fda8-4b6b-8793-477bea2b6d1f}</destination>
+		</relationship>
+	</object>
+</objects>

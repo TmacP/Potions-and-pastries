@@ -7,7 +7,7 @@ public class SceneChangeInteractable : MonoBehaviour, IInteractable
 
     [SerializeField] private string Prompt;
     [SerializeField] private EGameScene NewLocationScene;
-//**************** IInteractable
+    //**************** IInteractable
     public string InteractionPrompt => Prompt;
 
     public EInteractionResult TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)

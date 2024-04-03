@@ -135,6 +135,25 @@ public class CardHandManager : Toolbar
         return ToolbarManager.inventorySlots.Count >= MaxHandSize;
     }
 
+    public int DiscardHand()
+    {
+        int HandSize = ToolbarManager.inventorySlots.Count;
+        for(int i = ToolbarManager.inventorySlots.Count - 1; i >= 0; i--)
+        {
+            InventorySlot slot = ToolbarManager.inventorySlots[i];
+            DraggableItem itemInSlot = slot.GetComponentInChildren<DraggableItem>(true);
+            Assert.IsNotNull(itemInSlot);
+
+            InventoryItemData item = itemInSlot.ItemData;
+            DestroyImmediate(ToolbarManager.inventorySlots[i].gameObject);
+            Deck.AddCardToDiscard(item);
+            ToolbarManager.inventorySlots.RemoveAt(i);
+        }
+        ToolbarManager.inventorySlots.Clear();
+        ToolbarManager.InventoryDataRef.Clear();
+        return HandSize;
+    }
+
     public override void UpdateScrollSlot(float ScrollValue)
     {
         if (ScrollValue > 0.1)
