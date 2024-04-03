@@ -37,4 +37,6 @@ public class GameStateData : ScriptableObject
 
     public List<ItemData> UnlockedActionCards = new List<ItemData>();
 
+    public List<RecipeData> PinnedRecipes = new List<RecipeData>();
+
 }
