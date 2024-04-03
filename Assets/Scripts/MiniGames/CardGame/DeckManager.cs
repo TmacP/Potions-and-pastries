@@ -23,7 +23,7 @@ public class DeckManager : MonoBehaviour
     //public InventoryManager DeckInventoryManager;
     //public InventoryManager DiscardInventoryManager;
 
-
+    public HashSet<EItemTags> AvailableTags = new HashSet<EItemTags>();
 
     private void Awake()
     {
@@ -114,11 +114,16 @@ public class DeckManager : MonoBehaviour
 
     public void FlattenDeckInventory()
     {
+        AvailableTags.Clear();
         List<InventoryItemData> NewDeck = new List<InventoryItemData>();
         for(int i = 0; i < Deck.Count; i++)
         {
             InventoryItemData Item = Deck[i];
-            for(int j = 0; j < Item.CurrentStackCount; j++)
+            foreach (EItemTags Tag in Item.Data.ItemTags)
+            {
+                AvailableTags.Add(Tag);
+            }
+            for (int j = 0; j < Item.CurrentStackCount; j++)
             {
                 InventoryItemData NewCard = new InventoryItemData(Item.Data, -1, 1, true);
                 NewCard.CardActionType = Item.CardActionType;

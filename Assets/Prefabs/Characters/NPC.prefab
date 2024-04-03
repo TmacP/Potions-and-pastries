@@ -171,6 +171,9 @@ MonoBehaviour:
     OrderId: 0
     NPCLikes: 02000000
     NPCDislikes: 
+  GoodOrderVFX: {fileID: 100004, guid: 1d09094698ddb9c49bb3d57a351e8883, type: 3}
+  BadOrderVFX: {fileID: 100006, guid: 5ec6a5312df86d047b0d566042d86f1a, type: 3}
+  VFXLifetime: 1.5
   frontAnimator: {fileID: 0}
   backAnimator: {fileID: 0}
 --- !u!114 &4396183003958145319

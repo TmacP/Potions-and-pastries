@@ -12,4 +12,10 @@ public class OrderData
 
     public List<EItemTags> NPCLikes;
     public List<EItemTags> NPCDislikes;
+
+    public OrderData()
+    { 
+        NPCLikes = new List<EItemTags>();
+        NPCDislikes = new List<EItemTags>();
+    }
 }
