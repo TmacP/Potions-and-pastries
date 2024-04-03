@@ -277,7 +277,7 @@ public class CharacterCustomization : MonoBehaviour
         backCharacter.transform.Find("R_LowerLeg").GetComponent<SpriteResolver>().SetCategoryAndLabel("BackRightLowerLeg", this.nameShoes);
 
         frontCharacter.transform.Find("L_LowerLeg").GetComponent<SpriteResolver>().SetCategoryAndLabel("FrontLeftLowerLeg", this.nameShoes);
-        backCharacter.transform.Find("L_LowerLeg").GetComponent<SpriteResolver>().SetCategoryAndLabel("BackRightLowerLeg", this.nameShoes);
+        backCharacter.transform.Find("L_LowerLeg").GetComponent<SpriteResolver>().SetCategoryAndLabel("BackLeftLowerLeg", this.nameShoes);
     }
 
     public void Start()
