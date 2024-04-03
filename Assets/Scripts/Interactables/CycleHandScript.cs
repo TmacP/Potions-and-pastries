@@ -6,6 +6,13 @@ using UnityEngine.Assertions;
 public class CycleHandScript : MonoBehaviour, IInteractable
 {
     public GameObject MiniGame;
+    public GameObject VFX;
+
+    public void Start()
+    {
+        GameEventManager.instance.OnChangeGameState += OnChangeGameState;
+        VFX.SetActive(false);
+    }
 
     public string InteractionPrompt => GetInteractionPrompt();
 
@@ -55,6 +62,7 @@ public class CycleHandScript : MonoBehaviour, IInteractable
 
     void OnDisable()
     {
+        GameEventManager.instance.OnChangeGameState -= OnChangeGameState;
         GameEventManager.instance.OnMiniGameComplete -= OnMiniGameComplete;
     }
 
@@ -69,6 +77,14 @@ public class CycleHandScript : MonoBehaviour, IInteractable
         for (int i = 0; i < handSize; i++)
         {
             CM.DrawCard();
+        }
+    }
+
+    public void OnChangeGameState(EGameState NewState,  EGameState OldState)
+    {
+        if(NewState == EGameState.NightState)
+        {
+            VFX.SetActive(true);
         }
     }
 }
