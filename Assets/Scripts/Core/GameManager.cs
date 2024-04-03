@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
         PersistantGameState.UnlockedRegions.Clear();
         PersistantGameState.OpenedDoors.Clear();
         PersistantGameState.RoomsUnlocked = 2;
+        PersistantGameState.PinnedRecipes.Clear();
     }
 
 
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
     {
         GameEventManager.instance.OnUnlockRegion += OnUnlockRegion;
         GameEventManager.instance.OnDoorUnlocked += OnDoorUnlock;
+        GameEventManager.instance.OnPinRecipe += OnRecipePinned;
 
         GameDay = 1; // we start on day 1 for the tutorial
 
@@ -93,6 +95,7 @@ public class GameManager : MonoBehaviour
     {
         GameEventManager.instance.OnUnlockRegion -= OnUnlockRegion;
         GameEventManager.instance.OnDoorUnlocked -= OnDoorUnlock;
+        GameEventManager.instance.OnPinRecipe -= OnRecipePinned;
 
     }
 
@@ -181,5 +184,22 @@ public class GameManager : MonoBehaviour
         {
             PersistantGameState.OpenedDoors.Add(DoorID);
         }
+    }
+
+    public void OnRecipePinned(RecipeData Recipe)
+    { 
+        if(Recipe != null)
+        {
+            int index = PersistantGameState.PinnedRecipes.IndexOf(Recipe);
+            if (index >= 0)
+            {
+                PersistantGameState.PinnedRecipes.RemoveAt(index);
+            }
+            else
+            {
+                PersistantGameState.PinnedRecipes.Add(Recipe);
+            }
+        }
+        GameEventManager.instance.UpdatePostedRecipesUI();
     }
 }
