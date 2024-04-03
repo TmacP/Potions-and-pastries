@@ -64,6 +64,15 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
         return result;
     }
 
+    public string GetThirdInteractionPrompt()
+    {
+        if(!IsCrafting && CraftingProgress < 1f)
+        {
+            return "Retrieve Cards";
+        }
+        return "";
+    }
+
     public EInteractionResult TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
     {
         //Open Crafting UI screen
@@ -200,6 +209,18 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
         return EInteractionResult.Failure;
     }
 
+    public EInteractionResult TryThirdInteract(InteractorBehavoir InInteractor)
+    {
+        if(!IsCrafting)
+        {
+            GameEventManager.instance.GivePlayerItems(CurrentItems);
+            CurrentItems.Clear();
+            GameEventManager.instance.RefreshInventory();
+            return EInteractionResult.Success;
+        }
+        return EInteractionResult.Failure;
+    }
+
     //********* End of IInteractable
 
     private void Awake()
@@ -224,13 +245,13 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
         //CurrentItems.Add(Item);
         RecalculateValidRecipes();
 
-        if (IsFull)
-        {
-            if (CurrentValidRecipes.Count <= 0)
-            {
-                CraftingInvManager?.EmptyInventory();
-            }
-        }
+        //if (IsFull)
+        //{
+        //    if (CurrentValidRecipes.Count <= 0)
+        //    {
+        //        CraftingInvManager?.EmptyInventory();
+        //    }
+        //}
     }
 
     

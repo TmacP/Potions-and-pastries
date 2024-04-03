@@ -76,6 +76,10 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
         return ReturnPrompt;
     }
 
+    public string GetThirdInteractionPrompt()
+    {
+        return "";
+    }
 
     public EInteractionResult TryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItem = null)
     {
@@ -96,9 +100,6 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
        return EInteractionResult.Failure;
     }
 
-
-    
-
     public EInteractionResult TrySecondaryInteract(InteractorBehavoir InInteractor, List<InventoryItemData> InteractionItems = null)
     {
         if(InteractionItems == null || InteractionItems.Count <= 0)
@@ -115,6 +116,11 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
             WaitSecChangeState(0.5f, ENPCState.Eating);
             return EInteractionResult.Success_ConsumeItem;
         }
+        return EInteractionResult.Failure;
+    }
+
+    public EInteractionResult TryThirdInteract(InteractorBehavoir InInteractor)
+    {
         return EInteractionResult.Failure;
     }
 
