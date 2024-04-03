@@ -172,6 +172,10 @@ public class PlayerController : MonoBehaviour
                 _PlayerActions.PlayerActionMap.Enable();
                 _PlayerActions.PlayerMovementMap.Disable();
                 break;
+            case EGameState.PlayerCustomizationState:
+                _PlayerActions.PlayerActionMap.Enable();
+                _PlayerActions.PlayerMovementMap.Disable();
+                break;
             case EGameState.QuitState:
                 Application.Quit();
                 break;

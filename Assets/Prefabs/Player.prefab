@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 472343680603872811}
   - component: {fileID: 1633514906039096179}
   - component: {fileID: -5701356251122555959}
+  - component: {fileID: 7624853475584963204}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -300,6 +301,20 @@ MonoBehaviour:
   colorBottom: {r: 0.576, g: 0.373, b: 0.639, a: 1}
   nameShoes: Slippers
   colorShoe: {r: 1, g: 0.91, b: 0.765, a: 1}
+--- !u!114 &7624853475584963204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7993466284212888700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7f27a4ac65f1f841b852e8fb824595b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Customization: {fileID: 2420253865806060249}
+  SetCustomization: {fileID: -5701356251122555959}
 --- !u!1001 &4774540174301631826
 PrefabInstance:
   m_ObjectHideFlags: 0

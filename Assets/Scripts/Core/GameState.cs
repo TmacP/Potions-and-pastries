@@ -10,6 +10,7 @@ public enum EGameState
     NightState,
     PauseState,
     MovementDisabledState,
+    PlayerCustomizationState,
     QuitState
 }
 
