@@ -15,13 +15,9 @@ MonoBehaviour:
   MoveSpeed: 13
   Gravity: 1000
   Gold: 0
-  Inventory:
-  - Data: {fileID: 11400000, guid: c655e0734b494450cad243093d85c29e, type: 2}
-    InventoryIndex: 0
-    CurrentStackCount: 1
-    bIsCard: 0
-    CardActionType: 2
+  Inventory: []
   ToolBar: []
   Deck: []
   CardHand: []
   Discard: []
+  SpriteAssetData: []

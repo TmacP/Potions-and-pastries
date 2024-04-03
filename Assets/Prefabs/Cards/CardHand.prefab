@@ -105,7 +105,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 55, y: 86}
-  m_Spacing: {x: 10, y: 10}
+  m_Spacing: {x: 3, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &4288656105602835817
@@ -141,6 +141,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ToolbarManager: {fileID: 4288656105602835817}
+  HandSize: 4
+  MaxHandSize: 7
+  CardPrefab: {fileID: 8711195313639988797, guid: 8f444dd4ba7b38f43829fe94143ca5dc, type: 3}
 --- !u!1001 &617915718986232017
 PrefabInstance:
   m_ObjectHideFlags: 0

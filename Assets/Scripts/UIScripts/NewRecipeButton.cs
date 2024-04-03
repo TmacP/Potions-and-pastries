@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 
@@ -12,7 +13,7 @@ public class NewRecipeButton : MonoBehaviour
     //[SerializeField] private GameObject ImageContainer;
     [SerializeField] private List<Image> _Images;
     [HideInInspector] public RecipeData _recipeData;
-
+    [SerializeField] public GameObject _ShowIsPinnedObject;
 
     private void Awake()
     {
@@ -23,10 +24,20 @@ public class NewRecipeButton : MonoBehaviour
         //}
     }
 
+    public void Start()
+    {
+        GameEventManager.instance.OnUpdatePostedRecipesUI += SetIsPinnned;
+    }
+
+    public void OnDisable()
+    {
+        GameEventManager.instance.OnUpdatePostedRecipesUI -= SetIsPinnned;
+    }
+
     public void SetData(RecipeData data)
     {
         _recipeName.text = data.name;
-
+        _recipeData = data;
         for(int i = 0; i < _Images.Count; i++)
         {
             if(i < data.RequiredItems.Count)
@@ -40,6 +51,27 @@ public class NewRecipeButton : MonoBehaviour
                 _Images[i].gameObject.SetActive(false);
             }
         }
+        SetIsPinnned();
     }
-    
+
+
+    public void OnButtonClicked()
+    {
+        Debug.Log("button clicked");
+        Debug.Log(_recipeData.name);
+        GameEventManager.instance.PinRecipe(_recipeData);
+    }
+
+    public void SetIsPinnned()
+    {
+        if(GameManager.Instance.PersistantGameState.PinnedRecipes.Contains(_recipeData))
+        {
+            _ShowIsPinnedObject.SetActive(true);
+        }
+        else
+        {
+            _ShowIsPinnedObject.SetActive(false);
+        }
+    }
+
 }

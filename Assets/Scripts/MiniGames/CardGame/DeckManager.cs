@@ -75,7 +75,7 @@ public class DeckManager : MonoBehaviour
     //Bad but fast shuffle
     public void ShuffleDeck()
     {
-        int n = Deck.Count;
+        int n = Deck.Count-1;
         while (n > 1) 
         {
             int index = Random.Range(0, n-1);
@@ -108,6 +108,7 @@ public class DeckManager : MonoBehaviour
 
         }
         Discard.Clear();
+        ShuffleDeck();
         GameEventManager.instance.DeckSizeChange();
     }
 

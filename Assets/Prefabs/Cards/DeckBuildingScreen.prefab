@@ -121,6 +121,7 @@ MonoBehaviour:
   PlayerInventoryManager: {fileID: 7852867318462778374}
   DeckInventoryManager: {fileID: 6851014609295879768}
   ActionInventoryManager: {fileID: 6336817597237450209}
+  StartServiceButton: {fileID: 5491423012743157967}
   ActionInventory: []
 --- !u!1 &1479313908208194319
 GameObject:

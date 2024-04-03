@@ -8,7 +8,7 @@ using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class InventoryManager : MonoBehaviour
 {
-    public InventorySlot[] inventorySlots;
+    public List<InventorySlot> inventorySlots = new List<InventorySlot>();
     public GameObject draggableItemPrefab;
     //This should be set to something external from the inventory manager - the data and UI should be seperate
     public List<InventoryItemData> InventoryDataRef;
@@ -33,7 +33,7 @@ public class InventoryManager : MonoBehaviour
 
     public void SelectSlotBasedOnItem(DraggableItem item)
     {
-        for (int i = 0; i < inventorySlots.Length; i++)
+        for (int i = 0; i < inventorySlots.Count; i++)
         {
             if (inventorySlots[i].GetComponentInChildren<DraggableItem>(true) == item)
             {
@@ -46,7 +46,7 @@ public class InventoryManager : MonoBehaviour
 
     public void SetSelectedSlot(int newValue)
     {
-        if (selectedSlot >= 0)
+        if (selectedSlot >= 0 && selectedSlot < inventorySlots.Count)
         {
             inventorySlots[selectedSlot].Deselect();
         }
@@ -60,7 +60,7 @@ public class InventoryManager : MonoBehaviour
     {
         int NewSlot = selectedSlot + DeltaSlot;
 
-        if(NewSlot >= 0 && NewSlot < inventorySlots.Length)
+        if(NewSlot >= 0 && NewSlot < inventorySlots.Count)
         {
             SetSelectedSlot(NewSlot);
         }
@@ -87,8 +87,9 @@ public class InventoryManager : MonoBehaviour
 
     private void Awake()
     {
-        Array.Clear(inventorySlots, 0, inventorySlots.Length);
-        inventorySlots = GetComponentsInChildren<InventorySlot>(true);
+        inventorySlots.Clear();
+        //Array.Clear(inventorySlots, 0, inventorySlots.Count);
+        inventorySlots = GetComponentsInChildren<InventorySlot>(true).ToList();
         InfoPanel infoPanel = FindObjectOfType<InfoPanel>();
         if(infoPanel != null)
         {
@@ -164,7 +165,7 @@ public class InventoryManager : MonoBehaviour
 
     public void ChangeSelectedSlotBasedOnSlot(InventorySlot slot)
     {
-        int slotIndex = Array.IndexOf(inventorySlots, slot);
+        int slotIndex = inventorySlots.IndexOf(slot);
         if (slotIndex != -1)
         {
             SetSelectedSlot(slotIndex);
@@ -229,7 +230,7 @@ public class InventoryManager : MonoBehaviour
         if (Input.inputString != null && bIsMainMenu)
         {
             bool isNumber = int.TryParse(Input.inputString, out int number);
-            if (number > 0 && isNumber && number <= inventorySlots.Length)
+            if (number > 0 && isNumber && number <= inventorySlots.Count)
             {
                 SetSelectedSlot((int)number - 1);
             }
@@ -278,7 +279,7 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        if(smallestIndex >= inventorySlots.Length)
+        if(smallestIndex >= inventorySlots.Count)
         {
             return false;
         }
@@ -291,7 +292,7 @@ public class InventoryManager : MonoBehaviour
     public virtual bool AddItemAtIndex(InventoryItemData InvItem, int Index, bool UpdateGameLog = true)
     {
         //Find Slot
-        Assert.IsFalse(Index >= inventorySlots.Length || Index < 0);
+        Assert.IsFalse(Index >= inventorySlots.Count || Index < 0);
         foreach (InventoryItemData InvData in InventoryDataRef)
         {
             if (InvData.InventoryIndex == Index )
@@ -327,7 +328,7 @@ public class InventoryManager : MonoBehaviour
 
     private void AddItemToUI(InventoryItemData InvItem)
     {
-        Assert.IsFalse(InvItem.InventoryIndex >= inventorySlots.Length || InvItem.InventoryIndex < 0);
+        Assert.IsFalse(InvItem.InventoryIndex >= inventorySlots.Count || InvItem.InventoryIndex < 0);
         InventorySlot slot = inventorySlots[InvItem.InventoryIndex];
         DraggableItem itemInSlot = slot.GetComponentInChildren<DraggableItem>(true);
         if (itemInSlot != null)
@@ -355,7 +356,7 @@ public class InventoryManager : MonoBehaviour
         int Index = InvItem.InventoryIndex;
 
         //These checks could be cut at somepoint
-        Assert.IsFalse(Index < 0 || Index >= inventorySlots.Length);
+        Assert.IsFalse(Index < 0 || Index >= inventorySlots.Count);
         Assert.IsNotNull(InventoryDataRef);
         Assert.IsNotNull(InvItem);
 
@@ -398,7 +399,7 @@ public class InventoryManager : MonoBehaviour
     }
     public InventoryItemData GetSelectedItem(bool use)
     {
-        if(selectedSlot < 0 || selectedSlot >= inventorySlots.Length)
+        if(selectedSlot < 0 || selectedSlot >= inventorySlots.Count)
             return null;
 
         InventorySlot slot = inventorySlots[selectedSlot];
@@ -429,7 +430,7 @@ public class InventoryManager : MonoBehaviour
 
     public InventorySlot GetSlotByIndex(int SlotIndex)
     {
-        if(SlotIndex >= 0 && SlotIndex < inventorySlots.Length)
+        if(SlotIndex >= 0 && SlotIndex < inventorySlots.Count)
         {
             return inventorySlots[SlotIndex];
         }
@@ -439,14 +440,14 @@ public class InventoryManager : MonoBehaviour
     public bool bHasAnyEmptySlot()
     {
         bool[] slotFlags= { };
-        Array.Resize(ref slotFlags, inventorySlots.Length);
+        Array.Resize(ref slotFlags, inventorySlots.Count); 
 
         foreach( InventoryItemData item in InventoryDataRef ) 
         {
             slotFlags[item.InventoryIndex] = true;
         }
         
-        for(int slotIndex = 0; slotIndex < inventorySlots.Length; slotIndex++ )
+        for(int slotIndex = 0; slotIndex < inventorySlots.Count; slotIndex++ )
         {
             if(!slotFlags[slotIndex])
             {

@@ -133,6 +133,15 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+    public event Action<int> OnCraftComplete;
+    public void CraftComplete(int CardsToDraw)
+    {
+        if (OnCraftComplete != null)
+        {
+            OnCraftComplete(CardsToDraw);
+        }
+    }
+
     public event Action<List<InventoryItemData>> OnRemovePlayerItems;
     public void RemovePlayerItems(List<InventoryItemData> ItemData)
     {
@@ -159,6 +168,25 @@ public class GameEventManager : MonoBehaviour
             OnRecipeDataSelected(InRecipeData);
         }
     }
+
+    public event Action<RecipeData> OnPinRecipe;
+    public void PinRecipe(RecipeData InRecipeData)
+    {
+        if(OnPinRecipe != null)
+        {
+            OnPinRecipe(InRecipeData);
+        }
+    }
+
+    public event Action OnUpdatePostedRecipesUI;
+    public void UpdatePostedRecipesUI()
+    {
+        if(OnUpdatePostedRecipesUI != null)
+        {
+            OnUpdatePostedRecipesUI();
+        }
+    }
+
 
     public event Action<QuestData> OnQuestGiven;
     public void QuestGiven(QuestData newQuest)

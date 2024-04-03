@@ -94,12 +94,14 @@ public class StartMenuScript : MonoBehaviour
             }
             else if (selectedItem == "Continue")
             {
-                SceneManager.LoadScene("AlphaExterior");
+                GameManager.Instance.ChangeGameScene(EGameScene.InnExterior);
+                //SceneManager.LoadScene("AlphaExterior");
             }
             else if (selectedItem == "New Game")
             {
                 GameManager.Instance.clearSave();
-                SceneManager.LoadScene("Tutorial");
+                GameManager.Instance.ChangeGameScene(EGameScene.Tutorial);
+                //SceneManager.LoadScene("Tutorial");
             }
         }
     }

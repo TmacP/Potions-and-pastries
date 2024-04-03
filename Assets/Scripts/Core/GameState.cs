@@ -10,6 +10,7 @@ public enum EGameState
     NightState,
     PauseState,
     MovementDisabledState,
+    PlayerCustomizationState,
     QuitState
 }
 
@@ -18,10 +19,10 @@ public enum EGameRegion
     None,
     Starting,
     Main,
-    Forest,
-    Plains,
-    Polar,
-    Desert
+    Cave,
+    Windmill,
+    Waterwheel,
+    Pond
 }
 
 [Serializable, CreateAssetMenu(menuName = "CozyData/GameStateData")]
@@ -29,11 +30,13 @@ public enum EGameRegion
 public class GameStateData : ScriptableObject
 {
     public List<EGameRegion> UnlockedRegions = new List<EGameRegion>();
-
+    
     public List<int> OpenedDoors = new List<int>();
 
     public int RoomsUnlocked = 0;
 
     public List<ItemData> UnlockedActionCards = new List<ItemData>();
+
+    public List<RecipeData> PinnedRecipes = new List<RecipeData>();
 
 }
