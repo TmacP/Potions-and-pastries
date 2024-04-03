@@ -43,16 +43,8 @@ public class InteractbleTargetUI : MonoBehaviour
         {
             if(Interactable != null)
             {
-                if(Interactable.InteractionPrompt != null && Interactable.InteractionPrompt != "")
-                {
-                    PromptUI.SetActive(true);
-                    PromptText.text = "E: " + Interactable.InteractionPrompt;
-                }
-                else
-                {
-                    PromptUI.SetActive(false);
-                    PromptText.text = "";
-                }
+                PromptUI.SetActive(true);
+                PromptText.text = "E: " + Interactable.InteractionPrompt;
 
                 IInteractableExtension Extension = Interactable as IInteractableExtension;
                 if(Extension != null)
