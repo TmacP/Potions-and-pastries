@@ -56,6 +56,7 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
         if(InteractionItem.CardActionType == ECardActionType.Use_Trash || InteractionItem.CardActionType == ECardActionType.Use_Discard)
         {
             result = "Add " + InteractionItem.Data.Name;
+
         }
         else
         {
@@ -235,6 +236,7 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
     {
         //CurrentItems.Add(Item);
         RecalculateValidRecipes();
+        SFX.PlayCard();
 
         if (IsFull)
         {
