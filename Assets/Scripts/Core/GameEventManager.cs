@@ -220,6 +220,7 @@ public class GameEventManager : MonoBehaviour
     {
         if(OnMiniGameComplete != null)
         {
+            SFX.PlayFireworks();    
             OnMiniGameComplete(CompletionResult);
         }
     }
