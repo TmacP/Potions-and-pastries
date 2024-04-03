@@ -2179,7 +2179,7 @@ MonoBehaviour:
   - m_Name: BackHair
     m_Hash: 0
     m_CategoryList:
-    - m_Name: ShaggyHair
+    - m_Name: ScruffyHair
       m_Hash: 0
       m_Sprite: {fileID: 3889239088173365765, guid: 60a542632f46ece4aa81ae12fc53e532, type: 3}
     - m_Name: SpikeyHair
