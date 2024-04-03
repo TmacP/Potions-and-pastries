@@ -525,7 +525,8 @@ public void OnPauseMenuClose()
     {
         if(toolbar != null)
         {
-            Destroy(toolbar.gameObject);
+            return;
+            //Destroy(toolbar.gameObject);
         }
 
         GameObject[] GOS = GameObject.FindGameObjectsWithTag("PlayerHUD");

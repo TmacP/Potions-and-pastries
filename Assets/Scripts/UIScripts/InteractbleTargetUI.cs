@@ -20,6 +20,8 @@ public class InteractbleTargetUI : MonoBehaviour
         SecondaryPromptText.text = "";
         PromptUI.SetActive(false);
         SecondaryPromptUI.SetActive(false);
+        ThirdPromptText.text = "";
+        ThirdPromptUI.SetActive(false);
     }
 
     private void OnEnable()
