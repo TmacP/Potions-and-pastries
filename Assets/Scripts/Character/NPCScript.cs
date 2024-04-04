@@ -557,7 +557,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
             {
                 if(NpcOrder.NPCLikes.Contains(tag))
                 {
-                    LikeCount++;
+                    LikeCount += 2;
                 }
                 if(NpcOrder.NPCDislikes.Contains(tag))
                 {
