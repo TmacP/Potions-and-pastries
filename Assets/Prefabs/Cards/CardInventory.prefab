@@ -56,6 +56,7 @@ MonoBehaviour:
   maxStack: 255
   selectedSlot: -1
   CloseOnCloseMenuEvent: 1
+  bIsMainMenu: 1
 --- !u!1 &4527122260259098906
 GameObject:
   m_ObjectHideFlags: 0

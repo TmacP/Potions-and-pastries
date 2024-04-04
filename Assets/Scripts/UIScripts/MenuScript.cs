@@ -215,4 +215,15 @@ public class MenuScript : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(_SettingsMenuFirstSelection);
     }
+
+    // Save Game through GameManagers SaveGame function
+    public void SaveGame()
+    {
+        GameManager.Instance.SaveGame();
+    }
+
+    public void LoadGame()
+    {
+        GameManager.Instance.LoadGame();
+    }
 }

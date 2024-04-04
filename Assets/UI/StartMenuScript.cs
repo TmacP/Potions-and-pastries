@@ -94,8 +94,9 @@ public class StartMenuScript : MonoBehaviour
             }
             else if (selectedItem == "Continue")
             {
-                GameManager.Instance.ChangeGameScene(EGameScene.InnExterior);
+                //GameManager.Instance.ChangeGameScene(EGameScene.InnExterior);
                 //SceneManager.LoadScene("AlphaExterior");
+                GameManager.Instance.LoadGame();
             }
             else if (selectedItem == "New Game")
             {
