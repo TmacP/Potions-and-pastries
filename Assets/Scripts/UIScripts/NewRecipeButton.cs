@@ -57,8 +57,6 @@ public class NewRecipeButton : MonoBehaviour
 
     public void OnButtonClicked()
     {
-        Debug.Log("button clicked");
-        Debug.Log(_recipeData.name);
         GameEventManager.instance.PinRecipe(_recipeData);
     }
 

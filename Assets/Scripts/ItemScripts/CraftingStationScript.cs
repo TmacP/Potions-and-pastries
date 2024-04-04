@@ -304,7 +304,7 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
         }
         else
         {
-            Debug.Log("No Player Controller");
+            //Debug.Log("No Player Controller");
         }
         PossibleValidRecipes = Data.CraftableRecipes
         .Where(recipe => recipe.RequiredItems.All(requiredItem => AllItems.Any(currentItem => currentItem.Data == requiredItem)))
