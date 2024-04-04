@@ -480,7 +480,7 @@ public void OnPauseMenuClose()
         //Kinda convoluted but safe
         long CurrentGold = GameManager.Instance.PlayerState.Gold;
         CurrentGold -= Cost;
-        Assert.IsTrue(CurrentGold > 0);
+        Assert.IsTrue(CurrentGold >= 0);
         CurrentGold = CurrentGold > 0 ? CurrentGold : 0;
         long DeltaGold = GameManager.Instance.PlayerState.Gold - CurrentGold;
         GameManager.Instance.PlayerState.Gold = CurrentGold;

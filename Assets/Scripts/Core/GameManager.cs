@@ -107,12 +107,9 @@ public class GameManager : MonoBehaviour
         {
             case EGameState.MainState:
                 Time.timeScale = 1.0f;
-                if(PlayerController.instance)
-                    PlayerController.instance.GetComponent<DeckManager>().OnChangeGameScene(NewGameState);
                 break;
             case EGameState.NightState:
                 Time.timeScale = 1.0f; 
-                PlayerController.instance.GetComponent<DeckManager>().FlattenDeckInventory();
                 break;
             case EGameState.PauseState:
                 Time.timeScale = 0.0f;
