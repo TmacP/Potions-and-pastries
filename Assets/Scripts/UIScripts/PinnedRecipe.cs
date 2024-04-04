@@ -6,17 +6,17 @@ public class PinnedRecipe : MonoBehaviour
 {
 
     public GameObject RecipeHUD;
-    public List<NewRecipeButton> RecipeList;
+    public List<NewRecipeButton> RecipeList = new List<NewRecipeButton>();
     public float RecipeHUDScale = 2f;
 
     // Start is called before the first frame update
     void OnEnable()
     {
-        if(GameEventManager.instance != null)
-        {
-            GameEventManager.instance.OnUpdatePostedRecipesUI += OnUpdateRecipes;
-            OnUpdateRecipes();
-        }
+        //if(GameEventManager.instance != null)
+        //{
+        //    GameEventManager.instance.OnUpdatePostedRecipesUI += OnUpdateRecipes;
+        //    OnUpdateRecipes();
+        //}
     }
 
     private void Start()
@@ -34,12 +34,13 @@ public class PinnedRecipe : MonoBehaviour
     {
         for(int i = RecipeList.Count - 1; i >= 0; i--)
         {
-            DestroyImmediate(RecipeList[i].gameObject);
+            if (RecipeList[i] != null)
+                Destroy(RecipeList[i].gameObject);
         }
         RecipeList.Clear();
         foreach(RecipeData data in GameManager.Instance.PersistantGameState.PinnedRecipes)
         {
-            GameObject GO = Instantiate(RecipeHUD, this.transform);
+            GameObject GO = Instantiate(RecipeHUD, transform);
             GO.transform.localScale *= RecipeHUDScale;
             NewRecipeButton newRecipeHUD = GO.GetComponent<NewRecipeButton>();
             RecipeList.Add(newRecipeHUD);
