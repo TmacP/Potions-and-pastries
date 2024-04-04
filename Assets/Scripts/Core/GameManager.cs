@@ -70,8 +70,24 @@ public class GameManager : MonoBehaviour
             Instance = this;
             //clearSave();
         }
-    }
 
+        FMOD.Studio.VCA sfxvca = FMODUnity.RuntimeManager.GetVCA("vca:/SFX");
+        FMOD.Studio.VCA musicvca = FMODUnity.RuntimeManager.GetVCA("vca:/BGM");
+
+        if (PlayerPrefs.HasKey("Sfx"))
+        {
+            sfxvca.setVolume(DecibleToLinear(PlayerPrefs.GetFloat("Sfx")));
+        }
+        if (PlayerPrefs.HasKey("Bgm"))
+        {
+            musicvca.setVolume(DecibleToLinear(PlayerPrefs.GetFloat("Bgm")));
+        }
+    }
+    private float DecibleToLinear(float db)
+    {
+        float linear = Mathf.Pow(10.0f, db / 20.0f);
+        return linear;
+    }
     public void clearSave(){
         PlayerState.Gold = 0;
         PlayerState.Inventory.Clear();
