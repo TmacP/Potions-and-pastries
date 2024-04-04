@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     private EGameState GameState;
     public GameStateData PersistantGameState;
     private EGameScene GameScene = EGameScene.InnExterior;
+    public int MaxTableSpace = 12;
 
     [SerializeField] LoadingScreen LoadUI;
 
@@ -97,7 +98,7 @@ public class GameManager : MonoBehaviour
         PlayerState.Discard.Clear();
         PersistantGameState.UnlockedRegions.Clear();
         PersistantGameState.OpenedDoors.Clear();
-        PersistantGameState.RoomsUnlocked = 2;
+        PersistantGameState.RoomsUnlocked = 1;
         PersistantGameState.PinnedRecipes.Clear();
     }
 
@@ -333,5 +334,14 @@ public class GameManager : MonoBehaviour
             }
         }
         GameEventManager.instance.UpdatePostedRecipesUI();
+    }
+
+    public void BuyTableSpace()
+    {
+        if(PersistantGameState.RoomsUnlocked < 12)
+        {
+            PersistantGameState.RoomsUnlocked++;
+            GameEventManager.instance.TableSpaceChanged();
+        }
     }
 }
