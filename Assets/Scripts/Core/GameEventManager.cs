@@ -302,6 +302,14 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+    public event Action OnTableSpaceChanged;
+    public void TableSpaceChanged()
+    {
+        if(OnTableSpaceChanged != null)
+        {
+            OnTableSpaceChanged();
+        }
+    }
 
 
 }
