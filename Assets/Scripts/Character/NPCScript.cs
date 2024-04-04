@@ -47,6 +47,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
 
     public GameObject GoodOrderVFX;
     public GameObject BadOrderVFX;
+    public GameObject TargetVFX;
     public float VFXLifetime = 1.5f;
     
     // Animation variables
@@ -578,5 +579,16 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
         {
             _DialogueBehavoir.State.Favourite.Add(tag.ToString());
         }
+    }
+
+    public void ShowTarget()
+    {
+        TargetVFX.SetActive(true);
+        Invoke("ClearVFX", 3f);
+    }
+
+    public void ClearVFX()
+    {
+        TargetVFX.SetActive(false);
     }
 }

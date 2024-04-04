@@ -121,6 +121,9 @@ public class GameManager : MonoBehaviour
             case EGameState.MovementDisabledState:
                 Time.timeScale = 1.0f;
                 break;
+            case EGameState.PlayerCustomizationState:
+                Time.timeScale = 1.0f;
+                break;
             default:
                 Debug.Log("Gamemanager::ChangeGameState unknown game state given");
                 break;
