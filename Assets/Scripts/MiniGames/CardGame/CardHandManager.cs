@@ -127,6 +127,7 @@ public class CardHandManager : Toolbar
         Assert.IsNotNull(slot);
         ToolbarManager.inventorySlots.Add(slot);
         slot.inventoryManager = ToolbarManager;
+        Card.InventoryIndex = -1;
         ToolbarManager.AddItem(Card);
     }
 

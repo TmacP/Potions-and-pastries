@@ -226,9 +226,15 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
     {
         if(!IsCrafting)
         {
-            GameEventManager.instance.GivePlayerItems(CurrentItems);
+            foreach(InventoryItemData Item in CurrentItems)
+            {
+                TempCurrentItems.Add(Item);
+            }
             CurrentItems.Clear();
+
+            GameEventManager.instance.GivePlayerItems(TempCurrentItems);
             GameEventManager.instance.RefreshInventory();
+            TempCurrentItems.Clear();
             return EInteractionResult.Success;
         }
         return EInteractionResult.Failure;
@@ -380,7 +386,7 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
 
                 Invoke("FinishCraft", RecipeToCraft.CreationTime);
                 GameEventManager.instance.RefreshInventory();
-                GameEventManager.instance.CloseMenu();
+                //GameEventManager.instance.CloseMenu();
                 return true;
             }
 

@@ -292,7 +292,7 @@ public class InventoryManager : MonoBehaviour
     public virtual bool AddItemAtIndex(InventoryItemData InvItem, int Index, bool UpdateGameLog = true)
     {
         //Find Slot
-        Assert.IsFalse(Index >= inventorySlots.Count || Index < 0);
+        Assert.IsTrue(Index < inventorySlots.Count && Index >= 0);
         foreach (InventoryItemData InvData in InventoryDataRef)
         {
             if (InvData.InventoryIndex == Index )
@@ -328,7 +328,8 @@ public class InventoryManager : MonoBehaviour
 
     private void AddItemToUI(InventoryItemData InvItem)
     {
-        Assert.IsFalse(InvItem.InventoryIndex >= inventorySlots.Count || InvItem.InventoryIndex < 0);
+        Debug.Log(InvItem.InventoryIndex);
+        Assert.IsTrue(InvItem.InventoryIndex < inventorySlots.Count && InvItem.InventoryIndex >= 0);
         InventorySlot slot = inventorySlots[InvItem.InventoryIndex];
         DraggableItem itemInSlot = slot.GetComponentInChildren<DraggableItem>(true);
         if (itemInSlot != null)
