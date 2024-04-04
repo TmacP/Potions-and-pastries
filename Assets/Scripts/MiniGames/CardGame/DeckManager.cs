@@ -34,28 +34,29 @@ public class DeckManager : MonoBehaviour
     {
         Deck = GameManager.Instance.PlayerState.Deck;
         Discard = GameManager.Instance.PlayerState.Discard;
+        GameEventManager.instance.OnChangeGameState += OnChangeGameState;
     }
 
     // Update is called once per frame
-    void Update()
+    void OnDisable()
     {
-        
+        GameEventManager.instance.OnChangeGameState -= OnChangeGameState;
     }
 
-    public void OnChangeGameScene(EGameState NewState)
+    public void OnChangeGameState(EGameState NewState, EGameState OldState)
     {
-        CleanDeck();
-
-        if (NewState == EGameState.MainState)
+        if(NewState == EGameState.MainState && OldState == EGameState.NightState)
         {
+            CleanDeck();
             List<InventoryItemData> Hand = GameManager.Instance.PlayerState.CardHand;
             Deck.Clear();
             Discard.Clear();
             Hand.Clear();
             RecombineDeck();
         }
-        else if(NewState == EGameState.NightState)
+        else if(NewState == EGameState.NightState && OldState == EGameState.MainState)
         {
+            CleanDeck();
             FlattenDeckInventory();
         }
     }
