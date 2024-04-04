@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Sugar
   Description: Some sugar
   ItemType: 0
-  ItemTags: 02000000
+  ItemTags: 00000000
   image: {fileID: 21300000, guid: c711806c43070a64abdbfdf148d432e3, type: 3}
   SceneAsset:
     m_AssetGUID: 

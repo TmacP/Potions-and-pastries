@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Apple
   Description: An apple
   ItemType: 0
-  ItemTags: 06000000
+  ItemTags: 0400000001000000
   image: {fileID: 21300000, guid: fdf583f3c21f0e34b8ca34d7e2d33374, type: 3}
   SceneAsset:
     m_AssetGUID: 

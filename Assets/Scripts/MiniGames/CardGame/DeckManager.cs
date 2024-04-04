@@ -23,7 +23,7 @@ public class DeckManager : MonoBehaviour
     //public InventoryManager DeckInventoryManager;
     //public InventoryManager DiscardInventoryManager;
 
-
+    public HashSet<EItemTags> AvailableTags = new HashSet<EItemTags>();
 
     private void Awake()
     {
@@ -34,28 +34,29 @@ public class DeckManager : MonoBehaviour
     {
         Deck = GameManager.Instance.PlayerState.Deck;
         Discard = GameManager.Instance.PlayerState.Discard;
+        GameEventManager.instance.OnChangeGameState += OnChangeGameState;
     }
 
     // Update is called once per frame
-    void Update()
+    void OnDisable()
     {
-        
+        GameEventManager.instance.OnChangeGameState -= OnChangeGameState;
     }
 
-    public void OnChangeGameScene(EGameState NewState)
+    public void OnChangeGameState(EGameState NewState, EGameState OldState)
     {
-        CleanDeck();
-
-        if (NewState == EGameState.MainState)
+        if(NewState == EGameState.MainState && OldState == EGameState.NightState)
         {
+            CleanDeck();
             List<InventoryItemData> Hand = GameManager.Instance.PlayerState.CardHand;
             Deck.Clear();
             Discard.Clear();
             Hand.Clear();
             RecombineDeck();
         }
-        else if(NewState == EGameState.NightState)
+        else if(NewState == EGameState.NightState && OldState == EGameState.MainState)
         {
+            CleanDeck();
             FlattenDeckInventory();
         }
     }
@@ -114,11 +115,16 @@ public class DeckManager : MonoBehaviour
 
     public void FlattenDeckInventory()
     {
+        AvailableTags.Clear();
         List<InventoryItemData> NewDeck = new List<InventoryItemData>();
         for(int i = 0; i < Deck.Count; i++)
         {
             InventoryItemData Item = Deck[i];
-            for(int j = 0; j < Item.CurrentStackCount; j++)
+            foreach (EItemTags Tag in Item.Data.ItemTags)
+            {
+                AvailableTags.Add(Tag);
+            }
+            for (int j = 0; j < Item.CurrentStackCount; j++)
             {
                 InventoryItemData NewCard = new InventoryItemData(Item.Data, -1, 1, true);
                 NewCard.CardActionType = Item.CardActionType;

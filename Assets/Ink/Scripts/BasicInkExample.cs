@@ -1,6 +1,7 @@
 ﻿using System;
 using Ink.Runtime;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 // This is a super bare bones example of how to play and display a ink story in Unity.
@@ -19,11 +20,24 @@ public class BasicInkExample : MonoBehaviour {
         else
         {
             instance = this;
-			// Remove the default message
-			image = GetComponent<Image>();
+            // Remove the default message
+            if (HUD == null)
+            {
+				HUD = GameObject.FindGameObjectWithTag("PlayerHUD");
+				Assert.IsNotNull(HUD);
+				cardFront = GameObject.Find("UI_Deck");
+                cardBack = GameObject.Find("UI_Discard");
+				Assert.IsNotNull(cardFront);
+				Assert.IsNotNull(cardBack);
+            }
+
+            image = GetComponent<Image>();
 			image.enabled = false;
 			RemoveChildren();
-			StartStory();		
+			StartStory();
+			
+			
+
         }
 
     }
@@ -41,8 +55,18 @@ public class BasicInkExample : MonoBehaviour {
 	// Destroys all the old content and choices.
 	// Continues over all the lines of text, then displays all the choices. If there are no choices, the story is finished!
 	void RefreshView () {
-		// Remove all the UI on screen
-		RemoveChildren ();
+
+        if (HUD == null)
+        {
+            HUD = GameObject.FindGameObjectWithTag("PlayerHUD");
+            Assert.IsNotNull(HUD);
+            cardFront = GameObject.Find("UI_Deck");
+            cardBack = GameObject.Find("UI_Discard");
+            Assert.IsNotNull(cardFront);
+            Assert.IsNotNull(cardBack);
+        }
+        // Remove all the UI on screen
+        RemoveChildren ();
 
 		// Read all the content until we can't continue any more
 		while (story.canContinue) {

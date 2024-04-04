@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
@@ -10,11 +11,12 @@ using static NPCBehaviour;
 
 public class OrderUI : MonoBehaviour
 {
-
     OrderData Order;
 
-    [SerializeField] TextMeshProUGUI PreferenceText;
-    [SerializeField] Image Image;
+    [SerializeField] ItemTags TagRelations;
+
+    [SerializeField] List<Image> Images;
+
     [SerializeField] TextMeshProUGUI NPCName;
 
 
@@ -27,24 +29,32 @@ public class OrderUI : MonoBehaviour
     {
         Order = InOrder;
 
-        Assert.IsNotNull(PreferenceText);
-        Assert.IsNotNull(Image);
         Assert.IsNotNull(NPCName);
 
-        if(InOrder.Item != null)
+        foreach(Image image in Images)
         {
-            PreferenceText.text = Order.Item.Name;
+            image.gameObject.SetActive(false);
         }
-        else if(InOrder.NPCLikes != null && InOrder.NPCLikes.Count > 0)
-        {
-            string preference = "wants something: ";
 
+        if(InOrder.NPCLikes != null && InOrder.NPCLikes.Count > 0)
+        {
+            int i = 0;
             foreach(EItemTags Tag in InOrder.NPCLikes)
             {
-                preference += (Tag.ToString());
-                preference += " ";
+                ItemTagRelation ITR = TagRelations.TagRelations.First(r => r.Tag == Tag);
+
+                Assert.IsTrue(ITR.Data != null && ITR.Data.image != null);
+                
+                Images[i].sprite = ITR.Data.image;
+                Images[i].gameObject.SetActive(true);
+                i++;
+                
+                if(i >= Images.Count)
+                {
+                    Debug.Log("Too many likes for Order UI");
+                    break;
+                }
             }
-            PreferenceText.text = preference;
         }
 
         NPCBehaviour NPC = Order.NPCTarget?.GetComponent<NPCBehaviour>();
@@ -52,5 +62,12 @@ public class OrderUI : MonoBehaviour
         {
             NPCName.text = NPC.CharacterData.Name;
         }
+    }
+
+    public void ShowTarget()
+    {
+        NPCBehaviour NPC = Order.NPCTarget.GetComponent<NPCBehaviour>();
+        Assert.IsNotNull(NPC);
+        NPC.ShowTarget();
     }
 }

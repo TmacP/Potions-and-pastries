@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Tea leaves
   Description: Some tea leaves
   ItemType: 0
-  ItemTags: 05000000
+  ItemTags: 03000000
   image: {fileID: 21300000, guid: 348d0f87fb35750498458789ebb189d9, type: 3}
   SceneAsset:
     m_AssetGUID: 

@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Cocoa Bean
   Description: Cocoa Bean
   ItemType: 0
-  ItemTags: 09000000
+  ItemTags: 07000000
   image: {fileID: 21300000, guid: 547a89a6a8d19614399a500e64aba9e0, type: 3}
   SceneAsset:
     m_AssetGUID: 

@@ -21,6 +21,18 @@ public enum EItemTags
 
 };
 
+[Serializable]
+public struct ItemTagRelation
+{
+    public EItemTags Tag;
+    public ItemData Data;
+}
+
+[Serializable, CreateAssetMenu(menuName = "CozyData/ItemTags")]
+public class ItemTags : ScriptableObject
+{
+    public List<ItemTagRelation> TagRelations = new List<ItemTagRelation>();
+}
 
 
 

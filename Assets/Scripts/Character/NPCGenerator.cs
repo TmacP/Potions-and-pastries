@@ -98,6 +98,22 @@ public class NPCGenerator : MonoBehaviour
             Data.NPCLikes.Add(Tag);
             Tags.Remove(Tag);
         }
+
+        List<EItemTags> MandatoryLikes = new List<EItemTags>()
+        {
+            EItemTags.Buttery,
+            EItemTags.Doughy,
+            EItemTags.Sweet,
+            EItemTags.Salty
+        };
+        bool IsPresent = Data.NPCLikes.Any(t => MandatoryLikes.Contains(t));
+        if(!IsPresent)
+        {
+            EItemTags Tag = MandatoryLikes[UnityEngine.Random.Range(0, MandatoryLikes.Count)];
+            Data.NPCLikes.Add(Tag);
+            Tags.Remove(Tag);
+        }
+
         for (int i = 0; i < DislikeCount; i++)
         {
             EItemTags Tag = Tags[UnityEngine.Random.Range(0, Tags.Count)];
@@ -105,7 +121,10 @@ public class NPCGenerator : MonoBehaviour
             Tags.Remove(Tag);
         }
 
-//***********SPRITE CUSTOMIZATION**********************
+        
+
+
+        //***********SPRITE CUSTOMIZATION**********************
 
         List<ECharacterSpriteAssetSlots> Slots = NPCGenerationData.SpriteLibrary.Keys.ToList();
 

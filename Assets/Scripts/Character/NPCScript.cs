@@ -43,7 +43,13 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
 
     bool foundTable;
     bool foundDoor;
+    int LikeFoodBonus = 2;
 
+    public GameObject GoodOrderVFX;
+    public GameObject BadOrderVFX;
+    public GameObject TargetVFX;
+    public float VFXLifetime = 1.5f;
+    
     // Animation variables
     private Rigidbody _Rigidbody;
     public Animator frontAnimator;
@@ -493,14 +499,71 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     {
         NpcOrder = new OrderData();
         NpcOrder.NPCTarget = this.gameObject;
-        NpcOrder.NPCLikes = CharacterData.NPCLikes;
+        DeckManager Deck = PlayerController.instance.GetComponent<DeckManager>();
+        Assert.IsNotNull(Deck);
+
+        foreach (EItemTags tag in CharacterData.NPCLikes)
+        {
+            //I know this is dumb but its an easy quick fix
+            if(tag == EItemTags.Buttery ||
+               tag == EItemTags.Doughy ||
+               tag == EItemTags.Sweet ||
+               tag == EItemTags.Salty)
+            {
+                NpcOrder.NPCLikes.Add(tag);
+            }
+            else if(Deck.AvailableTags.Contains(tag))
+            {
+                NpcOrder.NPCLikes.Add(tag);
+            }
+        }
+
         NpcOrder.NPCDislikes = CharacterData.NPCDislikes;
+
+        if (NpcOrder.NPCLikes.Count == 0)
+        {
+            NpcOrder.NPCLikes.AddRange(CharacterData.NPCLikes);
+        }
+        
     }
 
     private int EvaluateOrder(List<InventoryItemData> Items)
     {
         _DialogueBehavoir.State.LastRecivedOrder = Time.time.ToString();
-        return 20;
+
+        if(Items.Count > 0)
+        {
+            InventoryItemData item = Items[0];
+
+            int LikeCount = 0;
+
+            foreach(EItemTags tag in item.CurrentItemTags)
+            {
+                if(NpcOrder.NPCLikes.Contains(tag))
+                {
+                    LikeCount++;
+                }
+                if(NpcOrder.NPCDislikes.Contains(tag))
+                {
+                    LikeCount--;
+                }
+            }
+
+            if(LikeCount >= 0)
+            {
+                GameObject GO = Instantiate(GoodOrderVFX, this.transform);
+                Destroy(GO, VFXLifetime);
+            }
+            else
+            {
+                GameObject GO = Instantiate(BadOrderVFX, this.transform);
+                Destroy(GO, VFXLifetime);
+            }
+
+            return 4 + LikeCount * LikeFoodBonus;
+        }
+        return 0;
+
     }
 
     public void CreateDialogueState()
@@ -516,5 +579,16 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
         {
             _DialogueBehavoir.State.Favourite.Add(tag.ToString());
         }
+    }
+
+    public void ShowTarget()
+    {
+        TargetVFX.SetActive(true);
+        Invoke("ClearVFX", 3f);
+    }
+
+    public void ClearVFX()
+    {
+        TargetVFX.SetActive(false);
     }
 }

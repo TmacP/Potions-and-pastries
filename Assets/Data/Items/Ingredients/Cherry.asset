@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Cherry
   Description: A cherry
   ItemType: 0
-  ItemTags: 07000000
+  ItemTags: 0500000004000000
   image: {fileID: 21300000, guid: cf255d101dbad6e45a96bcaf8a83517f, type: 3}
   SceneAsset:
     m_AssetGUID: 
