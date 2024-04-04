@@ -45,8 +45,16 @@ public class BasicInkExample : MonoBehaviour {
 
     // Creates a new Story object with the compiled story which we can then play!
     void StartStory () {
+		// if we are in the tutorial we load the tutorial story
+		if (GameManager.Instance.GetGameScene() == EGameScene.Tutorial){
+			if (DebugMode) {Debug.Log("Tutorial");}
+			story = new Story (inkJSONAssetTutorial.text);
+			}
 
-		story = new Story (inkJSONAsset.text);
+		else if (GameManager.Instance.GetGameScene() == EGameScene.InnExterior){
+					story = new Story (inkJSONAssetStory.text);
+		}
+
         if(OnCreateStory != null) OnCreateStory(story);
 		RefreshView();
 	}
@@ -186,7 +194,8 @@ public void ContinueStory(NPCCharacterData npcData)
 		}
 	}
 
-	[SerializeField] private TextAsset inkJSONAsset = null;
+	[SerializeField] private TextAsset inkJSONAssetTutorial = null;
+	[SerializeField] private TextAsset inkJSONAssetStory = null;
 	public Story story;
 	[SerializeField] private Canvas canvas = null;
 	// UI Prefabs
