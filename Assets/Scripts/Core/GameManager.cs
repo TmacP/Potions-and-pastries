@@ -107,6 +107,10 @@ public class GameManager : MonoBehaviour
         {
             case EGameState.MainState:
                 Time.timeScale = 1.0f;
+                if (GameState == EGameState.NightState)
+                {
+                    GameDay++;
+                }
                 break;
             case EGameState.NightState:
                 Time.timeScale = 1.0f; 

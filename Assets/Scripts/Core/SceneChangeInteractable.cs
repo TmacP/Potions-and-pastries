@@ -27,10 +27,6 @@ public class SceneChangeInteractable : MonoBehaviour, IInteractable
         {
             transitionObject.GetComponent<TransitionController>().ExitSceneTransition();
             GameManager.Instance.ChangeGameScene(NewLocationScene);
-            if (NewLocationScene == EGameScene.InnInterior) // if we are going to the alpha interior, we increment the day
-            {
-                GameManager.Instance.GameDay++;
-            }
             return EInteractionResult.Success;
         }
         
