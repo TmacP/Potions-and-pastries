@@ -328,7 +328,7 @@ public class InventoryManager : MonoBehaviour
 
     private void AddItemToUI(InventoryItemData InvItem)
     {
-        Debug.Log(InvItem.InventoryIndex);
+        //Debug.Log(InvItem.InventoryIndex);
         Assert.IsTrue(InvItem.InventoryIndex < inventorySlots.Count && InvItem.InventoryIndex >= 0);
         InventorySlot slot = inventorySlots[InvItem.InventoryIndex];
         DraggableItem itemInSlot = slot.GetComponentInChildren<DraggableItem>(true);
