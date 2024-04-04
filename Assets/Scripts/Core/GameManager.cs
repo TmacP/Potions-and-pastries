@@ -279,10 +279,10 @@ public class GameManager : MonoBehaviour
             if(LoadUI != null)
             {
                 LoadUI.UpdateBar(loadLevel.progress);
-                yield return null;
             }
+            yield return null;
         }
-        if(LoadUI != null)
+        if (LoadUI != null)
             LoadUI.gameObject.SetActive(false);
     }
 
