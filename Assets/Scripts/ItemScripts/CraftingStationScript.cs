@@ -79,12 +79,12 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
         //Open Crafting UI screen
         if(IsCrafting && CraftingProgress >= 1.0f)
         {
-            Debug.Log("TryInteract - Crafting Done");
+            //Debug.Log("TryInteract - Crafting Done");
 
             if(PlayerController.instance.toolbar.IsFull())
             {
                 //return EInteractionResult.Failure;
-                Debug.Log("Crafting and full");
+                //Debug.Log("Crafting and full");
                 
                 IsCrafting = false;
                 CraftingProgress = 0.0f;
@@ -109,7 +109,7 @@ public class CraftingStationScript : MonoBehaviour, IInteractableExtension
             }
             else
             {
-                Debug.Log("Crafting finished");
+                //Debug.Log("Crafting finished");
 
                 
                 IsCrafting = false;

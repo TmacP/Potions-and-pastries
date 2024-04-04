@@ -98,7 +98,6 @@ public class CraftingInventoryManager : InventoryManager
             
             
             InventoryItemData Item = CraftingStation.OutgoingItems[0];
-            Debug.Log(Item.Data.Name);
             CraftImage.sprite = Item.Data.image;
 
             Color NewColor = CraftImage.color;
@@ -248,6 +247,6 @@ public class CraftingInventoryManager : InventoryManager
 
     private void OnDestroy()
     {
-        Debug.Log("Removed");
+        //Debug.Log("Removed");
     }
 }

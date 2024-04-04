@@ -2020,7 +2020,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6773096467702133009, guid: 4a1cd5be6af30c4419902017306bb808, type: 3}
       propertyPath: m_Padding.m_Top
-      value: 400
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8585173702768437992, guid: 4a1cd5be6af30c4419902017306bb808, type: 3}
       propertyPath: m_Name
