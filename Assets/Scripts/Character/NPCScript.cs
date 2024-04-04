@@ -600,7 +600,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     public void ShowTarget()
     {
         TargetVFX.SetActive(true);
-        Invoke("ClearVFX", 2.1f);
+        Invoke("ClearVFX", 1.9f);
     }
 
     public void ClearVFX()
