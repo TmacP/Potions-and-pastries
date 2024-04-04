@@ -25,13 +25,23 @@ public class SceneChangeInteractable : MonoBehaviour, IInteractable
         }
         else
         {
-            transitionObject.GetComponent<TransitionController>().ExitSceneTransition();
-            GameManager.Instance.ChangeGameScene(NewLocationScene);
+            StartCoroutine(animateTransition());
             return EInteractionResult.Success;
         }
         
     }
     //********* End of IInteractable
 
+    IEnumerator animateTransition()
+    {
+        transitionObject.GetComponent<TransitionController>().ExitSceneTransition();
+        SFX.PlayDoorOpen();
+        yield return new WaitForSeconds(0.5f);
+        if (NewLocationScene == EGameScene.InnInterior) // if we are going to the alpha interior, we increment the day
+        {
+            GameManager.Instance.GameDay++;
+        }
+        GameManager.Instance.ChangeGameScene(NewLocationScene);
+    }
 
 }
