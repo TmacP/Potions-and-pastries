@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     public GameStateData PersistantGameState;
     private EGameScene GameScene = EGameScene.InnExterior;
 
+    [SerializeField] LoadingScreen LoadUI;
+
     [SerializeField]
     private readonly Dictionary<EGameScene, string> GameScenes = new Dictionary<EGameScene, string>()
     {
@@ -262,8 +264,26 @@ public class GameManager : MonoBehaviour
         bool FoundGameScene = GameScenes.TryGetValue(NewScene, out SceneName);
         if (FoundGameScene)
         {
-            SceneManager.LoadScene(SceneName);
+            if(LoadUI != null)
+                LoadUI.gameObject.SetActive(true);
+            StartCoroutine(LoadLevel(SceneName));
         }
+    }
+
+    IEnumerator LoadLevel(string SceneName)
+    {
+        AsyncOperation loadLevel = SceneManager.LoadSceneAsync(SceneName);
+
+        while(!loadLevel.isDone)
+        {
+            if(LoadUI != null)
+            {
+                LoadUI.UpdateBar(loadLevel.progress);
+                yield return null;
+            }
+        }
+        if(LoadUI != null)
+            LoadUI.gameObject.SetActive(false);
     }
 
     public void OnUnlockRegion(EGameRegion Region)
