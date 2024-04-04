@@ -11,9 +11,11 @@ public class UnlockNPCInteractionPrompt : MonoBehaviour
     [SerializeField] private TextMeshProUGUI PlayerGoldText;
     [SerializeField] private TextMeshProUGUI CostText;
     [SerializeField] private Button UnlockButton;
+    EGameState PreviousState;
 
     public void Start()
     {
+        PreviousState = GameManager.Instance.GetGameState();
         GameManager.Instance.ChangeGameState(EGameState.MovementDisabledState);
         GameEventManager.instance.OnPostPlayerGoldChanged += UpdateButtonEnable;
         GameEventManager.instance.OnCloseMenu += OnCancelled;
@@ -21,7 +23,7 @@ public class UnlockNPCInteractionPrompt : MonoBehaviour
 
     private void OnDisable()
     {
-        GameManager.Instance.ChangeGameState(EGameState.MainState);
+        GameManager.Instance.ChangeGameState(PreviousState);
         GameEventManager.instance.OnPostPlayerGoldChanged -= UpdateButtonEnable;
         GameEventManager.instance.OnCloseMenu -= OnCancelled;
     }
