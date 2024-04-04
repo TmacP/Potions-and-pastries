@@ -35,9 +35,10 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     [SerializeField] LayerMask groundLayer;
 
     //for setting points to walk to (Wander or FindTable)
-    Vector3 destination;
-    bool pointSet;
+    public Vector3 destination;
+    public bool pointSet;
     [SerializeField] float walkingRange;
+    TableChair tableRef;
 
     [SerializeField] OrderData NpcOrder;
 
@@ -259,6 +260,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
                 //doing nothin
                 break;
             case ENPCState.Wander:
+                
                 StartWander();
                 break;
             case ENPCState.Idle:
@@ -271,9 +273,17 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
                 WaitSecChangeState(3, ENPCState.WaitForOrder);
                 break;
             case ENPCState.WaitForOrder:
-                GenerateOrder();
-                _DialogueBehavoir.State.ProvidingOrder = Time.time.ToString();
-                GameEventManager.instance.TakeNPCOrder(NpcOrder);
+                if(GameManager.Instance.OrderCount > 5)
+                {
+                    pointSet = false;
+                    WaitSecChangeState(0.5f, ENPCState.Wander);
+                }
+                else
+                {
+                    GenerateOrder();
+                    _DialogueBehavoir.State.ProvidingOrder = Time.time.ToString();
+                    GameEventManager.instance.TakeNPCOrder(NpcOrder);
+                }
                 break;
             case ENPCState.Eating:
                 GameEventManager.instance.DoneNPCOrder(NpcOrder);
@@ -303,6 +313,11 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     }
     void StartWander()
     {
+        if (tableRef != null)
+        {
+            tableRef.EmptySeat(this.gameObject);
+            tableRef = null;
+        }
         if (!pointSet)
         {
             WanderDest();
@@ -351,6 +366,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
                     
                     tableChair.FillSeat(this.gameObject);
                     Table = t;
+                    tableRef = tableChair;
                     break;
                 }
             }
@@ -584,7 +600,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractableExtension
     public void ShowTarget()
     {
         TargetVFX.SetActive(true);
-        Invoke("ClearVFX", 3f);
+        Invoke("ClearVFX", 2.1f);
     }
 
     public void ClearVFX()

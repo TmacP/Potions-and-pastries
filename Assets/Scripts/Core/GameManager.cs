@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public GameStateData PersistantGameState;
     private EGameScene GameScene = EGameScene.InnExterior;
     public int MaxTableSpace = 12;
+    public int OrderCount = 0;
 
     [SerializeField] LoadingScreen LoadUI;
 
@@ -182,6 +183,8 @@ public class GameManager : MonoBehaviour
         GameEventManager.instance.OnUnlockRegion += OnUnlockRegion;
         GameEventManager.instance.OnDoorUnlocked += OnDoorUnlock;
         GameEventManager.instance.OnPinRecipe += OnRecipePinned;
+        GameEventManager.instance.OnDoneNPCOrder += OnNPCOrderRecieved;
+        GameEventManager.instance.OnTakeNPCOrder += OnNPCOrder;
 
         GameDay = 1; // we start on day 1 for the tutorial
 
@@ -207,6 +210,8 @@ public class GameManager : MonoBehaviour
         GameEventManager.instance.OnUnlockRegion -= OnUnlockRegion;
         GameEventManager.instance.OnDoorUnlocked -= OnDoorUnlock;
         GameEventManager.instance.OnPinRecipe -= OnRecipePinned;
+        GameEventManager.instance.OnDoneNPCOrder -= OnNPCOrderRecieved;
+        GameEventManager.instance.OnTakeNPCOrder -= OnNPCOrder;
 
     }
 
@@ -258,7 +263,7 @@ public class GameManager : MonoBehaviour
     {
         string SceneName;
         GameScene = NewScene;
-
+        OrderCount = 0;
         //This is to handle any special cases before we change scenes
         switch (NewScene)
         {
@@ -343,5 +348,15 @@ public class GameManager : MonoBehaviour
             PersistantGameState.RoomsUnlocked++;
             GameEventManager.instance.TableSpaceChanged();
         }
+    }
+
+    public void OnNPCOrder(OrderData Data)
+    {
+        OrderCount++;
+    }
+
+    public void OnNPCOrderRecieved(OrderData Data)
+    {
+        OrderCount--;
     }
 }

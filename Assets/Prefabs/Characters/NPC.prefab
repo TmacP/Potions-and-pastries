@@ -165,6 +165,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  destination: {x: 0, y: 0, z: 0}
+  pointSet: 0
   walkingRange: 15
   NpcOrder:
     NPCTarget: {fileID: 0}
@@ -2706,7 +2708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19800006, guid: e567b289c0667324f98ade7289c8b495, type: 3}
       propertyPath: lengthInSec
-      value: 1
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 19900000, guid: e567b289c0667324f98ade7289c8b495, type: 3}
       propertyPath: m_Materials.Array.size
