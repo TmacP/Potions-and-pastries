@@ -2061,6 +2061,14 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1815236235601073511, guid: f2116dd8256e0114e9fc68b830b73d72, type: 3}
+      propertyPath: UseItemButton
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815236235601073511, guid: f2116dd8256e0114e9fc68b830b73d72, type: 3}
+      propertyPath: DestroyItemButton
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2026404825313351424, guid: f2116dd8256e0114e9fc68b830b73d72, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2598,7 +2606,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4584613070398640516, guid: f2116dd8256e0114e9fc68b830b73d72, type: 3}
+    - {fileID: 6850886406931479189, guid: f2116dd8256e0114e9fc68b830b73d72, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3601480307727788746, guid: f2116dd8256e0114e9fc68b830b73d72, type: 3}
       insertIndex: -1
